@@ -163,7 +163,7 @@ The `v8x16.shuffle` instruction has 16 bytes after `simdop`.
 | `f32x4.convert_u/i32x4`   |      133 | -                  |
 | `f64x2.convert_s/i64x2`   |      134 | -                  |
 | `f64x2.convert_u/i64x2`   |      135 | -                  |
-| `i32x4.trunc_s/f32x4:sat` |      136 | -                  |
-| `i32x4.trunc_u/f32x4:sat` |      137 | -                  |
-| `i64x2.trunc_s/f64x2:sat` |      138 | -                  |
-| `i64x2.trunc_u/f64x2:sat` |      139 | -                  |
+| `i32x4.trunc_s:sat/f32x4` |      136 | -                  |
+| `i32x4.trunc_u:sat/f32x4` |      137 | -                  |
+| `i64x2.trunc_s:sat/f64x2` |      138 | -                  |
+| `i64x2.trunc_u:sat/f64x2` |      139 | -                  |
