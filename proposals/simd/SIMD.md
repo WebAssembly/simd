@@ -553,6 +553,22 @@ def S.ne(a, b):
 * `f32x4.ge(a: v128, b: v128) -> v128`
 * `f64x2.ge(a: v128, b: v128) -> v128`
 
+### Lane-wise integer minimum
+* `i8x16.min_s(a: v128, b: v128) -> v128`
+* `i8x16.min_u(a: v128, b: v128) -> v128`
+* `i16x8.min_s(a: v128, b: v128) -> v128`
+* `i16x8.min_u(a: v128, b: v128) -> v128`
+* `i32x4.min_s(a: v128, b: v128) -> v128`
+* `i32x4.min_u(a: v128, b: v128) -> v128`
+
+### Lane-wise integer maximum
+* `i8x16.max_s(a: v128, b: v128) -> v128`
+* `i8x16.max_u(a: v128, b: v128) -> v128`
+* `i16x8.max_s(a: v128, b: v128) -> v128`
+* `i16x8.max_u(a: v128, b: v128) -> v128`
+* `i32x4.max_s(a: v128, b: v128) -> v128`
+* `i32x4.max_u(a: v128, b: v128) -> v128`
+
 ## Load and store
 
 Load and store operations are provided for the `v128` vectors. The memory
