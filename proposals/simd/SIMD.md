@@ -211,10 +211,28 @@ The input lane value, `x`, is interpreted the same way as for the splat
 instructions. For the `i8` and `i16` lanes, the high bits of `x` are ignored.
 
 ### Shuffle lanes
+
+#### Immediate permutation rule
+* `v8x16.permute(a: v128, s: LaneIdx16[16]) -> v128`
+* `v16x8.permute(a: v128, s: LaneIdx8[8]) -> v128`
+* `v32x4.permute(a: v128, s: LaneIdx4[4]) -> v128`
+* `v64x2.permute(a: v128, s: LaneIdx2[2]) -> v128`
 * `v8x16.shuffle(a: v128, b: v128, s: LaneIdx32[16]) -> v128`
+* `v16x8.shuffle(a: v128, b: v128, s: LaneIdx16[8]) -> v128`
+* `v32x4.shuffle(a: v128, b: v128, s: LaneIdx8[4]) -> v128`
+* `v64x2.shuffle(a: v128, b: v128, s: LaneIdx4[2]) -> v128`
+
+Create vector with lanes selected from the lanes of the input vector:
+
+```python
+def S.permute(a, s):
+    result = S.New()
+    for i in range(S.Lanes):
+        result[i] = a[s[i]]
+    return result
+```
 
 Create vector with lanes selected from the lanes of two input vectors:
-
 ```python
 def S.shuffle(a, b, s):
     result = S.New()
@@ -225,6 +243,18 @@ def S.shuffle(a, b, s):
             result[i] = b[s[i] - S.lanes]
     return result
 ```
+
+#### Variable permutation rule
+* `v8x16.permuteVar(a: v128, s: v128) -> v128`
+* `v16x8.permuteVar(a: v128, s: v128) -> v128`
+* `v32x4.permuteVar(a: v128, s: v128) -> v128`
+* `v64x2.permuteVar(a: v128, s: v128) -> v128`
+* `v8x16.shuffleVar(a: v128, b: v128, s: v128) -> v128`
+* `v16x8.shuffleVar(a: v128, b: v128, s: v128) -> v128`
+* `v32x4.shuffleVar(a: v128, b: v128, s: v128) -> v128`
+* `v64x2.shuffleVar(a: v128, b: v128, s: v128) -> v128`
+
+Same as non-`Var`, but where indices are runtime values.
 
 ## Integer arithmetic
 
