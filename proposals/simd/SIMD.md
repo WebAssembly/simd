@@ -705,3 +705,28 @@ Lane-wise saturating conversion from floating point to integer using the IEEE
 resulting lane is 0. If the rounded integer value of a lane is outside the
 range of the destination type, the result is saturated to the nearest
 representable integer value.
+
+
+## Reductions
+
+There is no instruction for reductions.
+Instead, one can use permutations to reduce lane-wise operations like `add`, `min`, `max`, `and`, `or`...
+
+Here is an example to reduce add on f32x4:
+```
+get_local 0
+v32x4.permute 2 3 0 1  ;; swap the lower part with the higher part of the vector
+f32x4.add
+get_local 0
+v32x4.permute 1 0 3 2  ;; swap the 2 first elements together, and the 2 last elements together
+f32x4.add
+f32x4.extract_lane 0  ;; extract the first element
+```
+
+Here is an example to reduce add on f64x2:
+```
+get_local 0
+v64x2.permute 1 0  ;; swap the lower part with the higher part of the vector
+f64x2.add
+f64x2.extract_lane 0  ;; extract the first element
+```
