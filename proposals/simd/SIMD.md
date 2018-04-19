@@ -715,7 +715,7 @@ Instead, one can use permutations to reduce lane-wise operations like `add`, `mi
 Here is an example to reduce add on f32x4:
 ```
 get_local 0
-v32x4.permute 2 3 0 1  ;; swap the lower part with the higher part of the vector
+v64x2.permute 1 0  ;; swap the lower part with the higher part of the vector
 f32x4.add
 get_local 0
 v32x4.permute 1 0 3 2  ;; swap the 2 first elements together, and the 2 last elements together
