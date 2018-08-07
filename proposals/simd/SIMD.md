@@ -27,11 +27,11 @@ encoded as individual bytes in the binary encoding. Many have a limited valid
 range, and it is a validation error if the immediate operands are out of range.
 
 * `ImmByte`: A single unconstrained byte (0-255).
-* `LaneIdx2`: A byte with values in the range 0–1 identifying a lane.
-* `LaneIdx4`: A byte with values in the range 0–3 identifying a lane.
-* `LaneIdx8`: A byte with values in the range 0–7 identifying a lane.
-* `LaneIdx16`: A byte with values in the range 0–15 identifying a lane.
-* `LaneIdx32`: A byte with values in the range 0–31 identifying a lane.
+* `ImmLaneIdx2`: A byte with values in the range 0–1 identifying a lane.
+* `ImmLaneIdx4`: A byte with values in the range 0–3 identifying a lane.
+* `ImmLaneIdx8`: A byte with values in the range 0–7 identifying a lane.
+* `ImmLaneIdx16`: A byte with values in the range 0–15 identifying a lane.
+* `ImmLaneIdx32`: A byte with values in the range 0–31 identifying a lane.
 
 ## Interpreting the SIMD value type
 
@@ -168,14 +168,14 @@ def S.splat(x):
 ## Accessing lanes
 
 ### Extract lane as a scalar
-* `i8x16.extract_lane_s(a: v128, i: LaneIdx16) -> i32`
-* `i8x16.extract_lane_u(a: v128, i: LaneIdx16) -> i32`
-* `i16x8.extract_lane_s(a: v128, i: LaneIdx8) -> i32`
-* `i16x8.extract_lane_u(a: v128, i: LaneIdx8) -> i32`
-* `i32x4.extract_lane(a: v128, i: LaneIdx4) -> i32`
-* `i64x2.extract_lane(a: v128, i: LaneIdx2) -> i64`
-* `f32x4.extract_lane(a: v128, i: LaneIdx4) -> f32`
-* `f64x2.extract_lane(a: v128, i: LaneIdx2) -> f64`
+* `i8x16.extract_lane_s(a: v128, i: ImmLaneIdx16) -> i32`
+* `i8x16.extract_lane_u(a: v128, i: ImmLaneIdx16) -> i32`
+* `i16x8.extract_lane_s(a: v128, i: ImmLaneIdx8) -> i32`
+* `i16x8.extract_lane_u(a: v128, i: ImmLaneIdx8) -> i32`
+* `i32x4.extract_lane(a: v128, i: ImmLaneIdx4) -> i32`
+* `i64x2.extract_lane(a: v128, i: ImmLaneIdx2) -> i64`
+* `f32x4.extract_lane(a: v128, i: ImmLaneIdx4) -> f32`
+* `f64x2.extract_lane(a: v128, i: ImmLaneIdx2) -> f64`
 
 Extract the value of lane `i` in `a`.
 
@@ -188,12 +188,12 @@ The `_s` and `_u` variants will sign-extend or zero-extend the lane value to
 `i32` respectively.
 
 ### Replace lane value
-* `i8x16.replace_lane(a: v128, i: LaneIdx16, x: i32) -> v128`
-* `i16x8.replace_lane(a: v128, i: LaneIdx8, x: i32) -> v128`
-* `i32x4.replace_lane(a: v128, i: LaneIdx4, x: i32) -> v128`
-* `i64x2.replace_lane(a: v128, i: LaneIdx2, x: i64) -> v128`
-* `f32x4.replace_lane(a: v128, i: LaneIdx4, x: f32) -> v128`
-* `f64x2.replace_lane(a: v128, i: LaneIdx2, x: f64) -> v128`
+* `i8x16.replace_lane(a: v128, i: ImmLaneIdx16, x: i32) -> v128`
+* `i16x8.replace_lane(a: v128, i: ImmLaneIdx8, x: i32) -> v128`
+* `i32x4.replace_lane(a: v128, i: ImmLaneIdx4, x: i32) -> v128`
+* `i64x2.replace_lane(a: v128, i: ImmLaneIdx2, x: i64) -> v128`
+* `f32x4.replace_lane(a: v128, i: ImmLaneIdx4, x: f32) -> v128`
+* `f64x2.replace_lane(a: v128, i: ImmLaneIdx2, x: f64) -> v128`
 
 Return a new vector with lanes identical to `a`, except for lane `i` which has
 the value `x`.
@@ -211,7 +211,7 @@ The input lane value, `x`, is interpreted the same way as for the splat
 instructions. For the `i8` and `i16` lanes, the high bits of `x` are ignored.
 
 ### Shuffle lanes
-* `v8x16.shuffle(a: v128, b: v128, s: LaneIdx32[16]) -> v128`
+* `v8x16.shuffle(a: v128, b: v128, s: ImmLaneIdx32[16]) -> v128`
 
 Create vector with lanes selected from the lanes of two input vectors:
 
