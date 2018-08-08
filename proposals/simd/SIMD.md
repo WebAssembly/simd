@@ -13,12 +13,13 @@ of immediate operands used by the SIMD instructions.
 
 ## SIMD value type
 
-The `v128` value type has a concrete mapping to a 128-bit representation with bits
-numbered 0–127. The `v128` type corresponds to a vector register in a typical
-SIMD ISA. The interpretation of the 128 bits in the vector register is provided
-by the individual instructions. When a `v128` value is represented as 16 bytes,
-bits 0-7 go in the first byte with bit 0 as the LSB, bits 8-15 go in the second
-byte, etc.
+The `v128` value type is the _only_ type introduced in this extension. It has a
+concrete mapping to a 128-bit representation with bits numbered 0–127. The
+`v128` type corresponds to a vector register in a typical SIMD ISA. The
+interpretation of the 128 bits in the vector register is provided by the
+individual instructions. When a `v128` value is represented as 16 bytes, bits
+0-7 go in the first byte with bit 0 as the LSB, bits 8-15 go in the second byte,
+etc.
 
 ## Immediate operands
 
@@ -33,11 +34,28 @@ range, and it is a validation error if the immediate operands are out of range.
 * `ImmLaneIdx16`: A byte with values in the range 0–15 identifying a lane.
 * `ImmLaneIdx32`: A byte with values in the range 0–31 identifying a lane.
 
-## Interpreting the SIMD value type
+## Operations on the SIMD value type
 
-The single `v128` SIMD type can represent packed data in multiple ways.
-Instructions specify how the bits should be interpreted through a hierarchy of
-*interpretations*.
+The _single_ `v128` SIMD type can be used to represent different types of packed
+data, e.g., it can represent four 32-bit floating point values, 8 16-bit signed
+or unsigned integer values, etc.
+
+The instructions introduced in this specification are named according to the
+following schema: `{interpretation}.{operation}`. Where the `{interpretation}`
+prefix denotes how the bytes of the `v128` type are interpreted by the `{operation}`. 
+
+For example, the instructions `f32x4.extract_lane` and `i64x2.extract_lane`
+perform the same semantic operation: extracting the scalar value of a vector
+lane. However, the `f32x4.extract_lane` instruction returns a 32-bit wide
+floating point value, while the `i64x2.extract_lane` instruction returns a
+64-bit wide floating point value.
+
+The interpretations form a hierarchy with successive refinements, where `v128`
+is at the top of the hierarchy and interprets the `v128` vector type as a bag of
+bits. The `v32x4` refines `v128` (`v32x4 : v128`) and interprets the vector as 4
+32-bit wide lane, while the `i32x4` and `f32x4` both refine `v32x4` and
+interpret the content of the vector lanes as being of integer or floating-point
+types.
 
 ### Lane division interpretation
 
@@ -108,7 +126,7 @@ scalar floating-point semantics which require correct subnormal handling.
 
 The SIMD operations described in this sections are generally named
 `S.Op`, where `S` is either a SIMD type or one of the interpretations
-of a SIMD type.
+of a SIMD type. Immediate mode operands are prefixed with `imm`.
 
 Many operations are simply the lane-wise application of a scalar operation:
 
@@ -143,9 +161,9 @@ def S.lanewise_comparison(func, a, b):
 ### Constant
 * `v128.const(imm: ImmByte[16]) -> v128`
 
-Materialize a constant SIMD value from the immediate operands. The `v128.const`
-instruction is encoded with 16 immediate bytes which provide the bits of the
-vector directly.
+Materialize a constant `v128` SIMD value from the 16 immediate bytes in the
+immediate mode operand `imm` . The `v128.const` instruction is encoded with 16
+immediate bytes which provide the bits of the vector directly.
 
 ### Create vector with identical lanes
 * `i8x16.splat(x: i32) -> v128`
@@ -168,16 +186,18 @@ def S.splat(x):
 ## Accessing lanes
 
 ### Extract lane as a scalar
-* `i8x16.extract_lane_s(a: v128, i: ImmLaneIdx16) -> i32`
-* `i8x16.extract_lane_u(a: v128, i: ImmLaneIdx16) -> i32`
-* `i16x8.extract_lane_s(a: v128, i: ImmLaneIdx8) -> i32`
-* `i16x8.extract_lane_u(a: v128, i: ImmLaneIdx8) -> i32`
-* `i32x4.extract_lane(a: v128, i: ImmLaneIdx4) -> i32`
-* `i64x2.extract_lane(a: v128, i: ImmLaneIdx2) -> i64`
-* `f32x4.extract_lane(a: v128, i: ImmLaneIdx4) -> f32`
-* `f64x2.extract_lane(a: v128, i: ImmLaneIdx2) -> f64`
+* `i8x16.extract_lane_s(a: v128, imm: ImmLaneIdx16) -> i32`
+* `i8x16.extract_lane_u(a: v128, imm: ImmLaneIdx16) -> i32`
+* `i16x8.extract_lane_s(a: v128, imm: ImmLaneIdx8) -> i32`
+* `i16x8.extract_lane_u(a: v128, imm: ImmLaneIdx8) -> i32`
+* `i32x4.extract_lane(a: v128, imm: ImmLaneIdx4) -> i32`
+* `i64x2.extract_lane(a: v128, imm: ImmLaneIdx2) -> i64`
+* `f32x4.extract_lane(a: v128, imm: ImmLaneIdx4) -> f32`
+* `f64x2.extract_lane(a: v128, imm: ImmLaneIdx2) -> f64`
 
-Extract the value of lane `i` in `a`.
+Extract the scalar value of lane specified in the immediate mode operand `imm`
+in `a`. The `{interpretation}.extract_lane{_s}{_u}` instructions are encoded
+with one immediate byte providing the index of the lane to extract.
 
 ```python
 def S.extract_lane(a, i):
@@ -188,15 +208,17 @@ The `_s` and `_u` variants will sign-extend or zero-extend the lane value to
 `i32` respectively.
 
 ### Replace lane value
-* `i8x16.replace_lane(a: v128, i: ImmLaneIdx16, x: i32) -> v128`
-* `i16x8.replace_lane(a: v128, i: ImmLaneIdx8, x: i32) -> v128`
-* `i32x4.replace_lane(a: v128, i: ImmLaneIdx4, x: i32) -> v128`
-* `i64x2.replace_lane(a: v128, i: ImmLaneIdx2, x: i64) -> v128`
-* `f32x4.replace_lane(a: v128, i: ImmLaneIdx4, x: f32) -> v128`
-* `f64x2.replace_lane(a: v128, i: ImmLaneIdx2, x: f64) -> v128`
+* `i8x16.replace_lane(a: v128, imm: ImmLaneIdx16, x: i32) -> v128`
+* `i16x8.replace_lane(a: v128, imm: ImmLaneIdx8, x: i32) -> v128`
+* `i32x4.replace_lane(a: v128, imm: ImmLaneIdx4, x: i32) -> v128`
+* `i64x2.replace_lane(a: v128, imm: ImmLaneIdx2, x: i64) -> v128`
+* `f32x4.replace_lane(a: v128, imm: ImmLaneIdx4, x: f32) -> v128`
+* `f64x2.replace_lane(a: v128, imm: ImmLaneIdx2, x: f64) -> v128`
 
-Return a new vector with lanes identical to `a`, except for lane `i` which has
-the value `x`.
+Return a new vector with lanes identical to `a`, except for the lane specified
+in the immediate mode operand `imm` which has the value `x`. The
+`{interpretation}.replace_lane` instructions are encoded with one immediate byte
+providing the index of the lane to whose value is to be replaced.
 
 ```python
 def S.replace_lane(a, i, x):
@@ -211,9 +233,13 @@ The input lane value, `x`, is interpreted the same way as for the splat
 instructions. For the `i8` and `i16` lanes, the high bits of `x` are ignored.
 
 ### Shuffle lanes
-* `v8x16.shuffle(a: v128, b: v128, s: ImmLaneIdx32[16]) -> v128`
+* `v8x16.shuffle(a: v128, b: v128, imm: ImmLaneIdx32[16]) -> v128`
 
-Create vector with lanes selected from the lanes of two input vectors:
+Returns a new vector with lanes selected from the lanes of the two input vectors
+`a` and `b` specified in the 16 byte wide immediate mode operand `imm`. This
+instruction is encoded with 16 bytes providing the indices of the elements to
+return. The indices `i` in range `[0, 15]` select the `i`-th element of `a`. The
+indices in range `[16, 31]` select the `i - 16`-th element of `b`.
 
 ```python
 def S.shuffle(a, b, s):
