@@ -231,9 +231,9 @@ def S.shuffle(a, b, s):
 ```
 
 #### Variable permutation rule
-* `v8x16.shuffleVar(a: v128, b: v128, s: v128) -> v128`
+* `v8x16.shuffle_var(a: v128, b: v128, s: v128) -> v128`
 
-Same as non-`Var`, but where indices are runtime values.
+Same as non-`var`, but where indices are runtime values.
 
 ## Integer arithmetic
 
