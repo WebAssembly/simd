@@ -62,7 +62,6 @@ The `v8x16.shuffle` instruction has 16 bytes after `simdop`.
 | `i8x16.mul`               |       32 | -                  |
 | `i16x8.mul`               |       33 | -                  |
 | `i32x4.mul`               |       34 | -                  |
-| ~`i64x2.mul`~             |      ~35~| -                  |
 | `i8x16.neg`               |       36 | -                  |
 | `i16x8.neg`               |       37 | -                  |
 | `i32x4.neg`               |       38 | -                  |
@@ -103,13 +102,11 @@ The `v8x16.shuffle` instruction has 16 bytes after `simdop`.
 | `i8x16.eq`                |       73 | -                  |
 | `i16x8.eq`                |       74 | -                  |
 | `i32x4.eq`                |       75 | -                  |
-| ~`i64x2.eq`~              |      ~76~| -                  |
 | `f32x4.eq`                |       77 | -                  |
 | `f64x2.eq`                |       78 | -                  |
 | `i8x16.ne`                |       79 | -                  |
 | `i16x8.ne`                |       80 | -                  |
 | `i32x4.ne`                |       81 | -                  |
-| ~`i64x2.ne`~              |      ~82~| -                  |
 | `f32x4.ne`                |       83 | -                  |
 | `f64x2.ne`                |       84 | -                  |
 | `i8x16.lt_s`              |       85 | -                  |
@@ -118,8 +115,6 @@ The `v8x16.shuffle` instruction has 16 bytes after `simdop`.
 | `i16x8.lt_u`              |       88 | -                  |
 | `i32x4.lt_s`              |       89 | -                  |
 | `i32x4.lt_u`              |       90 | -                  |
-| ~`i64x2.lt_s`~            |      ~91~| -                  |
-| ~`i64x2.lt_u`~            |      ~92~| -                  |
 | `f32x4.lt`                |       93 | -                  |
 | `f64x2.lt`                |       94 | -                  |
 | `i8x16.le_s`              |       95 | -                  |
@@ -128,8 +123,6 @@ The `v8x16.shuffle` instruction has 16 bytes after `simdop`.
 | `i16x8.le_u`              |       98 | -                  |
 | `i32x4.le_s`              |       99 | -                  |
 | `i32x4.le_u`              |      100 | -                  |
-| ~`i64x2.le_s`~            |     ~101~| -                  |
-| ~`i64x2.le_u`~            |     ~102~| -                  |
 | `f32x4.le`                |      103 | -                  |
 | `f64x2.le`                |      104 | -                  |
 | `i8x16.gt_s`              |      105 | -                  |
@@ -138,8 +131,6 @@ The `v8x16.shuffle` instruction has 16 bytes after `simdop`.
 | `i16x8.gt_u`              |      108 | -                  |
 | `i32x4.gt_s`              |      109 | -                  |
 | `i32x4.gt_u`              |      110 | -                  |
-| ~`i64x2.gt_s`~            |     ~111~| -                  |
-| ~`i64x2.gt_u`~            |     ~112~| -                  |
 | `f32x4.gt`                |      113 | -                  |
 | `f64x2.gt`                |      114 | -                  |
 | `i8x16.ge_s`              |      115 | -                  |
@@ -148,8 +139,6 @@ The `v8x16.shuffle` instruction has 16 bytes after `simdop`.
 | `i16x8.ge_u`              |      118 | -                  |
 | `i32x4.ge_s`              |      119 | -                  |
 | `i32x4.ge_u`              |      120 | -                  |
-| ~`i64x2.ge_s`~            |     ~121~| -                  |
-| ~`i64x2.ge_u`~            |     ~122~| -                  |
 | `f32x4.ge`                |      123 | -                  |
 | `f64x2.ge`                |      124 | -                  |
 | `f32x4.neg`               |      125 | -                  |
