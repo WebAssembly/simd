@@ -665,10 +665,10 @@ Lane-wise conversion from integer to floating point. Some integer values will be
 rounded.
 
 ### Floating point to integer with saturation
-* `i32x4.trunc_s/f32x4:sat(a: v128) -> v128`
-* `i32x4.trunc_u/f32x4:sat(a: v128) -> v128`
-* `i64x2.trunc_s/f64x2:sat(a: v128) -> v128`
-* `i64x2.trunc_u/f64x2:sat(a: v128) -> v128`
+* `i32x4.trunc_saturating_s/f32x4(a: v128) -> v128`
+* `i32x4.trunc_saturating_u/f32x4(a: v128) -> v128`
+* `i64x2.trunc_saturating_s/f64x2(a: v128) -> v128`
+* `i64x2.trunc_saturating_u/f64x2(a: v128) -> v128`
 
 Lane-wise saturating conversion from floating point to integer using the IEEE
 `convertToIntegerTowardZero` function. If any input lane is a NaN, the
