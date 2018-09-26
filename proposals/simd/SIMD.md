@@ -583,8 +583,10 @@ def S.ne(a, b):
 
 Load and store operations are provided for the `v128` vectors. The memory
 operations take the same arguments and have the same semantics as the existing
-scalar WebAssembly load and store instructions. The difference is that the
-memory access size is 16 bytes which is also the natural alignment.
+scalar WebAssembly load and store instructions (see
+[memarg](https://webassembly.github.io/spec/core/bikeshed/index.html#syntax-memarg).
+The difference is that the memory access size is 16 bytes which is also the
+natural alignment.
 
 ### Load
 
