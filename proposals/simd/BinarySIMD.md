@@ -27,143 +27,143 @@ The `v8x16.shuffle` instruction has 16 bytes after `simdop`.
 
 | Instruction               | `simdop` | Immediate operands |
 | --------------------------|---------:|--------------------|
-| `v128.const`              |        0 | i:ImmByte[16]      |
-| `v128.load`               |        1 | m:memarg           |
-| `v128.store`              |        2 | m:memarg           |
-| `i8x16.splat`             |        3 | -                  |
-| `i16x8.splat`             |        4 | -                  |
-| `i32x4.splat`             |        5 | -                  |
-| `i64x2.splat`             |        6 | -                  |
-| `f32x4.splat`             |        7 | -                  |
-| `f64x2.splat`             |        8 | -                  |
-| `i8x16.extract_lane_s`    |        9 | i:LaneIdx16        |
-| `i8x16.extract_lane_u`    |       10 | i:LaneIdx16        |
-| `i16x8.extract_lane_s`    |       11 | i:LaneIdx8         |
-| `i16x8.extract_lane_u`    |       12 | i:LaneIdx8         |
-| `i32x4.extract_lane`      |       13 | i:LaneIdx4         |
-| `i64x2.extract_lane`      |       14 | i:LaneIdx2         |
-| `f32x4.extract_lane`      |       15 | i:LaneIdx4         |
-| `f64x2.extract_lane`      |       16 | i:LaneIdx2         |
-| `i8x16.replace_lane`      |       17 | i:LaneIdx16        |
-| `i16x8.replace_lane`      |       18 | i:LaneIdx8         |
-| `i32x4.replace_lane`      |       19 | i:LaneIdx4         |
-| `i64x2.replace_lane`      |       20 | i:LaneIdx2         |
-| `f32x4.replace_lane`      |       21 | i:LaneIdx4         |
-| `f64x2.replace_lane`      |       22 | i:LaneIdx2         |
-| `v8x16.shuffle`           |       23 | s:LaneIdx32[16]    |
-| `i8x16.add`               |       24 | -                  |
-| `i16x8.add`               |       25 | -                  |
-| `i32x4.add`               |       26 | -                  |
-| `i64x2.add`               |       27 | -                  |
-| `i8x16.sub`               |       28 | -                  |
-| `i16x8.sub`               |       29 | -                  |
-| `i32x4.sub`               |       30 | -                  |
-| `i64x2.sub`               |       31 | -                  |
-| `i8x16.mul`               |       32 | -                  |
-| `i16x8.mul`               |       33 | -                  |
-| `i32x4.mul`               |       34 | -                  |
-| `i8x16.neg`               |       36 | -                  |
-| `i16x8.neg`               |       37 | -                  |
-| `i32x4.neg`               |       38 | -                  |
-| `i64x2.neg`               |       39 | -                  |
-| `i8x16.add_saturate_s`    |       40 | -                  |
-| `i8x16.add_saturate_u`    |       41 | -                  |
-| `i16x8.add_saturate_s`    |       42 | -                  |
-| `i16x8.add_saturate_u`    |       43 | -                  |
-| `i8x16.sub_saturate_s`    |       44 | -                  |
-| `i8x16.sub_saturate_u`    |       45 | -                  |
-| `i16x8.sub_saturate_s`    |       46 | -                  |
-| `i16x8.sub_saturate_u`    |       47 | -                  |
-| `i8x16.shl`               |       48 | -                  |
-| `i16x8.shl`               |       49 | -                  |
-| `i32x4.shl`               |       50 | -                  |
-| `i64x2.shl`               |       51 | -                  |
-| `i8x16.shr_s`             |       52 | -                  |
-| `i8x16.shr_u`             |       53 | -                  |
-| `i16x8.shr_s`             |       54 | -                  |
-| `i16x8.shr_u`             |       55 | -                  |
-| `i32x4.shr_s`             |       56 | -                  |
-| `i32x4.shr_u`             |       57 | -                  |
-| `i64x2.shr_s`             |       58 | -                  |
-| `i64x2.shr_u`             |       59 | -                  |
-| `v128.and`                |       60 | -                  |
-| `v128.or`                 |       61 | -                  |
-| `v128.xor`                |       62 | -                  |
-| `v128.not`                |       63 | -                  |
-| `v128.bitselect`          |       64 | -                  |
-| `i8x16.any_true`          |       65 | -                  |
-| `i16x8.any_true`          |       66 | -                  |
-| `i32x4.any_true`          |       67 | -                  |
-| `i64x2.any_true`          |       68 | -                  |
-| `i8x16.all_true`          |       69 | -                  |
-| `i16x8.all_true`          |       70 | -                  |
-| `i32x4.all_true`          |       71 | -                  |
-| `i64x2.all_true`          |       72 | -                  |
-| `i8x16.eq`                |       73 | -                  |
-| `i16x8.eq`                |       74 | -                  |
-| `i32x4.eq`                |       75 | -                  |
-| `f32x4.eq`                |       77 | -                  |
-| `f64x2.eq`                |       78 | -                  |
-| `i8x16.ne`                |       79 | -                  |
-| `i16x8.ne`                |       80 | -                  |
-| `i32x4.ne`                |       81 | -                  |
-| `f32x4.ne`                |       83 | -                  |
-| `f64x2.ne`                |       84 | -                  |
-| `i8x16.lt_s`              |       85 | -                  |
-| `i8x16.lt_u`              |       86 | -                  |
-| `i16x8.lt_s`              |       87 | -                  |
-| `i16x8.lt_u`              |       88 | -                  |
-| `i32x4.lt_s`              |       89 | -                  |
-| `i32x4.lt_u`              |       90 | -                  |
-| `f32x4.lt`                |       93 | -                  |
-| `f64x2.lt`                |       94 | -                  |
-| `i8x16.le_s`              |       95 | -                  |
-| `i8x16.le_u`              |       96 | -                  |
-| `i16x8.le_s`              |       97 | -                  |
-| `i16x8.le_u`              |       98 | -                  |
-| `i32x4.le_s`              |       99 | -                  |
-| `i32x4.le_u`              |      100 | -                  |
-| `f32x4.le`                |      103 | -                  |
-| `f64x2.le`                |      104 | -                  |
-| `i8x16.gt_s`              |      105 | -                  |
-| `i8x16.gt_u`              |      106 | -                  |
-| `i16x8.gt_s`              |      107 | -                  |
-| `i16x8.gt_u`              |      108 | -                  |
-| `i32x4.gt_s`              |      109 | -                  |
-| `i32x4.gt_u`              |      110 | -                  |
-| `f32x4.gt`                |      113 | -                  |
-| `f64x2.gt`                |      114 | -                  |
-| `i8x16.ge_s`              |      115 | -                  |
-| `i8x16.ge_u`              |      116 | -                  |
-| `i16x8.ge_s`              |      117 | -                  |
-| `i16x8.ge_u`              |      118 | -                  |
-| `i32x4.ge_s`              |      119 | -                  |
-| `i32x4.ge_u`              |      120 | -                  |
-| `f32x4.ge`                |      123 | -                  |
-| `f64x2.ge`                |      124 | -                  |
-| `f32x4.neg`               |      125 | -                  |
-| `f64x2.neg`               |      126 | -                  |
-| `f32x4.abs`               |      127 | -                  |
-| `f64x2.abs`               |      128 | -                  |
-| `f32x4.min`               |      129 | -                  |
-| `f64x2.min`               |      130 | -                  |
-| `f32x4.max`               |      131 | -                  |
-| `f64x2.max`               |      132 | -                  |
-| `f32x4.add`               |      133 | -                  |
-| `f64x2.add`               |      134 | -                  |
-| `f32x4.sub`               |      135 | -                  |
-| `f64x2.sub`               |      136 | -                  |
-| `f32x4.div`               |      137 | -                  |
-| `f64x2.div`               |      138 | -                  |
-| `f32x4.mul`               |      139 | -                  |
-| `f64x2.mul`               |      140 | -                  |
-| `f32x4.sqrt`              |      141 | -                  |
-| `f64x2.sqrt`              |      142 | -                  |
-| `f32x4.convert_s/i32x4`   |      143 | -                  |
-| `f32x4.convert_u/i32x4`   |      144 | -                  |
-| `f64x2.convert_s/i64x2`   |      145 | -                  |
-| `f64x2.convert_u/i64x2`   |      146 | -                  |
-| `i32x4.trunc_s/f32x4:sat` |      147 | -                  |
-| `i32x4.trunc_u/f32x4:sat` |      148 | -                  |
-| `i64x2.trunc_s/f64x2:sat` |      149 | -                  |
-| `i64x2.trunc_u/f64x2:sat` |      150 | -                  |
+| `v128.const`              |    `0x00`| i:ImmByte[16]      |
+| `v128.load`               |    `0x01`| m:memarg           |
+| `v128.store`              |    `0x02`| m:memarg           |
+| `i8x16.splat`             |    `0x03`| -                  |
+| `i16x8.splat`             |    `0x04`| -                  |
+| `i32x4.splat`             |    `0x05`| -                  |
+| `i64x2.splat`             |    `0x06`| -                  |
+| `f32x4.splat`             |    `0x07`| -                  |
+| `f64x2.splat`             |    `0x08`| -                  |
+| `i8x16.extract_lane_s`    |    `0x09`| i:LaneIdx16        |
+| `i8x16.extract_lane_u`    |    `0x0a`| i:LaneIdx16        |
+| `i16x8.extract_lane_s`    |    `0x0b`| i:LaneIdx8         |
+| `i16x8.extract_lane_u`    |    `0x0c`| i:LaneIdx8         |
+| `i32x4.extract_lane`      |    `0x0d`| i:LaneIdx4         |
+| `i64x2.extract_lane`      |    `0x0e`| i:LaneIdx2         |
+| `f32x4.extract_lane`      |    `0x0f`| i:LaneIdx4         |
+| `f64x2.extract_lane`      |    `0x10`| i:LaneIdx2         |
+| `i8x16.replace_lane`      |    `0x11`| i:LaneIdx16        |
+| `i16x8.replace_lane`      |    `0x12`| i:LaneIdx8         |
+| `i32x4.replace_lane`      |    `0x13`| i:LaneIdx4         |
+| `i64x2.replace_lane`      |    `0x14`| i:LaneIdx2         |
+| `f32x4.replace_lane`      |    `0x15`| i:LaneIdx4         |
+| `f64x2.replace_lane`      |    `0x16`| i:LaneIdx2         |
+| `v8x16.shuffle`           |    `0x17`| s:LaneIdx32[16]    |
+| `i8x16.add`               |    `0x18`| -                  |
+| `i16x8.add`               |    `0x19`| -                  |
+| `i32x4.add`               |    `0x1a`| -                  |
+| `i64x2.add`               |    `0x1b`| -                  |
+| `i8x16.sub`               |    `0x1c`| -                  |
+| `i16x8.sub`               |    `0x1d`| -                  |
+| `i32x4.sub`               |    `0x1e`| -                  |
+| `i64x2.sub`               |    `0x1f`| -                  |
+| `i8x16.mul`               |    `0x20`| -                  |
+| `i16x8.mul`               |    `0x21`| -                  |
+| `i32x4.mul`               |    `0x22`| -                  |
+| `i8x16.neg`               |    `0x24`| -                  |
+| `i16x8.neg`               |    `0x25`| -                  |
+| `i32x4.neg`               |    `0x26`| -                  |
+| `i64x2.neg`               |    `0x27`| -                  |
+| `i8x16.add_saturate_s`    |    `0x28`| -                  |
+| `i8x16.add_saturate_u`    |    `0x29`| -                  |
+| `i16x8.add_saturate_s`    |    `0x2a`| -                  |
+| `i16x8.add_saturate_u`    |    `0x2b`| -                  |
+| `i8x16.sub_saturate_s`    |    `0x2c`| -                  |
+| `i8x16.sub_saturate_u`    |    `0x2d`| -                  |
+| `i16x8.sub_saturate_s`    |    `0x2e`| -                  |
+| `i16x8.sub_saturate_u`    |    `0x2f`| -                  |
+| `i8x16.shl`               |    `0x30`| -                  |
+| `i16x8.shl`               |    `0x31`| -                  |
+| `i32x4.shl`               |    `0x32`| -                  |
+| `i64x2.shl`               |    `0x33`| -                  |
+| `i8x16.shr_s`             |    `0x34`| -                  |
+| `i8x16.shr_u`             |    `0x35`| -                  |
+| `i16x8.shr_s`             |    `0x36`| -                  |
+| `i16x8.shr_u`             |    `0x37`| -                  |
+| `i32x4.shr_s`             |    `0x38`| -                  |
+| `i32x4.shr_u`             |    `0x39`| -                  |
+| `i64x2.shr_s`             |    `0x3a`| -                  |
+| `i64x2.shr_u`             |    `0x3b`| -                  |
+| `v128.and`                |    `0x3c`| -                  |
+| `v128.or`                 |    `0x3d`| -                  |
+| `v128.xor`                |    `0x3e`| -                  |
+| `v128.not`                |    `0x3f`| -                  |
+| `v128.bitselect`          |    `0x40`| -                  |
+| `i8x16.any_true`          |    `0x41`| -                  |
+| `i16x8.any_true`          |    `0x42`| -                  |
+| `i32x4.any_true`          |    `0x43`| -                  |
+| `i64x2.any_true`          |    `0x44`| -                  |
+| `i8x16.all_true`          |    `0x45`| -                  |
+| `i16x8.all_true`          |    `0x46`| -                  |
+| `i32x4.all_true`          |    `0x47`| -                  |
+| `i64x2.all_true`          |    `0x48`| -                  |
+| `i8x16.eq`                |    `0x49`| -                  |
+| `i16x8.eq`                |    `0x4a`| -                  |
+| `i32x4.eq`                |    `0x4c`| -                  |
+| `f32x4.eq`                |    `0x4d`| -                  |
+| `f64x2.eq`                |    `0x4e`| -                  |
+| `i8x16.ne`                |    `0x4f`| -                  |
+| `i16x8.ne`                |    `0x50`| -                  |
+| `i32x4.ne`                |    `0x51`| -                  |
+| `f32x4.ne`                |    `0x53`| -                  |
+| `f64x2.ne`                |    `0x54`| -                  |
+| `i8x16.lt_s`              |    `0x55`| -                  |
+| `i8x16.lt_u`              |    `0x56`| -                  |
+| `i16x8.lt_s`              |    `0x57`| -                  |
+| `i16x8.lt_u`              |    `0x58`| -                  |
+| `i32x4.lt_s`              |    `0x59`| -                  |
+| `i32x4.lt_u`              |    `0x5a`| -                  |
+| `f32x4.lt`                |    `0x5d`| -                  |
+| `f64x2.lt`                |    `0x5e`| -                  |
+| `i8x16.le_s`              |    `0x5f`| -                  |
+| `i8x16.le_u`              |    `0x60`| -                  |
+| `i16x8.le_s`              |    `0x61`| -                  |
+| `i16x8.le_u`              |    `0x62`| -                  |
+| `i32x4.le_s`              |    `0x63`| -                  |
+| `i32x4.le_u`              |    `0x64`| -                  |
+| `f32x4.le`                |    `0x67`| -                  |
+| `f64x2.le`                |    `0x68`| -                  |
+| `i8x16.gt_s`              |    `0x69`| -                  |
+| `i8x16.gt_u`              |    `0x6a`| -                  |
+| `i16x8.gt_s`              |    `0x6b`| -                  |
+| `i16x8.gt_u`              |    `0x6c`| -                  |
+| `i32x4.gt_s`              |    `0x6d`| -                  |
+| `i32x4.gt_u`              |    `0x6e`| -                  |
+| `f32x4.gt`                |    `0x71`| -                  |
+| `f64x2.gt`                |    `0x72`| -                  |
+| `i8x16.ge_s`              |    `0x73`| -                  |
+| `i8x16.ge_u`              |    `0x74`| -                  |
+| `i16x8.ge_s`              |    `0x75`| -                  |
+| `i16x8.ge_u`              |    `0x76`| -                  |
+| `i32x4.ge_s`              |    `0x77`| -                  |
+| `i32x4.ge_u`              |    `0x78`| -                  |
+| `f32x4.ge`                |    `0x7b`| -                  |
+| `f64x2.ge`                |    `0x7c`| -                  |
+| `f32x4.neg`               |    `0x7d`| -                  |
+| `f64x2.neg`               |    `0x7e`| -                  |
+| `f32x4.abs`               |    `0x7f`| -                  |
+| `f64x2.abs`               |    `0x80`| -                  |
+| `f32x4.min`               |    `0x87`| -                  |
+| `f64x2.min`               |    `0x88`| -                  |
+| `f32x4.max`               |    `0x8f`| -                  |
+| `f64x2.max`               |    `0x90`| -                  |
+| `f32x4.add`               |    `0x91`| -                  |
+| `f64x2.add`               |    `0x92`| -                  |
+| `f32x4.sub`               |    `0x93`| -                  |
+| `f64x2.sub`               |    `0x94`| -                  |
+| `f32x4.div`               |    `0x95`| -                  |
+| `f64x2.div`               |    `0x96`| -                  |
+| `f32x4.mul`               |    `0x97`| -                  |
+| `f64x2.mul`               |    `0x98`| -                  |
+| `f32x4.sqrt`              |    `0x99`| -                  |
+| `f64x2.sqrt`              |    `0x9a`| -                  |
+| `f32x4.convert_s/i32x4`   |    `0x9b`| -                  |
+| `f32x4.convert_u/i32x4`   |    `0x9c`| -                  |
+| `f64x2.convert_s/i64x2`   |    `0x9d`| -                  |
+| `f64x2.convert_u/i64x2`   |    `0x9e`| -                  |
+| `i32x4.trunc_s/f32x4:sat` |    `0x9f`| -                  |
+| `i32x4.trunc_u/f32x4:sat` |    `0xa0`| -                  |
+| `i64x2.trunc_s/f64x2:sat` |    `0xa1`| -                  |
+| `i64x2.trunc_u/f64x2:sat` |    `0xa2`| -                  |
