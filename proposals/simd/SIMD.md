@@ -217,8 +217,8 @@ The `_s` and `_u` variants will sign-extend or zero-extend the lane value to
 
 Return a new vector with lanes identical to `a`, except for the lane specified
 in the immediate mode operand `imm` which has the value `x`. The
-`{interpretation}.replace_lane` instructions are encoded with one immediate byte
-providing the index of the lane to whose value is to be replaced.
+`{interpretation}.replace_lane` instructions are encoded with an immediate byte 
+providing the index of the lane the value of which is to be replaced.
 
 ```python
 def S.replace_lane(a, i, x):
