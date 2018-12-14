@@ -590,13 +590,13 @@ natural alignment.
 
 ### Load
 
-* `v128.load(imm: memarg) -> v128`
+* `v128.load(memarg) -> v128`
 
 Load a `v128` vector from the given heap address.
 
 ### Store
 
-* `v128.store(imm: memarg, data: v128)`
+* `v128.store(memarg, data: v128)`
 
 Store a `v128` vector to the given heap address.
 
