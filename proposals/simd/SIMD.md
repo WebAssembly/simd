@@ -48,7 +48,7 @@ For example, the instructions `f32x4.extract_lane` and `i64x2.extract_lane`
 perform the same semantic operation: extracting the scalar value of a vector
 lane. However, the `f32x4.extract_lane` instruction returns a 32-bit wide
 floating point value, while the `i64x2.extract_lane` instruction returns a
-64-bit wide floating point value.
+64-bit wide integer value.
 
 The interpretations form a hierarchy with successive refinements, where `v128`
 is at the top of the hierarchy and interprets the `v128` vector type as a bag of
