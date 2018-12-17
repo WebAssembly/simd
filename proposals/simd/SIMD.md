@@ -50,12 +50,10 @@ lane. However, the `f32x4.extract_lane` instruction returns a 32-bit wide
 floating point value, while the `i64x2.extract_lane` instruction returns a
 64-bit wide integer value.
 
-The interpretations form a hierarchy with successive refinements, where `v128`
-is at the top of the hierarchy and interprets the `v128` vector type as a bag of
-bits. The `v32x4` refines `v128` (`v32x4 : v128`) and interprets the vector as 4
-32-bit wide lane, while the `i32x4` and `f32x4` both refine `v32x4` and
-interpret the content of the vector lanes as being of integer or floating-point
-types.
+The `v128` vector type interpretation interprets the vector as a bag of bits. 
+The `v{lane_width}x{n}` interpretations (e.g. `v32x4`) interpret the vector as
+`n` lanes of `lane_width` bits. The `{t}{lane_width}x{n}` interpretations (e.g.
+`i32x4` or `f32x4`) interpret the vector as `n` lanes of type `{t}{lane_width}`.
 
 ### Lane division interpretation
 
