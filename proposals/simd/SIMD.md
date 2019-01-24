@@ -232,7 +232,7 @@ v128.const f64x2 f64 f64
 The canonical text format used for printing `v128.const` instructions is
 
 ```
-v128.const i32x4 0x*NNNNNNNN* 0x*NNNNNNNN* 0x*NNNNNNNN* 0x*NNNNNNNN*
+v128.const i32x4 0xNNNNNNNN 0xNNNNNNNN 0xNNNNNNNN 0xNNNNNNNN
 ```
 
 ### Create vector with identical lanes
