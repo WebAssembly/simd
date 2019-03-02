@@ -288,6 +288,7 @@ instructions. For the `i8` and `i16` lanes, the high bits of `x` are ignored.
 
 #### Immediate permutation rule
 * `v8x16.shuffle(a: v128, b: v128, imm: ImmLaneIdx32[16]) -> v128`
+
 Returns a new vector with lanes selected from the lanes of the two input vectors
 `a` and `b` specified in the 12 byte wide immediate mode operand `imm`. This
 instruction is encoded with 12 bytes providing the indices of the elements to
@@ -295,6 +296,7 @@ return. The indices `i` in range `[0, 15]` select the `i`-th element of `a`. The
 indices in range `[16, 31]` select the `i - 16`-th element of `b`.
 
 * `v16x8.shuffle(a: v128, b: v128, imm: ImmLaneIdx16[8]) -> v128`
+
 Returns a new vector with lanes selected from the lanes of the two input vectors
 `a` and `b` specified in the 3 byte wide immediate mode operand `imm`. This
 instruction is encoded with 3 bytes providing the indices of the elements to
@@ -302,6 +304,7 @@ return. The indices `i` in range `[0, 7]` select the `i`-th element of `a`. The
 indices in range `[8, 15]` select the `i - 8`-th element of `b`.
 
 * `v32x4.shuffle(a: v128, b: v128, imm: ImmLaneIdx8[4]) -> v128`
+
 Returns a new vector with lanes selected from the lanes of the two input vectors
 `a` and `b` specified in the 2 byte wide immediate mode operand `imm`. This
 instruction is encoded with 2 bytes providing the indices of the elements to
@@ -309,6 +312,7 @@ return. The indices `i` in range `[0, 3]` select the `i`-th element of `a`. The
 indices in range `[4, 7]` select the `i - 4`-th element of `b`.
 
 * `v64x2.shuffle(a: v128, b: v128, imm: ImmLaneIdx4[2]) -> v128`
+
 Returns a new vector with lanes selected from the lanes of the two input vectors
 `a` and `b` specified in the 1 byte wide immediate mode operand `imm`. This
 instruction is encoded with 1 bytes providing the indices of the elements to
@@ -328,8 +332,10 @@ def S.shuffle(a, b, s):
 
 #### Variable permutation rule
 * `v8x16.permute_dyn(a: v128, s: v128) -> v128`
+
 Returns a new vector with lanes selected from the lanes of the first input vector
-`a` and specified in the second input vector `s`.
+`a` and specified in the second input vector `s`. The indices from `s` are first
+fit into the range `[0, 15]` via a modulo.
 
 ```python
 def S.permute_dyn(a, s):
