@@ -19,3 +19,9 @@ The canonical text format used for printing `v128.const` instructions is
 ```
 v128.const i32x4 0xNNNNNNNN 0xNNNNNNNN 0xNNNNNNNN 0xNNNNNNNN
 ```
+
+### v8x16.shuffle2_imm
+
+```
+v8x16.shuffle2_imm i5 i5 i5 i5 i5 i5 i5 i5 i5 i5 i5 i5 i5 i5 i5 i5
+```
