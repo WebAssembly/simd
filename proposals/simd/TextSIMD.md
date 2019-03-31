@@ -20,8 +20,11 @@ The canonical text format used for printing `v128.const` instructions is
 v128.const i32x4 0xNNNNNNNN 0xNNNNNNNN 0xNNNNNNNN 0xNNNNNNNN
 ```
 
-### v8x16.shuffle2_imm
+### Shuffling using immediate indices
 
 ```
 v8x16.shuffle2_imm i5 i5 i5 i5 i5 i5 i5 i5 i5 i5 i5 i5 i5 i5 i5 i5
+v16x8.shuffle2_imm i4 i4 i4 i4 i4 i4 i4 i4
+v32x4.shuffle2_imm i3 i3 i3 i3
+v64x2.shuffle2_imm i2 i2
 ```
