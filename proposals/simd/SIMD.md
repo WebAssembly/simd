@@ -867,6 +867,18 @@ Lane-wise IEEE `multiplication`.
 
 Lane-wise IEEE `squareRoot`.
 
+### Quasi-Fused Multiply-Add
+* `f32x4.qfma(a: v128, b: v128, c: v128) -> v128`
+* `f64x2.qfma(a: v128, b: v128, c: v128) -> v128`
+
+Lane-wise multiplication and addition (`a + b * c`), either with, or without intermediate rounding. WebAssembly implementation may execute this instruction as either IEEE Fused-Multiply-Add (FMA) or a combination of IEEE `multiplication` and IEEE `addition` operations, depending on availability and performance of FMA instruction on the target native platform. `qfma` instructions in a WebAssembly module must execute as either all fused, or all unfused operations.
+
+### Quasi-Fused Multiply-Subtract
+* `f32x4.qfms(a: v128, b: v128, c: v128) -> v128`
+* `f64x2.qfms(a: v128, b: v128, c: v128) -> v128`
+
+Lane-wise multiplication and subtraction (`a - b * c`), either with, or without intermediate rounding. WebAssembly implementation may execute this instruction as either IEEE Fused-Multiply-Subtract (FMS) or a combination of IEEE `multiplication` and IEEE `subtraction` operations, depending on availability and performance of FMS instruction on the target native platform. `qfms` instructions in a WebAssembly module must execute as either all fused, or all unfused operations.
+
 ## Conversions
 ### Integer to floating point
 * `f32x4.convert_i32x4_s(a: v128) -> v128`
