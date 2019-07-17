@@ -666,6 +666,13 @@ natural alignment.
 
 Load a `v128` vector from the given heap address.
 
+Extended loads:
+
+* `i8x8.zxload(memarg) -> v128`: load eight 8-bit integers and zero extend each one to a 16-bit lane
+* `i8x8.sxload(memarg) -> v128`: load eight 8-bit integers and sign extend each one to a 16-bit lane
+* `i16x4.zxload(memarg) -> v128`: load four 16-bit integers and zero extend each one to a 32-bit lane
+* `i16x4.sxload(memarg) -> v128`: load four 16-bit integers and sign extend each one to a 32-bit lane
+
 ### Store
 
 * `v128.store(memarg, data: v128)`
