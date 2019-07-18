@@ -23,7 +23,7 @@ instr ::= ...
 ```
 
 Some SIMD instructions have additional immediate operands following `simdop`.
-The `v8x16.shuffle2_imm` instruction has 16 bytes after `simdop`.
+The `v8x16.shuffle_imm` instruction has 16 bytes after `simdop`.
 
 | Instruction               | `simdop` | Immediate operands |
 | --------------------------|---------:|--------------------|
@@ -166,5 +166,5 @@ The `v8x16.shuffle2_imm` instruction has 16 bytes after `simdop`.
 | `f32x4.convert_u/i32x4`   |    `0xb0`| -                  |
 | `f64x2.convert_s/i64x2`   |    `0xb1`| -                  |
 | `f64x2.convert_u/i64x2`   |    `0xb2`| -                  |
-| `v8x16.shuffle1`          |    `0xc0`| -                  |
-| `v8x16.shuffle2_imm`      |    `0xc1`| s:LaneIdx32[16]    |
+| `v8x16.swizzle`           |    `0xc0`| -                  |
+| `v8x16.shuffle_imm`       |    `0xc1`| s:LaneIdx32[16]    |
