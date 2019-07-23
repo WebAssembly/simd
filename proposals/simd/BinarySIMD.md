@@ -172,3 +172,9 @@ The `v8x16.shuffle` instruction has 16 bytes after `simdop`.
 | `i16x8.load_splat`        |    `0xc3`| -                  |
 | `i32x4.load_splat`        |    `0xc4`| -                  |
 | `i64x2.load_splat`        |    `0xc5`| -                  |
+| 'i8x8.sload'              |    '0xc6'| -                  |
+| 'i16x4.sload'             |    '0xc7'| -                  |
+| 'i32x2.sload'             |    '0xc8'| -                  |
+| 'i8x8.zload'              |    '0xc9'| -                  |
+| 'i16x4.zload'             |    '0xca'| -                  |
+| 'i32x2.zload'             |    '0xcb'| -                  |
