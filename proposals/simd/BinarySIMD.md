@@ -170,5 +170,7 @@ The `v8x16.shuffle2_imm` instruction has 16 bytes after `simdop`.
 | `i8x8.sxload`             |    `0xb4`| m:memarg           |
 | `i16x4.zxload`            |    `0xb5`| m:memarg           |
 | `i16x4.sxload`            |    `0xb6`| m:memarg           |
+| `i32x2.zxload`            |    `0xb7`| m:memarg           |
+| `i32x2.sxload`            |    `0xb8`| m:memarg           |
 | `v8x16.shuffle1`          |    `0xc0`| -                  |
 | `v8x16.shuffle2_imm`      |    `0xc1`| s:LaneIdx32[16]    |
