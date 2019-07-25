@@ -143,6 +143,8 @@
 | `i8x8.sxload`             |                           |                    |                    |                    |
 | `i16x4.zxload`            |                           |                    |                    |                    |
 | `i16x4.sxload`            |                           |                    |                    |                    |
+| `i32x2.zxload`            |                           |                    |                    |                    |
+| `i32x2.sxload`            |                           |                    |                    |                    |
 | `v8x16.shuffle1`          |                           |                    | :heavy_check_mark: |                    |
 | `v8x16.shuffle2_imm`      |                           |                    | :heavy_check_mark: | :heavy_check_mark: |
 

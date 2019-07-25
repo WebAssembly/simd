@@ -672,6 +672,8 @@ Extended loads:
 * `i8x8.sxload(memarg) -> v128`: load eight 8-bit integers and sign extend each one to a 16-bit lane
 * `i16x4.zxload(memarg) -> v128`: load four 16-bit integers and zero extend each one to a 32-bit lane
 * `i16x4.sxload(memarg) -> v128`: load four 16-bit integers and sign extend each one to a 32-bit lane
+* `i32x2.zxload(memarg) -> v128`: load two 32-bit integers and zero extend each one to a 64-bit lane
+* `i32x2.sxload(memarg) -> v128`: load two 32-bit integers and sign extend each one to a 64-bit lane
 
 ### Store
 
