@@ -145,6 +145,10 @@
 | `f64x2.convert_u/i64x2`     | `-munimplemented-simd128` |                    | :heavy_check_mark: | :heavy_check_mark: |
 | `v8x16.swizzle`             |                           |                    | :heavy_check_mark: |                    |
 | `v8x16.shuffle`             |                           |                    | :heavy_check_mark: | :heavy_check_mark: |
+| `i8x16.convert_s/i16x8`     |                           | :heavy_check_mark: |                    |                    |
+| `i8x16.convert_u/i16x8`     |                           | :heavy_check_mark: |                    |                    |
+| `i16x8.convert_s/i32x4`     |                           | :heavy_check_mark: |                    |                    |
+| `i16x8.convert_u/i32x4`     |                           | :heavy_check_mark: |                    |                    |
 | `i16x8.convert_s/i8x16Low`  |                           | :heavy_check_mark: |                    |                    |
 | `i16x8.convert_s/i8x16High` |                           | :heavy_check_mark: |                    |                    |
 | `i16x8.convert_u/i8x16Low`  |                           | :heavy_check_mark: |                    |                    |
@@ -153,10 +157,6 @@
 | `i32x4.convert_s/i16x8High` |                           | :heavy_check_mark: |                    |                    |
 | `i32x4.convert_u/i16x8Low`  |                           | :heavy_check_mark: |                    |                    |
 | `i32x4.convert_u/i16x8High` |                           | :heavy_check_mark: |                    |                    |
-| `i8x16.convert_s/i16x8`     |                           | :heavy_check_mark: |                    |                    |
-| `i8x16.convert_u/i16x8`     |                           | :heavy_check_mark: |                    |                    |
-| `i16x8.convert_s/i32x4`     |                           | :heavy_check_mark: |                    |                    |
-| `i16x8.convert_u/i32x4`     |                           | :heavy_check_mark: |                    |                    |
 
 [1] Tip of tree LLVM as of April 24, 2019
 
