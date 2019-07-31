@@ -180,7 +180,7 @@ The `v8x16.shuffle` instruction has 16 bytes after `simdop`.
 | `i32x4.convert_s/i16x8High` |    `0xcb`| -                  |
 | `i32x4.convert_u/i16x8Low`  |    `0xcc`| -                  |
 | `i32x4.convert_u/i16x8High` |    `0xcd`| -                  |
-| `i16x8.convert_s/i32x4`     |    `0xce`| -                  |
-| `i16x8.convert_u/i32x4`     |    `0xcf`| -                  |
-| `i8x16.convert_s/i8x16`     |    `0xd0`| -                  |
-| `i8x16.convert_u/i8x16`     |    `0xd1`| -                  |
+| `i8x16.convert_s/i16x8`     |    `0xce`| -                  |
+| `i8x16.convert_u/i16x8`     |    `0xcf`| -                  |
+| `i16x8.convert_s/i32x4`     |    `0xd0`| -                  |
+| `i16x8.convert_u/i32x4`     |    `0xd1`| -                  |

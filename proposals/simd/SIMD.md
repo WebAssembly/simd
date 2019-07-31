@@ -799,10 +799,10 @@ Converts low or high half of the smaller lane vector to a larger lane vector,
 with signed or unsigned saturation.
 
 ### Integer to integer narrowing
+* `i8x16.convert_s/i16x8(a: v128, b: v128) -> v128`
+* `i8x16.convert_u/i16x8(a: v128, b: v128) -> v128`
 * `i16x8.convert_s/i32x4(a: v128, b: v128) -> v128`
 * `i16x8.convert_u/i32x4(a: v128, b: v128) -> v128`
-* `i8x16.convert_s/i8x16(a: v128, b: v128) -> v128`
-* `i8x16.convert_u/i8x16(a: v128, b: v128) -> v128`
 
 Converts two input vectors into a smaller lane vector by narrowing each lane,
 signed or unsigned.
