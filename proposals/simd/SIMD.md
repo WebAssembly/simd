@@ -807,4 +807,4 @@ will use unsigned saturation to handle overflow, 0x00 or 0xff for i8x16.
 * `i32x4.widen_high_i16x8_u(a: v128) -> v128`
 
 Converts low or high half of the smaller lane vector to a larger lane vector,
-with signed or unsigned saturation.
+sign extended or zero (unsigned) extended.
