@@ -173,11 +173,11 @@ The `v8x16.shuffle` instruction has 16 bytes after `simdop`.
 | `i32x4.load_splat`         |    `0xc4`| -                  |
 | `i64x2.load_splat`         |    `0xc5`| -                  |
 | `i8x16.narrow_i16x8_s`     |    `0xc6`| -                  |
-| `i8x16.narrow_i16x8_u`     |    `0xc7`| -                  |
-| `i8x16.narrow_u16x8_u`     |    `0xc8`| -                  |
+| `i8x16.narrow_u16x8_u`     |    `0xc7`| -                  |
+| `i8x16.narrow_i16x8_u`     |    `0xc8`| -                  |
 | `i16x8.narrow_i32x4_s`     |    `0xc9`| -                  |
-| `i16x8.narrow_i32x4_u`     |    `0xca`| -                  |
-| `i16x8.narrow_u32x4_u`     |    `0xcb`| -                  |
+| `i16x8.narrow_u32x4_u`     |    `0xca`| -                  |
+| `i16x8.narrow_i32x4_u`     |    `0xcb`| -                  |
 | `i16x8.widen_low_i8x16_s`  |    `0xcc`| -                  |
 | `i16x8.widen_high_i8x16_s` |    `0xcd`| -                  |
 | `i16x8.widen_low_i8x16_u`  |    `0xce`| -                  |

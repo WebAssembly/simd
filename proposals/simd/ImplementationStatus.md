@@ -146,11 +146,11 @@
 | `v8x16.swizzle`            |                           |                    | :heavy_check_mark: |                    |
 | `v8x16.shuffle`            |                           |                    | :heavy_check_mark: | :heavy_check_mark: |
 | `i8x16.narrow_i16x8_s`     |                           | :heavy_check_mark: | :heavy_check_mark: |                    |
-| `i8x16.narrow_i16x8_u`     |                           | :heavy_check_mark: | :heavy_check_mark: |                    |
-| `i8x16.narrow_u16x8_u`     |                           |                    |                    |                    |
+| `i8x16.narrow_u16x8_u`     |                           | :heavy_check_mark: | :heavy_check_mark: |                    |
+| `i8x16.narrow_i16x8_u`     |                           |                    |                    |                    |
 | `i16x8.narrow_i32x4_s`     |                           | :heavy_check_mark: | :heavy_check_mark: |                    |
-| `i16x8.narrow_i32x4_u`     |                           | :heavy_check_mark: | :heavy_check_mark: |                    |
-| `i16x8.narrow_u32x4_u`     |                           |                    |                    |                    |
+| `i16x8.narrow_u32x4_u`     |                           | :heavy_check_mark: | :heavy_check_mark: |                    |
+| `i16x8.narrow_i32x4_u`     |                           |                    |                    |                    |
 | `i16x8.widen_low_i8x16_s`  |                           | :heavy_check_mark: | :heavy_check_mark: |                    |
 | `i16x8.widen_high_i8x16_s` |                           | :heavy_check_mark: | :heavy_check_mark: |                    |
 | `i16x8.widen_low_i8x16_u`  |                           | :heavy_check_mark: | :heavy_check_mark: |                    |
