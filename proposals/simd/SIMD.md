@@ -367,7 +367,6 @@ def S.sub(a, b):
 ```
 
 ### Integer multiplication
-* `i8x16.mul(a: v128, b: v128) -> v128`
 * `i16x8.mul(a: v128, b: v128) -> v128`
 * `i32x4.mul(a: v128, b: v128) -> v128`
 
