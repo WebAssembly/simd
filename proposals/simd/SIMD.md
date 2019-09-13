@@ -812,9 +812,9 @@ are interpreted as signed integers.
 def S.narrow_T_s(a, b):
     result = S.New()
     for i in range(T.Lanes):
-        result[i] = S.SignedSaturate(b[i])
+        result[i] = S.SignedSaturate(a[i])
     for i in range(T.Lanes):
-        result[T.Lanes + i] = S.SignedSaturate(a[i])
+        result[T.Lanes + i] = S.SignedSaturate(b[i])
     return result
 
 ```
@@ -823,9 +823,9 @@ def S.narrow_T_s(a, b):
 def S.narrow_T_u(a, b):
     result = S.New()
     for i in range(T.Lanes):
-        result[i] = S.UnsignedSaturate(b[i])
+        result[i] = S.UnsignedSaturate(a[i])
     for i in range(T.Lanes):
-        result[T.Lanes + i] = S.UnsignedSaturate(a[i])
+        result[T.Lanes + i] = S.UnsignedSaturate(b[i])
     return result
 
 ```
@@ -847,15 +847,21 @@ sign extended or zero (unsigned) extended.
 def S.widen_low_T(ext, a):
     result = S.New()
     for i in range(S.Lanes):
-        result[i] = ext(a[S.Lanes + i])
+        result[i] = ext(a[i])
 
 def S.widen_high_T(ext, a):
     result = S.New()
     for i in range(S.Lanes):
-        result[i] = ext(a[i])
+        result[i] = ext(a[S.Lanes + i])
 
 def S.widen_low_T_s(a):
     return S.widen_low_T(Sext, a)
+
+def S.widen_high_T_s(a):
+    return S.widen_high_T(Sext, a)
+
+def S.widen_low_T_u(a):
+    return S.widen_low_T(Zext, a)
 
 def S.widen_high_T_u(a):
     return S.widen_high_T(Zext, a)
