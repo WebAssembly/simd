@@ -817,9 +817,6 @@ def S.narrow_T_s(a, b):
         result[T.Lanes + i] = S.SignedSaturate(b[i])
     return result
 
-```
-
-```python
 def S.narrow_T_u(a, b):
     result = S.New()
     for i in range(T.Lanes):
@@ -827,7 +824,6 @@ def S.narrow_T_u(a, b):
     for i in range(T.Lanes):
         result[T.Lanes + i] = S.UnsignedSaturate(b[i])
     return result
-
 ```
 
 ### Integer to integer widening
