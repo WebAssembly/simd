@@ -263,3 +263,7 @@ For example, `ImmLaneIdx16` is a byte with values in the range 0-15 (inclusive).
 | `i16x8.extadd_pairwise_i8x16_u` |     `TBD`| -                        |
 | `i32x4.extadd_pairwise_i16x8_s` |     `TBD`| -                        |
 | `i32x4.extadd_pairwise_i16x8_u` |     `TBD`| -                        |
+| `v8x16.signselect`              |     `TBD`| -                        |
+| `v16x8.signselect`              |     `TBD`| -                        |
+| `v32x4.signselect`              |     `TBD`| -                        |
+| `v64x2.signselect`              |     `TBD`| -                        |

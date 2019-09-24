@@ -683,6 +683,18 @@ Note that the normal WebAssembly `select` instruction also works with vector
 types. It selects between two whole vectors controlled by a single scalar value,
 rather than selecting bits controlled by a control mask vector.
 
+### Sign select
+* `v8x16.signselect(v1: v128, v2: v128, c: v128) -> v128`
+* `v16x8.signselect(v1: v128, v2: v128, c: v128) -> v128`
+* `v32x4.signselect(v1: v128, v2: v128, c: v128) -> v128`
+* `v64x2.signselect(v1: v128, v2: v128, c: v128) -> v128`
+
+Use the sign bits in the control mask `c` to select the corresponding element
+from `v1` when 1 (negative sign) and `v2` when 0 (positive sign).
+
+Note that these instructions work for both signed integer and floating-point
+control masks.
+
 ### Lane-wise Population Count
 * `i8x16.popcnt(v: v128) -> v128`
 

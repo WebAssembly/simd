@@ -231,6 +231,10 @@
 | `i16x8.extadd_pairwise_i8x16_u` |                           |                    |                    |                    |                    |
 | `i32x4.extadd_pairwise_i16x8_s` |                           |                    |                    |                    |                    |
 | `i32x4.extadd_pairwise_i16x8_u` |                           |                    |                    |                    |                    |
+| `v8x16.signselect`              |                           |                    |                    |                    |                    |
+| `v16x8.signselect`              |                           |                    |                    |                    |                    |
+| `v32x4.signselect`              |                           |                    |                    |                    |                    |
+| `v64x2.signselect`              |                           |                    |                    |                    |                    |
 
 [1] Tip of tree LLVM as of May 20, 2020
 
