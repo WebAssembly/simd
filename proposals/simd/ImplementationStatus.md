@@ -164,7 +164,7 @@
 | `i32x4.widen_low_i16x8_u`  | `-munimplemented-simd128` | :heavy_check_mark: | :heavy_check_mark: |                    |
 | `i32x4.widen_high_i16x8_u` | `-munimplemented-simd128` | :heavy_check_mark: | :heavy_check_mark: |                    |
 
-[1] Tip of tree LLVM as of April 24, 2019
+[1] Tip of tree LLVM as of September 30, 2019
 
 [2] Tested on V8 7.5.0 (candidate). Requires flag `--experimental-wasm-simd`
 
