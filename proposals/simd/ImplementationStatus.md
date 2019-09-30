@@ -4,17 +4,17 @@
 | `v128.store`               |               `-msimd128` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | `v128.const`               | `-munimplemented-simd128` |                    | :heavy_check_mark: | :heavy_check_mark: |
 | `i8x16.splat`              |               `-msimd128` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| `v8x16.load_splat`         |                           |                    | :heavy_check_mark: |                    |
+| `v8x16.load_splat`         | `-munimplemented-simd128` |                    | :heavy_check_mark: |                    |
 | `i8x16.extract_lane_s`     |               `-msimd128` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | `i8x16.extract_lane_u`     | `-munimplemented-simd128` |                    | :heavy_check_mark: | :heavy_check_mark: |
 | `i8x16.replace_lane`       |               `-msimd128` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | `i16x8.splat`              |               `-msimd128` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| `v16x8.load_splat`         |                           |                    | :heavy_check_mark: |                    |
+| `v16x8.load_splat`         | `-munimplemented-simd128` |                    | :heavy_check_mark: |                    |
 | `i16x8.extract_lane_s`     |               `-msimd128` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | `i16x8.extract_lane_u`     | `-munimplemented-simd128` |                    | :heavy_check_mark: | :heavy_check_mark: |
 | `i16x8.replace_lane`       |               `-msimd128` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | `i32x4.splat`              |               `-msimd128` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| `v32x4.load_splat`         |                           |                    | :heavy_check_mark: |                    |
+| `v32x4.load_splat`         | `-munimplemented-simd128` |                    | :heavy_check_mark: |                    |
 | `i32x4.extract_lane`       |               `-msimd128` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | `i32x4.replace_lane`       |               `-msimd128` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | `i64x2.splat`              | `-munimplemented-simd128` |                    | :heavy_check_mark: | :heavy_check_mark: |
@@ -24,7 +24,7 @@
 | `f32x4.extract_lane`       |               `-msimd128` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | `f32x4.replace_lane`       |               `-msimd128` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | `f64x2.splat`              | `-munimplemented-simd128` |                    | :heavy_check_mark: | :heavy_check_mark: |
-| `v64x2.load_splat`         |                           |                    | :heavy_check_mark: |                    |
+| `v64x2.load_splat`         | `-munimplemented-simd128` |                    | :heavy_check_mark: |                    |
 | `f64x2.extract_lane`       | `-munimplemented-simd128` |                    | :heavy_check_mark: | :heavy_check_mark: |
 | `f64x2.replace_lane`       | `-munimplemented-simd128` |                    | :heavy_check_mark: | :heavy_check_mark: |
 | `i8x16.eq`                 |               `-msimd128` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
@@ -71,7 +71,7 @@
 | `f64x2.ge`                 | `-munimplemented-simd128` |                    | :heavy_check_mark: | :heavy_check_mark: |
 | `v128.not`                 |               `-msimd128` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | `v128.and`                 |               `-msimd128` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| `v128.andnot`              |                           |                    |                    |                    |
+| `v128.andnot`              | `-munimplemented-simd128` |                    |                    |                    |
 | `v128.or`                  |               `-msimd128` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | `v128.xor`                 |               `-msimd128` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | `v128.bitselect`           |               `-msimd128` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
@@ -144,25 +144,25 @@
 | `f64x2.convert_i64x2_s`    | `-munimplemented-simd128` |                    | :heavy_check_mark: | :heavy_check_mark: |
 | `f64x2.convert_i64x2_u`    | `-munimplemented-simd128` |                    | :heavy_check_mark: | :heavy_check_mark: |
 | `v8x16.swizzle`            |                           |                    | :heavy_check_mark: |                    |
-| `v8x16.shuffle`            |                           |                    | :heavy_check_mark: | :heavy_check_mark: |
-| `i16x8.load8x8_s`          |                           |                    |                    |                    |
-| `i16x8.load8x8_u`          |                           |                    |                    |                    |
-| `i32x4.load16x4_s`         |                           |                    |                    |                    |
-| `i32x4.load16x4_u`         |                           |                    |                    |                    |
-| `i64x2.load32x2_s`         |                           |                    |                    |                    |
-| `i64x2.load32x2_u`         |                           |                    |                    |                    |
-| `i8x16.narrow_i16x8_s`     |                           | :heavy_check_mark: | :heavy_check_mark: |                    |
-| `i8x16.narrow_i16x8_u`     |                           | :heavy_check_mark: | :heavy_check_mark: |                    |
-| `i16x8.narrow_i32x4_s`     |                           | :heavy_check_mark: | :heavy_check_mark: |                    |
-| `i16x8.narrow_i32x4_u`     |                           | :heavy_check_mark: | :heavy_check_mark: |                    |
-| `i16x8.widen_low_i8x16_s`  |                           | :heavy_check_mark: | :heavy_check_mark: |                    |
-| `i16x8.widen_high_i8x16_s` |                           | :heavy_check_mark: | :heavy_check_mark: |                    |
-| `i16x8.widen_low_i8x16_u`  |                           | :heavy_check_mark: | :heavy_check_mark: |                    |
-| `i16x8.widen_high_i8x16_u` |                           | :heavy_check_mark: | :heavy_check_mark: |                    |
-| `i32x4.widen_low_i16x8_s`  |                           | :heavy_check_mark: | :heavy_check_mark: |                    |
-| `i32x4.widen_high_i16x8_s` |                           | :heavy_check_mark: | :heavy_check_mark: |                    |
-| `i32x4.widen_low_i16x8_u`  |                           | :heavy_check_mark: | :heavy_check_mark: |                    |
-| `i32x4.widen_high_i16x8_u` |                           | :heavy_check_mark: | :heavy_check_mark: |                    |
+| `v8x16.shuffle`            |            `-msimd128`[5] | :white_check_mark:[5] | :heavy_check_mark: | :heavy_check_mark: |
+| `i16x8.load8x8_s`          | `-munimplemented-simd128` |                    |                    |                    |
+| `i16x8.load8x8_u`          | `-munimplemented-simd128` |                    |                    |                    |
+| `i32x4.load16x4_s`         | `-munimplemented-simd128` |                    |                    |                    |
+| `i32x4.load16x4_u`         | `-munimplemented-simd128` |                    |                    |                    |
+| `i64x2.load32x2_s`         | `-munimplemented-simd128` |                    |                    |                    |
+| `i64x2.load32x2_u`         | `-munimplemented-simd128` |                    |                    |                    |
+| `i8x16.narrow_i16x8_s`     | `-munimplemented-simd128` | :heavy_check_mark: | :heavy_check_mark: |                    |
+| `i8x16.narrow_i16x8_u`     | `-munimplemented-simd128` | :heavy_check_mark: | :heavy_check_mark: |                    |
+| `i16x8.narrow_i32x4_s`     | `-munimplemented-simd128` | :heavy_check_mark: | :heavy_check_mark: |                    |
+| `i16x8.narrow_i32x4_u`     | `-munimplemented-simd128` | :heavy_check_mark: | :heavy_check_mark: |                    |
+| `i16x8.widen_low_i8x16_s`  | `-munimplemented-simd128` | :heavy_check_mark: | :heavy_check_mark: |                    |
+| `i16x8.widen_high_i8x16_s` | `-munimplemented-simd128` | :heavy_check_mark: | :heavy_check_mark: |                    |
+| `i16x8.widen_low_i8x16_u`  | `-munimplemented-simd128` | :heavy_check_mark: | :heavy_check_mark: |                    |
+| `i16x8.widen_high_i8x16_u` | `-munimplemented-simd128` | :heavy_check_mark: | :heavy_check_mark: |                    |
+| `i32x4.widen_low_i16x8_s`  | `-munimplemented-simd128` | :heavy_check_mark: | :heavy_check_mark: |                    |
+| `i32x4.widen_high_i16x8_s` | `-munimplemented-simd128` | :heavy_check_mark: | :heavy_check_mark: |                    |
+| `i32x4.widen_low_i16x8_u`  | `-munimplemented-simd128` | :heavy_check_mark: | :heavy_check_mark: |                    |
+| `i32x4.widen_high_i16x8_u` | `-munimplemented-simd128` | :heavy_check_mark: | :heavy_check_mark: |                    |
 
 [1] Tip of tree LLVM as of April 24, 2019
 
@@ -171,3 +171,5 @@
 [3] Tip of tree WAVM as of July 10, 2019. Requires flag `--enable prestd-simd`
 
 [4] Requires (case-insensitive) flag `-wasmsimd`
+
+[5] Uses older `v8x16.shuffle` opcode `0xfd 0x03`
