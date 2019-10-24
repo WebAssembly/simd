@@ -13,12 +13,13 @@ of immediate operands used by the SIMD instructions.
 
 ## SIMD value type
 
-The `v128` value type has a concrete mapping to a 128-bit representation with bits
-numbered 0–127. The `v128` type corresponds to a vector register in a typical
-SIMD ISA. The interpretation of the 128 bits in the vector register is provided
-by the individual instructions. When a `v128` value is represented as 16 bytes,
-bits 0-7 go in the first byte with bit 0 as the LSB, bits 8-15 go in the second
-byte, etc.
+The `v128` value type is the _only_ type introduced in this extension. It has a
+concrete mapping to a 128-bit representation with bits numbered 0–127. The
+`v128` type corresponds to a vector register in a typical SIMD ISA. The
+interpretation of the 128 bits in the vector register is provided by the
+individual instructions. When a `v128` value is represented as 16 bytes, bits
+0-7 go in the first byte with bit 0 as the LSB, bits 8-15 go in the second byte,
+etc.
 
 ## Immediate operands
 
@@ -27,17 +28,32 @@ encoded as individual bytes in the binary encoding. Many have a limited valid
 range, and it is a validation error if the immediate operands are out of range.
 
 * `ImmByte`: A single unconstrained byte (0-255).
-* `LaneIdx2`: A byte with values in the range 0–1 identifying a lane.
-* `LaneIdx4`: A byte with values in the range 0–3 identifying a lane.
-* `LaneIdx8`: A byte with values in the range 0–7 identifying a lane.
-* `LaneIdx16`: A byte with values in the range 0–15 identifying a lane.
-* `LaneIdx32`: A byte with values in the range 0–31 identifying a lane.
+* `ImmLaneIdx2`: A byte with values in the range 0–1 identifying a lane.
+* `ImmLaneIdx4`: A byte with values in the range 0–3 identifying a lane.
+* `ImmLaneIdx8`: A byte with values in the range 0–7 identifying a lane.
+* `ImmLaneIdx16`: A byte with values in the range 0–15 identifying a lane.
+* `ImmLaneIdx32`: A byte with values in the range 0–31 identifying a lane.
 
-## Interpreting the SIMD value type
+## Operations on the SIMD value type
 
-The single `v128` SIMD type can represent packed data in multiple ways.
-Instructions specify how the bits should be interpreted through a hierarchy of
-*interpretations*.
+The _single_ `v128` SIMD type can be used to represent different types of packed
+data, e.g., it can represent four 32-bit floating point values, 8 16-bit signed
+or unsigned integer values, etc.
+
+The instructions introduced in this specification are named according to the
+following schema: `{interpretation}.{operation}`. Where the `{interpretation}`
+prefix denotes how the bytes of the `v128` type are interpreted by the `{operation}`. 
+
+For example, the instructions `f32x4.extract_lane` and `i64x2.extract_lane`
+perform the same semantic operation: extracting the scalar value of a vector
+lane. However, the `f32x4.extract_lane` instruction returns a 32-bit wide
+floating point value, while the `i64x2.extract_lane` instruction returns a
+64-bit wide integer value.
+
+The `v128` vector type interpretation interprets the vector as a bag of bits. 
+The `v{lane_width}x{n}` interpretations (e.g. `v32x4`) interpret the vector as
+`n` lanes of `lane_width` bits. The `{t}{lane_width}x{n}` interpretations (e.g.
+`i32x4` or `f32x4`) interpret the vector as `n` lanes of type `{t}{lane_width}`.
 
 ### Lane division interpretation
 
@@ -99,16 +115,70 @@ WebAssembly's scalar floating-point operations. In particular, the rules about
 NaN propagation and default NaN values are the same, and all operations use the
 default *roundTiesToEven* rounding mode.
 
-An implementation is allowed to flush subnormals in arithmetic floating-point
-operations. This means that any subnormal operand is treated as 0, and any
-subnormal result is rounded to 0. Note that this differs from WebAssembly
-scalar floating-point semantics which require correct subnormal handling.
+# JavaScript API and SIMD Values
+
+Accessing WebAssembly module imports or exports containing SIMD Type from JavaScript will throw.
+
+### Module Function Imports
+
+Calling an imported function from JavaScript when the function arguments or result is of type v128 will cause the host function to immidiately throw a [`TypeError`](https://tc39.github.io/ecma262/#sec-native-error-types-used-in-this-standard-typeerror).
+
+### Exported Function Exotic Objects
+
+Invoking the [[Call]] method of an Exported Function Exotic Object when the function type of its [[Closure]] has an argument or result of type v128 will cause the host function to immidiately throw a [`TypeError`](https://tc39.github.io/ecma262/#sec-native-error-types-used-in-this-standard-typeerror).
+
+
+## WebAssembly Module Instatiation
+
+Instantiating a WebAssembly Module from a Module moduleObject will throw a LinkError exception, when the global's valtype is v128 and the imported objects type is not WebAssembly.Global. 
+
+## Exported Functions
+
+### Exported Function Call
+
+Calling an Exported Function will throw a [`TypeError`](https://tc39.github.io/ecma262/#sec-native-error-types-used-in-this-standard-typeerror), when parameters or results contains a v128. This error is thrown each time the [[Call]] method is invoked.
+
+### Creating a host function
+
+Creating a host function from JavaScript object will throw a [`TypeError`](https://tc39.github.io/ecma262/#sec-native-error-types-used-in-this-standard-typeerror), when the host function signature contains a v128.
+
+### Global constructor
+
+If Global(descriptor, v) constructor will throw a [`TypeError`](https://tc39.github.io/ecma262/#sec-native-error-types-used-in-this-standard-typeerror), when invoked with v of valuetype v128.
+
+## JavaScript coercion
+
+### ToJSValue
+
+The algorithm toJSValue(w) should have an assertion ensuring w is not of the form v128.const v128.
+
+### ToWebAssemblyValue
+
+The algorithm ToWebAssemblyValue(v, type)  should have an assertion ensuring type is not v128.
+
+## JavaScript API Global Object algorithms
+
+### ToValueType
+
+The algorithm ToValueType(s) will return 'v128' if s equals "v128".
+
+### DefaultValue 
+
+The algorithm DefaultValueType(valueType) will return v128.const 0.
+
+### GetGlobalValue
+
+The algorithm GetGlobalValue(Global global) will throw a [`TypeError`](https://tc39.github.io/ecma262/#sec-native-error-types-used-in-this-standard-typeerror), when type_global(store, global.[[Global]]) is of the form mut v128.
+
+### Global value attribute Setter
+
+The setter of the value attribute of Global will throw a [`TypeError`](https://tc39.github.io/ecma262/#sec-native-error-types-used-in-this-standard-typeerror), when invoked with a value v of valuetype v128.
 
 # Operations
 
 The SIMD operations described in this sections are generally named
 `S.Op`, where `S` is either a SIMD type or one of the interpretations
-of a SIMD type.
+of a SIMD type. Immediate mode operands are prefixed with `imm`.
 
 Many operations are simply the lane-wise application of a scalar operation:
 
@@ -143,9 +213,9 @@ def S.lanewise_comparison(func, a, b):
 ### Constant
 * `v128.const(imm: ImmByte[16]) -> v128`
 
-Materialize a constant SIMD value from the immediate operands. The `v128.const`
-instruction is encoded with 16 immediate bytes which provide the bits of the
-vector directly.
+Materialize a constant `v128` SIMD value from the 16 immediate bytes in the
+immediate mode operand `imm` . The `v128.const` instruction is encoded with 16
+immediate bytes which provide the bits of the vector directly.
 
 ### Create vector with identical lanes
 * `i8x16.splat(x: i32) -> v128`
@@ -168,16 +238,18 @@ def S.splat(x):
 ## Accessing lanes
 
 ### Extract lane as a scalar
-* `i8x16.extract_lane_s(a: v128, i: LaneIdx16) -> i32`
-* `i8x16.extract_lane_u(a: v128, i: LaneIdx16) -> i32`
-* `i16x8.extract_lane_s(a: v128, i: LaneIdx8) -> i32`
-* `i16x8.extract_lane_u(a: v128, i: LaneIdx8) -> i32`
-* `i32x4.extract_lane(a: v128, i: LaneIdx4) -> i32`
-* `i64x2.extract_lane(a: v128, i: LaneIdx2) -> i64`
-* `f32x4.extract_lane(a: v128, i: LaneIdx4) -> f32`
-* `f64x2.extract_lane(a: v128, i: LaneIdx2) -> f64`
+* `i8x16.extract_lane_s(a: v128, imm: ImmLaneIdx16) -> i32`
+* `i8x16.extract_lane_u(a: v128, imm: ImmLaneIdx16) -> i32`
+* `i16x8.extract_lane_s(a: v128, imm: ImmLaneIdx8) -> i32`
+* `i16x8.extract_lane_u(a: v128, imm: ImmLaneIdx8) -> i32`
+* `i32x4.extract_lane(a: v128, imm: ImmLaneIdx4) -> i32`
+* `i64x2.extract_lane(a: v128, imm: ImmLaneIdx2) -> i64`
+* `f32x4.extract_lane(a: v128, imm: ImmLaneIdx4) -> f32`
+* `f64x2.extract_lane(a: v128, imm: ImmLaneIdx2) -> f64`
 
-Extract the value of lane `i` in `a`.
+Extract the scalar value of lane specified in the immediate mode operand `imm`
+in `a`. The `{interpretation}.extract_lane{_s}{_u}` instructions are encoded
+with one immediate byte providing the index of the lane to extract.
 
 ```python
 def S.extract_lane(a, i):
@@ -188,15 +260,17 @@ The `_s` and `_u` variants will sign-extend or zero-extend the lane value to
 `i32` respectively.
 
 ### Replace lane value
-* `i8x16.replace_lane(a: v128, i: LaneIdx16, x: i32) -> v128`
-* `i16x8.replace_lane(a: v128, i: LaneIdx8, x: i32) -> v128`
-* `i32x4.replace_lane(a: v128, i: LaneIdx4, x: i32) -> v128`
-* `i64x2.replace_lane(a: v128, i: LaneIdx2, x: i64) -> v128`
-* `f32x4.replace_lane(a: v128, i: LaneIdx4, x: f32) -> v128`
-* `f64x2.replace_lane(a: v128, i: LaneIdx2, x: f64) -> v128`
+* `i8x16.replace_lane(a: v128, imm: ImmLaneIdx16, x: i32) -> v128`
+* `i16x8.replace_lane(a: v128, imm: ImmLaneIdx8, x: i32) -> v128`
+* `i32x4.replace_lane(a: v128, imm: ImmLaneIdx4, x: i32) -> v128`
+* `i64x2.replace_lane(a: v128, imm: ImmLaneIdx2, x: i64) -> v128`
+* `f32x4.replace_lane(a: v128, imm: ImmLaneIdx4, x: f32) -> v128`
+* `f64x2.replace_lane(a: v128, imm: ImmLaneIdx2, x: f64) -> v128`
 
-Return a new vector with lanes identical to `a`, except for lane `i` which has
-the value `x`.
+Return a new vector with lanes identical to `a`, except for the lane specified
+in the immediate mode operand `imm` which has the value `x`. The
+`{interpretation}.replace_lane` instructions are encoded with an immediate byte 
+providing the index of the lane the value of which is to be replaced.
 
 ```python
 def S.replace_lane(a, i, x):
@@ -210,10 +284,14 @@ def S.replace_lane(a, i, x):
 The input lane value, `x`, is interpreted the same way as for the splat
 instructions. For the `i8` and `i16` lanes, the high bits of `x` are ignored.
 
-### Shuffle lanes
-* `v8x16.shuffle(a: v128, b: v128, s: LaneIdx32[16]) -> v128`
+### Shuffling using immediate indices
+* `v8x16.shuffle(a: v128, b: v128, imm: ImmLaneIdx32[16]) -> v128`
 
-Create vector with lanes selected from the lanes of two input vectors:
+Returns a new vector with lanes selected from the lanes of the two input vectors
+`a` and `b` specified in the 16 byte wide immediate mode operand `imm`. This
+instruction is encoded with 16 bytes providing the indices of the elements to
+return. The indices `i` in range `[0, 15]` select the `i`-th element of `a`. The
+indices in range `[16, 31]` select the `i - 16`-th element of `b`.
 
 ```python
 def S.shuffle(a, b, s):
@@ -223,6 +301,25 @@ def S.shuffle(a, b, s):
             result[i] = a[s[i]]
         else:
             result[i] = b[s[i] - S.lanes]
+    return result
+```
+
+### Swizzling using variable indices
+* `v8x16.swizzle(a: v128, s: v128) -> v128`
+
+Returns a new vector with lanes selected from the lanes of the first input
+vector `a` specified in the second input vector `s`. The indices `i` in range
+`[0, 15]` select the `i`-th element of `a`. For indices outside of the range
+the resulting lane is 0.
+
+```python
+def S.swizzle(a, s):
+    result = S.New()
+    for i in range(S.Lanes):
+        if s[i] < S.lanes:
+            result[i] = a[s[i]]
+        else:
+            result[i] = 0
     return result
 ```
 
@@ -270,9 +367,9 @@ def S.sub(a, b):
 ```
 
 ### Integer multiplication
-* `i8x16.mul(a: v128, b: v128) -> v128`
 * `i16x8.mul(a: v128, b: v128) -> v128`
 * `i32x4.mul(a: v128, b: v128) -> v128`
+* `i64x2.mul(a: v128, b: v128) -> v128`
 
 Lane-wise wrapping integer multiplication:
 
@@ -368,11 +465,11 @@ def S.sub_saturate_u(a, b):
 * `i32x4.shl(a: v128, y: i32) -> v128`
 * `i64x2.shl(a: v128, y: i32) -> v128`
 
-Shift the bits in each lane to the left by the same amount. Only the low bits
-of the shift amount are used:
+Shift the bits in each lane to the left by the same amount. The shift count is
+taken modulo lane width:
 
 ```python
-def S.shl(a, x):
+def S.shl(a, y):
     # Number of bits to shift: 0 .. S.LaneBits - 1.
     amount = y mod S.LaneBits
     def shift(x):
@@ -390,9 +487,9 @@ def S.shl(a, x):
 * `i64x2.shr_s(a: v128, y: i32) -> v128`
 * `i64x2.shr_u(a: v128, y: i32) -> v128`
 
-Shift the bits in each lane to the right by the same amount. This is an
-arithmetic right shift for the `_s` variants and a logical right shift for the
-`_u` variants.
+Shift the bits in each lane to the right by the same amount. The shift count is
+taken modulo lane width.  This is an arithmetic right shift for the `_s`
+variants and a logical right shift for the `_u` variants.
 
 ```python
 def S.shr_s(a, y):
@@ -425,6 +522,12 @@ The logical operations defined on the scalar integer types are also available
 on the `v128` type where they operate bitwise the same way C's `&`, `|`, `^`,
 and `~` operators work on an `unsigned` type.
 
+### Bitwise AND-NOT
+
+* `v128.andnot(a: v128, b: v128) -> v128`
+
+Bitwise AND of bits of `a` and the logical inverse of bits of `b`. This operation is equivalent to `v128.and(a, v128.not(b))`.
+
 ### Bitwise select
 * `v128.bitselect(v1: v128, v2: v128, c: v128) -> v128`
 
@@ -446,7 +549,6 @@ These operations reduce all the lanes of an integer vector to a single scalar
 * `i8x16.any_true(a: v128) -> i32`
 * `i16x8.any_true(a: v128) -> i32`
 * `i32x4.any_true(a: v128) -> i32`
-* `i64x2.any_true(a: v128) -> i32`
 
 These functions return 1 if any lane in `a` is non-zero, 0 otherwise.
 
@@ -462,7 +564,6 @@ def S.any_true(a):
 * `i8x16.all_true(a: v128) -> i32`
 * `i16x8.all_true(a: v128) -> i32`
 * `i32x4.all_true(a: v128) -> i32`
-* `i64x2.all_true(a: v128) -> i32`
 
 These functions return 1 if all lanes in `a` are non-zero, 0 otherwise.
 
@@ -476,8 +577,9 @@ def S.all_true(a):
 
 ## Comparisons
 
-The comparison operations all compare two vectors lane-wise, and produce a
-mask vector with the same number of lanes as the input interpretation.
+The comparison operations all compare two vectors lane-wise, and produce a mask
+vector with the same number of lanes as the input interpretation where the bits
+in each lane are `0` for `false` and all ones for `true`.
 
 ### Equality
 * `i8x16.eq(a: v128, b: v128) -> v128`
@@ -504,7 +606,7 @@ def S.eq(a, b):
 * `f32x4.ne(a: v128, b: v128) -> v128`
 * `f64x2.ne(a: v128, b: v128) -> v128`
 
-The `ne` operations produce the inverse of their `ne` counterparts:
+The `ne` operations produce the inverse of their `eq` counterparts:
 
 ```python
 def S.ne(a, b):
@@ -573,14 +675,36 @@ def S.ne(a, b):
 
 Load and store operations are provided for the `v128` vectors. The memory
 operations take the same arguments and have the same semantics as the existing
-scalar WebAssembly load and store instructions. The difference is that the
-memory access size is 16 bytes which is also the natural alignment.
+scalar WebAssembly load and store instructions (see
+[memarg](https://webassembly.github.io/spec/core/bikeshed/index.html#syntax-memarg).
+The difference is that the memory access size is 16 bytes which is also the
+natural alignment.
 
 ### Load
 
 * `v128.load(memarg) -> v128`
 
 Load a `v128` vector from the given heap address.
+
+### Load and Splat
+
+* `v8x16.load_splat(memarg) -> v128`
+* `v16x8.load_splat(memarg) -> v128`
+* `v32x4.load_splat(memarg) -> v128`
+* `v64x2.load_splat(memarg) -> v128`
+
+Load a single element and splat to all lanes of a `v128` vector.
+
+### Load and Extend
+
+* `i16x8.load8x8_s(memarg) -> v128`: load eight 8-bit integers and sign extend each one to a 16-bit lane
+* `i16x8.load8x8_u(memarg) -> v128`: load eight 8-bit integers and zero extend each one to a 16-bit lane
+* `i32x4.load16x4_s(memarg) -> v128`: load four 16-bit integers and sign extend each one to a 32-bit lane
+* `i32x4.load16x4_u(memarg) -> v128`: load four 16-bit integers and zero extend each one to a 32-bit lane
+* `i64x2.load32x2_s(memarg) -> v128`: load two 32-bit integers and sign extend each one to a 64-bit lane
+* `i64x2.load32x2_u(memarg) -> v128`: load two 32-bit integers and zero extend each one to a 64-bit lane
+
+Fetch consequtive integers up to 32-bit wide and produce a vector with lanes up to 64 bits.
 
 ### Store
 
@@ -672,22 +796,90 @@ Lane-wise IEEE `squareRoot`.
 
 ## Conversions
 ### Integer to floating point
-* `f32x4.convert_s/i32x4(a: v128) -> v128`
-* `f32x4.convert_u/i32x4(a: v128) -> v128`
-* `f64x2.convert_s/i64x2(a: v128) -> v128`
-* `f64x2.convert_u/i64x2(a: v128) -> v128`
+* `f32x4.convert_i32x4_s(a: v128) -> v128`
+* `f32x4.convert_i32x4_u(a: v128) -> v128`
+* `f64x2.convert_i64x2_s(a: v128) -> v128`
+* `f64x2.convert_i64x2_u(a: v128) -> v128`
 
 Lane-wise conversion from integer to floating point. Some integer values will be
 rounded.
 
 ### Floating point to integer with saturation
-* `i32x4.trunc_s/f32x4:sat(a: v128) -> v128`
-* `i32x4.trunc_u/f32x4:sat(a: v128) -> v128`
-* `i64x2.trunc_s/f64x2:sat(a: v128) -> v128`
-* `i64x2.trunc_u/f64x2:sat(a: v128) -> v128`
+* `i32x4.trunc_sat_f32x4_s(a: v128) -> v128`
+* `i32x4.trunc_sat_f32x4_u(a: v128) -> v128`
+* `i64x2.trunc_sat_f64x2_s(a: v128) -> v128`
+* `i64x2.trunc_sat_f64x2_u(a: v128) -> v128`
 
 Lane-wise saturating conversion from floating point to integer using the IEEE
 `convertToIntegerTowardZero` function. If any input lane is a NaN, the
 resulting lane is 0. If the rounded integer value of a lane is outside the
 range of the destination type, the result is saturated to the nearest
 representable integer value.
+
+### Integer to integer narrowing
+* `i8x16.narrow_i16x8_s(a: v128, b: v128) -> v128`
+* `i8x16.narrow_i16x8_u(a: v128, b: v128) -> v128`
+* `i16x8.narrow_i32x4_s(a: v128, b: v128) -> v128`
+* `i16x8.narrow_i32x4_u(a: v128, b: v128) -> v128`
+
+Converts two input vectors into a smaller lane vector by narrowing each lane,
+signed or unsigned. The signed narrowing operation will use signed saturation
+to handle overflow, 0x7f or 0x80 for i8x16, the unsigned narrowing operation
+will use unsigned saturation to handle overflow, 0x00 or 0xff for i8x16.
+Regardless of the whether the operation is signed or unsigned, the input lanes
+are interpreted as signed integers.
+
+```python
+def S.narrow_T_s(a, b):
+    result = S.New()
+    for i in range(T.Lanes):
+        result[i] = S.SignedSaturate(a[i])
+    for i in range(T.Lanes):
+        result[T.Lanes + i] = S.SignedSaturate(b[i])
+    return result
+
+def S.narrow_T_u(a, b):
+    result = S.New()
+    for i in range(T.Lanes):
+        result[i] = S.UnsignedSaturate(a[i])
+    for i in range(T.Lanes):
+        result[T.Lanes + i] = S.UnsignedSaturate(b[i])
+    return result
+```
+
+### Integer to integer widening
+* `i16x8.widen_low_i8x16_s(a: v128) -> v128`
+* `i16x8.widen_high_i8x16_s(a: v128) -> v128`
+* `i16x8.widen_low_i8x16_u(a: v128) -> v128`
+* `i16x8.widen_high_i8x16_u(a: v128) -> v128`
+* `i32x4.widen_low_i16x8_s(a: v128) -> v128`
+* `i32x4.widen_high_i16x8_s(a: v128) -> v128`
+* `i32x4.widen_low_i16x8_u(a: v128) -> v128`
+* `i32x4.widen_high_i16x8_u(a: v128) -> v128`
+
+Converts low or high half of the smaller lane vector to a larger lane vector,
+sign extended or zero (unsigned) extended.
+
+```python
+def S.widen_low_T(ext, a):
+    result = S.New()
+    for i in range(S.Lanes):
+        result[i] = ext(a[i])
+
+def S.widen_high_T(ext, a):
+    result = S.New()
+    for i in range(S.Lanes):
+        result[i] = ext(a[S.Lanes + i])
+
+def S.widen_low_T_s(a):
+    return S.widen_low_T(Sext, a)
+
+def S.widen_high_T_s(a):
+    return S.widen_high_T(Sext, a)
+
+def S.widen_low_T_u(a):
+    return S.widen_low_T(Zext, a)
+
+def S.widen_high_T_u(a):
+    return S.widen_high_T(Zext, a)
+```
