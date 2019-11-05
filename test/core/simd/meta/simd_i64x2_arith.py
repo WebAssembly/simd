@@ -38,12 +38,12 @@ class SimdI64x2ArithmeticCase(SimdArithmeticCase):
     def i64x2_i8x16_test_data(self):
         return {
             'i64x2.add': [
-                [['0x7fffffffffffffff', ['0', '0', '0', '0', '0', '0', '0', '0x80'] * 4], '-1',
+                [['0x7fffffffffffffff', ['0', '0', '0', '0', '0', '0', '0', '0x80'] * 2], '-1',
                  ['i64x2', 'i8x16', 'i64x2']],
                 [['1', '255'], '0', ['i64x2', 'i8x16', 'i64x2']]
             ],
             'i64x2.sub': [
-                [['0x7fffffffffffffff', ['0', '0', '0', '0', '0', '0', '0', '0x80'] * 4], '-1',
+                [['0x7fffffffffffffff', ['0', '0', '0', '0', '0', '0', '0', '0x80'] * 2], '-1',
                  ['i64x2', 'i8x16', 'i64x2']],
                 [['1', '255'], '2', ['i64x2', 'i8x16', 'i64x2']]
             ],
