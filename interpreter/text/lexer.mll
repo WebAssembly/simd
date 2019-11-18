@@ -346,8 +346,8 @@ rule token = parse
   | "assert_invalid" { ASSERT_INVALID }
   | "assert_unlinkable" { ASSERT_UNLINKABLE }
   | "assert_return" { ASSERT_RETURN }
-  | "assert_return_canonical_nan" { ASSERT_RETURN_CANONICAL_NAN }
-  | "assert_return_arithmetic_nan" { ASSERT_RETURN_ARITHMETIC_NAN }
+  | "canonical_nan" { CANONICAL_NAN }
+  | "arithmetic_nan" { ARITHMETIC_NAN }
   | "assert_trap" { ASSERT_TRAP }
   | "assert_exhaustion" { ASSERT_EXHAUSTION }
   | "input" { INPUT }

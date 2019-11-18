@@ -448,11 +448,7 @@ let assertion mode ass =
   | AssertUninstantiable (def, re) ->
     Node ("assert_trap", [definition mode None def; Atom (string re)])
   | AssertReturn (act, lits) ->
-    Node ("assert_return", action act :: List.map literal lits)
-  | AssertReturnCanonicalNaN act ->
-    Node ("assert_return_canonical_nan", [action act])
-  | AssertReturnArithmeticNaN act ->
-    Node ("assert_return_arithmetic_nan", [action act])
+    Node ("assert_return", [action act]) (*  TODO :: List.map literal lits) *)
   | AssertTrap (act, re) ->
     Node ("assert_trap", [action act; Atom (string re)])
   | AssertExhaustion (act, re) ->

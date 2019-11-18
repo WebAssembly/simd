@@ -11,15 +11,20 @@ and action' =
   | Invoke of var option * Ast.name * Ast.literal list
   | Get of var option * Ast.name
 
+type assert_return_comparison = comparison' Source.phrase
+and comparison' =
+  | AssertReturnConstant of Ast.literal list
+  | AssertReturnArithmeticNan (* TODO f32x4 | f64x2 *)
+  | AssertReturnCanonicalNan (* TODO f32x4 | f64x2 *)
+  (* TODO (ref.any) | (ref.func) *)
+
 type assertion = assertion' Source.phrase
 and assertion' =
   | AssertMalformed of definition * string
   | AssertInvalid of definition * string
   | AssertUnlinkable of definition * string
   | AssertUninstantiable of definition * string
-  | AssertReturn of action * Ast.literal list
-  | AssertReturnCanonicalNaN of action
-  | AssertReturnArithmeticNaN of action
+  | AssertReturn of action * assert_return_comparison
   | AssertTrap of action * string
   | AssertExhaustion of action * string
 

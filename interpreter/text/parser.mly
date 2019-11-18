@@ -157,7 +157,7 @@ let inline_type_explicit (c : context) x ft at =
 %token MODULE BIN QUOTE
 %token SCRIPT REGISTER INVOKE GET
 %token ASSERT_MALFORMED ASSERT_INVALID ASSERT_SOFT_INVALID ASSERT_UNLINKABLE
-%token ASSERT_RETURN ASSERT_RETURN_CANONICAL_NAN ASSERT_RETURN_ARITHMETIC_NAN ASSERT_TRAP ASSERT_EXHAUSTION
+%token ASSERT_RETURN CANONICAL_NAN ARITHMETIC_NAN ASSERT_TRAP ASSERT_EXHAUSTION
 %token INPUT OUTPUT
 %token EOF
 
@@ -795,11 +795,15 @@ assertion :
     { AssertUnlinkable (snd $3, $4) @@ at () }
   | LPAR ASSERT_TRAP script_module STRING RPAR
     { AssertUninstantiable (snd $3, $4) @@ at () }
-  | LPAR ASSERT_RETURN action const_list RPAR { AssertReturn ($3, $4) @@ at () }
-  | LPAR ASSERT_RETURN_CANONICAL_NAN action RPAR { AssertReturnCanonicalNaN $3 @@ at () }
-  | LPAR ASSERT_RETURN_ARITHMETIC_NAN action RPAR { AssertReturnArithmeticNaN $3 @@ at () }
+  | LPAR ASSERT_RETURN action assert_return_modifier RPAR { AssertReturn ($3, $4) @@ at () }
   | LPAR ASSERT_TRAP action STRING RPAR { AssertTrap ($3, $4) @@ at () }
   | LPAR ASSERT_EXHAUSTION action STRING RPAR { AssertExhaustion ($3, $4) @@ at () }
+
+assert_return_modifier :
+  | const_list { AssertReturnConstant ($1) @@ at () }
+  | LPAR ARITHMETIC_NAN /* TODO f32x4 | f64x2 */ RPAR { AssertReturnArithmeticNan @@ at () }
+  | LPAR CANONICAL_NAN /* TODO f32x4 | f64x2 */ RPAR { AssertReturnCanonicalNan @@ at () }
+  /* TODO (ref.any) | (ref.func) */
 
 cmd :
   | action { Action $1 @@ at () }

@@ -377,7 +377,7 @@ let run_assertion ass =
     | _ -> Assert.error ass.at "expected instantiation error"
     )
 
-  | AssertReturn (act, vs) ->
+  | AssertReturn (act, vs, modifier) ->
     trace ("Asserting return...");
     let got_vs = run_action act in
     let expect_vs = List.map (fun v -> v.it) vs in

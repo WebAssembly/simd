@@ -385,11 +385,7 @@ let of_assertion mods ass =
     "assert_uninstantiable(" ^ of_definition def ^ ");"
   | AssertReturn (act, lits) ->
     of_assertion' mods act "assert_return" (List.map of_literal lits)
-      (Some (assert_return lits))
-  | AssertReturnCanonicalNaN act ->
-    of_assertion' mods act "assert_return_canonical_nan" [] (Some assert_return_canonical_nan)
-  | AssertReturnArithmeticNaN act ->
-    of_assertion' mods act "assert_return_arithmetic_nan" [] (Some assert_return_arithmetic_nan)
+      (Some (assert_return lits)) (* TODO *)
   | AssertTrap (act, _) ->
     of_assertion' mods act "assert_trap" [] None
   | AssertExhaustion (act, _) ->
