@@ -181,7 +181,7 @@
 
 [2] Tested on V8 7.5.0 (candidate). Requires flag `--experimental-wasm-simd`
 
-[3] Tip of tree WAVM as of Oct 23, 2019. Requires flag `--enable simd`
+[3] Tip of tree WAVM as of Dec 18, 2019. Requires flag `--enable simd`
 
 [4] Requires (case-insensitive) flag `-wasmsimd`
 
