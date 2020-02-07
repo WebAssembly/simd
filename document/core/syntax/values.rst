@@ -145,6 +145,19 @@ Conventions
 
 * The meta variable :math:`z` ranges over floating-point values where clear from context.
 
+.. index:: ! simd, fixed-width, vector
+   pair: abstract syntax; packed simd number
+.. _syntax-simd:
+
+Fixed-Width SIMD
+~~~~~~~~~~~~~~~~
+
+Fixed-width SIMD data represents packed integers, or floating-floating point values. The packed values of a given SIMD value must all be of the same type, these packed values can be any of the signed, unsigned integer types, and floating-point types ocurring in this proposal.
+
+The number of packed values :math:`p` can be determined by the bit width :math:`N` of the packed value type.
+
+.. math::
+   p = 128/N
 
 .. index:: ! name, byte, Unicode, UTF-8, character, binary format
    pair: abstract syntax; name
