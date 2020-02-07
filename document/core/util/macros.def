@@ -155,6 +155,8 @@
 .. |f32| mathdef:: \xref{syntax/values}{syntax-float}{\X{f32}}
 .. |f64| mathdef:: \xref{syntax/values}{syntax-float}{\X{f64}}
 
+.. |s128| mathdef:: \xref{syntax/values}{syntax-simd}{\X{s128}}
+
 .. |name| mathdef:: \xref{syntax/values}{syntax-name}{\X{name}}
 .. |char| mathdef:: \xref{syntax/values}{syntax-name}{\X{char}}
 
@@ -176,6 +178,7 @@
 .. |I64| mathdef:: \xref{syntax/types}{syntax-valtype}{\K{i64}}
 .. |F32| mathdef:: \xref{syntax/types}{syntax-valtype}{\K{f32}}
 .. |F64| mathdef:: \xref{syntax/types}{syntax-valtype}{\K{f64}}
+.. |S128| mathdef:: \xref{syntax/types}{syntax-valtype}{\K{s128}}
 
 .. |FUNCREF| mathdef:: \xref{syntax/types}{syntax-elemtype}{\K{funcref}}
 
