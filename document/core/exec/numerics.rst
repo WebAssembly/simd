@@ -114,6 +114,10 @@ Floating-Point
 
 where :math:`M = \significand(N)` and :math:`E = \exponent(N)`.
 
+Fixed-width SIMD
+................
+
+:ref:`Fixed-width SIMD values <syntax-simd>` can be used to represent different types of packed data. The format of the this data is :math:`\{t\}\{lwidth\}\times \{lanes\}` and is interpreted as a packed SIMD value of :math:`lanes`number of values of type :math:`t`, which are either :ref:`integers <syntax-int>` or :ref:`floating-point <syntax-float>` numbers of width :math:`lwidth`.
 
 .. index:: byte, little endian, memory
 .. _aux-littleendian:

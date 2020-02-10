@@ -112,6 +112,12 @@ Where the underlying operators are non-deterministic, because they may return on
    \end{array}
 
 
+Integer, Floating-point Numeric instructions
+............................................
+
+The below subset of numeric instructions is applicable only to operands with :ref:`integer <syntax-int>` and :ref:`floating point <syntax-float>` value types, and not to operands of Fixed-width SIMD value type.
+
+
 .. _exec-testop:
 
 :math:`t\K{.}\testop`
@@ -180,6 +186,11 @@ Where the underlying operators are non-deterministic, because they may return on
    (t_1\K{.}\CONST~c_1)~t_2\K{.}\cvtop\K{\_}t_1\K{\_}\sx^? &\stepto& \TRAP
      & (\iff \cvtop^{\sx^?}_{t_1,t_2}(c_1) = \{\})
    \end{array}
+
+Fixed-width SIMD Numeric instructions
+.....................................
+
+TODO: Add instruction execution steps for convert, relops once it's clear how, and where to express different S128 representations.
 
 
 .. index:: parametric instructions, value
@@ -388,6 +399,93 @@ Memory Instructions
    However, it may be substantially slower on some hardware.
 
 
+.. _exec-memory.size:
+
+:math:`\MEMORYSIZE`
+...................
+
+1. Let :math:`F` be the :ref:`current <exec-notation-textual>` :ref:`frame <syntax-frame>`.
+
+2. Assert: due to :ref:`validation <valid-memory.size>`, :math:`F.\AMODULE.\MIMEMS[0]` exists.
+
+3. Let :math:`a` be the :ref:`memory address <syntax-memaddr>` :math:`F.\AMODULE.\MIMEMS[0]`.
+
+4. Assert: due to :ref:`validation <valid-memory.size>`, :math:`S.\SMEMS[a]` exists.
+
+5. Let :math:`\X{mem}` be the :ref:`memory instance <syntax-meminst>` :math:`S.\SMEMS[a]`.
+
+6. Let :math:`\X{sz}` be the length of :math:`\X{mem}.\MIDATA` divided by the :ref:`page size <page-size>`.
+
+7. Push the value :math:`\I32.\CONST~\X{sz}` to the stack.
+
+.. math::
+   \begin{array}{l}
+   \begin{array}{lcl@{\qquad}l}
+   S; F; \MEMORYSIZE &\stepto& S; F; (\I32.\CONST~\X{sz})
+   \end{array}
+   \\ \qquad
+     (\iff |S.\SMEMS[F.\AMODULE.\MIMEMS[0]].\MIDATA| = \X{sz}\cdot64\,\F{Ki}) \\
+   \end{array}
+
+
+.. _exec-memory.grow:
+
+:math:`\MEMORYGROW`
+...................
+
+1. Let :math:`F` be the :ref:`current <exec-notation-textual>` :ref:`frame <syntax-frame>`.
+
+2. Assert: due to :ref:`validation <valid-memory.grow>`, :math:`F.\AMODULE.\MIMEMS[0]` exists.
+
+3. Let :math:`a` be the :ref:`memory address <syntax-memaddr>` :math:`F.\AMODULE.\MIMEMS[0]`.
+
+4. Assert: due to :ref:`validation <valid-memory.grow>`, :math:`S.\SMEMS[a]` exists.
+
+5. Let :math:`\X{mem}` be the :ref:`memory instance <syntax-meminst>` :math:`S.\SMEMS[a]`.
+
+6. Let :math:`\X{sz}` be the length of :math:`S.\SMEMS[a]` divided by the :ref:`page size <page-size>`.
+
+7. Assert: due to :ref:`validation <valid-memory.grow>`, a value of :ref:`value type <syntax-valtype>` |I32| is on the top of the stack.
+
+8. Pop the value :math:`\I32.\CONST~n` from the stack.
+
+9. Either, try :ref:`growing <grow-mem>` :math:`\X{mem}` by :math:`n` :ref:`pages <page-size>`:
+
+   a. If it succeeds, push the value :math:`\I32.\CONST~\X{sz}` to the stack.
+
+   b. Else, push the value :math:`\I32.\CONST~(-1)` to the stack.
+
+10. Or, push the value :math:`\I32.\CONST~(-1)` to the stack.
+
+.. math::
+   ~\\[-1ex]
+   \begin{array}{l}
+   \begin{array}{lcl@{\qquad}l}
+   S; F; (\I32.\CONST~n)~\MEMORYGROW &\stepto& S'; F; (\I32.\CONST~\X{sz})
+   \end{array}
+   \\ \qquad
+     \begin{array}[t]{@{}r@{~}l@{}}
+     (\iff & F.\AMODULE.\MIMEMS[0] = a \\
+     \wedge & \X{sz} = |S.\SMEMS[a].\MIDATA|/64\,\F{Ki} \\
+     \wedge & S' = S \with \SMEMS[a] = \growmem(S.\SMEMS[a], n)) \\
+     \end{array}
+   \\[1ex]
+   \begin{array}{lcl@{\qquad}l}
+   S; F; (\I32.\CONST~n)~\MEMORYGROW &\stepto& S; F; (\I32.\CONST~{-1})
+   \end{array}
+   \end{array}
+
+.. note::
+   The |MEMORYGROW| instruction is non-deterministic.
+   It may either succeed, returning the old memory size :math:`\X{sz}`,
+   or fail, returning :math:`{-1}`.
+   Failure *must* occur if the referenced memory instance has a maximum size defined that would be exceeded.
+   However, failure *can* occur in other cases as well.
+   In practice, the choice depends on the :ref:`resources <impl-exec>` available to the :ref:`embedder <embedder>`.
+
+
+The execution specified for :math:`t\K{.}\LOAD{N}\K{\_}\sx~\memarg` and :math:`t\K{.}\STORE{N}~\memarg` memory instructions is applicable only to operands with :ref:`integer <syntax-int>` and :ref:`floating point <syntax-float>` value types, and not to operands of :ref:`Fixed-width SIMD <syntax-simd>` value type.
+
 .. _exec-load:
 .. _exec-loadn:
 
@@ -541,96 +639,18 @@ Memory Instructions
    \end{array}
 
 
-.. _exec-memory.size:
-
-:math:`\MEMORYSIZE`
-...................
-
-1. Let :math:`F` be the :ref:`current <exec-notation-textual>` :ref:`frame <syntax-frame>`.
-
-2. Assert: due to :ref:`validation <valid-memory.size>`, :math:`F.\AMODULE.\MIMEMS[0]` exists.
-
-3. Let :math:`a` be the :ref:`memory address <syntax-memaddr>` :math:`F.\AMODULE.\MIMEMS[0]`.
-
-4. Assert: due to :ref:`validation <valid-memory.size>`, :math:`S.\SMEMS[a]` exists.
-
-5. Let :math:`\X{mem}` be the :ref:`memory instance <syntax-meminst>` :math:`S.\SMEMS[a]`.
-
-6. Let :math:`\X{sz}` be the length of :math:`\X{mem}.\MIDATA` divided by the :ref:`page size <page-size>`.
-
-7. Push the value :math:`\I32.\CONST~\X{sz}` to the stack.
-
-.. math::
-   \begin{array}{l}
-   \begin{array}{lcl@{\qquad}l}
-   S; F; \MEMORYSIZE &\stepto& S; F; (\I32.\CONST~\X{sz})
-   \end{array}
-   \\ \qquad
-     (\iff |S.\SMEMS[F.\AMODULE.\MIMEMS[0]].\MIDATA| = \X{sz}\cdot64\,\F{Ki}) \\
-   \end{array}
-
-
-.. _exec-memory.grow:
-
-:math:`\MEMORYGROW`
-...................
-
-1. Let :math:`F` be the :ref:`current <exec-notation-textual>` :ref:`frame <syntax-frame>`.
-
-2. Assert: due to :ref:`validation <valid-memory.grow>`, :math:`F.\AMODULE.\MIMEMS[0]` exists.
-
-3. Let :math:`a` be the :ref:`memory address <syntax-memaddr>` :math:`F.\AMODULE.\MIMEMS[0]`.
-
-4. Assert: due to :ref:`validation <valid-memory.grow>`, :math:`S.\SMEMS[a]` exists.
-
-5. Let :math:`\X{mem}` be the :ref:`memory instance <syntax-meminst>` :math:`S.\SMEMS[a]`.
-
-6. Let :math:`\X{sz}` be the length of :math:`S.\SMEMS[a]` divided by the :ref:`page size <page-size>`.
-
-7. Assert: due to :ref:`validation <valid-memory.grow>`, a value of :ref:`value type <syntax-valtype>` |I32| is on the top of the stack.
-
-8. Pop the value :math:`\I32.\CONST~n` from the stack.
-
-9. Either, try :ref:`growing <grow-mem>` :math:`\X{mem}` by :math:`n` :ref:`pages <page-size>`:
-
-   a. If it succeeds, push the value :math:`\I32.\CONST~\X{sz}` to the stack.
-
-   b. Else, push the value :math:`\I32.\CONST~(-1)` to the stack.
-
-10. Or, push the value :math:`\I32.\CONST~(-1)` to the stack.
-
-.. math::
-   ~\\[-1ex]
-   \begin{array}{l}
-   \begin{array}{lcl@{\qquad}l}
-   S; F; (\I32.\CONST~n)~\MEMORYGROW &\stepto& S'; F; (\I32.\CONST~\X{sz})
-   \end{array}
-   \\ \qquad
-     \begin{array}[t]{@{}r@{~}l@{}}
-     (\iff & F.\AMODULE.\MIMEMS[0] = a \\
-     \wedge & \X{sz} = |S.\SMEMS[a].\MIDATA|/64\,\F{Ki} \\
-     \wedge & S' = S \with \SMEMS[a] = \growmem(S.\SMEMS[a], n)) \\
-     \end{array}
-   \\[1ex]
-   \begin{array}{lcl@{\qquad}l}
-   S; F; (\I32.\CONST~n)~\MEMORYGROW &\stepto& S; F; (\I32.\CONST~{-1})
-   \end{array}
-   \end{array}
-
-.. note::
-   The |MEMORYGROW| instruction is non-deterministic.
-   It may either succeed, returning the old memory size :math:`\X{sz}`,
-   or fail, returning :math:`{-1}`.
-   Failure *must* occur if the referenced memory instance has a maximum size defined that would be exceeded.
-   However, failure *can* occur in other cases as well.
-   In practice, the choice depends on the :ref:`resources <impl-exec>` available to the :ref:`embedder <embedder>`.
-
-
 .. index:: control instructions, structured control, label, block, branch, result type, label index, function index, type index, vector, address, table address, table instance, store, frame
    pair: execution; instruction
    single: abstract syntax; instruction
 .. _exec-label:
 .. _exec-instr-control:
+
+
+Fixed-width SIMD Memory instructions
+.....................................
+
+TODO: Specify execution for load_splat, load_extract operations  once it's clear how, and where to express different S128 representations.
+
 
 Control Instructions
 ~~~~~~~~~~~~~~~~~~~~

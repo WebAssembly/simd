@@ -112,6 +112,11 @@ Numeric Instructions
    }
 
 
+Integer, Floating-point Numeric instructions
+............................................
+
+The validation rules for the below subset of numeric instructions are applicable only to operands with :ref:`integer <syntax-int>` and :ref:`floating point <syntax-float>` value types, and not to operands of Fixed-width SIMD value type. 
+
 .. _valid-testop:
 
 :math:`t\K{.}\testop`
@@ -139,7 +144,6 @@ Numeric Instructions
      C \vdashinstr t\K{.}\relop : [t~t] \to [\I32]
    }
 
-
 .. _valid-cvtop:
 
 :math:`t_2\K{.}\cvtop\K{\_}t_1\K{\_}\sx^?`
@@ -153,6 +157,10 @@ Numeric Instructions
      C \vdashinstr t_2\K{.}\cvtop\K{\_}t_1\K{\_}\sx^? : [t_1] \to [t_2]
    }
 
+Fixed-width SIMD Numeric instructions
+.....................................
+
+TODO: Add validation rules for convert, relops once it's clear how, and where to express different S128 representations.
 
 .. index:: parametric instructions, value type, polymorphism
    pair: validation; instruction
@@ -307,88 +315,6 @@ Variable Instructions
 Memory Instructions
 ~~~~~~~~~~~~~~~~~~~
 
-.. _valid-load:
-
-:math:`t\K{.}\LOAD~\memarg`
-...........................
-
-* The memory :math:`C.\CMEMS[0]` must be defined in the context.
-
-* The alignment :math:`2^{\memarg.\ALIGN}` must not be larger than the :ref:`bit width <syntax-valtype>` of :math:`t` divided by :math:`8`.
-
-* Then the instruction is valid with type :math:`[\I32] \to [t]`.
-
-.. math::
-   \frac{
-     C.\CMEMS[0] = \memtype
-     \qquad
-     2^{\memarg.\ALIGN} \leq |t|/8
-   }{
-     C \vdashinstr t\K{.load}~\memarg : [\I32] \to [t]
-   }
-
-
-.. _valid-loadn:
-
-:math:`t\K{.}\LOAD{N}\K{\_}\sx~\memarg`
-.......................................
-
-* The memory :math:`C.\CMEMS[0]` must be defined in the context.
-
-* The alignment :math:`2^{\memarg.\ALIGN}` must not be larger than :math:`N/8`.
-
-* Then the instruction is valid with type :math:`[\I32] \to [t]`.
-
-.. math::
-   \frac{
-     C.\CMEMS[0] = \memtype
-     \qquad
-     2^{\memarg.\ALIGN} \leq N/8
-   }{
-     C \vdashinstr t\K{.load}N\K{\_}\sx~\memarg : [\I32] \to [t]
-   }
-
-
-:math:`t\K{.}\STORE~\memarg`
-............................
-
-* The memory :math:`C.\CMEMS[0]` must be defined in the context.
-
-* The alignment :math:`2^{\memarg.\ALIGN}` must not be larger than the :ref:`bit width <syntax-valtype>` of :math:`t` divided by :math:`8`.
-
-* Then the instruction is valid with type :math:`[\I32~t] \to []`.
-
-.. math::
-   \frac{
-     C.\CMEMS[0] = \memtype
-     \qquad
-     2^{\memarg.\ALIGN} \leq |t|/8
-   }{
-     C \vdashinstr t\K{.store}~\memarg : [\I32~t] \to []
-   }
-
-
-.. _valid-storen:
-
-:math:`t\K{.}\STORE{N}~\memarg`
-...............................
-
-* The memory :math:`C.\CMEMS[0]` must be defined in the context.
-
-* The alignment :math:`2^{\memarg.\ALIGN}` must not be larger than :math:`N/8`.
-
-* Then the instruction is valid with type :math:`[\I32~t] \to []`.
-
-.. math::
-   \frac{
-     C.\CMEMS[0] = \memtype
-     \qquad
-     2^{\memarg.\ALIGN} \leq N/8
-   }{
-     C \vdashinstr t\K{.store}N~\memarg : [\I32~t] \to []
-   }
-
-
 .. _valid-memory.size:
 
 :math:`\MEMORYSIZE`
@@ -421,6 +347,102 @@ Memory Instructions
    }{
      C \vdashinstr \MEMORYGROW : [\I32] \to [\I32]
    }
+
+
+.. _valid-load:
+
+:math:`t\K{.}\LOAD~\memarg`
+...........................
+
+* The memory :math:`C.\CMEMS[0]` must be defined in the context.
+
+* The alignment :math:`2^{\memarg.\ALIGN}` must not be larger than the :ref:`bit width <syntax-valtype>` of :math:`t` divided by :math:`8`.
+
+* Then the instruction is valid with type :math:`[\I32] \to [t]`.
+
+.. math::
+   \frac{
+     C.\CMEMS[0] = \memtype
+     \qquad
+     2^{\memarg.\ALIGN} \leq |t|/8
+   }{
+     C \vdashinstr t\K{.load}~\memarg : [\I32] \to [t]
+   }
+
+
+.. _valid-store:
+
+:math:`t\K{.}\STORE~\memarg`
+............................
+
+* The memory :math:`C.\CMEMS[0]` must be defined in the context.
+
+* The alignment :math:`2^{\memarg.\ALIGN}` must not be larger than the :ref:`bit width <syntax-valtype>` of :math:`t` divided by :math:`8`.
+
+* Then the instruction is valid with type :math:`[\I32~t] \to []`.
+
+.. math::
+   \frac{
+     C.\CMEMS[0] = \memtype
+     \qquad
+     2^{\memarg.\ALIGN} \leq |t|/8
+   }{
+     C \vdashinstr t\K{.store}~\memarg : [\I32~t] \to []
+   }
+
+
+Integer, Floating-point Memory instructions
+............................................
+
+The below subset of validation rules for memory instructions is applicable only to operands with :ref:`integer <syntax-int>` and :ref:`floating point <syntax-float>` value types, and not to operands of Fixed-width SIMD value type. 
+
+
+.. _valid-loadn:
+
+:math:`t\K{.}\LOAD{N}\K{\_}\sx~\memarg`
+.......................................
+
+* The memory :math:`C.\CMEMS[0]` must be defined in the context.
+
+* The alignment :math:`2^{\memarg.\ALIGN}` must not be larger than :math:`N/8`.
+
+* Then the instruction is valid with type :math:`[\I32] \to [t]`.
+
+.. math::
+   \frac{
+     C.\CMEMS[0] = \memtype
+     \qquad
+     2^{\memarg.\ALIGN} \leq N/8
+   }{
+     C \vdashinstr t\K{.load}N\K{\_}\sx~\memarg : [\I32] \to [t]
+   }
+
+
+.. _valid-storen:
+
+:math:`t\K{.}\STORE{N}~\memarg`
+...............................
+
+* The memory :math:`C.\CMEMS[0]` must be defined in the context.
+
+* The alignment :math:`2^{\memarg.\ALIGN}` must not be larger than :math:`N/8`.
+
+* Then the instruction is valid with type :math:`[\I32~t] \to []`.
+
+.. math::
+   \frac{
+     C.\CMEMS[0] = \memtype
+     \qquad
+     2^{\memarg.\ALIGN} \leq N/8
+   }{
+     C \vdashinstr t\K{.store}N~\memarg : [\I32~t] \to []
+   }
+
+
+Fixed-width SIMD Memory instructions
+.....................................
+
+TODO: Add validation rules for load_splat, load_extract operations  once it's clear how, and where to express different S128 representations.
 
 
 .. index:: control instructions, structured control, label, block, branch, result type, label index, function index, type index, vector, polymorphism, context
