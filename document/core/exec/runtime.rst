@@ -7,7 +7,7 @@ Runtime Structure
 :ref:`Store <store>`, :ref:`stack <stack>`, and other *runtime structure* forming the WebAssembly abstract machine, such as :ref:`values <syntax-val>` or :ref:`module instances <syntax-moduleinst>`, are made precise in terms of additional auxiliary syntax.
 
 
-.. index:: ! value, constant, value type, integer, floating-point, fixed-width simd
+.. index:: ! value, constant, value type, integer, floating-point, simd
    pair: abstract syntax; value
 .. _syntax-val:
 
