@@ -10,14 +10,15 @@ See also [The binary encoding of SIMD instructions](BinarySIMD.md).
 
 WebAssembly aims to take advantage of [common hardware capabilities](https://github.com/WebAssembly/design/blob/master/Portability.md#assumptions-for-efficient-execution)
 for near native speed. The motivation for this proposal is to introduce
-WebAssembly operations that map to commonly available SIMD instructions
-in hardware. 
+WebAssembly operations that map to commonly available [SIMD](https://en.wikipedia.org/wiki/SIMD)
+instructions in hardware. 
 
 SIMD instructions in hardware work by performing simultaneous computations over
 packed data in one instruction. These are commonly used to improve performance
-for multimedia applications. The SIMD proposal in WebAssembly is comprised of
-a portable subset of operations that in most cases map to commonly used hardware
-instructions. 
+for multimedia applications. The set of SIMD instructions in hardware is large, 
+and varies across different versions of hardware. This proposal is comprised
+of a portable subset of operations that in most cases map to commonly used
+instructions in mordern hardware. 
 
 
 # Types
