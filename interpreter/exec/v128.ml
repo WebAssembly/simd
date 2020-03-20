@@ -5,15 +5,15 @@ include Simd.Make
     let to_string s = s
 
     let to_i32x4 s =
-      List.map (fun i -> I32.of_bits @@ get_int32_le s i) Simd.f32x4_indices
+      List.map (fun i -> I32.of_bits @@ Bytes.get_int32_le (Bytes.of_string s) i) Simd.f32x4_indices
 
     let to_f32x4 s =
-      List.map (fun i -> F32.of_bits @@ get_int32_le s i) Simd.f32x4_indices
+      List.map (fun i -> F32.of_bits @@ Bytes.get_int32_le (Bytes.of_string s) i) Simd.f32x4_indices
 
     let of_f32x4 fs =
       let b = create bytewidth in
-      List.iter2 (fun i f -> set_int32_le b i (F32.to_bits f)) Simd.f32x4_indices fs;
-      b
+      List.iter2 (fun i f -> Bytes.set_int32_le b i (F32.to_bits f)) Simd.f32x4_indices fs;
+      Bytes.to_string b
 
     let of_strings shape ss =
       if List.length ss <> Simd.lanes shape then raise (Invalid_argument "wrong length");

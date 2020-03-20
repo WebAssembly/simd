@@ -22,8 +22,6 @@ sig
   val to_string : t -> string
   val bytewidth : int
   val of_strings : shape -> string list -> t
-  val of_bits : string -> t
-  val to_bits : t -> string
 
   val to_i32x4 : t -> I32.t list
 
