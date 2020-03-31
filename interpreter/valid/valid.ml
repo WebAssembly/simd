@@ -95,15 +95,7 @@ let peek i (ell, ts) =
 (* Type Synthesis *)
 
 let type_value = Values.type_of
-let type_unop at = function
-    | Values.V128 unop ->
-      let open V128Op in
-      (match unop with
-      | I32x4ExtractLane _ -> V128Type, I32Type
-      | F32x4ExtractLane _ -> V128Type, F32Type
-      | _ -> V128Type, V128Type
-      )
-    | v -> let t = Values.type_of v in (t, t)
+let type_unop = Values.type_of
 let type_binop = Values.type_of
 let type_testop = Values.type_of
 let type_relop = Values.type_of
@@ -286,8 +278,8 @@ let rec check_instr (c : context) (e : instr) (s : infer_stack_type) : op_type =
     [t; t] --> [I32Type]
 
   | Unary unop ->
-    let t1, t2 = type_unop e.at unop in
-    [t1] --> [t2]
+    let t = type_unop unop in
+    [t] --> [t]
 
   | Binary binop ->
     let t = type_binop binop in
@@ -296,6 +288,11 @@ let rec check_instr (c : context) (e : instr) (s : infer_stack_type) : op_type =
   | Convert cvtop ->
     let t1, t2 = type_cvtop e.at cvtop in
     [t1] --> [t2]
+
+  | ExtractLane (V128Op.I32x4ExtractLane _) ->
+    [V128Type] --> [I32Type]
+  | ExtractLane (V128Op.F32x4ExtractLane _) ->
+    [V128Type] --> [F32Type]
 
 and check_seq (c : context) (es : instr list) : infer_stack_type =
   match es with

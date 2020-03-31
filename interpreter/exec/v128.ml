@@ -5,10 +5,10 @@ include Simd.Make
     let to_string s = s
 
     let to_i32x4 s =
-      List.map (fun i -> I32.of_bits @@ Bytes.get_int32_le (Bytes.of_string s) i) Simd.f32x4_indices
+      List.map (fun i -> I32.of_bits (Bytes.get_int32_le (Bytes.of_string s) i)) Simd.f32x4_indices
 
     let to_f32x4 s =
-      List.map (fun i -> F32.of_bits @@ Bytes.get_int32_le (Bytes.of_string s) i) Simd.f32x4_indices
+      List.map (fun i -> F32.of_bits (Bytes.get_int32_le (Bytes.of_string s) i)) Simd.f32x4_indices
 
     let of_f32x4 fs =
       let b = create bytewidth in

@@ -128,8 +128,6 @@ struct
   let unop op =
     fun v -> match op with
       | F32x4Abs -> to_value (SXX.f32x4_abs (of_value 1 v))
-      | F32x4ExtractLane imm -> (F32Op.to_value (SXX.f32x4_extract_lane imm (of_value 1 v)))
-      | I32x4ExtractLane imm -> (I32Op.to_value (SXX.i32x4_extract_lane imm (of_value 1 v)))
 
   let binop op =
     let f = match op with
@@ -142,6 +140,13 @@ struct
 
   (* FIXME *)
   let relop op = failwith "TODO v128 unimplemented relop"
+
+  let extractop op v =
+    match op with
+    | F32x4ExtractLane imm ->
+      (F32Op.to_value (SXX.f32x4_extract_lane imm (of_value 1 v)))
+    | I32x4ExtractLane imm ->
+      (I32Op.to_value (SXX.i32x4_extract_lane imm (of_value 1 v)))
 end
 
 module V128Op = SimdOp (V128) (Values.V128Value)
@@ -220,6 +225,7 @@ struct
   let cvtop op v = failwith "TODO v128"
 end
 
+let eval_extractop extractop v = V128Op.extractop extractop v
 
 (* Dispatch *)
 

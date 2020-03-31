@@ -47,12 +47,12 @@ end
 (* FIXME *)
 module SimdOp =
 struct
-  type unop = I32x4ExtractLane of int | F32x4ExtractLane of int | F32x4Abs
+  type unop = F32x4Abs
   type binop = F32x4Min | F32x4Max
   type testop = TodoTestOp
   type relop = TodoRelOp
   type cvtop = TodoCvtOp
-  type extractop = TodoExtractOp
+  type extractop = I32x4ExtractLane of int | F32x4ExtractLane of int
 end
 
 module I32Op = IntOp
@@ -110,6 +110,7 @@ and instr' =
   | Unary of unop                     (* unary numeric operator *)
   | Binary of binop                   (* binary numeric operator *)
   | Convert of cvtop                  (* conversion *)
+  | ExtractLane of extractop              (* extract lane from v128 value *)
 
 
 (* Globals & Functions *)
