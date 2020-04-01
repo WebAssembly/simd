@@ -116,9 +116,9 @@
 | ---- pmin ----  | 0xea   | ---- pmin ----  | 0xfa   |
 | ---- pmax ----  | 0xeb   | ---- pmax ----  | 0xfb   |
 
-| Conversion Op           | opcode |
-| ----------------------- | ------ |
-| i32x4.trunc_sat_f32x4_s | 0x100   |
-| i32x4.trunc_sat_f32x4_u | 0x101   |
-| f32x4.convert_i32x4_s   | 0x102   |
-| f32x4.convert_i32x4_u   | 0x103   |
+| Conversion Op           | opcode   |
+| ----------------------- | -------- |
+| i32x4.trunc_sat_f32x4_s | 0x0100   |
+| i32x4.trunc_sat_f32x4_u | 0x0101   |
+| f32x4.convert_i32x4_s   | 0x0102   |
+| f32x4.convert_i32x4_u   | 0x0103   |
