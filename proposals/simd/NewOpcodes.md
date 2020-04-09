@@ -13,29 +13,35 @@
 | v64x2.load_splat   | 0x0a   |
 | v128.store         | 0x0b   |
 
-| Basic instruction    | opcode |
+| Basic operation | opcode |
+| ----------------| ------ |
+| v128.const      | 0x0c   |
+| v8x16.shuffle   | 0x0d   |
+| v8x16.swizzle   | 0x0e   |
+
+| Splat operation | opcode |
+| --------------- | ------ |
+| i8x16.splat     | 0x0f   |
+| i16x8.splat     | 0x10   |
+| i32x4.splat     | 0x11   |
+| i64x2.splat     | 0x12   |
+| f32x4.splat     | 0x13   |
+| f64x2.splat     | 0x14   |
+
+| Lane operation       | opcode |
 | -------------------- | ------ |
-| v128.const           | 0x0c   |
-| v8x16.shuffle        | 0x0d   |
-| v8x16.swizzle        | 0x0e   |
-| i8x16.splat          | 0x0f   |
-| i8x16.extract_lane_s | 0x10   |
-| i8x16.extract_lane_u | 0x11   |
-| i8x16.replace_lane   | 0x12   |
-| i16x8.splat          | 0x13   |
-| i16x8.extract_lane_s | 0x14   |
-| i16x8.extract_lane_u | 0x15   |
-| i16x8.replace_lane   | 0x16   |
-| i32x4.splat          | 0x17   |
-| i32x4.extract_lane   | 0x18   |
-| i32x4.replace_lane   | 0x19   |
-| i64x2.splat          | 0x1a   |
-| i64x2.extract_lane   | 0x1b   |
-| i64x2.replace_lane   | 0x1c   |
-| f32x4.splat          | 0x1d   |
-| f32x4.extract_lane   | 0x1e   |
-| f32x4.replace_lane   | 0x1f   |
-| f64x2.splat          | 0x20   |
+| i8x16.extract_lane_s | 0x15   |
+| i8x16.extract_lane_u | 0x16   |
+| i8x16.replace_lane   | 0x17   |
+| i16x8.extract_lane_s | 0x18   |
+| i16x8.extract_lane_u | 0x19   |
+| i16x8.replace_lane   | 0x1a   |
+| i32x4.extract_lane   | 0x1b   |
+| i32x4.replace_lane   | 0x1c   |
+| i64x2.extract_lane   | 0x1d   |
+| i64x2.replace_lane   | 0x1e   |
+| f32x4.extract_lane   | 0x1f   |
+| f32x4.replace_lane   | 0x20   |
 | f64x2.extract_lane   | 0x21   |
 | f64x2.replace_lane   | 0x22   |
 
