@@ -445,6 +445,7 @@ let nan = function
 let result res =
   match res.it with
   | LitResult lit -> literal lit
+  | SimdF32x4Result _ -> failwith "unimplemented"
   | NanResult nanop ->
     match nanop.it with
     | Values.I32 _ | Values.I64 _ | Values.V128 _ -> assert false

@@ -250,6 +250,7 @@ let assert_return ress ts at =
         Compare (eq_of t') @@ at;
         Test (Values.I32 I32Op.Eqz) @@ at;
         BrIf (0l @@ at) @@ at ]
+    | SimdF32x4Result (_, _, _, _) -> failwith "unimplemented"
   in [], List.flatten (List.rev_map test ress)
 
 let wrap module_name item_name wrap_action wrap_assertion at =
@@ -330,10 +331,12 @@ let of_nan = function
 let of_result res =
   match res.it with
   | LitResult lit -> of_literal lit
-  | NanResult nanop ->
+  | NanResult nanop -> begin
     match nanop.it with
     | Values.I32 _ | Values.I64 _ | Values.V128 _ -> assert false
     | Values.F32 n | Values.F64 n -> of_nan n
+    end
+  | SimdF32x4Result (_, _, _, _) -> failwith "unimplemented"
 
 let rec of_definition def =
   match def.it with

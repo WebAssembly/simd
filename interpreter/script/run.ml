@@ -252,14 +252,18 @@ let type_of_result r =
   match r with
   | LitResult v -> Values.type_of v.it
   | NanResult n -> Values.type_of n.it
+  | SimdF32x4Result _ -> let open Types in V128Type
 
-let string_of_result r =
+let rec string_of_result r =
   match r with
   | LitResult v -> Values.string_of_value v.it
-  | NanResult nanop ->
+  | NanResult nanop -> begin
     match nanop.it with
     | Values.I32 _ | Values.I64 _ | Values.V128 _ -> assert false
     | Values.F32 n | Values.F64 n -> string_of_nan n
+    end
+  | SimdF32x4Result (s1, s2, s3, s4) ->
+    String.concat " " (List.map string_of_result [s1; s2; s3; s4])
 
 let string_of_results = function
   | [r] -> string_of_result r
@@ -340,25 +344,39 @@ let run_action act : Values.value list =
     | None -> Assert.error act.at "undefined export"
     )
 
-let assert_result at got expect =
+
+let rec check_result at v r =
   let open Values in
+  match r with
+    | LitResult v' -> v <> v'.it
+    | NanResult nanop -> begin
+      match nanop.it, v with
+      | F32 CanonicalNan, F32 z -> z <> F32.pos_nan && z <> F32.neg_nan
+      | F64 CanonicalNan, F64 z -> z <> F64.pos_nan && z <> F64.neg_nan
+      | F32 ArithmeticNan, F32 z ->
+        let pos_nan = F32.to_bits F32.pos_nan in
+        Int32.logand (F32.to_bits z) pos_nan <> pos_nan
+      | F64 ArithmeticNan, F64 z ->
+        let pos_nan = F64.to_bits F64.pos_nan in
+        Int64.logand (F64.to_bits z) pos_nan <> pos_nan
+      | _, _ -> false
+      end
+  | SimdF32x4Result (e0, e1, e2, e3) -> begin
+    match v with
+    | V128 v ->
+      let l0 = F32 (V128.f32x4_extract_lane 0 v) in
+      let l1 = F32 (V128.f32x4_extract_lane 1 v) in
+      let l2 = F32 (V128.f32x4_extract_lane 2 v) in
+      let l3 = F32 (V128.f32x4_extract_lane 3 v) in
+        List.exists2 (fun v r -> check_result at v r)
+            [l0; l1; l2; l3]  [e0; e1; e2; e3]
+    | _ -> Assert.error at "expected V128"
+    end
+
+let assert_result at got expect =
   if
     List.length got <> List.length expect ||
-    List.exists2 (fun v r ->
-      match r with
-      | LitResult v' -> v <> v'.it
-      | NanResult nanop ->
-        match nanop.it, v with
-        | F32 CanonicalNan, F32 z -> z <> F32.pos_nan && z <> F32.neg_nan
-        | F64 CanonicalNan, F64 z -> z <> F64.pos_nan && z <> F64.neg_nan
-        | F32 ArithmeticNan, F32 z ->
-          let pos_nan = F32.to_bits F32.pos_nan in
-          Int32.logand (F32.to_bits z) pos_nan <> pos_nan
-        | F64 ArithmeticNan, F64 z ->
-          let pos_nan = F64.to_bits F64.pos_nan in
-          Int64.logand (F64.to_bits z) pos_nan <> pos_nan
-        | _, _ -> false
-    ) got expect
+    List.exists2 (check_result at) got expect
   then begin
     print_string "Result: "; print_values got;
     print_string "Expect: "; print_results expect;

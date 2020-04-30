@@ -19,6 +19,7 @@ type result = result' Source.phrase
 and result' =
   | LitResult of Ast.literal
   | NanResult of nanop
+  | SimdF32x4Result of result' * result' * result' * result'
 
 type assertion = assertion' Source.phrase
 and assertion' =
