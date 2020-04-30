@@ -48,6 +48,20 @@ let simd_literal shape ss at =
     | Failure _ -> error at "constant out of range"
     | Invalid_argument _ -> error at "wrong number of lane literals"
 
+let simd_lane_nan shape l at =
+  let open Simd in
+  match shape with
+  | F32x4 -> NanResult (Values.F32 l @@ at)
+  | F64x2 -> NanResult (Values.F64 l @@ at)
+  | _ -> error at "invalid simd constant"
+
+let simd_lane_lit shape l at =
+  let open Simd in
+  match shape with
+  | F32x4 -> LitResult (Values.F32 (F32.of_string l) @@ at)
+  | F64x2 -> LitResult (Values.F64 (F64.of_string l) @@ at)
+  | _ -> error at "invalid simd constant"
+
 let nanop f nan =
   let open Source in
   let open Values in
@@ -846,7 +860,9 @@ meta :
   | LPAR OUTPUT script_var_opt RPAR { Output ($3, None) @@ at () }
 
 const :
-  | LPAR CONST literal RPAR { snd (literal $2 $3) @@ ati 3 }
+  | LPAR CONST literal RPAR { print_endline "const"; snd (literal $2 $3) @@ ati 3 }
+
+v128const:
   | LPAR V128_CONST SIMD_SHAPE literal_list RPAR {
       snd (simd_literal $3 $4 (at ())) @@ ati 4
   }
@@ -854,10 +870,18 @@ const :
 const_list :
   | /* empty */ { [] }
   | const const_list { $1 :: $2 }
+  | v128const const_list { $1 :: $2 }
+
+numpat :
+  | literal { fun s -> simd_lane_lit s $1.it $1.at }
+  | NAN { fun s -> simd_lane_nan s $1 (ati 3) }
 
 result :
-  | const { LitResult $1 @@ at () }
-  | LPAR CONST NAN RPAR { NanResult (nanop $2 ($3 @@ ati 3)) @@ at () }
+  | LPAR V128_CONST SIMD_SHAPE numpat numpat numpat numpat RPAR {
+      SimdF32x4Result ($4 $3, $5 $3, $6 $3, $7 $3) @@ at ()
+  }
+  | const { ValueResult (LitResult $1 ) @@ at () }
+  | LPAR CONST NAN RPAR { ValueResult (NanResult (nanop $2 ($3 @@ ati 3))) @@ at () }
 
 result_list :
   | /* empty */ { [] }

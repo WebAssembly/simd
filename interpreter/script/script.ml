@@ -17,6 +17,9 @@ and nan = CanonicalNan | ArithmeticNan
 
 type result = result' Source.phrase
 and result' =
+  | ValueResult of result_pat
+  | SimdF32x4Result of result_pat * result_pat * result_pat * result_pat
+and result_pat =
   | LitResult of Ast.literal
   | NanResult of nanop
 
