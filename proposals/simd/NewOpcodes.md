@@ -109,22 +109,22 @@
 
 | f32x4 Op        | opcode | f64x2 Op        | opcode |
 | --------------- | ------ | --------------- | ------ |
-| f32x4.abs       | 0xe0   | f64x2.abs       | 0xf0   |
-| f32x4.neg       | 0xe1   | f64x2.neg       | 0xf1   |
-| ---- round ---- | 0xe2   | ---- round ---- | 0xf2   |
-| f32x4.sqrt      | 0xe3   | f64x2.sqrt      | 0xf3   |
-| f32x4.add       | 0xe4   | f64x2.add       | 0xf4   |
-| f32x4.sub       | 0xe5   | f64x2.sub       | 0xf5   |
-| f32x4.mul       | 0xe6   | f64x2.mul       | 0xf6   |
-| f32x4.div       | 0xe7   | f64x2.div       | 0xf7   |
-| f32x4.min       | 0xe8   | f64x2.min       | 0xf8   |
-| f32x4.max       | 0xe9   | f64x2.max       | 0xf9   |
-| ---- pmin ----  | 0xea   | ---- pmin ----  | 0xfa   |
-| ---- pmax ----  | 0xeb   | ---- pmax ----  | 0xfb   |
+| f32x4.abs       | 0xe0   | f64x2.abs       | 0xec   |
+| f32x4.neg       | 0xe1   | f64x2.neg       | 0xed   |
+| ---- round ---- | 0xe2   | ---- round ---- | 0xee   |
+| f32x4.sqrt      | 0xe3   | f64x2.sqrt      | 0xef   |
+| f32x4.add       | 0xe4   | f64x2.add       | 0xf0   |
+| f32x4.sub       | 0xe5   | f64x2.sub       | 0xf1   |
+| f32x4.mul       | 0xe6   | f64x2.mul       | 0xf2   |
+| f32x4.div       | 0xe7   | f64x2.div       | 0xf3   |
+| f32x4.min       | 0xe8   | f64x2.min       | 0xf4   |
+| f32x4.max       | 0xe9   | f64x2.max       | 0xf5   |
+| ---- pmin ----  | 0xea   | ---- pmin ----  | 0xf6   |
+| ---- pmax ----  | 0xeb   | ---- pmax ----  | 0xf7   |
 
-| Conversion Op           | opcode   |
-| ----------------------- | -------- |
-| i32x4.trunc_sat_f32x4_s | 0x0100   |
-| i32x4.trunc_sat_f32x4_u | 0x0101   |
-| f32x4.convert_i32x4_s   | 0x0102   |
-| f32x4.convert_i32x4_u   | 0x0103   |
+| Conversion Op           | opcode |
+| ----------------------- | ------ |
+| i32x4.trunc_sat_f32x4_s | 0xf8   |
+| i32x4.trunc_sat_f32x4_u | 0xf9   |
+| f32x4.convert_i32x4_s   | 0xfa   |
+| f32x4.convert_i32x4_u   | 0xfb   |
