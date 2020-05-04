@@ -15,13 +15,15 @@ type nanop = nanop' Source.phrase
 and nanop' = (unit, unit, nan, nan, unit) Values.op
 and nan = CanonicalNan | ArithmeticNan
 
+type num_pat = num_pat' Source.phrase
+and num_pat' =
+  | LitPat of Ast.literal
+  | NanPat of nanop
+
 type result = result' Source.phrase
 and result' =
-  | ValueResult of result_pat
-  | SimdF32x4Result of result_pat * result_pat * result_pat * result_pat
-and result_pat =
-  | LitResult of Ast.literal
-  | NanResult of nanop
+  | NumResult of num_pat
+  | SimdResult of Simd.shape * num_pat list
 
 type assertion = assertion' Source.phrase
 and assertion' =

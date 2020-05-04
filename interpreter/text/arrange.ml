@@ -444,9 +444,9 @@ let nan = function
 
 let result res =
   match res.it with
-  | ValueResult (LitResult lit) -> literal lit
-  | SimdF32x4Result _ -> failwith "unimplemented"
-  | ValueResult (NanResult nanop) ->
+  | NumResult { it = LitPat lit; _ } -> literal lit
+  | SimdResult _ -> failwith "unimplemented"
+  | NumResult { it = NanPat nanop; _ } ->
     match nanop.it with
     | Values.I32 _ | Values.I64 _ | Values.V128 _ -> assert false
     | Values.F32 n -> Node ("f32.const " ^ nan n, [])
