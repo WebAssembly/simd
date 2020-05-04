@@ -442,15 +442,19 @@ let nan = function
   | CanonicalNan -> "nan:canonical"
   | ArithmeticNan -> "nan:arithmetic"
 
+let result_numpat res =
+    match res with
+    | LitPat lit -> literal lit
+    | NanPat nanop ->
+        match nanop.it with
+        | Values.I32 _ | Values.I64 _ | Values.V128 _ -> assert false
+        | Values.F32 n -> Node ("f32.const " ^ nan n, [])
+        | Values.F64 n -> Node ("f64.const " ^ nan n, [])
+
 let result res =
   match res.it with
-  | NumResult { it = LitPat lit; _ } -> literal lit
   | SimdResult _ -> failwith "unimplemented"
-  | NumResult { it = NanPat nanop; _ } ->
-    match nanop.it with
-    | Values.I32 _ | Values.I64 _ | Values.V128 _ -> assert false
-    | Values.F32 n -> Node ("f32.const " ^ nan n, [])
-    | Values.F64 n -> Node ("f64.const " ^ nan n, [])
+  | NumResult n -> result_numpat n.it
 
 let assertion mode ass =
   match ass.it with

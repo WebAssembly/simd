@@ -254,10 +254,10 @@ let type_of_result r =
   | NumResult { it = NanPat v ; _ } -> Values.type_of v.it
   | SimdResult (_, _) -> let open Types in V128Type
 
-let string_of_num_pat (r : num_pat) =
-  match r with
-  | { it = LitPat v; _ } -> Values.string_of_value v.it
-  | { it = NanPat nanop; _ } ->
+let string_of_num_pat (p : num_pat) =
+  match p.it with
+  | LitPat v -> Values.string_of_value v.it
+  | NanPat nanop ->
     match nanop.it with
     | Values.I32 _ | Values.I64 _ | Values.V128 _ -> assert false
     | Values.F32 n | Values.F64 n -> string_of_nan n
@@ -348,11 +348,11 @@ let run_action act : Values.value list =
     )
 
 
-let assert_num_pat at v r =
+let assert_num_pat at v p =
   let open Values in
-  match r with
-    | { it = LitPat v'; _ } -> v <> v'.it
-    | { it = NanPat nanop; _ } ->
+  match p.it with
+    | (LitPat v') -> v <> v'.it
+    | (NanPat nanop) ->
       match nanop.it, v with
       | F32 CanonicalNan, F32 z -> z <> F32.pos_nan && z <> F32.neg_nan
       | F64 CanonicalNan, F64 z -> z <> F64.pos_nan && z <> F64.neg_nan
