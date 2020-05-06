@@ -45,15 +45,22 @@ sig
 
   val i32x4_extract_lane : int -> t -> I32.t
 
-  val f32x4_min : t -> t -> t
-  val f32x4_max : t -> t -> t
-  val f32x4_abs : t -> t
   val f32x4_extract_lane : int -> t -> F32.t
 
-  val f64x2_min : t -> t -> t
-  val f64x2_max : t -> t -> t
-  val f64x2_abs : t -> t
   val f64x2_extract_lane : int -> t -> F64.t
+
+  module type Shape =
+  sig
+    type u
+    val unop : (u -> u) -> t -> t
+
+    val abs : t -> t
+    val min : t -> t -> t
+    val max : t -> t -> t
+  end
+
+  module F32x4 : Shape
+  module F64x2 : Shape
 end
 
 module Make (Rep : RepType) : S with type bits = Rep.t =
@@ -72,26 +79,49 @@ struct
   let i32x4_extract_lane i x = List.nth (to_i32x4 x) i
 
   let to_f32x4 = Rep.to_f32x4
-  let of_f32x4 = Rep.of_f32x4
-  let f32x4_unop f x =
-    of_f32x4 (List.map f (to_f32x4 x))
-  let f32x4_binop f x y =
-    of_f32x4 (List.map2 f (to_f32x4 x) (to_f32x4 y))
 
   let f32x4_extract_lane i x = List.nth (to_f32x4 x) i
-  let f32x4_min = f32x4_binop F32.min
-  let f32x4_max = f32x4_binop F32.max
-  let f32x4_abs x = f32x4_unop F32.abs x
 
   let to_f64x2 = Rep.to_f64x2
-  let of_f64x2 = Rep.of_f64x2
-  let f64x2_unop f x =
-    of_f64x2 (List.map f (to_f64x2 x))
-  let f64x2_binop f x y =
-    of_f64x2 (List.map2 f (to_f64x2 x) (to_f64x2 y))
 
   let f64x2_extract_lane i x = List.nth (to_f64x2 x) i
-  let f64x2_min = f64x2_binop F64.min
-  let f64x2_max = f64x2_binop F64.max
-  let f64x2_abs x = f64x2_unop F64.abs x
+
+  module type Shape =
+  sig
+    type u
+    val unop : (u -> u) -> t -> t
+
+    val abs : t -> t
+    val min : t -> t -> t
+    val max : t -> t -> t
+  end
+
+  module F32x4 : Shape =
+  struct
+      type u = F32.t
+
+      let to_shape = Rep.to_f32x4
+      let of_shape = Rep.of_f32x4
+      let unop f x = of_shape (List.map f (to_shape x))
+      let binop f x y = of_shape (List.map2 f (to_shape x) (to_shape y))
+
+      let abs = unop F32.abs
+      let min = binop F32.min
+      let max = binop F32.max
+  end
+
+  module F64x2 : Shape =
+  struct
+      type u = F64.t
+
+      let to_shape = Rep.to_f64x2
+      let of_shape = Rep.of_f64x2
+      let unop f x = of_shape (List.map f (to_shape x))
+      let binop f x y = of_shape (List.map2 f (to_shape x) (to_shape y))
+
+      let abs = unop F64.abs
+      let min = binop F64.min
+      let max = binop F64.max
+  end
+
 end
