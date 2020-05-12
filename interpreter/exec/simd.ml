@@ -33,6 +33,18 @@ sig
   val of_f64x2 : F64.t list -> t
 end
 
+(* This signature defines the types and operations different SIMD shapes can expose. *)
+module type SimdShape =
+sig
+  type t
+  type u (* underlying type *)
+
+  val abs : t -> t
+  val min : t -> t -> t
+  val max : t -> t -> t
+  val extract_lane : int -> t -> u
+end
+
 module type S =
 sig
   type t
@@ -45,22 +57,35 @@ sig
 
   val i32x4_extract_lane : int -> t -> I32.t
 
-  val f32x4_extract_lane : int -> t -> F32.t
+  (* We need type t = t to ensure that all submodule types are S.t,
+   * then callers don't have to change *)
+  module F32x4 : SimdShape with type t = t and type u = F32.t
+  module F64x2 : SimdShape with type t = t and type u = F64.t
+end
 
-  val f64x2_extract_lane : int -> t -> F64.t
+(* The base type of a SIMD shape, e.g. for F32x4, the ElementType is F32 *)
+module type ElementType =
+sig
+  type t
+  val abs : t -> t
+  val min : t -> t -> t
+  val max : t -> t -> t
+end
 
-  module type Shape =
-  sig
-    type u
-    val unop : (u -> u) -> t -> t
-
-    val abs : t -> t
-    val min : t -> t -> t
-    val max : t -> t -> t
-  end
-
-  module F32x4 : Shape
-  module F64x2 : Shape
+module MakeSimdShape (B : ElementType) (Rep : sig
+    type simd
+    val to_shape : simd -> B.t list
+    val of_shape : B.t list -> simd
+  end) : SimdShape with type t = Rep.simd and type u = B.t =
+struct
+  type t = Rep.simd
+  type u = B.t
+  let unop f x = Rep.of_shape (List.map f (Rep.to_shape x))
+  let binop f x y = Rep.of_shape (List.map2 f (Rep.to_shape x) (Rep.to_shape y))
+  let abs = unop B.abs
+  let min = binop B.min
+  let max = binop B.max
+  let extract_lane i s = List.nth (Rep.to_shape s) i
 end
 
 module Make (Rep : RepType) : S with type bits = Rep.t =
@@ -78,50 +103,18 @@ struct
 
   let i32x4_extract_lane i x = List.nth (to_i32x4 x) i
 
-  let to_f32x4 = Rep.to_f32x4
-
-  let f32x4_extract_lane i x = List.nth (to_f32x4 x) i
-
-  let to_f64x2 = Rep.to_f64x2
-
-  let f64x2_extract_lane i x = List.nth (to_f64x2 x) i
-
-  module type Shape =
-  sig
-    type u
-    val unop : (u -> u) -> t -> t
-
-    val abs : t -> t
-    val min : t -> t -> t
-    val max : t -> t -> t
-  end
-
-  module F32x4 : Shape =
-  struct
-      type u = F32.t
-
+  module F32x4 : SimdShape with type t = t and type u = F32.t =
+    MakeSimdShape (F32) (struct
+      type simd = Rep.t
       let to_shape = Rep.to_f32x4
       let of_shape = Rep.of_f32x4
-      let unop f x = of_shape (List.map f (to_shape x))
-      let binop f x y = of_shape (List.map2 f (to_shape x) (to_shape y))
+    end)
 
-      let abs = unop F32.abs
-      let min = binop F32.min
-      let max = binop F32.max
-  end
-
-  module F64x2 : Shape =
-  struct
-      type u = F64.t
-
+  module F64x2 : SimdShape with type t = t and type u = F64.t =
+    MakeSimdShape (F64) (struct
+      type simd = Rep.t
       let to_shape = Rep.to_f64x2
       let of_shape = Rep.of_f64x2
-      let unop f x = of_shape (List.map f (to_shape x))
-      let binop f x y = of_shape (List.map2 f (to_shape x) (to_shape y))
-
-      let abs = unop F64.abs
-      let min = binop F64.min
-      let max = binop F64.max
-  end
+    end)
 
 end
