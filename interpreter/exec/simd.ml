@@ -78,18 +78,18 @@ struct
 
   let i32x4_extract_lane i x = List.nth (to_i32x4 x) i
 
-  module MakeFloat (B : Float.S) (Convert : sig
-      val to_shape : Rep.t -> B.t list
-      val of_shape : B.t list -> Rep.t
-    end) : Float with type t = Rep.t and type lane = B.t =
+  module MakeFloat (Float : Float.S) (Convert : sig
+      val to_shape : Rep.t -> Float.t list
+      val of_shape : Float.t list -> Rep.t
+    end) : Float with type t = Rep.t and type lane = Float.t =
   struct
     type t = Rep.t
-    type lane = B.t
+    type lane = Float.t
     let unop f x = Convert.of_shape (List.map f (Convert.to_shape x))
     let binop f x y = Convert.of_shape (List.map2 f (Convert.to_shape x) (Convert.to_shape y))
-    let abs = unop B.abs
-    let min = binop B.min
-    let max = binop B.max
+    let abs = unop Float.abs
+    let min = binop Float.min
+    let max = binop Float.max
     let extract_lane i s = List.nth (Convert.to_shape s) i
   end
 
