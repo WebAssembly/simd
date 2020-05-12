@@ -33,16 +33,16 @@ sig
   val of_f64x2 : F64.t list -> t
 end
 
-(* This signature defines the types and operations different SIMD shapes can expose. *)
-module type SimdShape =
+(* This signature defines the types and operations SIMD floats can expose. *)
+module type Float =
 sig
   type t
-  type u (* underlying type *)
+  type lane
 
   val abs : t -> t
   val min : t -> t -> t
   val max : t -> t -> t
-  val extract_lane : int -> t -> u
+  val extract_lane : int -> t -> lane
 end
 
 module type S =
@@ -59,8 +59,8 @@ sig
 
   (* We need type t = t to ensure that all submodule types are S.t,
    * then callers don't have to change *)
-  module F32x4 : SimdShape with type t = t and type u = F32.t
-  module F64x2 : SimdShape with type t = t and type u = F64.t
+  module F32x4 : Float with type t = t and type lane = F32.t
+  module F64x2 : Float with type t = t and type lane = F64.t
 end
 
 (* The base type of a SIMD shape, e.g. for F32x4, the ElementType is F32 *)
@@ -70,22 +70,6 @@ sig
   val abs : t -> t
   val min : t -> t -> t
   val max : t -> t -> t
-end
-
-module MakeSimdShape (B : ElementType) (Rep : sig
-    type simd
-    val to_shape : simd -> B.t list
-    val of_shape : B.t list -> simd
-  end) : SimdShape with type t = Rep.simd and type u = B.t =
-struct
-  type t = Rep.simd
-  type u = B.t
-  let unop f x = Rep.of_shape (List.map f (Rep.to_shape x))
-  let binop f x y = Rep.of_shape (List.map2 f (Rep.to_shape x) (Rep.to_shape y))
-  let abs = unop B.abs
-  let min = binop B.min
-  let max = binop B.max
-  let extract_lane i s = List.nth (Rep.to_shape s) i
 end
 
 module Make (Rep : RepType) : S with type bits = Rep.t =
@@ -103,16 +87,27 @@ struct
 
   let i32x4_extract_lane i x = List.nth (to_i32x4 x) i
 
-  module F32x4 : SimdShape with type t = t and type u = F32.t =
-    MakeSimdShape (F32) (struct
-      type simd = Rep.t
+  module MakeFloat (B : ElementType) (Convert : sig
+      val to_shape : Rep.t -> B.t list
+      val of_shape : B.t list -> Rep.t
+    end) : Float with type t = Rep.t and type lane = B.t =
+  struct
+    type t = Rep.t
+    type lane = B.t
+    let unop f x = Convert.of_shape (List.map f (Convert.to_shape x))
+    let binop f x y = Convert.of_shape (List.map2 f (Convert.to_shape x) (Convert.to_shape y))
+    let abs = unop B.abs
+    let min = binop B.min
+    let max = binop B.max
+    let extract_lane i s = List.nth (Convert.to_shape s) i
+  end
+
+  module F32x4 = MakeFloat (F32) (struct
       let to_shape = Rep.to_f32x4
       let of_shape = Rep.of_f32x4
     end)
 
-  module F64x2 : SimdShape with type t = t and type u = F64.t =
-    MakeSimdShape (F64) (struct
-      type simd = Rep.t
+  module F64x2 = MakeFloat (F64) (struct
       let to_shape = Rep.to_f64x2
       let of_shape = Rep.of_f64x2
     end)
