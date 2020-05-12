@@ -63,15 +63,6 @@ sig
   module F64x2 : Float with type t = t and type lane = F64.t
 end
 
-(* The base type of a SIMD shape, e.g. for F32x4, the ElementType is F32 *)
-module type ElementType =
-sig
-  type t
-  val abs : t -> t
-  val min : t -> t -> t
-  val max : t -> t -> t
-end
-
 module Make (Rep : RepType) : S with type bits = Rep.t =
 struct
   type t = Rep.t
@@ -87,7 +78,7 @@ struct
 
   let i32x4_extract_lane i x = List.nth (to_i32x4 x) i
 
-  module MakeFloat (B : ElementType) (Convert : sig
+  module MakeFloat (B : Float.S) (Convert : sig
       val to_shape : Rep.t -> B.t list
       val of_shape : B.t list -> Rep.t
     end) : Float with type t = Rep.t and type lane = B.t =
