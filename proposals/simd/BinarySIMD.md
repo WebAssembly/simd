@@ -153,6 +153,8 @@ The `v8x16.shuffle` instruction has 16 bytes after `simdop`.
 | `f32x4.abs`                |    `0x95`| -                  |
 | `f32x4.neg`                |    `0x96`| -                  |
 | `f32x4.sqrt`               |    `0x97`| -                  |
+| `f32x4.qfma`               |    `0x98`| -                  |
+| `f32x4.qfms`               |    `0x99`| -                  |
 | `f32x4.add`                |    `0x9a`| -                  |
 | `f32x4.sub`                |    `0x9b`| -                  |
 | `f32x4.mul`                |    `0x9c`| -                  |
@@ -162,6 +164,8 @@ The `v8x16.shuffle` instruction has 16 bytes after `simdop`.
 | `f64x2.abs`                |    `0xa0`| -                  |
 | `f64x2.neg`                |    `0xa1`| -                  |
 | `f64x2.sqrt`               |    `0xa2`| -                  |
+| `f64x2.qfma`               |    `0xa3`| -                  |
+| `f64x2.qfms`               |    `0xa4`| -                  |
 | `f64x2.add`                |    `0xa5`| -                  |
 | `f64x2.sub`                |    `0xa6`| -                  |
 | `f64x2.mul`                |    `0xa7`| -                  |
