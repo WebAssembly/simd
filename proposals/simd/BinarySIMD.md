@@ -40,8 +40,8 @@ The `v8x16.shuffle` instruction has 16 bytes after `simdop`.
 | `v64x2.load_splat`         |    `0x0a`| m:memarg           |
 | `v128.store`               |    `0x0b`| m:memarg           |
 | `v128.const`               |    `0x0c`| i:ImmByte[16]      |
-| `v8x16.swizzle`            |    `0x0d`| -                  |
-| `v8x16.shuffle`            |    `0x0e`| s:LaneIdx32[16]    |
+| `v8x16.shuffle`            |    `0x0d`| s:LaneIdx32[16]    |
+| `v8x16.swizzle`            |    `0x0e`| -                  |
 | `i8x16.splat`              |    `0x0f`| -                  |
 | `i16x8.splat`              |    `0x10`| -                  |
 | `i32x4.splat`              |    `0x11`| -                  |
