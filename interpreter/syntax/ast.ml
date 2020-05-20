@@ -5,7 +5,7 @@
  *
  *   x : var
  *   v : value
- *   e : instrr
+ *   e : instr
  *   f : func
  *   m : module_
  *
@@ -45,26 +45,41 @@ struct
 end
 
 (* FIXME *)
-module VectorOp =
+module SimdOp =
 struct
-  type unop = TodoUnOp
-  type binop = TodoBinOp
+  type iunop = TodoIunop
+  type ibinop = TodoIbinop
+  type funop = Abs
+  type fbinop = Min | Max
+
+  type ('i8x16, 'i16x8, 'i32x4, 'i64x2, 'f32x4, 'f64x2) v128op =
+    | I8x16 of 'i8x16
+    | I16x8 of 'i16x8
+    | I32x4 of 'i32x4
+    | I64x2 of 'i64x2
+    | F32x4 of 'f32x4
+    | F64x2 of 'f64x2
+
+  type unop = (iunop, iunop, iunop, iunop, funop, funop) v128op
+  type binop = (ibinop, ibinop, ibinop, ibinop, fbinop, fbinop) v128op
   type testop = TodoTestOp
   type relop = TodoRelOp
   type cvtop = TodoCvtOp
+  type extractop = I32x4ExtractLane of int | F32x4ExtractLane of int
 end
 
 module I32Op = IntOp
 module I64Op = IntOp
 module F32Op = FloatOp
 module F64Op = FloatOp
-module V128Op = VectorOp
+module V128Op = SimdOp
 
 type unop = (I32Op.unop, I64Op.unop, F32Op.unop, F64Op.unop, V128Op.unop) Values.op
 type binop = (I32Op.binop, I64Op.binop, F32Op.binop, F64Op.binop, V128Op.binop) Values.op
 type testop = (I32Op.testop, I64Op.testop, F32Op.testop, F64Op.testop, V128Op.testop) Values.op
 type relop = (I32Op.relop, I64Op.relop, F32Op.relop, F64Op.relop, V128Op.relop) Values.op
 type cvtop = (I32Op.cvtop, I64Op.cvtop, F32Op.cvtop, F64Op.cvtop, V128Op.cvtop) Values.op
+type extractop = V128Op.extractop
 
 type 'a memop =
   {ty : value_type; align : int; offset : Memory.offset; sz : 'a option}
@@ -108,6 +123,7 @@ and instr' =
   | Unary of unop                     (* unary numeric operator *)
   | Binary of binop                   (* binary numeric operator *)
   | Convert of cvtop                  (* conversion *)
+  | ExtractLane of extractop              (* extract lane from v128 value *)
 
 
 (* Globals & Functions *)

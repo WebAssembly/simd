@@ -118,26 +118,40 @@ module F64Op = FloatOp (F64) (Values.F64Value)
 
 (* Simd operators *)
 
-module SimdOp (VXX : Simd.S) (Value : ValueType with type t = VXX.t) =
+module SimdOp (SXX : Simd.S) (Value : ValueType with type t = SXX.t) =
 struct
-  (* TODO
   open Ast.SimdOp
 
   let to_value = Value.to_value
   let of_value = of_arg Value.of_value
-  *)
+
+  let unop op =
+    fun v -> match op with
+      | F32x4 Abs -> to_value (SXX.F32x4.abs (of_value 1 v))
+      | F64x2 Abs -> to_value (SXX.F64x2.abs (of_value 1 v))
+      | _ -> failwith "TODO v128 unimplemented unop"
+
+  let binop op =
+    let f = match op with
+      | F32x4 Min -> SXX.F32x4.min
+      | F32x4 Max -> SXX.F32x4.max
+      | F64x2 Min -> SXX.F64x2.min
+      | F64x2 Max -> SXX.F64x2.max
+      | _ -> failwith "TODO v128 unimplemented unop"
+    in fun v1 v2 -> to_value (f (of_value 1 v1) (of_value 2 v2))
 
   (* FIXME *)
-  let unop op = failwith "TODO v128"
+  let testop op = failwith "TODO v128 unimplemented testop"
 
   (* FIXME *)
-  let binop op = failwith "TODO v128"
+  let relop op = failwith "TODO v128 unimplemented relop"
 
-  (* FIXME *)
-  let testop op = failwith "TODO v128"
-
-  (* FIXME *)
-  let relop op = failwith "TODO v128"
+  let extractop op v =
+    match op with
+    | F32x4ExtractLane imm ->
+      (F32Op.to_value (SXX.F32x4.extract_lane imm (of_value 1 v)))
+    | I32x4ExtractLane imm ->
+      (I32Op.to_value (SXX.i32x4_extract_lane imm (of_value 1 v)))
 end
 
 module V128Op = SimdOp (V128) (Values.V128Value)
@@ -216,6 +230,7 @@ struct
   let cvtop op v = failwith "TODO v128"
 end
 
+let eval_extractop extractop v = V128Op.extractop extractop v
 
 (* Dispatch *)
 

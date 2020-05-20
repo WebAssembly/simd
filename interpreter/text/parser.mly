@@ -48,6 +48,20 @@ let simd_literal shape ss at =
     | Failure _ -> error at "constant out of range"
     | Invalid_argument _ -> error at "wrong number of lane literals"
 
+let simd_lane_nan shape l at =
+  let open Simd in
+  match shape with
+  | F32x4 -> NanPat (Values.F32 l @@ at) @@ at
+  | F64x2 -> NanPat (Values.F64 l @@ at) @@ at
+  | _ -> error at "invalid simd constant"
+
+let simd_lane_lit shape l at =
+  let open Simd in
+  match shape with
+  | F32x4 -> LitPat (Values.F32 (F32.of_string l) @@ at) @@ at
+  | F64x2 -> LitPat (Values.F64 (F64.of_string l) @@ at) @@ at
+  | _ -> error at "invalid simd constant"
+
 let nanop f nan =
   let open Source in
   let open Values in
@@ -66,7 +80,7 @@ let nat32 s at =
   try I32.of_string_u s with Failure _ -> error at "i32 constant out of range"
 
 let name s at =
-  try Utf8.decode s with Utf8.Utf8 -> error at "invalid UTF-8 encoding"
+  try Utf8.decode s with Utf8.Utf8 -> error at "malformed UTF-8 encoding"
 
 
 (* Symbolic variables *)
@@ -167,6 +181,7 @@ let inline_type_explicit (c : context) x ft at =
 %token CALL CALL_INDIRECT RETURN
 %token LOCAL_GET LOCAL_SET LOCAL_TEE GLOBAL_GET GLOBAL_SET
 %token LOAD STORE OFFSET_EQ_NAT ALIGN_EQ_NAT
+%token EXTRACT_LANE
 %token CONST V128_CONST UNARY BINARY TEST COMPARE CONVERT
 %token UNREACHABLE MEMORY_SIZE MEMORY_GROW
 %token FUNC START TYPE PARAM RESULT LOCAL GLOBAL
@@ -192,6 +207,7 @@ let inline_type_explicit (c : context) x ft at =
 %token<Ast.instr'> COMPARE
 %token<Ast.instr'> CONVERT
 %token<int option -> Memory.offset -> Ast.instr'> LOAD
+%token<int -> Ast.instr'> EXTRACT_LANE
 %token<int option -> Memory.offset -> Ast.instr'> STORE
 %token<string> OFFSET_EQ_NAT
 %token<string> ALIGN_EQ_NAT
@@ -351,6 +367,7 @@ plain_instr :
   | UNARY { fun c -> $1 }
   | BINARY { fun c -> $1 }
   | CONVERT { fun c -> $1 }
+  | EXTRACT_LANE NAT { let at = at () in fun c -> $1 (nat $2 at) }
 
 
 call_instr :
@@ -844,6 +861,8 @@ meta :
 
 const :
   | LPAR CONST literal RPAR { snd (literal $2 $3) @@ ati 3 }
+
+v128const:
   | LPAR V128_CONST SIMD_SHAPE literal_list RPAR {
       snd (simd_literal $3 $4 (at ())) @@ ati 4
   }
@@ -851,10 +870,23 @@ const :
 const_list :
   | /* empty */ { [] }
   | const const_list { $1 :: $2 }
+  | v128const const_list { $1 :: $2 }
+
+numpat :
+  | literal { fun s -> simd_lane_lit s $1.it $1.at }
+  | NAN { fun s -> simd_lane_nan s $1 (ati 3) }
 
 result :
-  | const { LitResult $1 @@ at () }
-  | LPAR CONST NAN RPAR { NanResult (nanop $2 ($3 @@ ati 3)) @@ at () }
+  | const { NumResult (LitPat $1 @@ at ()) @@ at () }
+  | LPAR CONST NAN RPAR { NumResult (NanPat (nanop $2 ($3 @@ ati 3)) @@ ati 3) @@ at () }
+  | LPAR V128_CONST SIMD_SHAPE numpat numpat numpat numpat RPAR {
+      if ($3 <> Simd.F32x4) then error (ati 3) "invalid SIMD shape";
+      SimdResult ($3, [$4 $3; $5 $3; $6 $3; $7 $3]) @@ at ()
+  }
+  | LPAR V128_CONST SIMD_SHAPE numpat numpat RPAR {
+      if ($3 <> Simd.F64x2) then error (ati 3) "invalid SIMD shape";
+      SimdResult ($3, [$4 $3; $5 $3]) @@ at ()
+  }
 
 result_list :
   | /* empty */ { [] }

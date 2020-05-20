@@ -49,7 +49,7 @@ let label (c : context) x = lookup "label" c.labels x
  * Note: The declarative typing rules are non-deterministic, that is, they
  * have the liberty to locally "guess" the right types implied by the context.
  * In the algorithmic formulation required here, stack types are hence modelled
- * as lists of _options_ of types here, where `None` representss a locally
+ * as lists of _options_ of types, where `None` represents a locally
  * unknown type. Furthermore, an ellipses flag represents arbitrary sequences
  * of unknown types, in order to handle stack polymorphism algorithmically.
  *)
@@ -289,6 +289,11 @@ let rec check_instr (c : context) (e : instr) (s : infer_stack_type) : op_type =
     let t1, t2 = type_cvtop e.at cvtop in
     [t1] --> [t2]
 
+  | ExtractLane (V128Op.I32x4ExtractLane _) ->
+    [V128Type] --> [I32Type]
+  | ExtractLane (V128Op.F32x4ExtractLane _) ->
+    [V128Type] --> [F32Type]
+
 and check_seq (c : context) (es : instr list) : infer_stack_type =
   match es with
   | [] ->
@@ -311,11 +316,11 @@ and check_block (c : context) (es : instr list) (ts : stack_type) at =
 (* Types *)
 
 let check_limits {min; max} range at msg =
-  require (I64.le_u (Int64.of_int32 min) range) at msg;
+  require (I32.le_u min range) at msg;
   match max with
   | None -> ()
   | Some max ->
-    require (I64.le_u (Int64.of_int32 max) range) at msg;
+    require (I32.le_u max range) at msg;
     require (I32.le_u min max) at
       "size minimum must not be greater than maximum"
 
@@ -330,11 +335,11 @@ let check_func_type (ft : func_type) at =
 
 let check_table_type (tt : table_type) at =
   let TableType (lim, _) = tt in
-  check_limits lim 0x1_0000_0000L at "table size must be at most 2^32"
+  check_limits lim 0xffff_ffffl at "table size must be at most 2^32-1"
 
 let check_memory_type (mt : memory_type) at =
   let MemoryType lim = mt in
-  check_limits lim 0x1_0000L at
+  check_limits lim 0x1_0000l at
     "memory size must be at most 65536 pages (4GiB)"
 
 let check_global_type (gt : global_type) at =

@@ -203,3 +203,14 @@ let f64_reinterpret_i64 = Convert (F64 F64Op.ReinterpretInt)
 let memory_size = MemorySize
 let memory_grow = MemoryGrow
 
+(* SIMD *)
+let i32x4_extract_lane imm = ExtractLane (V128Op.I32x4ExtractLane imm)
+
+let f32x4_extract_lane imm = ExtractLane (V128Op.F32x4ExtractLane imm)
+let f32x4_min = Binary (V128 (V128Op.F32x4 V128Op.Min))
+let f32x4_max = Binary (V128 (V128Op.F32x4 V128Op.Max))
+let f32x4_abs = Unary (V128 (V128Op.F32x4 V128Op.Abs))
+
+let f64x2_min = Binary (V128 (V128Op.F64x2 V128Op.Min))
+let f64x2_max = Binary (V128 (V128Op.F64x2 V128Op.Max))
+let f64x2_abs = Unary (V128 (V128Op.F64x2 V128Op.Abs))
