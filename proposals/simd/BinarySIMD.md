@@ -112,8 +112,8 @@ The `v8x16.shuffle` instruction has 16 bytes after `simdop`.
 | `v128.bitselect`           |    `0x52`| -                  |
 | `i8x16.abs`                |    `0x60`| -                  |
 | `i8x16.neg`                |    `0x61`| -                  |
-| `i8x16.any_true`           |    `0x62`| -                  |
-| `i8x16.all_true`           |    `0x63`| -                  |
+| `v8x16.any_true`           |    `0x62`| -                  |
+| `v8x16.all_true`           |    `0x63`| -                  |
 | `i8x16.narrow_i16x8_s`     |    `0x65`| -                  |
 | `i8x16.narrow_i16x8_u`     |    `0x66`| -                  |
 | `i8x16.shl`                |    `0x6b`| -                  |
@@ -132,8 +132,8 @@ The `v8x16.shuffle` instruction has 16 bytes after `simdop`.
 | `i8x16.avgr_u`             |    `0x7b`| -                  |
 | `i16x8.abs`                |    `0x80`| -                  |
 | `i16x8.neg`                |    `0x81`| -                  |
-| `i16x8.any_true`           |    `0x82`| -                  |
-| `i16x8.all_true`           |    `0x83`| -                  |
+| `v16x8.any_true`           |    `0x82`| -                  |
+| `v16x8.all_true`           |    `0x83`| -                  |
 | `i16x8.narrow_i32x4_s`     |    `0x85`| -                  |
 | `i16x8.narrow_i32x4_u`     |    `0x86`| -                  |
 | `i16x8.widen_low_i8x16_s`  |    `0x87`| -                  |
@@ -157,8 +157,8 @@ The `v8x16.shuffle` instruction has 16 bytes after `simdop`.
 | `i16x8.avgr_u`             |    `0x9b`|                    |
 | `i32x4.abs`                |    `0xa0`| -                  |
 | `i32x4.neg`                |    `0xa1`| -                  |
-| `i32x4.any_true`           |    `0xa2`| -                  |
-| `i32x4.all_true`           |    `0xa3`| -                  |
+| `v32x4.any_true`           |    `0xa2`| -                  |
+| `v32x4.all_true`           |    `0xa3`| -                  |
 | `i32x4.widen_low_i16x8_s`  |    `0xa7`| -                  |
 | `i32x4.widen_high_i16x8_s` |    `0xa8`| -                  |
 | `i32x4.widen_low_i16x8_u`  |    `0xa9`| -                  |
