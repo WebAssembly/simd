@@ -85,8 +85,8 @@
 | `v128.bitselect`           |               `-msimd128` | :heavy_check_mark: |                    |                    |
 | `i8x16.abs`                |               `-msimd128` | :heavy_check_mark: |                    |                    |
 | `i8x16.neg`                |               `-msimd128` | :heavy_check_mark: |                    |                    |
-| `i8x16.any_true`           |               `-msimd128` | :heavy_check_mark: |                    |                    |
-| `i8x16.all_true`           |               `-msimd128` | :heavy_check_mark: |                    |                    |
+| `v8x16.any_true`           |               `-msimd128` | :heavy_check_mark: |                    |                    |
+| `v8x16.all_true`           |               `-msimd128` | :heavy_check_mark: |                    |                    |
 | `i8x16.narrow_i16x8_s`     |               `-msimd128` | :heavy_check_mark: |                    |                    |
 | `i8x16.narrow_i16x8_u`     |               `-msimd128` | :heavy_check_mark: |                    |                    |
 | `i8x16.shl`                |               `-msimd128` | :heavy_check_mark: |                    |                    |
@@ -105,8 +105,8 @@
 | `i8x16.avgr_u`             |               `-msimd128` | :heavy_check_mark: |                    |                    |
 | `i16x8.abs`                |               `-msimd128` | :heavy_check_mark: |                    |                    |
 | `i16x8.neg`                |               `-msimd128` | :heavy_check_mark: |                    |                    |
-| `i16x8.any_true`           |               `-msimd128` | :heavy_check_mark: |                    |                    |
-| `i16x8.all_true`           |               `-msimd128` | :heavy_check_mark: |                    |                    |
+| `v16x8.any_true`           |               `-msimd128` | :heavy_check_mark: |                    |                    |
+| `v16x8.all_true`           |               `-msimd128` | :heavy_check_mark: |                    |                    |
 | `i16x8.narrow_i32x4_s`     |               `-msimd128` | :heavy_check_mark: |                    |                    |
 | `i16x8.narrow_i32x4_u`     |               `-msimd128` | :heavy_check_mark: |                    |                    |
 | `i16x8.widen_low_i8x16_s`  |               `-msimd128` | :heavy_check_mark: |                    |                    |
@@ -130,8 +130,8 @@
 | `i16x8.avgr_u`             |               `-msimd128` | :heavy_check_mark: |                    |                    |
 | `i32x4.abs`                |               `-msimd128` | :heavy_check_mark: |                    |                    |
 | `i32x4.neg`                |               `-msimd128` | :heavy_check_mark: |                    |                    |
-| `i32x4.any_true`           |               `-msimd128` | :heavy_check_mark: |                    |                    |
-| `i32x4.all_true`           |               `-msimd128` | :heavy_check_mark: |                    |                    |
+| `v32x4.any_true`           |               `-msimd128` | :heavy_check_mark: |                    |                    |
+| `v32x4.all_true`           |               `-msimd128` | :heavy_check_mark: |                    |                    |
 | `i32x4.widen_low_i16x8_s`  |               `-msimd128` | :heavy_check_mark: |                    |                    |
 | `i32x4.widen_high_i16x8_s` |               `-msimd128` | :heavy_check_mark: |                    |                    |
 | `i32x4.widen_low_i16x8_u`  |               `-msimd128` | :heavy_check_mark: |                    |                    |
