@@ -411,7 +411,7 @@ rule token = parse
     { if s <> "f32x4" && s <> "f64x2" then error lexbuf "unknown operator";
       BINARY (simdop s unreachable unreachable unreachable unreachable f32x4_max f64x2_max) }
   | (simd_shape as s)".abs"
-    { if s = "i64x2" then error lexbuf "unknown operator";
+    { if s <> "i32x4" && s <> "f32x4" && s <> "f64x2" then error lexbuf "unknown operator";
       UNARY (simdop s unreachable unreachable i32x4_abs unreachable f32x4_abs f64x2_abs) }
   | (simd_shape as s) { SIMD_SHAPE (simd_shape s) }
 
