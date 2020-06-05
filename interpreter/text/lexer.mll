@@ -173,8 +173,9 @@ let mixx = "i" ("8" | "16" | "32" | "64")
 let mfxx = "f" ("32" | "64")
 let sign = "s" | "u"
 let mem_size = "8" | "16" | "32"
-let simd_shape = "i8x16" | "i16x8" | "i32x4" | "i64x2" | "f32x4" | "f64x2"
-let simd_float = "f32x4" | "f64x2"
+let simd_int_shape = "i8x16" | "i16x8" | "i32x4" | "i64x2"
+let simd_float_shape = "f32x4" | "f64x2"
+let simd_shape = simd_int_shape | simd_float_shape
 
 rule token = parse
   | "(" { LPAR }
