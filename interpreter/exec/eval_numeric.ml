@@ -116,67 +116,6 @@ end
 module F32Op = FloatOp (F32) (Values.F32Value)
 module F64Op = FloatOp (F64) (Values.F64Value)
 
-(* Simd operators *)
-
-module SimdOp (SXX : Simd.S) (Value : ValueType with type t = SXX.t) =
-struct
-  open Ast.SimdOp
-
-  let to_value = Value.to_value
-  let of_value = of_arg Value.of_value
-
-  let unop (op : unop) =
-    fun v -> match op with
-      | I32x4 Abs -> to_value (SXX.I32x4.abs (of_value 1 v))
-      | I32x4 Neg -> to_value (SXX.I32x4.neg (of_value 1 v))
-      | F32x4 Abs -> to_value (SXX.F32x4.abs (of_value 1 v))
-      | F32x4 Neg -> to_value (SXX.F32x4.neg (of_value 1 v))
-      | F32x4 Sqrt -> to_value (SXX.F32x4.sqrt (of_value 1 v))
-      | F64x2 Abs -> to_value (SXX.F64x2.abs (of_value 1 v))
-      | F64x2 Neg -> to_value (SXX.F64x2.neg (of_value 1 v))
-      | F64x2 Sqrt -> to_value (SXX.F64x2.sqrt (of_value 1 v))
-      | _ -> failwith "TODO v128 unimplemented unop"
-
-  let binop (op : binop) =
-    let f = match op with
-      | I32x4 Add -> SXX.I32x4.add
-      | I32x4 Sub -> SXX.I32x4.sub
-      | I32x4 MinS -> SXX.I32x4.min_s
-      | I32x4 MinU -> SXX.I32x4.min_u
-      | I32x4 MaxS -> SXX.I32x4.max_s
-      | I32x4 MaxU -> SXX.I32x4.max_u
-      | I32x4 Mul -> SXX.I32x4.mul
-      | F32x4 Add -> SXX.F32x4.add
-      | F32x4 Sub -> SXX.F32x4.sub
-      | F32x4 Mul -> SXX.F32x4.mul
-      | F32x4 Div -> SXX.F32x4.div
-      | F32x4 Min -> SXX.F32x4.min
-      | F32x4 Max -> SXX.F32x4.max
-      | F64x2 Add -> SXX.F64x2.add
-      | F64x2 Sub -> SXX.F64x2.sub
-      | F64x2 Mul -> SXX.F64x2.mul
-      | F64x2 Div -> SXX.F64x2.div
-      | F64x2 Min -> SXX.F64x2.min
-      | F64x2 Max -> SXX.F64x2.max
-      | _ -> failwith "TODO v128 unimplemented binop"
-    in fun v1 v2 -> to_value (f (of_value 1 v1) (of_value 2 v2))
-
-  (* FIXME *)
-  let testop op = failwith "TODO v128 unimplemented testop"
-
-  (* FIXME *)
-  let relop op = failwith "TODO v128 unimplemented relop"
-
-  let extractop op v =
-    match op with
-    | F32x4ExtractLane imm ->
-      (F32Op.to_value (SXX.F32x4.extract_lane imm (of_value 1 v)))
-    | I32x4ExtractLane imm ->
-      (I32Op.to_value (SXX.I32x4.extract_lane imm (of_value 1 v)))
-end
-
-module V128Op = SimdOp (V128) (Values.V128Value)
-
 (* Conversion operators *)
 
 module I32CvtOp =
@@ -241,18 +180,6 @@ struct
     | DemoteF64 -> raise (TypeError (1, v, F64Type))
 end
 
-module V128CvtOp =
-struct
-  (* TODO
-  open Ast.SimdOp
-  *)
-
-  (* FIXME *)
-  let cvtop op v = failwith "TODO v128"
-end
-
-let eval_extractop extractop v = V128Op.extractop extractop v
-
 (* Dispatch *)
 
 let op i32 i64 f32 f64 v128 = function
@@ -262,8 +189,8 @@ let op i32 i64 f32 f64 v128 = function
   | F64 x -> f64 x
   | V128 x -> v128 x
 
-let eval_unop = op I32Op.unop I64Op.unop F32Op.unop F64Op.unop V128Op.unop
-let eval_binop = op I32Op.binop I64Op.binop F32Op.binop F64Op.binop V128Op.binop
-let eval_testop = op I32Op.testop I64Op.testop F32Op.testop F64Op.testop V128Op.testop
-let eval_relop = op I32Op.relop I64Op.relop F32Op.relop F64Op.relop V128Op.relop
-let eval_cvtop = op I32CvtOp.cvtop I64CvtOp.cvtop F32CvtOp.cvtop F64CvtOp.cvtop V128CvtOp.cvtop
+let eval_unop = op I32Op.unop I64Op.unop F32Op.unop F64Op.unop Eval_simd.unop
+let eval_binop = op I32Op.binop I64Op.binop F32Op.binop F64Op.binop Eval_simd.binop
+let eval_testop = op I32Op.testop I64Op.testop F32Op.testop F64Op.testop Eval_simd.testop
+let eval_relop = op I32Op.relop I64Op.relop F32Op.relop F64Op.relop Eval_simd.relop
+let eval_cvtop = op I32CvtOp.cvtop I64CvtOp.cvtop F32CvtOp.cvtop F64CvtOp.cvtop Eval_simd.cvtop
