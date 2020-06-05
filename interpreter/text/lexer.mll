@@ -85,7 +85,7 @@ let simdop s i8x16 i16x8 i32x4 i64x2 f32x4 f64x2 =
   | "f64x2" -> f64x2
   | _ -> assert false
 
-let simdfloatop s f32x4 f64x2 =
+let simd_float_op s f32x4 f64x2 =
   match s with
   | "f32x4" -> f32x4
   | "f64x2" -> f64x2
