@@ -397,7 +397,7 @@ rule token = parse
     { if s <> "i32x4" && s <> "f32x4" then error lexbuf "unknown operator";
       BINARY (simdop s unreachable unreachable i32x4_add unreachable f32x4_add unreachable) }
   | (simd_shape as s)".sub"
-    { if s <> "i32x4"&& s <> "f32x4"  then error lexbuf "unknown operator";
+    { if s <> "i32x4" && s <> "f32x4"  then error lexbuf "unknown operator";
       BINARY (simdop s unreachable unreachable i32x4_sub unreachable f32x4_sub unreachable) }
   | (simd_shape as s)".min_s"
     { if s <> "i32x4" then error lexbuf "unknown operator";
