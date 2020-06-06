@@ -1064,7 +1064,17 @@ nearest-even representable number.
 
 Lane-wise conversion from integer to floating point.
 
-### Single-precision floating point to integer with saturation
+### Single-precision floating point to nearest integer, ties to even, with saturation
+* `i32x4.nearest_sat_f32x4_s(a: v128) -> v128`
+* `i32x4.nearest_sat_f32x4_u(a: v128) -> v128`
+
+Lane-wise saturating conversion from floating point to integer using the IEEE
+`convertToIntegerTiesToEven` function. If any input lane is a NaN, the
+resulting lane is 0. If the rounded integer value of a lane is outside the
+range of the destination type, the result is saturated to the nearest
+representable integer value.
+
+### Single-precision floating point to integer towards zero with saturation
 * `i32x4.trunc_sat_f32x4_s(a: v128) -> v128`
 * `i32x4.trunc_sat_f32x4_u(a: v128) -> v128`
 
@@ -1074,7 +1084,18 @@ NaN, the resulting lane is 0. If the rounded integer value of a lane is outside
 the range of the destination type, the result is saturated to the nearest
 representable integer value.
 
-### Double-precision floating point to integer with saturation
+### Double-precision floating point to nearest integer, ties to even, with saturation
+* `i32x4.nearest_sat_f64x2_s_zero(a: v128) -> v128`
+* `i32x4.nearest_sat_f64x2_u_zero(a: v128) -> v128`
+
+Saturating conversion of the two double-precision floating point lanes to two
+lower integer lanes using the IEEE `convertToIntegerTiesToEven` function. The
+two higher lanes of the result are initialized to zero. If any input lane is a
+NaN, the resulting lane is 0. If the rounded integer value of a lane is outside
+the range of the destination type, the result is saturated to the nearest
+representable integer value.
+
+### Double-precision floating point to integer towards zero with saturation
 * `i32x4.trunc_sat_f64x2_s_zero(a: v128) -> v128`
 * `i32x4.trunc_sat_f64x2_u_zero(a: v128) -> v128`
 
