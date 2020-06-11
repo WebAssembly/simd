@@ -887,9 +887,8 @@ result :
   | LPAR V128_CONST SIMD_SHAPE numpat_list RPAR {
     if Simd.lanes $3 <> List.length $4 then error (at ()) "wrong number of lane literals";
     match $3 with
-    | Simd.I32x4 -> SimdResult ($3, List.map (fun lit -> lit $3) ($4)) @@ at ()
-    | Simd.F32x4 -> SimdResult ($3, List.map (fun lit -> lit $3) ($4)) @@ at ()
-    | Simd.F64x2 -> SimdResult ($3, List.map (fun lit -> lit $3) ($4)) @@ at ()
+    | Simd.I32x4 | Simd.F32x4 | Simd.F64x2 ->
+      SimdResult ($3, List.map (fun lit -> lit $3) ($4)) @@ at ()
     | _ -> error (ati 3) "unimplemented SIMD shape"
   }
 
