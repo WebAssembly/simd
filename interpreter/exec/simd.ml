@@ -47,6 +47,11 @@ sig
   type lane
 
   val extract_lane : int -> t -> lane
+  val lognot : t -> t
+  val logand : t -> t -> t
+  val or_ : t -> t -> t
+  val xor : t -> t -> t
+  val andnot : t -> t -> t
   val abs : t -> t
   val neg : t -> t
   val add : t -> t -> t
@@ -143,6 +148,11 @@ struct
     let extract_lane i s = List.nth (Convert.to_shape s) i
     let unop f x = Convert.of_shape (List.map f (Convert.to_shape x))
     let binop f x y = Convert.of_shape (List.map2 f (Convert.to_shape x) (Convert.to_shape y))
+    let lognot = unop Int.lognot
+    let logand = binop Int.and_
+    let or_ = binop Int.or_
+    let xor = binop Int.xor
+    let andnot = binop (fun x y -> Int.and_ x (Int.lognot y))
     let abs = unop Int.abs
     let neg = unop Int.neg
     let add = binop Int.add
