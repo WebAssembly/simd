@@ -11,12 +11,6 @@ let lanes shape =
   | F32x4 -> 4
   | F64x2 -> 2
 
-let i8x16_indices = [0; 1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12; 13; 14; 15]
-let i16x8_indices = [0; 2; 4; 6; 8; 10; 12; 14]
-let i32x4_indices = [0; 4; 8; 12]
-let f32x4_indices = i32x4_indices
-let f64x2_indices = [0; 8]
-
 module type RepType =
 sig
   type t
