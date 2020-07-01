@@ -9,7 +9,7 @@ include Simd.Make
 
     let of_i8x16 fs =
       let b = Bytes.create bytewidth in
-      let _ = List.init 16 (fun i -> Bytes.set_int8 b i (Int32.to_int (List.nth fs i))) in
+      List.iteri (fun i f -> Bytes.set_int8 b i (Int32.to_int f)) fs;
       Bytes.to_string b
 
     let to_i16x8 s =
@@ -17,7 +17,7 @@ include Simd.Make
 
     let of_i16x8 fs =
       let b = Bytes.create bytewidth in
-      let _ = List.init 8 (fun i -> Bytes.set_int16_le b (i*2) (Int32.to_int (List.nth fs i))) in
+      List.iteri (fun i f -> Bytes.set_int16_le b (i*2) (Int32.to_int f)) fs;
       Bytes.to_string b
 
     let to_i32x4 s =
@@ -25,7 +25,7 @@ include Simd.Make
 
     let of_i32x4 fs =
       let b = Bytes.create bytewidth in
-      let _ = List.init 4 (fun i -> Bytes.set_int32_le b (i*4) (I32.to_bits (List.nth fs i))) in
+      List.iteri (fun i f -> Bytes.set_int32_le b (i*4) (I32.to_bits f)) fs;
       Bytes.to_string b
 
     let to_f32x4 s =
@@ -33,7 +33,7 @@ include Simd.Make
 
     let of_f32x4 fs =
       let b = Bytes.create bytewidth in
-      let _ = List.init 4 (fun i -> Bytes.set_int32_le b (i*4) (F32.to_bits (List.nth fs i))) in
+      List.iteri (fun i f -> Bytes.set_int32_le b (i*4) (F32.to_bits f)) fs;
       Bytes.to_string b
 
     let to_f64x2 s =
@@ -41,7 +41,7 @@ include Simd.Make
 
     let of_f64x2 fs =
       let b = Bytes.create bytewidth in
-      let _ = List.init 2 (fun i -> Bytes.set_int64_le b (i*8) (F64.to_bits (List.nth fs i))) in
+      List.iteri (fun i f -> Bytes.set_int64_le b (i*8) (F64.to_bits f)) fs;
       Bytes.to_string b
 
     let of_strings shape ss =
