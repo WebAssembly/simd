@@ -161,7 +161,7 @@ struct
       | I16x8 MaxS -> SXX.I16x8.max_s
       | I16x8 MaxU -> SXX.I16x8.max_u
       | I16x8 AvgrU -> SXX.I16x8.avgr_u
-      | I32x4 And -> SXX.I32x4.logand
+      | I32x4 And -> SXX.I32x4.and_
       | I32x4 Or -> SXX.I32x4.or_
       | I32x4 Xor -> SXX.I32x4.xor
       | I32x4 Andnot -> SXX.I32x4.andnot
