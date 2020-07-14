@@ -12,7 +12,7 @@
 | `v32x4.load_splat`         |               `-msimd128` | :heavy_check_mark: |                    |                    | :heavy_check_mark: |
 | `v64x2.load_splat`         |               `-msimd128` | :heavy_check_mark: |                    |                    | :heavy_check_mark: |
 | `v128.store`               |               `-msimd128` | :heavy_check_mark: |                    |                    | :heavy_check_mark: |
-| `v128.const`               | `-munimplemented-simd128` |                    |                    |                    | :heavy_check_mark: |
+| `v128.const`               | `-munimplemented-simd128` | :heavy_check_mark: |                    |                    | :heavy_check_mark: |
 | `v8x16.shuffle`            |               `-msimd128` | :heavy_check_mark: |                    |                    | :heavy_check_mark: |
 | `v8x16.swizzle`            |               `-msimd128` | :heavy_check_mark: |                    |                    | :heavy_check_mark: |
 | `i8x16.splat`              |               `-msimd128` | :heavy_check_mark: |                    |                    | :heavy_check_mark: |
@@ -181,7 +181,7 @@
 
 [1] Tip of tree LLVM as of May 20, 2020
 
-[2] V8 8.4.268. Requires flag `--experimental-wasm-simd`
+[2] V8 8.6.136. Requires flag `--experimental-wasm-simd`
 
 [3] Not known to be updated after latest renumbering. Requires flag `--enable simd`
 
