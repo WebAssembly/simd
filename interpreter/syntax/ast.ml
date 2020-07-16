@@ -48,21 +48,24 @@ end
 (* FIXME *)
 module SimdOp =
 struct
-  type iunop = Abs | Neg | Not
-  type ibinop = And | Or | Xor | Andnot | Add | Sub | MinS | MinU | MaxS | MaxU | Mul | AvgrU
+  type iunop = Abs | Neg
+  type ibinop = Add | Sub | MinS | MinU | MaxS | MaxU | Mul | AvgrU
   type funop = Abs | Neg | Sqrt
   type fbinop = Add | Sub | Mul | Div | Min | Max
+  type vunop = Not
+  type vbinop = And | Or | Xor | Andnot
 
-  type ('i8x16, 'i16x8, 'i32x4, 'i64x2, 'f32x4, 'f64x2) v128op =
+  type ('i8x16, 'i16x8, 'i32x4, 'i64x2, 'f32x4, 'f64x2, 'v128) v128op =
     | I8x16 of 'i8x16
     | I16x8 of 'i16x8
     | I32x4 of 'i32x4
     | I64x2 of 'i64x2
     | F32x4 of 'f32x4
     | F64x2 of 'f64x2
+    | V128x1 of 'v128
 
-  type unop = (iunop, iunop, iunop, iunop, funop, funop) v128op
-  type binop = (ibinop, ibinop, ibinop, ibinop, fbinop, fbinop) v128op
+  type unop = (iunop, iunop, iunop, iunop, funop, funop, vunop) v128op
+  type binop = (ibinop, ibinop, ibinop, ibinop, fbinop, fbinop, vbinop) v128op
   type testop = TodoTestOp
   type relop = TodoRelOp
   type cvtop = TodoCvtOp

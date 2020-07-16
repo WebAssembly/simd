@@ -132,7 +132,6 @@ struct
       | I8x16 Abs -> to_value (SXX.I8x16.abs (of_value 1 v))
       | I16x8 Neg -> to_value (SXX.I16x8.neg (of_value 1 v))
       | I16x8 Abs -> to_value (SXX.I16x8.abs (of_value 1 v))
-      | I32x4 Not -> to_value (SXX.I32x4.lognot (of_value 1 v))
       | I32x4 Abs -> to_value (SXX.I32x4.abs (of_value 1 v))
       | I32x4 Neg -> to_value (SXX.I32x4.neg (of_value 1 v))
       | I64x2 Neg -> to_value (SXX.I64x2.neg (of_value 1 v))
@@ -142,6 +141,7 @@ struct
       | F64x2 Abs -> to_value (SXX.F64x2.abs (of_value 1 v))
       | F64x2 Neg -> to_value (SXX.F64x2.neg (of_value 1 v))
       | F64x2 Sqrt -> to_value (SXX.F64x2.sqrt (of_value 1 v))
+      | V128x1 Not -> to_value (SXX.V128x1.lognot (of_value 1 v))
       | _ -> failwith "TODO v128 unimplemented unop"
 
   let binop (op : binop) =
@@ -161,10 +161,6 @@ struct
       | I16x8 MaxS -> SXX.I16x8.max_s
       | I16x8 MaxU -> SXX.I16x8.max_u
       | I16x8 AvgrU -> SXX.I16x8.avgr_u
-      | I32x4 And -> SXX.I32x4.and_
-      | I32x4 Or -> SXX.I32x4.or_
-      | I32x4 Xor -> SXX.I32x4.xor
-      | I32x4 Andnot -> SXX.I32x4.andnot
       | I32x4 Add -> SXX.I32x4.add
       | I32x4 Sub -> SXX.I32x4.sub
       | I32x4 MinS -> SXX.I32x4.min_s
@@ -187,6 +183,10 @@ struct
       | F64x2 Div -> SXX.F64x2.div
       | F64x2 Min -> SXX.F64x2.min
       | F64x2 Max -> SXX.F64x2.max
+      | V128x1 And -> SXX.V128x1.and_
+      | V128x1 Or -> SXX.V128x1.or_
+      | V128x1 Xor -> SXX.V128x1.xor
+      | V128x1 Andnot -> SXX.V128x1.andnot
       | _ -> failwith "TODO v128 unimplemented binop"
     in fun v1 v2 -> to_value (f (of_value 1 v1) (of_value 2 v2))
 
