@@ -23,8 +23,8 @@ This language is structured around the following concepts.
   Instead, integers are interpreted by respective operations
   as either unsigned or signed in two’s complement representation.
 
-  In addition to the basic value types above, a single 128 bit wide
-  value type is added to represent different types of packed data.
+  In addition to the basic value types above, there is a single 128 bit wide
+  value type representing different types of packed data.
   The supported representations are 4 32-bit, or 2 64-bit
   |IEEE754|_ numbers, or different widths of packed integer values
   specifically 2 64-bit integers, 4 32-bit integers, 8
