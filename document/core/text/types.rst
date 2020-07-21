@@ -19,7 +19,7 @@ Value Types
      \text{i64} &\Rightarrow& \I64 \\ &&|&
      \text{f32} &\Rightarrow& \F32 \\ &&|&
      \text{f64} &\Rightarrow& \F64 \\ &&|&
-     \text{s128} &\Rightarrow& \S128 \\
+     \text{v128} &\Rightarrow& \V128 \\
    \end{array}
 
 

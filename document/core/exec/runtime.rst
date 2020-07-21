@@ -14,7 +14,7 @@ Runtime Structure
 Values
 ~~~~~~
 
-WebAssembly computations manipulate *values* of the five basic :ref:`value types <syntax-valtype>`: :ref:`integers <syntax-int>` and :ref:`floating-point data <syntax-float>` of 32 or 64 bit width each  respectively, and :ref: `SIMD data <syntax-simd>` of 128 bit width representing packed integers of floating-point values.
+WebAssembly computations manipulate *values* of the five basic :ref:`value types <syntax-valtype>`: :ref:`integers <syntax-int>` and :ref:`floating-point data <syntax-float>` of 32 or 64 bit width each  respectively, and :ref:`SIMD data <syntax-simd>` of 128 bit width.
 
 In most places of the semantics, values of different types can occur.
 In order to avoid ambiguities, values are therefore represented with an abstract syntax that makes their type explicit.
@@ -27,7 +27,7 @@ It is convenient to reuse the same notation as for the |CONST| :ref:`instruction
      \I64.\CONST~\i64 \\&&|&
      \F32.\CONST~\f32 \\&&|&
      \F64.\CONST~\f64 \\&&|&
-     \S128.\CONST~\s128
+     \V128.\CONST~\i128
    \end{array}
 
 

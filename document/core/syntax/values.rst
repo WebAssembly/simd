@@ -152,12 +152,7 @@ Conventions
 Fixed-Width SIMD
 ~~~~~~~~~~~~~~~~
 
-Fixed-width SIMD data represents packed integers, or floating-point values. The packed values of a given SIMD value must all be of the same type, which can be any of the signed, unsigned integer types, and floating-point types ocurring in this proposal. The supported representations of the packed values are 4 32-bit, or 2 64-bit |IEEE754|_ numbers, or different widths of packed integer values specifically 2 64-bit integers, 4 32-bit integers, 8 16-bit integers, or 16 8-bit integers.
-
-The number of packed values defined here are lanes :`lanes` can be determined by the bit width :math:`N` of the packed value type.
-
-.. math::
-   lanes = 128/N
+Fixed-width SIMD are 128-bit values that are represented in the abstract syntax using |i128|. The interpretation of lane types (integers or floating-point numbers) and lane sizes are determined by the specific instruction operating on them.
 
 .. index:: ! name, byte, Unicode, UTF-8, character, binary format
    pair: abstract syntax; name
