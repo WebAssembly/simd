@@ -35,6 +35,16 @@ The following sections group instructions into a number of different categories.
 .. _syntax-fbinop:
 .. _syntax-ftestop:
 .. _syntax-frelop:
+.. _syntax-vunop:
+.. _syntax-vbinop:
+.. _syntax-vternop:
+.. _syntax-vtestop:
+.. _syntax-vshiftop:
+.. _syntax-viunop:
+.. _syntax-vibinop:
+.. _syntax-vsatbinop:
+.. _syntax-vfunop:
+.. _syntax-vfbinop:
 .. _syntax-instr-numeric:
 
 Numeric Instructions
@@ -47,15 +57,27 @@ These operations closely match respective operations available in hardware.
    \begin{array}{llcl}
    \production{width} & \X{nn}, \X{mm} &::=&
      \K{32} ~|~ \K{64} \\
+   \production{simdwidth} & \X{sss} &::=&
+     \K{128} \\
    \production{signedness} & \sx &::=&
      \K{u} ~|~ \K{s} \\
+   \production{ishape} & \X{ixx} &::=&
+     \K{i8x16} ~|~ \K{i16x8} ~|~ \K{i32x4} ~|~ \K{i64x2} \\
+   \production{fshape} & \X{fxx} &::=&
+     \K{f32x4} ~|~ \K{f64x2} \\
+   \production{vshape} & \X{vxx} &::=&
+     \X{ixx} ~|~ \X{fxx} \\
    \production{instruction} & \instr &::=&
      \K{i}\X{nn}\K{.}\CONST~\xref{syntax/values}{syntax-int}{\iX{\X{nn}}} ~|~
-     \K{f}\X{nn}\K{.}\CONST~\xref{syntax/values}{syntax-float}{\fX{\X{nn}}} \\&&|&
+     \K{f}\X{nn}\K{.}\CONST~\xref{syntax/values}{syntax-float}{\fX{\X{nn}}} ~|~
+     \K{v}\X{sss}\K{.}\CONST~\xref{syntax/values}{syntax-simd}{\vX{\X{sss}}} \\&&|&
      \K{i}\X{nn}\K{.}\iunop ~|~
-     \K{f}\X{nn}\K{.}\funop \\&&|&
+     \K{f}\X{nn}\K{.}\funop ~|~
+     \K{v}\X{sss}\K{.}\vunop \\&&|&
      \K{i}\X{nn}\K{.}\ibinop ~|~
-     \K{f}\X{nn}\K{.}\fbinop \\&&|&
+     \K{f}\X{nn}\K{.}\fbinop ~|~
+     \K{v}\X{sss}\K{.}\vbinop \\&&|&
+     \K{v}\X{sss}\K{.}\vternop \\&&|&
      \K{i}\X{nn}\K{.}\itestop \\&&|&
      \K{i}\X{nn}\K{.}\irelop ~|~
      \K{f}\X{nn}\K{.}\frelop \\&&|&
@@ -71,6 +93,49 @@ These operations closely match respective operations available in hardware.
      \K{f}\X{nn}\K{.}\CONVERT\K{\_i}\X{mm}\K{\_}\sx \\&&|&
      \K{i}\X{nn}\K{.}\REINTERPRET\K{\_f}\X{nn} ~|~
      \K{f}\X{nn}\K{.}\REINTERPRET\K{\_i}\X{nn} \\&&|&
+     \K{v8x16.}\SHUFFLE ~|~ \K{v8x16.}\SWIZZLE \\&&|&
+     \X{vxx}\K{.}\SPLAT \\&&|&
+     \K{i8x16.}\EXTRACTLANE\K{\_}\sx ~|~
+     \K{i16x8.}\EXTRACTLANE\K{\_}\sx \\&&|&
+     \K{i32x4.}\EXTRACTLANE ~|~
+     \K{i64x2.}\EXTRACTLANE \\&&|&
+     \X{fxx}\K{.}\EXTRACTLANE \\&&|&
+     \X{vxx}\K{.}\REPLACELANE \\&&|&
+     \X{ixx}\K{.}\irelop \\&&|&
+     \X{fxx}\K{.}\frelop \\&&|&
+     \K{i8x16.}\viunop ~|~
+     \K{i16x8.}\viunop ~|~
+     \K{i32x4.}\viunop \\&&|&
+     \K{i64x2.}\NEG \\&&|&
+     \X{fxx.}\vfunop \\&&|&
+     \K{i8x16.}\vtestop ~|~
+     \K{i16x8.}\vtestop ~|~
+     \K{i32x4.}\vtestop \\&&|&
+     \K{i8x16.}\BITMASK ~|~
+     \K{i16x8.}\BITMASK ~|~
+     \K{i32x4.}\BITMASK \\&&|&
+     \K{i8x16.}\NARROW\K{\_i16x8\_}\sx ~|~
+     \K{i16x8.}\NARROW\K{\_i32x4\_}\sx \\&&|&
+     \K{i16x8.}\WIDEN\K{\_low}\K{\_i8x16\_}\sx ~|~
+     \K{i32x4.}\WIDEN\K{\_low}\K{\_i16x8\_}\sx \\&&|&
+     \K{i16x8.}\WIDEN\K{\_high}\K{\_i8x16\_}\sx ~|~
+     \K{i32x4.}\WIDEN\K{\_high}\K{\_i16x8\_}\sx \\&&|&
+     \X{ixx}\K{.}\vshiftop \\&&|&
+     \K{i8x16.}\vibinop ~|~
+     \K{i16x8.}\vibinop ~|~
+     \K{i32x4.}\vibinop \\&&|&
+     \K{i64x2.}\ADD ~|~
+     \K{i64x2.}\SUB \\&&|&
+     \K{i8x16.}\vsatbinop ~|~
+     \K{i16x8.}\vsatbinop \\&&|&
+     \K{i16x8.}\K{mul} ~|~
+     \K{i32x4.}\K{mul} ~|~
+     \K{i64x2.}\K{mul} \\&&|&
+     \K{i8x16.}\AVGRU ~|~
+     \K{i16x8.}\AVGRU \\&&|&
+     \X{fxx.}\vfbinop \\&&|&
+     \K{i32x4.}\TRUNC\K{\_sat\_f32x4\_}\sx ~|~
+     \K{f32x4.}\CONVERT\K{\_i32x4\_}\sx \\&&|&
      \dots \\
    \production{integer unary operator} & \iunop &::=&
      \K{clz} ~|~
@@ -105,8 +170,20 @@ These operations closely match respective operations available in hardware.
      \K{min} ~|~
      \K{max} ~|~
      \K{copysign} \\
+   \production{SIMD unary operator} & \vunop &::=&
+     \K{not} \\
+   \production{SIMD binary operator} & \vbinop &::=&
+     \K{and} ~|~
+     \K{andnot} ~|~
+     \K{or} ~|~
+     \K{xor} \\
+   \production{SIMD unary operator} & \vternop &::=&
+     \K{bitselect} \\
    \production{integer test operator} & \itestop &::=&
      \K{eqz} \\
+   \production{SIMD test operator} & \vtestop &::=&
+     \K{any\_true} ~|~
+     \K{all\_true} \\
    \production{integer relational operator} & \irelop &::=&
      \K{eq} ~|~
      \K{ne} ~|~
@@ -121,6 +198,32 @@ These operations closely match respective operations available in hardware.
      \K{gt} ~|~
      \K{le} ~|~
      \K{ge} \\
+   \production{SIMD integer shift operator} & \vshiftop &::=&
+     \K{shl} ~|~
+     \K{shr\_s} ~|~
+     \K{shr\_u} \\
+   \production{SIMD integer unary operator} & \viunop &::=&
+     \K{abs} ~|~
+     \K{neg} \\
+   \production{SIMD integer binary operator} & \vibinop &::=&
+     \K{add} ~|~
+     \K{sub} ~|~
+     \K{min\_}\sx ~|~
+     \K{max\_}\sx \\
+   \production{SIMD integer saturating binary operator} & \vsatbinop &::=&
+     \K{add\_sat\_}\sx ~|~
+     \K{sub\_sat\_}\sx \\
+   \production{SIMD floating-point unary operator} & \vfunop &::=&
+     \K{abs} ~|~
+     \K{neg} ~|~
+     \K{sqrt} \\
+   \production{SIMD floating-point binary operator} & \vfbinop &::=&
+     \K{add} ~|~
+     \K{sub} ~|~
+     \K{mul} ~|~
+     \K{div} ~|~
+     \K{min} ~|~
+     \K{max} \\
    \end{array}
 
 Numeric instructions are divided by :ref:`value type <syntax-valtype>`.
@@ -134,15 +237,25 @@ For each type, several subcategories can be distinguished:
 
 * *Tests*: consume one operand of the respective type and produce a Boolean integer result.
 
-* *Comparisons*: consume two operands of the respective type and produce a Boolean integer result.
+* *Comparisons*: consume two operands of the respective type and produce a Boolean integer result or a result of the respective type.
 
 * *Conversions*: consume a value of one type and produce a result of another
   (the source type of the conversion is the one after the ":math:`\K{\_}`").
+
+.. todo::
+  Do these subcategories have to cover every instruction? E.g. simd shifts don't fit anywhere here, since they take 128-bit int and a 32-bit int.
 
 Some integer instructions come in two flavors,
 where a signedness annotation |sx| distinguishes whether the operands are to be :ref:`interpreted <aux-signed>` as :ref:`unsigned <syntax-uint>` or :ref:`signed <syntax-sint>` integers.
 For the other integer instructions, the use of two's complement for the signed interpretation means that they behave the same regardless of signedness.
 
+Instructions that operate on |V128| operands have a naming convention that
+determines how those operands will be interpreted. An instruction beginning with :math:`\K{i32x4}`
+will interpret its operands as four |i32|, packed side-by-side into a |i128|.
+Similarly, and instruction beginning with :math:`\K{f64x2}` interprets its operands as two |f64|, packed side-by-side into a |i128|.
+
+.. todo::
+  write up runtime interpretation for the lane shapes
 
 Conventions
 ...........
@@ -154,9 +267,22 @@ Occasionally, it is convenient to group operators together according to the foll
    \production{unary operator} & \unop &::=&
      \iunop ~|~
      \funop ~|~
+     \vunop ~|~
+     \viunop ~|~
+     \vfunop ~|~
      \EXTEND{N}\K{\_s} \\
-   \production{binary operator} & \binop &::=& \ibinop ~|~ \fbinop \\
-   \production{test operator} & \testop &::=& \itestop \\
+   \production{binary operator} & \binop &::=&
+   \ibinop ~|~
+   \fbinop ~|~
+   \vbinop ~|~
+   \vibinop ~|~
+   \vsatbinop ~|~
+   \vfbinop ~|~
+   \AVGRU
+   \\
+   \production{test operator} & \testop &::=&
+   \itestop ~|~
+   \vtestop \\
    \production{relational operator} & \relop &::=& \irelop ~|~ \frelop \\
    \production{conversion operator} & \cvtop &::=&
      \WRAP ~|~
@@ -166,7 +292,9 @@ Occasionally, it is convenient to group operators together according to the foll
      \CONVERT ~|~
      \DEMOTE ~|~
      \PROMOTE ~|~
-     \REINTERPRET \\
+     \REINTERPRET ~|~
+     \NARROW ~|~
+     \WIDEN \\
    \end{array}
 
 
@@ -235,15 +363,21 @@ Instructions in this group are concerned with linear :ref:`memory <syntax-mem>`.
    \production{instruction} & \instr &::=&
      \dots \\&&|&
      \K{i}\X{nn}\K{.}\LOAD~\memarg ~|~
-     \K{f}\X{nn}\K{.}\LOAD~\memarg \\&&|&
+     \K{f}\X{nn}\K{.}\LOAD~\memarg ~|~
+     \K{v}\X{sss}\K{.}\LOAD~\memarg \\&&|&
      \K{i}\X{nn}\K{.}\STORE~\memarg ~|~
-     \K{f}\X{nn}\K{.}\STORE~\memarg \\&&|&
+     \K{f}\X{nn}\K{.}\STORE~\memarg ~|~
+     \K{v}\X{sss}\K{.}\STORE~\memarg \\&&|&
      \K{i}\X{nn}\K{.}\LOAD\K{8\_}\sx~\memarg ~|~
      \K{i}\X{nn}\K{.}\LOAD\K{16\_}\sx~\memarg ~|~
      \K{i64.}\LOAD\K{32\_}\sx~\memarg \\&&|&
      \K{i}\X{nn}\K{.}\STORE\K{8}~\memarg ~|~
      \K{i}\X{nn}\K{.}\STORE\K{16}~\memarg ~|~
      \K{i64.}\STORE\K{32}~\memarg \\&&|&
+     \K{i16x8.}\LOAD\K{8x8}\_\sx ~|~
+     \K{i32x4.}\LOAD\K{16x4}\_\sx ~|~
+     \K{i64x2.}\LOAD\K{32x2}\_\sx \\&&|&
+     \K{v}\X{ixx}\K{.}\LOAD\K{\_splat} \\&&|&
      \MEMORYSIZE \\&&|&
      \MEMORYGROW \\
    \end{array}
