@@ -53,7 +53,7 @@ struct
   type funop = Abs | Neg | Sqrt
   type fbinop = Add | Sub | Mul | Div | Min | Max
   type vunop = Not
-  type vbinop = And | Or | Xor | Andnot
+  type vbinop = And | Or | Xor | AndNot
 
   type ('i8x16, 'i16x8, 'i32x4, 'i64x2, 'f32x4, 'f64x2, 'v128) v128op =
     | I8x16 of 'i8x16

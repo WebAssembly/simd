@@ -186,7 +186,7 @@ struct
       | V128x1 And -> SXX.V128x1.and_
       | V128x1 Or -> SXX.V128x1.or_
       | V128x1 Xor -> SXX.V128x1.xor
-      | V128x1 Andnot -> SXX.V128x1.andnot
+      | V128x1 AndNot -> SXX.V128x1.andnot
       | _ -> failwith "TODO v128 unimplemented binop"
     in fun v1 v2 -> to_value (f (of_value 1 v1) (of_value 2 v2))
 
