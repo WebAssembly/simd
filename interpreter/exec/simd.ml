@@ -80,7 +80,6 @@ end
 module type Vec =
 sig
   type t
-  type lane
 
   val lognot : t -> t
   val and_ : t -> t -> t
@@ -109,7 +108,7 @@ sig
   module I64x2 : Int with type t = t and type lane = I64.t
   module F32x4 : Float with type t = t and type lane = F32.t
   module F64x2 : Float with type t = t and type lane = F64.t
-  module V128x1 : Vec with type t = t and type lane = I64.t
+  module V128x1 : Vec with type t = t
 end
 
 module Make (Rep : RepType) : S with type bits = Rep.t =
@@ -125,26 +124,19 @@ struct
   let to_i16x8 = Rep.to_i16x8
   let to_i32x4 = Rep.to_i32x4
 
-  module MakeVec (Int : Int.S) (Convert : sig
-      val to_shape : Rep.t -> Int.t list
-      val of_shape : Int.t list -> Rep.t
-    end) : Vec with type t = Rep.t and type lane = Int.t =
-  struct
+  module V128x1 : Vec with type t = Rep.t = struct
     type t = Rep.t
-    type lane = Int.t
-    let unop f x = Convert.of_shape (List.map f (Convert.to_shape x))
-    let binop f x y = Convert.of_shape (List.map2 f (Convert.to_shape x) (Convert.to_shape y))
-    let lognot = unop Int.lognot
-    let and_ = binop Int.and_
-    let or_ = binop Int.or_
-    let xor = binop Int.xor
-    let andnot = binop (fun x y -> Int.and_ x (Int.lognot y))
+    let to_shape = Rep.to_i64x2
+    let of_shape = Rep.of_i64x2
+    let unop f x = of_shape (List.map f (to_shape x))
+    let binop f x y = of_shape (List.map2 f (to_shape x) (to_shape y))
+    let lognot = unop I64.lognot
+    let and_ = binop I64.and_
+    let or_ = binop I64.or_
+    let xor = binop I64.xor
+    let andnot = binop (fun x y -> I64.and_ x (I64.lognot y))
   end
 
-  module V128x1 = MakeVec (I64) (struct
-      let to_shape = Rep.to_i64x2
-      let of_shape = Rep.of_i64x2
-    end)
 
   module MakeFloat (Float : Float.S) (Convert : sig
       val to_shape : Rep.t -> Float.t list
