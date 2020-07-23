@@ -62,7 +62,7 @@ struct
     | I64x2 of 'i64x2
     | F32x4 of 'f32x4
     | F64x2 of 'f64x2
-    | V128x1 of 'v128
+    | V128 of 'v128
 
   type unop = (iunop, iunop, iunop, iunop, funop, funop, vunop) v128op
   type binop = (ibinop, ibinop, ibinop, ibinop, fbinop, fbinop, vbinop) v128op

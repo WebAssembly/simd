@@ -108,7 +108,7 @@ sig
   module I64x2 : Int with type t = t and type lane = I64.t
   module F32x4 : Float with type t = t and type lane = F32.t
   module F64x2 : Float with type t = t and type lane = F64.t
-  module V128x1 : Vec with type t = t
+  module V128 : Vec with type t = t
 end
 
 module Make (Rep : RepType) : S with type bits = Rep.t =
@@ -124,7 +124,7 @@ struct
   let to_i16x8 = Rep.to_i16x8
   let to_i32x4 = Rep.to_i32x4
 
-  module V128x1 : Vec with type t = Rep.t = struct
+  module V128 : Vec with type t = Rep.t = struct
     type t = Rep.t
     let to_shape = Rep.to_i64x2
     let of_shape = Rep.of_i64x2
