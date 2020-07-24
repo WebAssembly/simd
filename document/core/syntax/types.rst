@@ -31,7 +31,7 @@ Integers are not inherently signed or unsigned, their interpretation is determin
 The types |F32| and |F64| classify 32 and 64 bit floating-point data, respectively.
 They correspond to the respective binary floating-point representations, also known as *single* and *double* precision, as defined by the |IEEE754|_ standard (Section 3.3).
 
-The type |V128| corresponds to 128 bit packed integer or floating-point data. The packed data
+The type |V128| corresponds to a 128 bit vector of packed integer or floating-point data. The packed data
 can be interpreted as signed or unsigned integers, single or double precision floating-point
 values, or a single 128 bit type. The interpretation is determined by individual operations.
 
