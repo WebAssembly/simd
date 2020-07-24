@@ -249,6 +249,13 @@ let i16x8_max_s = Binary (V128 (V128Op.I16x8 V128Op.MaxS))
 let i16x8_max_u = Binary (V128 (V128Op.I16x8 V128Op.MaxU))
 let i16x8_avgr_u = Binary (V128 (V128Op.I16x8 V128Op.AvgrU))
 
+let i8x16_splat = Convert (V128 (V128Op.I8x16 V128Op.Splat))
+let i16x8_splat = Convert (V128 (V128Op.I16x8 V128Op.Splat))
+let i32x4_splat = Convert (V128 (V128Op.I32x4 V128Op.Splat))
+let i64x2_splat = Convert (V128 (V128Op.I64x2 V128Op.Splat))
+let f32x4_splat = Convert (V128 (V128Op.F32x4 V128Op.Splat))
+let f64x2_splat = Convert (V128 (V128Op.F64x2 V128Op.Splat))
+
 let i32x4_extract_lane imm = ExtractLane (V128Op.I32x4ExtractLane imm)
 let i32x4_abs = Unary (V128 (V128Op.I32x4 V128Op.Abs))
 let i32x4_neg = Unary (V128 (V128Op.I32x4 V128Op.Neg))
