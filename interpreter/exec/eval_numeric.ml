@@ -204,6 +204,17 @@ struct
   (* FIXME *)
   let relop op = failwith "TODO v128 unimplemented relop"
 
+  let splatop op =
+    let f op v = match op with
+    | I8x16 Splat -> (SXX.I8x16.splat (I32Value.of_value v))
+    | I16x8 Splat -> (SXX.I16x8.splat (I32Value.of_value v))
+    | I32x4 Splat -> (SXX.I32x4.splat (I32Value.of_value v))
+    | I64x2 Splat -> (SXX.I64x2.splat (I64Value.of_value v))
+    | F32x4 Splat -> (SXX.F32x4.splat (F32Value.of_value v))
+    | F64x2 Splat -> (SXX.F64x2.splat (F64Value.of_value v))
+    | _ -> assert false
+    in fun v -> to_value (f op v)
+
   let extractop op v =
     match op with
     | F32x4ExtractLane imm ->
@@ -301,6 +312,7 @@ struct
   let cvtop op v = failwith "TODO v128"
 end
 
+let eval_splatop splatop v= V128Op.splatop splatop v
 let eval_extractop extractop v = V128Op.extractop extractop v
 let eval_ternop ternop v= V128Op.ternop ternop v
 

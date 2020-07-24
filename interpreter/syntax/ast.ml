@@ -72,6 +72,8 @@ struct
   type relop = TodoRelOp
   type cvtop = TodoCvtOp
   type extractop = I32x4ExtractLane of int | F32x4ExtractLane of int
+  type vsplatop = Splat
+  type splatop = (vsplatop, vsplatop, vsplatop, vsplatop, vsplatop, vsplatop, vsplatop) v128op
 end
 
 module I32Op = IntOp
@@ -88,6 +90,7 @@ type cvtop = (I32Op.cvtop, I64Op.cvtop, F32Op.cvtop, F64Op.cvtop, V128Op.cvtop) 
 type extractop = V128Op.extractop
 (* Ternary operators only exist for V128 types for now *)
 type ternop = V128Op.ternop
+type splatop = V128Op.splatop
 
 type 'a memop =
   {ty : value_type; align : int; offset : Memory.offset; sz : 'a option}
@@ -134,6 +137,7 @@ and instr' =
   | Binary of binop                   (* binary numeric operator *)
   | Ternary of ternop                 (* ternary numeric operator *)
   | Convert of cvtop                  (* conversion *)
+  | Splat of splatop                (* duplicate value into a v128 *)
   | ExtractLane of extractop          (* extract lane from v128 value *)
 
 

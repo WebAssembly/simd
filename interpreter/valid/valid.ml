@@ -305,6 +305,14 @@ let rec check_instr (c : context) (e : instr) (s : infer_stack_type) : op_type =
     let t1, t2 = type_cvtop e.at cvtop in
     [t1] --> [t2]
 
+  | Splat (V128Op.I64x2 _) ->
+    [I64Type] --> [V128Type]
+  | Splat (V128Op.F64x2 _) ->
+    [F64Type] --> [V128Type]
+  | Splat (V128Op.F32x4 _) ->
+    [F32Type] --> [V128Type]
+  | Splat _ ->
+    [I32Type] --> [V128Type]
   | ExtractLane (V128Op.I32x4ExtractLane _) ->
     [V128Type] --> [I32Type]
   | ExtractLane (V128Op.F32x4ExtractLane _) ->
