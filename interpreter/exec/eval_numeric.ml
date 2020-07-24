@@ -305,8 +305,6 @@ struct
     | F32x4 Splat -> V128 (V128.F32x4.splat (F32Op.of_value 1 v))
     | F64x2 Splat -> V128 (V128.F64x2.splat (F64Op.of_value 1 v))
     | _ -> assert false
-
-
 end
 
 let eval_extractop extractop v = V128Op.extractop extractop v
