@@ -177,7 +177,7 @@ These operations closely match respective operations available in hardware.
      \K{andnot} ~|~
      \K{or} ~|~
      \K{xor} \\
-   \production{SIMD unary operator} & \vternop &::=&
+   \production{SIMD ternary operator} & \vternop &::=&
      \K{bitselect} \\
    \production{integer test operator} & \itestop &::=&
      \K{eqz} \\
@@ -272,17 +272,16 @@ Occasionally, it is convenient to group operators together according to the foll
      \vfunop ~|~
      \EXTEND{N}\K{\_s} \\
    \production{binary operator} & \binop &::=&
-   \ibinop ~|~
-   \fbinop ~|~
-   \vbinop ~|~
-   \vibinop ~|~
-   \vsatbinop ~|~
-   \vfbinop ~|~
-   \AVGRU
-   \\
+     \ibinop ~|~
+     \fbinop ~|~
+     \vbinop ~|~
+     \vibinop ~|~
+     \vsatbinop ~|~
+     \vfbinop ~|~
+     \AVGRU \\
    \production{test operator} & \testop &::=&
-   \itestop ~|~
-   \vtestop \\
+     \itestop ~|~
+     \vtestop \\
    \production{relational operator} & \relop &::=& \irelop ~|~ \frelop \\
    \production{conversion operator} & \cvtop &::=&
      \WRAP ~|~
