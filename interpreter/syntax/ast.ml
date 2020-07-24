@@ -137,7 +137,7 @@ and instr' =
   | Binary of binop                   (* binary numeric operator *)
   | Ternary of ternop                 (* ternary numeric operator *)
   | Convert of cvtop                  (* conversion *)
-  | Splat of splatop                (* duplicate value into a v128 *)
+  | Splat of splatop                  (* duplicate value into a v128 *)
   | ExtractLane of extractop          (* extract lane from v128 value *)
 
 
