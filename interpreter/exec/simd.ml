@@ -48,6 +48,7 @@ sig
 
   val splat : lane -> t
   val extract_lane : int -> t -> lane
+  val extract_lane_u : int -> t -> lane
   val eq : t -> t -> t
   val ne : t -> t -> t
   val lt_s : t -> t -> t
@@ -200,12 +201,18 @@ struct
       val to_shape : Rep.t -> Int.t list
       val of_shape : Int.t list -> Rep.t
       val num_lanes : int
+      (* For I8 and I16, since they are stored signed in an int32, this mask
+       * is used for unsigned extracts, to get the right unsinged value. *)
+      val unsigned_mask : Int.t
     end) : Int with type t = Rep.t and type lane = Int.t =
   struct
     type t = Rep.t
     type lane = Int.t
     let splat x = Convert.of_shape (List.init Convert.num_lanes (fun i -> x))
     let extract_lane i s = List.nth (Convert.to_shape s) i
+    let extract_lane_u i s =
+      let s = extract_lane i s in
+      Int.and_ s Convert.unsigned_mask
     let unop f x = Convert.of_shape (List.map f (Convert.to_shape x))
     let binop f x y = Convert.of_shape (List.map2 f (Convert.to_shape x) (Convert.to_shape y))
     let cmp f x y = if f x y then (Int.of_int_s (-1)) else Int.zero
@@ -247,24 +254,28 @@ struct
       let to_shape = Rep.to_i8x16
       let of_shape = Rep.of_i8x16
       let num_lanes = lanes I8x16
+      let unsigned_mask = I8.of_int_u (0xff)
     end)
 
   module I16x8 = MakeInt (I16) (struct
       let to_shape = Rep.to_i16x8
       let of_shape = Rep.of_i16x8
       let num_lanes = lanes I16x8
+      let unsigned_mask = I16.of_int_u (0xffff)
     end)
 
   module I32x4 = MakeInt (I32) (struct
       let to_shape = Rep.to_i32x4
       let of_shape = Rep.of_i32x4
       let num_lanes = lanes I32x4
+      let unsigned_mask = I32.of_int_s (-1)
     end)
 
   module I64x2 = MakeInt (I64) (struct
       let to_shape = Rep.to_i64x2
       let of_shape = Rep.of_i64x2
       let num_lanes = lanes I64x2
+      let unsigned_mask = I64.of_int_s (-1)
     end)
 
   module F32x4 = MakeFloat (F32) (struct

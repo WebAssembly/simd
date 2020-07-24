@@ -74,7 +74,10 @@ struct
   type relop = TodoRelOp
   type vcvtop = Splat
   type cvtop = (vcvtop, vcvtop, vcvtop, vcvtop, vcvtop, vcvtop, vcvtop) v128op
-  type extractop = I32x4ExtractLane of int | F32x4ExtractLane of int
+  type e =
+      extension (* used for extracting I8 and I16 *)
+    * int       (* lane index *)
+  type extractop = (e, e, e, e, e, e, e) v128op
   type shift = Shl | ShrS | ShrU
   type shiftop = (shift, shift, shift, shift, shift, shift, shift) v128op
 end
