@@ -68,16 +68,11 @@ struct
   type unop = (iunop, iunop, iunop, iunop, funop, funop, vunop) v128op
   type binop = (ibinop, ibinop, ibinop, ibinop, fbinop, fbinop, vbinop) v128op
   type testop = (vtestop, vtestop, vtestop, vtestop, vtestop, vtestop, vtestop) v128op
-  type shift = Shl | ShrS | ShrU
-  type ('i8x16, 'i16x8, 'i32x4, 'i64x2) v128intop =
-    | I8x16 of 'i8x16
-    | I16x8 of 'i16x8
-    | I32x4 of 'i32x4
-    | I64x2 of 'i64x2
   type ternop = Bitselect
   type relop = TodoRelOp
   type cvtop = TodoCvtOp
   type extractop = I32x4ExtractLane of int | F32x4ExtractLane of int
+  type shift = Shl | ShrS | ShrU
   type shiftop = (shift, shift, shift, shift, shift, shift, shift) v128op
 end
 
