@@ -43,9 +43,6 @@ Numeric Instructions
 Numeric instructions provide basic operations over numeric :ref:`values <syntax-value>` of specific :ref:`type <syntax-valtype>`.
 These operations closely match respective operations available in hardware.
 
-.. todo::
-   add a note about how 128-bit SIMD instructions are different from numeric instructions and are described in the section below.
-
 .. math::
    \begin{array}{llcl}
    \production{width} & \X{nn}, \X{mm} &::=&
@@ -142,20 +139,10 @@ For each type, several subcategories can be distinguished:
 * *Conversions*: consume a value of one type and produce a result of another
   (the source type of the conversion is the one after the ":math:`\K{\_}`").
 
-.. todo::
-  Do these subcategories have to cover every instruction? E.g. simd shifts don't fit anywhere here, since they take 128-bit int and a 32-bit int.
-
 Some integer instructions come in two flavors,
 where a signedness annotation |sx| distinguishes whether the operands are to be :ref:`interpreted <aux-signed>` as :ref:`unsigned <syntax-uint>` or :ref:`signed <syntax-sint>` integers.
 For the other integer instructions, the use of two's complement for the signed interpretation means that they behave the same regardless of signedness.
 
-Instructions that operate on |V128| operands have a naming convention that
-determines how those operands will be interpreted. An instruction beginning with :math:`\K{i32x4}`
-will interpret its operands as four |i32|, packed side-by-side into a |i128|.
-Similarly, and instruction beginning with :math:`\K{f64x2}` interprets its operands as two |f64|, packed side-by-side into a |i128|.
-
-.. todo::
-  write up runtime interpretation for the lane shapes
 
 Conventions
 ...........
@@ -183,15 +170,13 @@ Occasionally, it is convenient to group operators together according to the foll
    \end{array}
 
 
-.. index:: ! parametric instruction, value type
-   pair: abstract syntax; instruction
-.. _syntax-instr-parametric:
-
 .. index:: ! simd instruction, fixed-width simd, value, value type
    pair: abstract syntax; instruction
 .. _syntax-vunop:
 .. _syntax-vbinop:
-.. _syntax-vternop:
+.. _syntax-vsunop:
+.. _syntax-vsbinop:
+.. _syntax-vsternop:
 .. _syntax-vtestop:
 .. _syntax-vshiftop:
 .. _syntax-viunop:
@@ -199,26 +184,30 @@ Occasionally, it is convenient to group operators together according to the foll
 .. _syntax-vsatbinop:
 .. _syntax-vfunop:
 .. _syntax-vfbinop:
+.. _syntax-virelop:
+.. _syntax-vfrelop:
 .. _syntax-instr-simd:
 
 SIMD Instructions
 ~~~~~~~~~~~~~~~~~~~~~~~
 
+SIMD instructions provide basic operations over :ref:`values <syntax-value>` of type |V128|.
+
 .. math::
    \begin{array}{llcl}
-   \production{signedness} & \sx &::=&
-     \K{u} ~|~ \K{s} \\
    \production{ishape} & \X{ixx} &::=&
      \K{i8x16} ~|~ \K{i16x8} ~|~ \K{i32x4} ~|~ \K{i64x2} \\
    \production{fshape} & \X{fxx} &::=&
      \K{f32x4} ~|~ \K{f64x2} \\
    \production{vshape} & \X{vxx} &::=&
      \X{ixx} ~|~ \X{fxx} \\
+   \production{signedness} & \sx &::=&
+     \K{u} ~|~ \K{s} \\
    \production{instruction} & \instr &::=&
      \K{v128.}\CONST~\xref{syntax/values}{syntax-simd}{\vX{\X{nnn}}} \\&&|&
-     \K{v128.}\vunop \\&&|&
-     \K{v128.}\vbinop \\&&|&
-     \K{v128.}\vternop \\&&|&
+     \K{v128.}\vsunop \\&&|&
+     \K{v128.}\vsbinop \\&&|&
+     \K{v128.}\vsternop \\&&|&
      \K{v8x16.}\SHUFFLE ~|~ \K{v8x16.}\SWIZZLE \\&&|&
      \X{vxx}\K{.}\SPLAT \\&&|&
      \K{i8x16.}\EXTRACTLANE\K{\_}\sx ~|~
@@ -227,8 +216,8 @@ SIMD Instructions
      \K{i64x2.}\EXTRACTLANE \\&&|&
      \X{fxx}\K{.}\EXTRACTLANE \\&&|&
      \X{vxx}\K{.}\REPLACELANE \\&&|&
-     \X{ixx}\K{.}\irelop \\&&|&
-     \X{fxx}\K{.}\frelop \\&&|&
+     \X{ixx}\K{.}\virelop \\&&|&
+     \X{fxx}\K{.}\vfrelop \\&&|&
      \K{i8x16.}\viunop ~|~
      \K{i16x8.}\viunop ~|~
      \K{i32x4.}\viunop \\&&|&
@@ -263,26 +252,26 @@ SIMD Instructions
      \K{i32x4.}\TRUNC\K{\_sat\_f32x4\_}\sx ~|~
      \K{f32x4.}\CONVERT\K{\_i32x4\_}\sx \\&&|&
      \dots \\
-   \production{SIMD unary operator} & \vunop &::=&
+   \production{SIMD unary operator} & \vsunop &::=&
      \K{not} \\
-   \production{SIMD binary operator} & \vbinop &::=&
+   \production{SIMD binary operator} & \vsbinop &::=&
      \K{and} ~|~
      \K{andnot} ~|~
      \K{or} ~|~
      \K{xor} \\
-   \production{SIMD ternary operator} & \vternop &::=&
+   \production{SIMD ternary operator} & \vsternop &::=&
      \K{bitselect} \\
    \production{SIMD test operator} & \vtestop &::=&
      \K{any\_true} ~|~
      \K{all\_true} \\
-   \production{integer relational operator} & \irelop &::=&
+   \production{SIMD integer relational operator} & \virelop &::=&
      \K{eq} ~|~
      \K{ne} ~|~
      \K{lt\_}\sx ~|~
      \K{gt\_}\sx ~|~
      \K{le\_}\sx ~|~
      \K{ge\_}\sx \\
-   \production{floating-point relational operator} & \frelop &::=&
+   \production{SIMD floating-point relational operator} & \vfrelop &::=&
      \K{eq} ~|~
      \K{ne} ~|~
      \K{lt} ~|~
@@ -317,9 +306,48 @@ SIMD Instructions
      \K{max} \\
    \end{array}
 
+SIMD instructions have a naming convention that
+determines how their operands will be interpreted. An instruction beginning with :math:`\K{i32x4}`
+will interpret its operands as four |i32|, packed side-by-side into a |i128|.
+This prefix, :math:`\K{i32x4}`, is known as the *shape* of the type, and is made up of the underlying element type, :math:`\K{i32}`, and the number of elements or *lanes*, :math:`\K{4}`. Operations are performed lane-wise on each element.
+
+An instruction that begins with :math:`\K{v128}` is not concerned about the underlying element type, and treats the entire |V128| as a |i128|.
 
 .. todo::
-   describe SIMD Instructions
+  write up runtime interpretation for the lane shapes
+
+SIMD instructions can be grouped into several subcategories:
+
+* *Constants*: return a static constant.
+
+* *Unary Operations*: consume one |V128| operand and produce one |V128| result.
+
+* *Binary Operations*: consume two |V128| operands and produce one |V128| result.
+
+* *Tests*: consume one |V128| operand and produce a Boolean integer result.
+
+* *Shifts*: consume a |v128| operand and a |i32| operand, producing one |V128| result.
+
+* *Extract lanes*: consume a |V128| operand and an immediate byte specifying the lane index and produce a result of the element type.
+
+* *Replace lanes*: consume a |V128| operand, an immediate byte specifying the lane index, and a value of the element type, and produce a |V128| result.
+
+* *Conversions/Splats*: consume a value of the integer or floating-point type and produce a |V128| result of a specified shape.
+
+.. todo::
+   should comparisons be called out in a separate subcategory? they are essentially the same as binary operations
+   should (v128) converions be called out in a separate subcategory? they have the same signature as unary opreations.
+
+.. * *Conversions*: consume a |V128| operand and produce a |V128| result. Lane-wise conversion from the source element type to the destination element type (the source type of the conversion is the one after the first ":math:`\K{\_}`").
+
+
+Some SIMD instructions have a signedness annotation |sx| which distinguishes whether the elements in the operands are to be :ref:`interpreted <aux-signed>` as :ref:`unsigned <syntax-uint>` or :ref:`signed <syntax-sint>` integers.
+For the other SIMD instructions, the use of two's complement for the signed interpretation means that they behave the same regardless of signedness.
+
+
+.. index:: ! parametric instruction, value type
+   pair: abstract syntax; instruction
+.. _syntax-instr-parametric:
 
 Parametric Instructions
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -396,7 +424,7 @@ Instructions in this group are concerned with linear :ref:`memory <syntax-mem>`.
      \K{i16x8.}\LOAD\K{8x8}\_\sx ~|~
      \K{i32x4.}\LOAD\K{16x4}\_\sx ~|~
      \K{i64x2.}\LOAD\K{32x2}\_\sx \\&&|&
-     \K{v128.}\LOAD\K{\_splat} \\&&|&
+     \X{vxx}\K{.}\LOAD\K{\_splat} \\&&|&
      \MEMORYSIZE \\&&|&
      \MEMORYGROW \\
    \end{array}
