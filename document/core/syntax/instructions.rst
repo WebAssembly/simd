@@ -206,8 +206,6 @@ SIMD Instructions
 
 .. math::
    \begin{array}{llcl}
-   \production{simdwidth} & \X{sss} &::=&
-     \K{128} \\
    \production{signedness} & \sx &::=&
      \K{u} ~|~ \K{s} \\
    \production{ishape} & \X{ixx} &::=&
@@ -217,10 +215,10 @@ SIMD Instructions
    \production{vshape} & \X{vxx} &::=&
      \X{ixx} ~|~ \X{fxx} \\
    \production{instruction} & \instr &::=&
-     \K{v}\X{sss}\K{.}\CONST~\xref{syntax/values}{syntax-simd}{\vX{\X{sss}}} \\&&|&
-     \K{v}\X{sss}\K{.}\vunop \\&&|&
-     \K{v}\X{sss}\K{.}\vbinop \\&&|&
-     \K{v}\X{sss}\K{.}\vternop \\&&|&
+     \K{v128.}\CONST~\xref{syntax/values}{syntax-simd}{\vX{\X{nnn}}} \\&&|&
+     \K{v128.}\vunop \\&&|&
+     \K{v128.}\vbinop \\&&|&
+     \K{v128.}\vternop \\&&|&
      \K{v8x16.}\SHUFFLE ~|~ \K{v8x16.}\SWIZZLE \\&&|&
      \X{vxx}\K{.}\SPLAT \\&&|&
      \K{i8x16.}\EXTRACTLANE\K{\_}\sx ~|~
@@ -274,8 +272,6 @@ SIMD Instructions
      \K{xor} \\
    \production{SIMD ternary operator} & \vternop &::=&
      \K{bitselect} \\
-   \production{integer test operator} & \itestop &::=&
-     \K{eqz} \\
    \production{SIMD test operator} & \vtestop &::=&
      \K{any\_true} ~|~
      \K{all\_true} \\
@@ -387,10 +383,10 @@ Instructions in this group are concerned with linear :ref:`memory <syntax-mem>`.
      \dots \\&&|&
      \K{i}\X{nn}\K{.}\LOAD~\memarg ~|~
      \K{f}\X{nn}\K{.}\LOAD~\memarg ~|~
-     \K{v}\X{sss}\K{.}\LOAD~\memarg \\&&|&
+     \K{v128.}\LOAD~\memarg \\&&|&
      \K{i}\X{nn}\K{.}\STORE~\memarg ~|~
      \K{f}\X{nn}\K{.}\STORE~\memarg ~|~
-     \K{v}\X{sss}\K{.}\STORE~\memarg \\&&|&
+     \K{v128.}\STORE~\memarg \\&&|&
      \K{i}\X{nn}\K{.}\LOAD\K{8\_}\sx~\memarg ~|~
      \K{i}\X{nn}\K{.}\LOAD\K{16\_}\sx~\memarg ~|~
      \K{i64.}\LOAD\K{32\_}\sx~\memarg \\&&|&
@@ -400,7 +396,7 @@ Instructions in this group are concerned with linear :ref:`memory <syntax-mem>`.
      \K{i16x8.}\LOAD\K{8x8}\_\sx ~|~
      \K{i32x4.}\LOAD\K{16x4}\_\sx ~|~
      \K{i64x2.}\LOAD\K{32x2}\_\sx \\&&|&
-     \K{v}\X{ixx}\K{.}\LOAD\K{\_splat} \\&&|&
+     \K{v128.}\LOAD\K{\_splat} \\&&|&
      \MEMORYSIZE \\&&|&
      \MEMORYGROW \\
    \end{array}
