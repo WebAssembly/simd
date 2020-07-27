@@ -295,7 +295,6 @@ module V128CvtOp =
 struct
   open Ast.SimdOp
 
-  (* let cvtop op v = failwith "TODO v128" *)
   let cvtop op v : value =
     match op with
     | I8x16 Splat -> V128 (V128.I8x16.splat (I32Op.of_value 1 v))
