@@ -35,16 +35,6 @@ The following sections group instructions into a number of different categories.
 .. _syntax-fbinop:
 .. _syntax-ftestop:
 .. _syntax-frelop:
-.. _syntax-vunop:
-.. _syntax-vbinop:
-.. _syntax-vternop:
-.. _syntax-vtestop:
-.. _syntax-vshiftop:
-.. _syntax-viunop:
-.. _syntax-vibinop:
-.. _syntax-vsatbinop:
-.. _syntax-vfunop:
-.. _syntax-vfbinop:
 .. _syntax-instr-numeric:
 
 Numeric Instructions
@@ -53,31 +43,22 @@ Numeric Instructions
 Numeric instructions provide basic operations over numeric :ref:`values <syntax-value>` of specific :ref:`type <syntax-valtype>`.
 These operations closely match respective operations available in hardware.
 
+.. todo::
+   add a note about how 128-bit SIMD instructions are different from numeric instructions and are described in the section below.
+
 .. math::
    \begin{array}{llcl}
    \production{width} & \X{nn}, \X{mm} &::=&
      \K{32} ~|~ \K{64} \\
-   \production{simdwidth} & \X{sss} &::=&
-     \K{128} \\
    \production{signedness} & \sx &::=&
      \K{u} ~|~ \K{s} \\
-   \production{ishape} & \X{ixx} &::=&
-     \K{i8x16} ~|~ \K{i16x8} ~|~ \K{i32x4} ~|~ \K{i64x2} \\
-   \production{fshape} & \X{fxx} &::=&
-     \K{f32x4} ~|~ \K{f64x2} \\
-   \production{vshape} & \X{vxx} &::=&
-     \X{ixx} ~|~ \X{fxx} \\
    \production{instruction} & \instr &::=&
      \K{i}\X{nn}\K{.}\CONST~\xref{syntax/values}{syntax-int}{\iX{\X{nn}}} ~|~
-     \K{f}\X{nn}\K{.}\CONST~\xref{syntax/values}{syntax-float}{\fX{\X{nn}}} ~|~
-     \K{v}\X{sss}\K{.}\CONST~\xref{syntax/values}{syntax-simd}{\vX{\X{sss}}} \\&&|&
+     \K{f}\X{nn}\K{.}\CONST~\xref{syntax/values}{syntax-float}{\fX{\X{nn}}} \\&&|&
      \K{i}\X{nn}\K{.}\iunop ~|~
-     \K{f}\X{nn}\K{.}\funop ~|~
-     \K{v}\X{sss}\K{.}\vunop \\&&|&
+     \K{f}\X{nn}\K{.}\funop \\&&|&
      \K{i}\X{nn}\K{.}\ibinop ~|~
-     \K{f}\X{nn}\K{.}\fbinop ~|~
-     \K{v}\X{sss}\K{.}\vbinop \\&&|&
-     \K{v}\X{sss}\K{.}\vternop \\&&|&
+     \K{f}\X{nn}\K{.}\fbinop \\&&|&
      \K{i}\X{nn}\K{.}\itestop \\&&|&
      \K{i}\X{nn}\K{.}\irelop ~|~
      \K{f}\X{nn}\K{.}\frelop \\&&|&
@@ -93,6 +74,153 @@ These operations closely match respective operations available in hardware.
      \K{f}\X{nn}\K{.}\CONVERT\K{\_i}\X{mm}\K{\_}\sx \\&&|&
      \K{i}\X{nn}\K{.}\REINTERPRET\K{\_f}\X{nn} ~|~
      \K{f}\X{nn}\K{.}\REINTERPRET\K{\_i}\X{nn} \\&&|&
+     \dots \\
+   \production{integer unary operator} & \iunop &::=&
+     \K{clz} ~|~
+     \K{ctz} ~|~
+     \K{popcnt} \\
+   \production{integer binary operator} & \ibinop &::=&
+     \K{add} ~|~
+     \K{sub} ~|~
+     \K{mul} ~|~
+     \K{div\_}\sx ~|~
+     \K{rem\_}\sx \\&&|&
+     \K{and} ~|~
+     \K{or} ~|~
+     \K{xor} ~|~
+     \K{shl} ~|~
+     \K{shr\_}\sx ~|~
+     \K{rotl} ~|~
+     \K{rotr} \\
+   \production{floating-point unary operator} & \funop &::=&
+     \K{abs} ~|~
+     \K{neg} ~|~
+     \K{sqrt} ~|~
+     \K{ceil} ~|~ 
+     \K{floor} ~|~ 
+     \K{trunc} ~|~ 
+     \K{nearest} \\
+   \production{floating-point binary operator} & \fbinop &::=&
+     \K{add} ~|~
+     \K{sub} ~|~
+     \K{mul} ~|~
+     \K{div} ~|~
+     \K{min} ~|~
+     \K{max} ~|~
+     \K{copysign} \\
+   \production{integer test operator} & \itestop &::=&
+     \K{eqz} \\
+   \production{integer relational operator} & \irelop &::=&
+     \K{eq} ~|~
+     \K{ne} ~|~
+     \K{lt\_}\sx ~|~
+     \K{gt\_}\sx ~|~
+     \K{le\_}\sx ~|~
+     \K{ge\_}\sx \\
+   \production{floating-point relational operator} & \frelop &::=&
+     \K{eq} ~|~
+     \K{ne} ~|~
+     \K{lt} ~|~
+     \K{gt} ~|~
+     \K{le} ~|~
+     \K{ge} \\
+   \end{array}
+
+Numeric instructions are divided by :ref:`value type <syntax-valtype>`.
+For each type, several subcategories can be distinguished:
+
+* *Constants*: return a static constant.
+
+* *Unary Operations*: consume one operand and produce one result of the respective type.
+
+* *Binary Operations*: consume two operands and produce one result of the respective type.
+
+* *Tests*: consume one operand of the respective type and produce a Boolean integer result.
+
+* *Comparisons*: consume two operands of the respective type and produce a Boolean integer result.
+
+* *Conversions*: consume a value of one type and produce a result of another
+  (the source type of the conversion is the one after the ":math:`\K{\_}`").
+
+.. todo::
+  Do these subcategories have to cover every instruction? E.g. simd shifts don't fit anywhere here, since they take 128-bit int and a 32-bit int.
+
+Some integer instructions come in two flavors,
+where a signedness annotation |sx| distinguishes whether the operands are to be :ref:`interpreted <aux-signed>` as :ref:`unsigned <syntax-uint>` or :ref:`signed <syntax-sint>` integers.
+For the other integer instructions, the use of two's complement for the signed interpretation means that they behave the same regardless of signedness.
+
+Instructions that operate on |V128| operands have a naming convention that
+determines how those operands will be interpreted. An instruction beginning with :math:`\K{i32x4}`
+will interpret its operands as four |i32|, packed side-by-side into a |i128|.
+Similarly, and instruction beginning with :math:`\K{f64x2}` interprets its operands as two |f64|, packed side-by-side into a |i128|.
+
+.. todo::
+  write up runtime interpretation for the lane shapes
+
+Conventions
+...........
+
+Occasionally, it is convenient to group operators together according to the following grammar shorthands:
+
+.. math::
+   \begin{array}{llll}
+   \production{unary operator} & \unop &::=&
+     \iunop ~|~
+     \funop ~|~
+     \EXTEND{N}\K{\_s} \\
+   \production{binary operator} & \binop &::=& \ibinop ~|~ \fbinop \\
+   \production{test operator} & \testop &::=& \itestop \\
+   \production{relational operator} & \relop &::=& \irelop ~|~ \frelop \\
+   \production{conversion operator} & \cvtop &::=&
+     \WRAP ~|~
+     \EXTEND ~|~
+     \TRUNC ~|~
+     \TRUNC\K{\_sat} ~|~
+     \CONVERT ~|~
+     \DEMOTE ~|~
+     \PROMOTE ~|~
+     \REINTERPRET \\
+   \end{array}
+
+
+.. index:: ! parametric instruction, value type
+   pair: abstract syntax; instruction
+.. _syntax-instr-parametric:
+
+.. index:: ! simd instruction, fixed-width simd, value, value type
+   pair: abstract syntax; instruction
+.. _syntax-vunop:
+.. _syntax-vbinop:
+.. _syntax-vternop:
+.. _syntax-vtestop:
+.. _syntax-vshiftop:
+.. _syntax-viunop:
+.. _syntax-vibinop:
+.. _syntax-vsatbinop:
+.. _syntax-vfunop:
+.. _syntax-vfbinop:
+.. _syntax-instr-simd:
+
+SIMD Instructions
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. math::
+   \begin{array}{llcl}
+   \production{simdwidth} & \X{sss} &::=&
+     \K{128} \\
+   \production{signedness} & \sx &::=&
+     \K{u} ~|~ \K{s} \\
+   \production{ishape} & \X{ixx} &::=&
+     \K{i8x16} ~|~ \K{i16x8} ~|~ \K{i32x4} ~|~ \K{i64x2} \\
+   \production{fshape} & \X{fxx} &::=&
+     \K{f32x4} ~|~ \K{f64x2} \\
+   \production{vshape} & \X{vxx} &::=&
+     \X{ixx} ~|~ \X{fxx} \\
+   \production{instruction} & \instr &::=&
+     \K{v}\X{sss}\K{.}\CONST~\xref{syntax/values}{syntax-simd}{\vX{\X{sss}}} \\&&|&
+     \K{v}\X{sss}\K{.}\vunop \\&&|&
+     \K{v}\X{sss}\K{.}\vbinop \\&&|&
+     \K{v}\X{sss}\K{.}\vternop \\&&|&
      \K{v8x16.}\SHUFFLE ~|~ \K{v8x16.}\SWIZZLE \\&&|&
      \X{vxx}\K{.}\SPLAT \\&&|&
      \K{i8x16.}\EXTRACTLANE\K{\_}\sx ~|~
@@ -137,39 +265,6 @@ These operations closely match respective operations available in hardware.
      \K{i32x4.}\TRUNC\K{\_sat\_f32x4\_}\sx ~|~
      \K{f32x4.}\CONVERT\K{\_i32x4\_}\sx \\&&|&
      \dots \\
-   \production{integer unary operator} & \iunop &::=&
-     \K{clz} ~|~
-     \K{ctz} ~|~
-     \K{popcnt} \\
-   \production{integer binary operator} & \ibinop &::=&
-     \K{add} ~|~
-     \K{sub} ~|~
-     \K{mul} ~|~
-     \K{div\_}\sx ~|~
-     \K{rem\_}\sx \\&&|&
-     \K{and} ~|~
-     \K{or} ~|~
-     \K{xor} ~|~
-     \K{shl} ~|~
-     \K{shr\_}\sx ~|~
-     \K{rotl} ~|~
-     \K{rotr} \\
-   \production{floating-point unary operator} & \funop &::=&
-     \K{abs} ~|~
-     \K{neg} ~|~
-     \K{sqrt} ~|~
-     \K{ceil} ~|~ 
-     \K{floor} ~|~ 
-     \K{trunc} ~|~ 
-     \K{nearest} \\
-   \production{floating-point binary operator} & \fbinop &::=&
-     \K{add} ~|~
-     \K{sub} ~|~
-     \K{mul} ~|~
-     \K{div} ~|~
-     \K{min} ~|~
-     \K{max} ~|~
-     \K{copysign} \\
    \production{SIMD unary operator} & \vunop &::=&
      \K{not} \\
    \production{SIMD binary operator} & \vbinop &::=&
@@ -226,80 +321,9 @@ These operations closely match respective operations available in hardware.
      \K{max} \\
    \end{array}
 
-Numeric instructions are divided by :ref:`value type <syntax-valtype>`.
-For each type, several subcategories can be distinguished:
-
-* *Constants*: return a static constant.
-
-* *Unary Operations*: consume one operand and produce one result of the respective type.
-
-* *Binary Operations*: consume two operands and produce one result of the respective type.
-
-* *Tests*: consume one operand of the respective type and produce a Boolean integer result.
-
-* *Comparisons*: consume two operands of the respective type and produce a Boolean integer result or a result of the respective type.
-
-* *Conversions*: consume a value of one type and produce a result of another
-  (the source type of the conversion is the one after the ":math:`\K{\_}`").
 
 .. todo::
-  Do these subcategories have to cover every instruction? E.g. simd shifts don't fit anywhere here, since they take 128-bit int and a 32-bit int.
-
-Some integer instructions come in two flavors,
-where a signedness annotation |sx| distinguishes whether the operands are to be :ref:`interpreted <aux-signed>` as :ref:`unsigned <syntax-uint>` or :ref:`signed <syntax-sint>` integers.
-For the other integer instructions, the use of two's complement for the signed interpretation means that they behave the same regardless of signedness.
-
-Instructions that operate on |V128| operands have a naming convention that
-determines how those operands will be interpreted. An instruction beginning with :math:`\K{i32x4}`
-will interpret its operands as four |i32|, packed side-by-side into a |i128|.
-Similarly, and instruction beginning with :math:`\K{f64x2}` interprets its operands as two |f64|, packed side-by-side into a |i128|.
-
-.. todo::
-  write up runtime interpretation for the lane shapes
-
-Conventions
-...........
-
-Occasionally, it is convenient to group operators together according to the following grammar shorthands:
-
-.. math::
-   \begin{array}{llll}
-   \production{unary operator} & \unop &::=&
-     \iunop ~|~
-     \funop ~|~
-     \vunop ~|~
-     \viunop ~|~
-     \vfunop ~|~
-     \EXTEND{N}\K{\_s} \\
-   \production{binary operator} & \binop &::=&
-     \ibinop ~|~
-     \fbinop ~|~
-     \vbinop ~|~
-     \vibinop ~|~
-     \vsatbinop ~|~
-     \vfbinop ~|~
-     \AVGRU \\
-   \production{test operator} & \testop &::=&
-     \itestop ~|~
-     \vtestop \\
-   \production{relational operator} & \relop &::=& \irelop ~|~ \frelop \\
-   \production{conversion operator} & \cvtop &::=&
-     \WRAP ~|~
-     \EXTEND ~|~
-     \TRUNC ~|~
-     \TRUNC\K{\_sat} ~|~
-     \CONVERT ~|~
-     \DEMOTE ~|~
-     \PROMOTE ~|~
-     \REINTERPRET ~|~
-     \NARROW ~|~
-     \WIDEN \\
-   \end{array}
-
-
-.. index:: ! parametric instruction, value type
-   pair: abstract syntax; instruction
-.. _syntax-instr-parametric:
+   describe SIMD Instructions
 
 Parametric Instructions
 ~~~~~~~~~~~~~~~~~~~~~~~
