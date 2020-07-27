@@ -274,7 +274,7 @@ let rec step (c : config) : config =
         (try Eval_numeric.eval_extractop extractop v :: vs', []
         with exn -> vs', [Trapping (numeric_error e.at exn) @@ e.at])
 
-      | Shift shiftop, s :: v :: vs' ->
+      | SimdShift shiftop, s :: v :: vs' ->
         (try Eval_numeric.eval_shiftop shiftop v s :: vs', []
         with exn -> vs', [Trapping (numeric_error e.at exn) @@ e.at])
 
