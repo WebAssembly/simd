@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Types &#8212; WebAssembly 1.1</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"MAXBUFFER": 30720}})</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Instructions" href="instructions.html" />
+    <link rel="prev" title="Values" href="values.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/webassembly.png" alt="Logo"/>
+            </a></p><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syntax/index.html">Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../valid/index.html">Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../exec/index.html">Execution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../binary/index.html">Binary Format</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Text Format</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="conventions.html">Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lexical.html">Lexical Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="values.html">Values</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instructions.html">Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html">Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/index.html">Appendix</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/index-types.html">Index of Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/index-instructions.html">Index of Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/index-rules.html">Index of Semantic Rules</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="../genindex.html">Index</a></li>
+    
+    <li class="toctree-l1"><a href="../_download/WebAssembly.pdf">Download as PDF</a></li>
+    
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="types">
+<span id="text-type"></span><span id="index-0"></span><h1>Types<a class="headerlink" href="#types" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="value-types">
+<span id="text-valtype"></span><span id="index-1"></span><h2>Value Types<a class="headerlink" href="#value-types" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{llcll&#64;{\qquad\qquad}l}
+\def\mathdef2426#1{{}}\mathdef2426{value type} &amp; \href{../text/types.html#text-valtype}{\mathtt{valtype}} &amp;::=&amp;
+  \def\mathdef2463#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2463{i32} &amp;\Rightarrow&amp; \href{../syntax/types.html#syntax-valtype}{\mathsf{i32}} \\ &amp;&amp;|&amp;
+  \def\mathdef2464#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2464{i64} &amp;\Rightarrow&amp; \href{../syntax/types.html#syntax-valtype}{\mathsf{i64}} \\ &amp;&amp;|&amp;
+  \def\mathdef2465#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2465{f32} &amp;\Rightarrow&amp; \href{../syntax/types.html#syntax-valtype}{\mathsf{f32}} \\ &amp;&amp;|&amp;
+  \def\mathdef2466#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2466{f64} &amp;\Rightarrow&amp; \href{../syntax/types.html#syntax-valtype}{\mathsf{f64}} \\ &amp;&amp;|&amp;
+  \def\mathdef2467#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2467{v128} &amp;\Rightarrow&amp; \href{../syntax/types.html#syntax-valtype}{\mathsf{v128}} \\
+\end{array}\end{split}\]</div>
+</div>
+<div class="section" id="function-types">
+<span id="text-functype"></span><span id="text-result"></span><span id="text-param"></span><span id="index-2"></span><h2>Function Types<a class="headerlink" href="#function-types" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{llclll&#64;{\qquad\qquad}l}
+\def\mathdef2426#1{{}}\mathdef2426{function type} &amp; \href{../text/types.html#text-functype}{\mathtt{functype}} &amp;::=&amp;
+  \def\mathdef2468#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2468{(}~\def\mathdef2469#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2469{func}~~t_1^\ast{:\,}\href{../text/conventions.html#text-vec}{\mathtt{vec}}(\href{../text/types.html#text-functype}{\mathtt{param}})~~t_2^\ast{:\,}\href{../text/conventions.html#text-vec}{\mathtt{vec}}(\href{../text/types.html#text-functype}{\mathtt{result}})~\def\mathdef2470#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2470{)}
+    &amp;\Rightarrow&amp; [t_1^\ast] \href{../syntax/types.html#syntax-functype}{\rightarrow} [t_2^\ast] \\
+\def\mathdef2426#1{{}}\mathdef2426{parameter} &amp; \href{../text/types.html#text-functype}{\mathtt{param}} &amp;::=&amp;
+  \def\mathdef2471#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2471{(}~\def\mathdef2472#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2472{param}~~\href{../text/values.html#text-id}{\mathtt{id}}^?~~t{:}\href{../text/types.html#text-valtype}{\mathtt{valtype}}~\def\mathdef2473#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2473{)}
+    &amp;\Rightarrow&amp; t \\
+\def\mathdef2426#1{{}}\mathdef2426{result} &amp; \href{../text/types.html#text-functype}{\mathtt{result}} &amp;::=&amp;
+  \def\mathdef2474#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2474{(}~\def\mathdef2475#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2475{result}~~t{:}\href{../text/types.html#text-valtype}{\mathtt{valtype}}~\def\mathdef2476#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2476{)}
+    &amp;\Rightarrow&amp; t \\
+\end{array}\end{split}\]</div>
+<div class="section" id="abbreviations">
+<h3>Abbreviations<a class="headerlink" href="#abbreviations" title="Permalink to this headline">¶</a></h3>
+<p>Multiple anonymous parameters or results may be combined into a single declaration:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{llclll}
+\def\mathdef2426#1{{}}\mathdef2426{parameter} &amp;
+  \def\mathdef2477#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2477{(}~~\def\mathdef2478#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2478{param}~~\href{../text/types.html#text-valtype}{\mathtt{valtype}}^\ast~~\def\mathdef2479#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2479{)} &amp;\equiv&amp;
+  (\def\mathdef2480#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2480{(}~~\def\mathdef2481#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2481{param}~~\href{../text/types.html#text-valtype}{\mathtt{valtype}}~~\def\mathdef2482#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2482{)})^\ast \\
+\def\mathdef2426#1{{}}\mathdef2426{result} &amp;
+  \def\mathdef2483#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2483{(}~~\def\mathdef2484#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2484{result}~~\href{../text/types.html#text-valtype}{\mathtt{valtype}}^\ast~~\def\mathdef2485#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2485{)} &amp;\equiv&amp;
+  (\def\mathdef2486#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2486{(}~~\def\mathdef2487#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2487{result}~~\href{../text/types.html#text-valtype}{\mathtt{valtype}}~~\def\mathdef2488#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2488{)})^\ast \\
+\end{array}\end{split}\]</div>
+</div>
+</div>
+<div class="section" id="limits">
+<span id="text-limits"></span><span id="index-3"></span><h2>Limits<a class="headerlink" href="#limits" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{llclll}
+\def\mathdef2426#1{{}}\mathdef2426{limits} &amp; \href{../text/types.html#text-limits}{\mathtt{limits}} &amp;::=&amp;
+  n{:}\href{../text/values.html#text-int}{\def\mathdef2451#1{{\mathtt{u}#1}}\mathdef2451{\mathtt{32}}} &amp;\Rightarrow&amp; \{ \href{../syntax/types.html#syntax-limits}{\mathsf{min}}~n, \href{../syntax/types.html#syntax-limits}{\mathsf{max}}~\epsilon \} \\ &amp;&amp;|&amp;
+  n{:}\href{../text/values.html#text-int}{\def\mathdef2451#1{{\mathtt{u}#1}}\mathdef2451{\mathtt{32}}}~~m{:}\href{../text/values.html#text-int}{\def\mathdef2451#1{{\mathtt{u}#1}}\mathdef2451{\mathtt{32}}} &amp;\Rightarrow&amp; \{ \href{../syntax/types.html#syntax-limits}{\mathsf{min}}~n, \href{../syntax/types.html#syntax-limits}{\mathsf{max}}~m \} \\
+\end{array}\end{split}\]</div>
+</div>
+<div class="section" id="memory-types">
+<span id="text-memtype"></span><span id="index-4"></span><h2>Memory Types<a class="headerlink" href="#memory-types" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{llclll&#64;{\qquad\qquad}l}
+\def\mathdef2426#1{{}}\mathdef2426{memory type} &amp; \href{../text/types.html#text-memtype}{\mathtt{memtype}} &amp;::=&amp;
+  \mathit{lim}{:}\href{../text/types.html#text-limits}{\mathtt{limits}} &amp;\Rightarrow&amp; \mathit{lim} \\
+\end{array}\end{split}\]</div>
+</div>
+<div class="section" id="table-types">
+<span id="text-tabletype"></span><span id="text-elemtype"></span><span id="index-5"></span><h2>Table Types<a class="headerlink" href="#table-types" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{llclll}
+\def\mathdef2426#1{{}}\mathdef2426{table type} &amp; \href{../text/types.html#text-tabletype}{\mathtt{tabletype}} &amp;::=&amp;
+  \mathit{lim}{:}\href{../text/types.html#text-limits}{\mathtt{limits}}~~\mathit{et}{:}\href{../text/types.html#text-elemtype}{\mathtt{elemtype}} &amp;\Rightarrow&amp; \mathit{lim}~\mathit{et} \\
+\def\mathdef2426#1{{}}\mathdef2426{element type} &amp; \href{../text/types.html#text-elemtype}{\mathtt{elemtype}} &amp;::=&amp;
+  \def\mathdef2489#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2489{funcref} &amp;\Rightarrow&amp; \href{../syntax/types.html#syntax-elemtype}{\mathsf{funcref}} \\
+\end{array}\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Additional element types may be introduced in future versions of WebAssembly.</p>
+</div>
+</div>
+<div class="section" id="global-types">
+<span id="text-globaltype"></span><span id="index-6"></span><h2>Global Types<a class="headerlink" href="#global-types" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{llclll}
+\def\mathdef2426#1{{}}\mathdef2426{global type} &amp; \href{../text/types.html#text-globaltype}{\mathtt{globaltype}} &amp;::=&amp;
+  t{:}\href{../text/types.html#text-valtype}{\mathtt{valtype}} &amp;\Rightarrow&amp; \href{../syntax/types.html#syntax-mut}{\mathsf{const}}~t \\ &amp;&amp;|&amp;
+  \def\mathdef2490#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2490{(}~\def\mathdef2491#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2491{mut}~~t{:}\href{../text/types.html#text-valtype}{\mathtt{valtype}}~\def\mathdef2492#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2492{)} &amp;\Rightarrow&amp; \href{../syntax/types.html#syntax-mut}{\mathsf{var}}~t \\
+\end{array}\end{split}\]</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2017, WebAssembly Community Group.
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
