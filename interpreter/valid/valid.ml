@@ -179,13 +179,13 @@ let check_memop (c : context) (memop : 'a memop) get_sz at =
 
 let check_simd_lane_idx op at =
   let max, idx = match op with
-  | V128Op.I8x16 (_, idx) -> 16, idx
-  | V128Op.I16x8 (_, idx) -> 8, idx
-  | V128Op.I32x4 (_, idx) -> 4, idx
-  | V128Op.I64x2 (_, idx) -> 2, idx
-  | V128Op.F32x4 (_, idx) -> 4, idx
-  | V128Op.F64x2 (_, idx) -> 2, idx
-  | V128Op.V128 (_, idx) -> 1, idx
+    | V128Op.I8x16 (_, idx) -> 16, idx
+    | V128Op.I16x8 (_, idx) -> 8, idx
+    | V128Op.I32x4 (_, idx) -> 4, idx
+    | V128Op.I64x2 (_, idx) -> 2, idx
+    | V128Op.F32x4 (_, idx) -> 4, idx
+    | V128Op.F64x2 (_, idx) -> 2, idx
+    | V128Op.V128 (_, idx) -> 1, idx
   in require (idx < max) at "invalid lane index"
 
 (*
