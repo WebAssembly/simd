@@ -224,6 +224,8 @@ let v128_or = Binary (V128 (V128Op.V128 V128Op.Or))
 let v128_xor = Binary (V128 (V128Op.V128 V128Op.Xor))
 let v128_bitselect = Ternary (V128Op.Bitselect)
 
+let v8x16_swizzle = Binary (V128 V128Op.(I8x16 Swizzle))
+
 let i8x16_splat = Convert (V128 (V128Op.I8x16 V128Op.Splat))
 let i8x16_eq = Binary (V128 V128Op.(I8x16 Eq))
 let i8x16_ne = Binary (V128 V128Op.(I8x16 Ne))
