@@ -331,8 +331,8 @@ let rec check_instr (c : context) (e : instr) (s : infer_stack_type) : op_type =
     let t1, t2 = type_cvtop e.at cvtop in
     [t1] --> [t2]
 
-  | ExtractLane (V128Op.V128 _) -> assert false
-  | ExtractLane extractop ->
+  | SimdExtract (V128Op.V128 _) -> assert false
+  | SimdExtract extractop ->
     check_simd_lane_idx extractop e.at;
     let t = type_extract_lane extractop in
     [V128Type] --> [t]

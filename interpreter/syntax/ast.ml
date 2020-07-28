@@ -143,7 +143,7 @@ and instr' =
   | Binary of binop                   (* binary numeric operator *)
   | Ternary of ternop                 (* ternary numeric operator *)
   | Convert of cvtop                  (* conversion *)
-  | ExtractLane of extractop          (* extract lane from v128 value *)
+  | SimdExtract of extractop          (* extract lane from v128 value *)
   | SimdShift of shiftop              (* shifts for v128 value *)
 
 

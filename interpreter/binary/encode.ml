@@ -395,7 +395,7 @@ let encode m =
       | Convert (F64 F64Op.ReinterpretInt) -> op 0xbf
       | Convert (V128 _) -> failwith "TODO v128"
 
-      | ExtractLane _ -> failwith "TODO v128"
+      | SimdExtract _ -> failwith "TODO v128"
 
       | SimdShift (_) -> failwith "TODO v128"
 
