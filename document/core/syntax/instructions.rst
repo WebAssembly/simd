@@ -324,6 +324,8 @@ SIMD instructions can be grouped into several subcategories:
 
 * *Binary Operations*: consume two |V128| operands and produce one |V128| result.
 
+* *Ternary Operations*: consume three |V128| operands and produce one |V128| result.
+
 * *Tests*: consume one |V128| operand and produce a Boolean integer result.
 
 * *Shifts*: consume a |v128| operand and a |i32| operand, producing one |V128| result.
