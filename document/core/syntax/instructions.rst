@@ -181,6 +181,7 @@ Occasionally, it is convenient to group operators together according to the foll
 .. _syntax-vshiftop:
 .. _syntax-viunop:
 .. _syntax-vibinop:
+.. _syntax-viminmaxop:
 .. _syntax-vsatbinop:
 .. _syntax-vfunop:
 .. _syntax-vfbinop:
@@ -235,11 +236,10 @@ SIMD instructions provide basic operations over :ref:`values <syntax-value>` of 
      \K{i16x8.}\WIDEN\K{\_high}\K{\_i8x16\_}\sx ~|~
      \K{i32x4.}\WIDEN\K{\_high}\K{\_i16x8\_}\sx \\&&|&
      \X{ixx}\K{.}\vshiftop \\&&|&
-     \K{i8x16.}\vibinop ~|~
-     \K{i16x8.}\vibinop ~|~
-     \K{i32x4.}\vibinop \\&&|&
-     \K{i64x2.}\ADD ~|~
-     \K{i64x2.}\SUB \\&&|&
+     \X{ixx}\K{.}\vibinop \\&&|&
+     \K{i8x16.}\viminmaxop ~|~
+     \K{i16x8.}\viminmaxop ~|~
+     \K{i32x4.}\viminmaxop \\&&|&
      \K{i8x16.}\vsatbinop ~|~
      \K{i16x8.}\vsatbinop \\&&|&
      \K{i16x8.}\K{mul} ~|~
@@ -286,7 +286,8 @@ SIMD instructions provide basic operations over :ref:`values <syntax-value>` of 
      \K{neg} \\
    \production{SIMD integer binary operator} & \vibinop &::=&
      \K{add} ~|~
-     \K{sub} ~|~
+     \K{sub} \\
+   \production{SIMD integer binary min/max operator} & \viminmaxop &::=&
      \K{min\_}\sx ~|~
      \K{max\_}\sx \\
    \production{SIMD integer saturating binary operator} & \vsatbinop &::=&

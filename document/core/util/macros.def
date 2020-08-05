@@ -417,6 +417,7 @@
 .. |vshiftop| mathdef:: \xref{syntax/instructions}{syntax-vshiftop}{\X{vshiftop}}
 .. |viunop| mathdef:: \xref{syntax/instructions}{syntax-viunop}{\X{viunop}}
 .. |vibinop| mathdef:: \xref{syntax/instructions}{syntax-vibinop}{\X{vibinop}}
+.. |viminmaxop| mathdef:: \xref{syntax/instructions}{syntax-viminmaxop}{\X{viminmaxop}}
 .. |vsatbinop| mathdef:: \xref{syntax/instructions}{syntax-vsatbinop}{\X{vsatbinop}}
 .. |vfunop| mathdef:: \xref{syntax/instructions}{syntax-vfunop}{\X{vfunop}}
 .. |vfbinop| mathdef:: \xref{syntax/instructions}{syntax-vfbinop}{\X{vfbinop}}
