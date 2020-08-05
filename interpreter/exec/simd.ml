@@ -193,7 +193,7 @@ struct
 
     let splat x = Convert.of_shape (List.init Convert.num_lanes (fun i -> x))
     let extract_lane i s = List.nth (Convert.to_shape s) i
-    let replace_lane v i l = unopi (fun j x -> if j = i then l else x) v
+    let replace_lane v lane r = unopi (fun i x -> if i = lane then r else x) v
 
     let all_ones = Float.of_float (Int64.float_of_bits (Int64.minus_one))
     let cmp f x y = if f x y then all_ones else Float.zero
@@ -224,7 +224,7 @@ struct
     type lane = Int.t
     let unop f x = Convert.of_shape (List.map f (Convert.to_shape x))
     let unopi f x = Convert.of_shape (List.mapi f (Convert.to_shape x))
-    let replace_lane v i l = unopi (fun j x -> if j = i then l else x) v
+    let replace_lane v lane r = unopi (fun i x -> if i = lane then r else x) v
     let binop f x y = Convert.of_shape (List.map2 f (Convert.to_shape x) (Convert.to_shape y))
 
     let splat x = Convert.of_shape (List.init Convert.num_lanes (fun i -> x))
