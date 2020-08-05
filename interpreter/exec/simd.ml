@@ -49,7 +49,7 @@ sig
   val splat : lane -> t
   val extract_lane_s : int -> t -> lane
   val extract_lane_u : int -> t -> lane
-  val replace_lane : t -> int -> lane -> t
+  val replace_lane : int -> t -> lane -> t
   val eq : t -> t -> t
   val ne : t -> t -> t
   val lt_s : t -> t -> t
@@ -84,7 +84,7 @@ sig
 
   val splat : lane -> t
   val extract_lane : int -> t -> lane
-  val replace_lane : t -> int -> lane -> t
+  val replace_lane : int -> t -> lane -> t
   val eq : t -> t -> t
   val ne : t -> t -> t
   val lt : t -> t -> t
@@ -193,7 +193,7 @@ struct
 
     let splat x = Convert.of_shape (List.init Convert.num_lanes (fun i -> x))
     let extract_lane i s = List.nth (Convert.to_shape s) i
-    let replace_lane v i x = unopi (fun j y -> if j = i then x else y) v
+    let replace_lane i v x = unopi (fun j y -> if j = i then x else y) v
 
     let all_ones = Float.of_float (Int64.float_of_bits (Int64.minus_one))
     let cmp f x y = if f x y then all_ones else Float.zero
@@ -229,7 +229,7 @@ struct
     let splat x = Convert.of_shape (List.init Convert.num_lanes (fun i -> x))
     let extract_lane_s i s = List.nth (Convert.to_shape s) i
     let extract_lane_u i s = Int.as_unsigned (extract_lane_s i s)
-    let replace_lane v i x = unopi (fun j y -> if j = i then x else y) v
+    let replace_lane i v x = unopi (fun j y -> if j = i then x else y) v
 
     let cmp f x y = if f x y then (Int.of_int_s (-1)) else Int.zero
     let eq = binop (cmp Int.eq)

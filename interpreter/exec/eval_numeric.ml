@@ -267,12 +267,12 @@ struct
   let replaceop op v (r : Values.value) =
     let v128 = of_value 1 v in
     match op, r with
-    | I8x16 imm, I32 r -> to_value (SXX.I8x16.replace_lane v128 imm r)
-    | I16x8 imm, I32 r -> to_value (SXX.I16x8.replace_lane v128 imm r)
-    | I32x4 imm, I32 r -> to_value (SXX.I32x4.replace_lane v128 imm r)
-    | I64x2 imm, I64 r -> to_value (SXX.I64x2.replace_lane v128 imm r)
-    | F32x4 imm, F32 r -> to_value (SXX.F32x4.replace_lane v128 imm r)
-    | F64x2 imm, F64 r -> to_value (SXX.F64x2.replace_lane v128 imm r)
+    | I8x16 imm, I32 r -> to_value (SXX.I8x16.replace_lane imm v128 r)
+    | I16x8 imm, I32 r -> to_value (SXX.I16x8.replace_lane imm v128 r)
+    | I32x4 imm, I32 r -> to_value (SXX.I32x4.replace_lane imm v128 r)
+    | I64x2 imm, I64 r -> to_value (SXX.I64x2.replace_lane imm v128 r)
+    | F32x4 imm, F32 r -> to_value (SXX.F32x4.replace_lane imm v128 r)
+    | F64x2 imm, F64 r -> to_value (SXX.F64x2.replace_lane imm v128 r)
     | _ -> assert false
 
   let ternop op =
