@@ -317,7 +317,7 @@ Operations are performed point-wise on the values of each lane.
 as four |i32| values, packed into an |i128|.
    The bitwidth of the numeric type :math:`t` times :math:`N` always is 128.
 
-An instruction that begins with :math:`\K{v128}` is not concerned about the underlying element type, and treats the entire |V128| as a |i128|.
+Instructions prefixed with :math:`\K{v128}` do not involve a specific interpretation, and treat the |V128| as an |i128| value or a vector of 128 individual bits.
 
 .. todo::
   write up runtime interpretation for the lane shapes
