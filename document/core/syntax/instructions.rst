@@ -189,7 +189,7 @@ Occasionally, it is convenient to group operators together according to the foll
 .. _syntax-instr-simd:
 
 SIMD Instructions
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
 SIMD instructions provide basic operations over :ref:`values <syntax-value>` of type |V128|.
 
@@ -201,9 +201,8 @@ SIMD instructions provide basic operations over :ref:`values <syntax-value>` of 
      \K{f32x4} ~|~ \K{f64x2} \\
    \production{vshape} & \X{vxx} &::=&
      \X{ixx} ~|~ \X{fxx} \\
-   \production{signedness} & \sx &::=&
-     \K{u} ~|~ \K{s} \\
    \production{instruction} & \instr &::=&
+     \dots \\&&|&
      \K{v128.}\CONST~\xref{syntax/values}{syntax-simd}{\vX{\X{nnn}}} \\&&|&
      \K{v128.}\vsunop \\&&|&
      \K{v128.}\vsbinop \\&&|&
