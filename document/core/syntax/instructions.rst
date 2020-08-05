@@ -306,10 +306,16 @@ SIMD instructions provide basic operations over :ref:`values <syntax-value>` of 
      \K{max} \\
    \end{array}
 
-SIMD instructions have a naming convention that
-determines how their operands will be interpreted. An instruction beginning with :math:`\K{i32x4}`
-will interpret its operands as four |i32|, packed side-by-side into a |i128|.
-This prefix, :math:`\K{i32x4}`, is known as the *shape* of the type, and is made up of the underlying element type, :math:`\K{i32}`, and the number of elements or *lanes*, :math:`\K{4}`. Operations are performed lane-wise on each element.
+SIMD instructions have a naming convention involving a prefix that
+determines how their operands will be interpreted.
+This prefix describes the *shape* of the operand,
+written :math:`t\K{x}N`, and consisting of a packed numeric type :math:`t` and the number of *lanes* :math:`N` of that type.
+Operations are performed point-wise on the values of each lane.
+
+.. note::
+   For example, the shape :math:`\K{i32x4}` interprets the operand
+as four |i32| values, packed into an |i128|.
+   The bitwidth of the numeric type :math:`t` times :math:`N` always is 128.
 
 An instruction that begins with :math:`\K{v128}` is not concerned about the underlying element type, and treats the entire |V128| as a |i128|.
 
