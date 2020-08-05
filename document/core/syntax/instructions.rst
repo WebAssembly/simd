@@ -336,11 +336,11 @@ SIMD instructions can be grouped into several subcategories:
 
 * *Shifts*: consume a |v128| operand and a |i32| operand, producing one |V128| result.
 
-* *Splats*: consume a value of the integer or floating-point type and produce a |V128| result of a specified shape.
+* *Splats*: consume a value of numeric type and produce a |V128| result of a specified shape.
 
-* *Extract lanes*: consume a |V128| operand and an immediate byte specifying the lane index and produce a result of the element type.
+* *Extract lanes*: consume a |V128| operand and return the numeric value in a given lane.
 
-* *Replace lanes*: consume a |V128| operand, an immediate byte specifying the lane index, and a value of the element type, and produce a |V128| result.
+* *Replace lanes*: consume a |V128| operand and a numeric value for a given lane, and produce a |V128| result.
 
 Some SIMD instructions have a signedness annotation |sx| which distinguishes whether the elements in the operands are to be :ref:`interpreted <aux-signed>` as :ref:`unsigned <syntax-uint>` or :ref:`signed <syntax-sint>` integers.
 For the other SIMD instructions, the use of two's complement for the signed interpretation means that they behave the same regardless of signedness.
