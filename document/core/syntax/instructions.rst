@@ -424,10 +424,10 @@ Instructions in this group are concerned with linear :ref:`memory <syntax-mem>`.
      \K{i}\X{nn}\K{.}\STORE\K{8}~\memarg ~|~
      \K{i}\X{nn}\K{.}\STORE\K{16}~\memarg ~|~
      \K{i64.}\STORE\K{32}~\memarg \\&&|&
-     \K{i16x8.}\LOAD\K{8x8}\_\sx ~|~
-     \K{i32x4.}\LOAD\K{16x4}\_\sx ~|~
-     \K{i64x2.}\LOAD\K{32x2}\_\sx \\&&|&
-     \X{vxx}\K{.}\LOAD\K{\_splat} \\&&|&
+     \K{i16x8.}\LOAD\K{8x8}\_\sx~\memarg ~|~
+     \K{i32x4.}\LOAD\K{16x4}\_\sx~\memarg ~|~
+     \K{i64x2.}\LOAD\K{32x2}\_\sx~\memarg \\&&|&
+     \X{vxx}\K{.}\LOAD\K{\_splat}~\memarg \\&&|&
      \MEMORYSIZE \\&&|&
      \MEMORYGROW \\
    \end{array}
