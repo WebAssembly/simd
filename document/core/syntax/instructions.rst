@@ -172,6 +172,7 @@ Occasionally, it is convenient to group operators together according to the foll
 
 .. index:: ! simd instruction, fixed-width simd, value, value type
    pair: abstract syntax; instruction
+.. _syntax-laneidx:
 .. _syntax-vunop:
 .. _syntax-vbinop:
 .. _syntax-vsunop:
@@ -202,20 +203,21 @@ SIMD instructions provide basic operations over :ref:`values <syntax-value>` of 
      \K{f32x4} ~|~ \K{f64x2} \\
    \production{vshape} & \X{vxx} &::=&
      \X{ixx} ~|~ \X{fxx} \\
+   \production{lane index} & \laneidx &::=& \byte \\
    \production{instruction} & \instr &::=&
      \dots \\&&|&
      \K{v128.}\CONST~\xref{syntax/values}{syntax-simd}{\vX{\X{nnn}}} \\&&|&
      \K{v128.}\vsunop \\&&|&
      \K{v128.}\vsbinop \\&&|&
      \K{v128.}\vsternop \\&&|&
-     \K{v8x16.}\SHUFFLE ~|~ \K{v8x16.}\SWIZZLE \\&&|&
+     \K{v8x16.}\SHUFFLE~\laneidx^{16} ~|~ \K{v8x16.}\SWIZZLE \\&&|&
      \X{vxx}\K{.}\SPLAT \\&&|&
-     \K{i8x16.}\EXTRACTLANE\K{\_}\sx ~|~
-     \K{i16x8.}\EXTRACTLANE\K{\_}\sx \\&&|&
-     \K{i32x4.}\EXTRACTLANE ~|~
-     \K{i64x2.}\EXTRACTLANE \\&&|&
-     \X{fxx}\K{.}\EXTRACTLANE \\&&|&
-     \X{vxx}\K{.}\REPLACELANE \\&&|&
+     \K{i8x16.}\EXTRACTLANE\K{\_}\sx~\laneidx ~|~
+     \K{i16x8.}\EXTRACTLANE\K{\_}\sx~\laneidx \\&&|&
+     \K{i32x4.}\EXTRACTLANE~\laneidx ~|~
+     \K{i64x2.}\EXTRACTLANE~\laneidx \\&&|&
+     \X{fxx}\K{.}\EXTRACTLANE~\laneidx \\&&|&
+     \X{vxx}\K{.}\REPLACELANE~\laneidx \\&&|&
      \X{ixx}\K{.}\virelop \\&&|&
      \X{fxx}\K{.}\vfrelop \\&&|&
      \K{i8x16.}\viunop ~|~
