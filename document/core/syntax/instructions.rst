@@ -174,6 +174,9 @@ Occasionally, it is convenient to group operators together according to the foll
 .. index:: ! simd instruction, fixed-width simd, value, value type
    pair: abstract syntax; instruction
 .. _syntax-laneidx:
+.. _syntax-vunop:
+.. _syntax-vbinop:
+.. _syntax-vternop:
 .. _syntax-vsunop:
 .. _syntax-vsbinop:
 .. _syntax-vsternop:
@@ -184,7 +187,7 @@ Occasionally, it is convenient to group operators together according to the foll
 .. _syntax-viunop:
 .. _syntax-vibinop:
 .. _syntax-viminmaxop:
-.. _syntax-vsatbinop:
+.. _syntax-visatbinop:
 .. _syntax-vfunop:
 .. _syntax-vfbinop:
 .. _syntax-instr-simd:
@@ -242,8 +245,8 @@ SIMD instructions provide basic operations over :ref:`values <syntax-value>` of 
      \K{i8x16.}\viminmaxop ~|~
      \K{i16x8.}\viminmaxop ~|~
      \K{i32x4.}\viminmaxop \\&&|&
-     \K{i8x16.}\vsatbinop ~|~
-     \K{i16x8.}\vsatbinop \\&&|&
+     \K{i8x16.}\visatbinop ~|~
+     \K{i16x8.}\visatbinop \\&&|&
      \K{i16x8.}\K{mul} ~|~
      \K{i32x4.}\K{mul} ~|~
      \K{i64x2.}\K{mul} \\&&|&
@@ -292,7 +295,7 @@ SIMD instructions provide basic operations over :ref:`values <syntax-value>` of 
    \production{SIMD integer binary min/max operator} & \viminmaxop &::=&
      \K{min\_}\sx ~|~
      \K{max\_}\sx \\
-   \production{SIMD integer saturating binary operator} & \vsatbinop &::=&
+   \production{SIMD integer saturating binary operator} & \visatbinop &::=&
      \K{add\_sat\_}\sx ~|~
      \K{sub\_sat\_}\sx \\
    \production{SIMD floating-point unary operator} & \vfunop &::=&
@@ -351,6 +354,35 @@ SIMD instructions can be grouped into several subcategories:
 
 Some SIMD instructions have a signedness annotation |sx| which distinguishes whether the elements in the operands are to be :ref:`interpreted <aux-signed>` as :ref:`unsigned <syntax-uint>` or :ref:`signed <syntax-sint>` integers.
 For the other SIMD instructions, the use of two's complement for the signed interpretation means that they behave the same regardless of signedness.
+
+
+Conventions
+...........
+
+.. todo::
+   the macros here refer to the numeric instruction, we might want macros that refer to simd instructions of the same name
+
+Occasionally, it is convenient to group operators together according to the following grammar shorthands:
+
+.. math::
+   \begin{array}{llll}
+   \production{unary operator} & \vunop &::=&
+     \viunop ~|~
+     \vfunop \\&&|&
+     \NEG ~|~
+     \WIDEN \\
+   \production{binary operator} & \vbinop &::=&
+     \vibinop ~|~ \vfbinop \\&&|&
+     \virelop ~|~ \vfrelop \\&&|&
+     \viminmaxop ~|~ \visatbinop \\&&|&
+     \SWIZZLE ~|~
+     \NARROW ~|~
+     \MUL ~|~
+     \AVGRU ~|~
+     \TRUNC ~|~
+     \CONVERT \\
+   \production{ternary operator} & \vsternop &::=& \SHUFFLE \\
+   \end{array}
 
 
 .. index:: ! parametric instruction, value type

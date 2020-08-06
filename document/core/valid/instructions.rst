@@ -154,6 +154,325 @@ Numeric Instructions
    }
 
 
+.. index:: simd instruction
+   pair: validation; instruction
+   single: abstract syntax; instruction
+
+.. _valid-instr-simd:
+
+SIMD Instructions
+~~~~~~~~~~~~~~~~~
+
+
+.. todo::
+   do we need v128.const here again? It's covered above by Numeric Instructions.
+
+.. todo::
+   can we define these instructions that begin with "v128." together with the numerics? The structure, "t.op" matches up. This will require us to specify in the conventions section of syntax/instructions to extend \binop, rather than define a new \vsbinop
+
+.. _aux-bool:
+
+SIMD instructions can have a prefix to describe the :ref:`shape <syntax-simd-shape>` of the operand. Packed numeric types, |i8| and |i16|, are not :ref:`value type <syntax-valtype>`, we define an auxiliary function to map such packed types into value types:
+
+.. math::
+   \begin{array}{lll@{\qquad}l}
+   \packed(\K{i8x16}) &=& \I32 \\
+   \packed(\K{i16x8}) &=& \I32 \\
+   \packed(t\K{x}N) &=& t \\
+   \end{array}
+
+
+.. _valid-vsunop:
+
+:math:`t\K{.}\vsunop`
+.....................
+
+* The instruction is valid with type :math:`[t] \to [t]`.
+
+.. math::
+   \frac{
+   }{
+     C \vdashinstr t\K{.}\vsunop : [t] \to [t]
+   }
+
+
+.. _valid-vsbinop:
+
+:math:`t\K{.}\vsbinop`
+......................
+
+* The instruction is valid with type :math:`[t~t] \to [t]`.
+
+.. math::
+   \frac{
+   }{
+     C \vdashinstr t\K{.}\vsbinop : [t~t] \to [t]
+   }
+
+
+.. _valid-vsternop:
+
+:math:`t\K{.}\vsternop`
+.......................
+
+* The instruction is valid with type :math:`[t~t~t] \to [t]`.
+
+.. math::
+   \frac{
+   }{
+     C \vdashinstr t\K{.}\vsternop : [t~t~t] \to [t]
+   }
+
+
+.. _valid-vunop:
+
+:math:`vxx\K{.}\vunop`
+......................
+
+* The instruction is valid with type :math:`[\V128] \to [\V128]`.
+
+.. math::
+   \frac{
+   }{
+     C \vdashinstr vxx\K{.}\vunop : [\V128] \to [\V128]
+   }
+
+
+.. _valid-vbinop:
+
+:math:`vxx\K{.}\vbinop`
+.......................
+
+* The instruction is valid with type :math:`[\V128~\V128] \to [\V128]`.
+
+.. math::
+   \frac{
+   }{
+     C \vdashinstr vxx\K{.}\vbinop : [\V128~\V128] \to [\V128]
+   }
+
+
+.. _valid-vternop:
+
+:math:`vxx\K{.}\vternop`
+........................
+
+* The instruction is valid with type :math:`[\V128~\V128~\V128] \to [\V128]`.
+
+.. math::
+   \frac{
+   }{
+     C \vdashinstr vxx\K{.}\vternop : [\V128~\V128~\V128] \to [\V128]
+   }
+
+
+.. _valid-vtestop:
+
+:math:`vxx\K{.}\vtestop`
+........................
+
+* The instruction is valid with type :math:`[\V128] \to [\I32]`.
+
+.. math::
+   \frac{
+   }{
+     C \vdashinstr vxx\K{.}\vtestop : [\V128] \to [\I32]
+   }
+
+.. todo::
+   is this definition of splat okay? Or should we split out i8x16 and i16x8, like below.
+
+
+.. _valid-simd-splat:
+
+:math:`vxx\K{.}\SPLAT`
+..........................
+
+* Let :math:`t` be :math:`\packed(vxx)`.
+* The instruction is valid with type :math:`[t] \to [\V128]`.
+
+.. math::
+   \frac{
+   }{
+     C \vdashinstr vxx\K{.}\SPLAT : [t] \to [\V128]
+   }
+
+
+.. _valid-simd-splat-i8x16:
+
+:math:`\K{i8x16.}\SPLAT`
+..........................
+
+* The instruction is valid with type :math:`[\I32] \to [\V128]`.
+
+.. math::
+   \frac{
+   }{
+     C \vdashinstr \K{i8x16.}\SPLAT : [\I32] \to [\V128]
+   }
+
+
+.. _valid-simd-splat-i16x8:
+
+:math:`\K{i16x8.}\SPLAT`
+..........................
+
+* The instruction is valid with type :math:`[\I32] \to [\V128]`.
+
+.. math::
+   \frac{
+   }{
+     C \vdashinstr \K{i16x8.}\SPLAT : [\I32] \to [\V128]
+   }
+
+
+.. _valid-simd-splat:
+
+:math:`t\K{x}N\K{.}\SPLAT`
+..........................
+
+* The instruction is valid with type :math:`[t] \to [\V128]`.
+
+.. math::
+   \frac{
+   }{
+     C \vdashinstr t\K{x}N\K{.}\SPLAT : [t] \to [\V128]
+   }
+
+
+.. todo::
+   develop some sort of shorthand for this i8x16 and i16x8 repetition?
+
+
+.. _valid-simd-replace-lane-i8x16:
+
+:math:`\K{i8x16.}\REPLACELANE~\laneidx`
+.........................................
+
+* The lane index :math:`\laneidx` must be smaller than :math:`16`.
+
+* The instruction is valid with type :math:`[\V128~\I32] \to [\V128]`.
+
+.. math::
+   \frac{
+     \laneidx < 16
+   }{
+     C \vdashinstr \K{i8x16.}\REPLACELANE~\laneidx : [\V128~\I32] \to [\V128]
+   }
+
+
+.. _valid-simd-replace-lane-i16x8:
+
+:math:`\K{i16x8.}\REPLACELANE~\laneidx`
+.........................................
+
+* The lane index :math:`\laneidx` must be smaller than :math:`8`.
+
+* The instruction is valid with type :math:`[\V128~\I32] \to [\V128]`.
+
+.. math::
+   \frac{
+     \laneidx < 8
+   }{
+     C \vdashinstr \K{i16x8.}\REPLACELANE~\laneidx : [\V128~\I32] \to [\V128]
+   }
+
+
+.. _valid-simd-replace-lane:
+
+:math:`t\K{x}N\K{.}\REPLACELANE~\laneidx`
+.........................................
+
+* The lane index :math:`\laneidx` must be smaller than :math:`N`.
+
+* The instruction is valid with type :math:`[\V128~t] \to [\V128]`.
+
+.. math::
+   \frac{
+     \laneidx < N
+   }{
+     C \vdashinstr t\K{x}N\K{.}\REPLACELANE~\laneidx : [\V128~t] \to [\V128]
+   }
+
+
+.. _valid-simd-extract-lane:
+
+:math:`t\K{x}N\K{.}\EXTRACTLANE~\laneidx`
+.........................................
+
+* The lane index :math:`\laneidx` must be smaller than :math:`N`.
+
+* The instruction is valid with type :math:`[\V128] \to [t]`.
+
+.. math::
+   \frac{
+     \laneidx < N
+   }{
+     C \vdashinstr t\K{x}N\K{.}\EXTRACTLANE~\laneidx : [\V128] \to [t]
+   }
+
+
+.. _valid-simd-extract-lane-sx:
+
+:math:`t\K{x}N\K{.}\EXTRACTLANE\K{\_}\sx~\laneidx`
+..................................................
+
+* The lane index :math:`\laneidx` must be smaller than :math:`N`.
+
+* The instruction is valid with type :math:`[\V128] \to [\I32]`.
+
+.. math::
+   \frac{
+     \laneidx < N
+   }{
+     C \vdashinstr t\K{x}N\K{.}\EXTRACTLANE\K{\_}\sx~\laneidx : [\V128] \to [\I32]
+   }
+
+
+.. _valid-simd-bitmask:
+
+:math:`ixx\K{.}\BITMASK`
+............................
+
+* The instruction is valid with type :math:`[\V128] \to [\I32]`.
+
+.. math::
+   \frac{
+   }{
+     C \vdashinstr t\K{x}N\K{.}\BITMASK : [\V128] \to [\I32]
+   }
+
+.. _valid-simd-vshiftop:
+
+:math:`ixx\K{.}\vshiftop`
+.........................
+
+* The instruction is valid with type :math:`[\V128~\I32] \to [\V128]`.
+
+.. math::
+   \frac{
+   }{
+     C \vdashinstr ixx\K{.}\vshiftop : [\V128~\I32] \to [\V128]
+   }
+
+
+.. _valid-simd-shuffle:
+
+:math:`\K{v8x16.}\SHUFFLE~\laneidx^{16}`
+........................................
+
+* For all :math:`\laneidx_i`, in :math:`\laneidx^{16}`, :math:`\laneidx_i` must be smaller than :math:`N`.
+
+* The instruction is valid with type :math:`[\V128~\V128] \to [\V128]`.
+
+.. math::
+   \frac{
+     (\laneidx < N)^{16}
+   }{
+     C \vdashinstr \K{v8x16.}\SHUFFLE : [\V128~\V128] \to [\V128]
+   }
+
+
 .. index:: parametric instructions, value type, polymorphism
    pair: validation; instruction
    single: abstract syntax; instruction
@@ -386,6 +705,48 @@ Memory Instructions
      2^{\memarg.\ALIGN} \leq N/8
    }{
      C \vdashinstr t\K{.store}N~\memarg : [\I32~t] \to []
+   }
+
+
+.. _valid-load-extend:
+
+:math:`\K{v128.}\LOAD{M}\K{x}N\_\sx~\memarg`
+...............................................
+
+* The memory :math:`C.\CMEMS[0]` must be defined in the context.
+
+* The alignment :math:`2^{\memarg.\ALIGN}` must not be larger than :math:`8`.
+
+* Then the instruction is valid with type :math:`[\I32] \to [\V128]`.
+
+.. math::
+   \frac{
+     C.\CMEMS[0] = \memtype
+     \qquad
+     2^{\memarg.\ALIGN} \leq 8
+   }{
+     C \vdashinstr \K{v128.}\K{.}\LOAD{M}\K{x}N\_\sx~\memarg : [\I32] \to [\V128]
+   }
+
+
+.. _valid-load-splat:
+
+:math:`\K{v128.}\LOAD{N}\K{\_splat}~\memarg`
+...............................................
+
+* The memory :math:`C.\CMEMS[0]` must be defined in the context.
+
+* The alignment :math:`2^{\memarg.\ALIGN}` must not be larger than :math:`N/8`.
+
+* Then the instruction is valid with type :math:`[\I32] \to [\V128]`.
+
+.. math::
+   \frac{
+     C.\CMEMS[0] = \memtype
+     \qquad
+     2^{\memarg.\ALIGN} \leq N/8
+   }{
+     C \vdashinstr \K{v128.}\LOAD{N}\K{\_splat}~\memarg : [\I32] \to [\V128]
    }
 
 
