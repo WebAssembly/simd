@@ -338,16 +338,15 @@ struct
       let num_lanes = lanes F64x2
     end)
 
-  let clamp x low high =
-    min (max x low) high
+  let clamp x low high = min (max x low) high
 
   (* Narrow two v128 into one v128 by using to_shape on both operands,
    * concatenating them, clamping the element to between low and high,
    * then of_shape to reconstruct a v128. *)
   let narrow to_shape of_shape low high x y =
-      let xy = (to_shape x) @ (to_shape y) in
-      let narrow i = Int32.(clamp i (of_int low) (of_int high)) in
-      of_shape (List.map narrow xy)
+    let xy = (to_shape x) @ (to_shape y) in
+    let narrow i = Int32.(clamp i (of_int low) (of_int high)) in
+    of_shape (List.map narrow xy)
 
   module I8x16_convert = struct
     let narrow_s = narrow Rep.to_i16x8 Rep.of_i8x16 (-128) 127
