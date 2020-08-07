@@ -139,9 +139,25 @@ sig
     val swizzle : t -> t -> t
     val shuffle : t -> t -> int list -> t
   end
+  module I8x16_convert : sig
+    val narrow_s : t -> t -> t
+    val narrow_u : t -> t -> t
+  end
+  module I16x8_convert : sig
+    val narrow_s : t -> t -> t
+    val narrow_u : t -> t -> t
+    val widen_low_s : t -> t
+    val widen_high_s : t -> t
+    val widen_low_u : t -> t
+    val widen_high_u : t -> t
+  end
   module I32x4_convert : sig
     val trunc_sat_f32x4_s : t -> t
     val trunc_sat_f32x4_u : t -> t
+    val widen_low_s : t -> t
+    val widen_high_s : t -> t
+    val widen_low_u : t -> t
+    val widen_high_u : t -> t
   end
   module F32x4_convert : sig
     val convert_i32x4_s : t -> t
@@ -322,10 +338,47 @@ struct
       let num_lanes = lanes F64x2
     end)
 
+  let clamp x low high =
+    min (max x low) high
+
+  (* Narrow two v128 into one v128 by using to_shape on both operands,
+   * concatenating them, clamping the element to between low and high,
+   * then of_shape to reconstruct a v128. *)
+  let narrow to_shape of_shape low high x y =
+      let xy = (to_shape x) @ (to_shape y) in
+      let narrow i = Int32.(clamp i (of_int low) (of_int high)) in
+      of_shape (List.map narrow xy)
+
+  module I8x16_convert = struct
+    let narrow_s = narrow Rep.to_i16x8 Rep.of_i8x16 (-128) 127
+    let narrow_u = narrow Rep.to_i16x8 Rep.of_i8x16 0 255
+  end
+
+  module I16x8_convert = struct
+    let narrow_s = narrow Rep.to_i32x4 Rep.of_i16x8 (-32768) 32767
+    let narrow_u = narrow Rep.to_i32x4 Rep.of_i16x8 0 65535
+
+    let unsigned_mask x = Int32.(logand x (of_int 0xff))
+    let widen take_or_drop f x =
+      Rep.of_i16x8 (List.map f ((take_or_drop 8) (Rep.to_i8x16 x)))
+    let widen_low_s = widen (Lib.List.take) (fun x -> x)
+    let widen_high_s = widen (Lib.List.drop) (fun x -> x)
+    let widen_low_u = widen (Lib.List.take) unsigned_mask
+    let widen_high_u = widen (Lib.List.drop) unsigned_mask
+  end
+
   module I32x4_convert = struct
     let convert_using f v = Rep.of_i32x4 (List.map f (Rep.to_f32x4 v))
     let trunc_sat_f32x4_s = convert_using I32_convert.trunc_sat_f32_s
     let trunc_sat_f32x4_u = convert_using I32_convert.trunc_sat_f32_u
+
+    let unsigned_mask x = Int32.(logand x (of_int 0xffff))
+    let widen take_or_drop f x =
+      Rep.of_i32x4 (List.map f ((take_or_drop 4) (Rep.to_i16x8 x)))
+    let widen_low_s = widen (Lib.List.take) (fun x -> x)
+    let widen_high_s = widen (Lib.List.drop) (fun x -> x)
+    let widen_low_u = widen (Lib.List.take) unsigned_mask
+    let widen_high_u = widen (Lib.List.drop) unsigned_mask
   end
 
   module F32x4_convert = struct
