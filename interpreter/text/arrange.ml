@@ -321,6 +321,7 @@ let rec instr e =
     | SimdExtract op -> failwith "TODO v128"
     | SimdReplace op -> failwith "TODO v128"
     | SimdShift op -> failwith "TODO v128"
+    | SimdLoad _ -> failwith "TODO v128 SimdLoad"
   in Node (head, inner)
 
 let const c =

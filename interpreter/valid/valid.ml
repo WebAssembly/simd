@@ -201,6 +201,17 @@ let check_simd_extract_lane_index op at =
 let check_simd_replace_lane_index op at =
   check_simd_lane_index Fun.id op at
 
+let check_simd_memop (c : context) (memop : 'a memop) at =
+  ignore (memory c (0l @@ at));
+  let size =
+    match memop.sz with
+    | Some (LoadExtend _) -> 8
+    | Some (LoadSplat sz) -> simd_packed_size sz
+    | _ -> size memop.ty
+  in
+  require (1 lsl memop.align <= size) at
+    "alignment must not be larger than natural"
+
 (*
  * Conventions:
  *   c  : context
@@ -301,6 +312,10 @@ let rec check_instr (c : context) (e : instr) (s : infer_stack_type) : op_type =
 
   | Load memop ->
     check_memop c memop (Lib.Option.map fst) e.at;
+    [I32Type] --> [memop.ty]
+
+  | SimdLoad memop ->
+    check_simd_memop c memop e.at;
     [I32Type] --> [memop.ty]
 
   | Store memop ->

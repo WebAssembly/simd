@@ -200,6 +200,8 @@ let encode m =
       | Load ({ty = V128Type; _} as mo) ->
         simd_op 0x00l; memop mo
 
+      | SimdLoad _ -> failwith "TODO v128 SimdLoad"
+
       | Store ({ty = I32Type; sz = None; _} as mo) -> op 0x36; memop mo
       | Store ({ty = I64Type; sz = None; _} as mo) -> op 0x37; memop mo
       | Store ({ty = F32Type; sz = None; _} as mo) -> op 0x38; memop mo

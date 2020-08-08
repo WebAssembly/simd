@@ -107,6 +107,7 @@ type 'a memop =
   {ty : value_type; align : int; offset : Memory.offset; sz : 'a option}
 type loadop = (pack_size * extension) memop
 type storeop = pack_size memop
+type simdloadop = simd_load_kind memop
 
 
 (* Expressions *)
@@ -138,6 +139,7 @@ and instr' =
   | GlobalGet of var                  (* read global variable *)
   | GlobalSet of var                  (* write global variable *)
   | Load of loadop                    (* read memory at address *)
+  | SimdLoad of simdloadop            (* read memory at address *)
   | Store of storeop                  (* write memory at address *)
   | MemorySize                        (* size of linear memory *)
   | MemoryGrow                        (* grow linear memory *)

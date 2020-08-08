@@ -19,6 +19,12 @@ type extern_type =
 type pack_size = Pack8 | Pack16 | Pack32
 type extension = SX | ZX
 
+type simd_pack_size =
+  | SimdPack8 | SimdPack16 | SimdPack32 | SimdPack64
+type simd_load_kind =
+    LoadSplat of simd_pack_size
+  | LoadExtend of simd_pack_size * extension
+
 
 (* Attributes *)
 
@@ -32,6 +38,11 @@ let packed_size = function
   | Pack16 -> 2
   | Pack32 -> 4
 
+let simd_packed_size = function
+  | SimdPack8 -> 1
+  | SimdPack16 -> 2
+  | SimdPack32 -> 4
+  | SimdPack64 -> 8
 
 (* Subtyping *)
 

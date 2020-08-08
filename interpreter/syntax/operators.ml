@@ -229,6 +229,30 @@ let v128_bitselect = Ternary (V128Op.Bitselect)
 let v8x16_swizzle = Binary (V128 V128Op.(I8x16 Swizzle))
 let v8x16_shuffle imms = Binary (V128 V128Op.(I8x16 (Shuffle imms)))
 
+let i16x8_load8x8_s align offset =
+  SimdLoad {ty = V128Type; align; offset; sz = Some (LoadExtend (SimdPack8, SX))}
+let i16x8_load8x8_u align offset =
+  SimdLoad {ty = V128Type; align; offset; sz = Some (LoadExtend (SimdPack8, ZX))}
+
+let i32x4_load16x4_s align offset =
+  SimdLoad {ty = V128Type; align; offset; sz = Some (LoadExtend (SimdPack16, SX))}
+let i32x4_load16x4_u align offset =
+  SimdLoad {ty = V128Type; align; offset; sz = Some (LoadExtend (SimdPack16, ZX))}
+
+let i64x2_load32x2_s align offset =
+  SimdLoad {ty = V128Type; align; offset; sz = Some (LoadExtend (SimdPack32, SX))}
+let i64x2_load32x2_u align offset =
+  SimdLoad {ty = V128Type; align; offset; sz = Some (LoadExtend (SimdPack32, ZX))}
+
+let v8x16_load_splat align offset =
+  SimdLoad {ty= V128Type; align; offset; sz = Some (LoadSplat SimdPack8)}
+let v16x8_load_splat align offset =
+  SimdLoad {ty= V128Type; align; offset; sz = Some (LoadSplat SimdPack16)}
+let v32x4_load_splat align offset =
+  SimdLoad {ty= V128Type; align; offset; sz = Some (LoadSplat SimdPack32)}
+let v64x2_load_splat align offset =
+  SimdLoad {ty= V128Type; align; offset; sz = Some (LoadSplat SimdPack64)}
+
 let i8x16_splat = Convert (V128 (V128Op.I8x16 V128Op.Splat))
 let i8x16_extract_lane_s imm = SimdExtract (V128Op.I8x16 (SX, imm))
 let i8x16_extract_lane_u imm = SimdExtract (V128Op.I8x16 (ZX, imm))
