@@ -357,13 +357,13 @@ struct
     let narrow_s = narrow Rep.to_i32x4 Rep.of_i16x8 (-32768) 32767
     let narrow_u = narrow Rep.to_i32x4 Rep.of_i16x8 0 65535
 
-    let unsigned_mask x = Int32.(logand x (of_int 0xff))
+    let unsigned_mask x = Int32.logand x 0xffl
     let widen take_or_drop f x =
-      Rep.of_i16x8 (List.map f ((take_or_drop 8) (Rep.to_i8x16 x)))
-    let widen_low_s = widen (Lib.List.take) (fun x -> x)
-    let widen_high_s = widen (Lib.List.drop) (fun x -> x)
-    let widen_low_u = widen (Lib.List.take) unsigned_mask
-    let widen_high_u = widen (Lib.List.drop) unsigned_mask
+      Rep.of_i16x8 (List.map f (take_or_drop 8 (Rep.to_i8x16 x)))
+    let widen_low_s = widen Lib.List.take Fun.id
+    let widen_high_s = widen Lib.List.drop Fun.id
+    let widen_low_u = widen Lib.List.take (Int32.logand 0xffl)
+    let widen_high_u = widen Lib.List.drop (Int32.logand 0xffl)
   end
 
   module I32x4_convert = struct
@@ -371,13 +371,13 @@ struct
     let trunc_sat_f32x4_s = convert_using I32_convert.trunc_sat_f32_s
     let trunc_sat_f32x4_u = convert_using I32_convert.trunc_sat_f32_u
 
-    let unsigned_mask x = Int32.(logand x (of_int 0xffff))
+    let unsigned_mask x = Int32.logand x 0xffffl
     let widen take_or_drop f x =
-      Rep.of_i32x4 (List.map f ((take_or_drop 4) (Rep.to_i16x8 x)))
-    let widen_low_s = widen (Lib.List.take) (fun x -> x)
-    let widen_high_s = widen (Lib.List.drop) (fun x -> x)
-    let widen_low_u = widen (Lib.List.take) unsigned_mask
-    let widen_high_u = widen (Lib.List.drop) unsigned_mask
+      Rep.of_i32x4 (List.map f (take_or_drop 4 (Rep.to_i16x8 x)))
+    let widen_low_s = widen Lib.List.take Fun.id
+    let widen_high_s = widen Lib.List.drop Fun.id
+    let widen_low_u = widen Lib.List.take (Int32.logand 0xffffl)
+    let widen_high_u = widen Lib.List.drop (Int32.logand 0xffffl)
   end
 
   module F32x4_convert = struct
