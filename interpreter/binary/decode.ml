@@ -222,6 +222,15 @@ let simd_prefix s =
   let pos = pos s in
   match vu32 s with
   | 0x0cl -> v128_const (at v128 s)
+  | 0x60l -> i8x16_abs
+  | 0x61l -> i8x16_neg
+  | 0x6el -> i8x16_add
+  | 0x6fl -> i8x16_sub
+  | 0x76l -> i8x16_min_s
+  | 0x77l -> i8x16_min_u
+  | 0x78l -> i8x16_max_s
+  | 0x79l -> i8x16_max_u
+  | 0x7bl -> i8x16_avgr_u
   | 0xa0l -> i32x4_abs
   | 0xa1l -> i32x4_neg
   | 0xael -> i32x4_add

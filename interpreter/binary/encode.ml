@@ -296,6 +296,8 @@ let encode m =
       | Unary (F64 F64Op.Nearest) -> op 0x9e
       | Unary (F64 F64Op.Sqrt) -> op 0x9f
 
+      | Unary (V128 V128Op.(I8x16 Abs)) -> simd_op 0x60l
+      | Unary (V128 V128Op.(I8x16 Neg)) -> simd_op 0x61l
       | Unary (V128 V128Op.(I32x4 Abs)) -> simd_op 0xa0l
       | Unary (V128 V128Op.(I32x4 Neg)) -> simd_op 0xa1l
       | Unary (V128 _) -> failwith "unimplemented V128 Unary op"
@@ -348,6 +350,13 @@ let encode m =
       | Binary (F64 F64Op.Max) -> op 0xa5
       | Binary (F64 F64Op.CopySign) -> op 0xa6
 
+      | Binary (V128 V128Op.(I8x16 Add)) -> simd_op 0x6el
+      | Binary (V128 V128Op.(I8x16 Sub)) -> simd_op 0x6fl
+      | Binary (V128 V128Op.(I8x16 MinS)) -> simd_op 0x76l
+      | Binary (V128 V128Op.(I8x16 MinU)) -> simd_op 0x77l
+      | Binary (V128 V128Op.(I8x16 MaxS)) -> simd_op 0x78l
+      | Binary (V128 V128Op.(I8x16 MaxU)) -> simd_op 0x79l
+      | Binary (V128 V128Op.(I8x16 AvgrU)) -> simd_op 0x7bl
       | Binary (V128 V128Op.(I32x4 Add)) -> simd_op 0xael
       | Binary (V128 V128Op.(I32x4 Sub)) -> simd_op 0xb1l
       | Binary (V128 V128Op.(I32x4 MinS)) -> simd_op 0xb6l
