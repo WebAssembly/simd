@@ -194,6 +194,7 @@ struct
   let relop xx = fun _ -> failwith "TODO v128"
 
   let unop xx (op : unop) = match op with
+    | I32x4 Abs -> "i32x4.abs"
     | I32x4 Neg -> "i32x4.neg"
     | _ -> failwith "Unimplemented v128 unop"
 
@@ -201,6 +202,10 @@ struct
     | I32x4 Add -> "i32x4.add"
     | I32x4 Sub -> "i32x4.sub"
     | I32x4 Mul -> "i32x4.mul"
+    | I32x4 MinS -> "i32x4.min_s"
+    | I32x4 MinU -> "i32x4.min_u"
+    | I32x4 MaxS -> "i32x4.max_s"
+    | I32x4 MaxU -> "i32x4.max_u"
     | _ -> failwith "Unimplemented v128 unop"
 
   let cvtop xx = fun _ -> failwith "TODO v128"
