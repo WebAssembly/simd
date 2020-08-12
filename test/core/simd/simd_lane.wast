@@ -513,10 +513,10 @@
 
 ;; v8x16.shuffle: the 1st argument must be 16-byte literals in 0..32
 (assert_malformed (module quote "(func (param v128) (result v128)"
-  "v8x16.shuffle 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 (local.get 0) (local.get 0))")
+  "(v8x16.shuffle 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 (local.get 0) (local.get 0)))")
   "invalid lane length")
 (assert_malformed (module quote "(func (param v128) (result v128)"
-  "v8x16.shuffle 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 (local.get 0) (local.get 0))")
+  "(v8x16.shuffle 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 (local.get 0) (local.get 0)))")
   "invalid lane length")
 (assert_malformed (module quote "(func (result v128)"
   "(v8x16.shuffle 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 -1"
