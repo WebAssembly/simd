@@ -206,7 +206,7 @@ struct
   let cvtop xx = fun _ -> failwith "TODO v128"
 end
 
-let oper (intop, floatop, vectop) op =
+let oper (intop, floatop, simdop) op =
   (* v128 operations don't need to be prefixed by the type,
    * each instruction will specify their prefix (shape).
    *)
@@ -218,7 +218,7 @@ let oper (intop, floatop, vectop) op =
   | I64 o -> intop "64" o
   | F32 o -> floatop "32" o
   | F64 o -> floatop "64" o
-  | V128 o ->vectop "128" o
+  | V128 o -> simdop "128" o
   in prefix ^ ops
 
 let unop = oper (IntOp.unop, FloatOp.unop, SimdOp.unop)
