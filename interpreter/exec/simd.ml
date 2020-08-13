@@ -365,9 +365,9 @@ struct
   end
 
   module I32x4_convert = struct
-    let convert_using f v = Rep.of_i32x4 (List.map f (Rep.to_f32x4 v))
-    let trunc_sat_f32x4_s = convert_using I32_convert.trunc_sat_f32_s
-    let trunc_sat_f32x4_u = convert_using I32_convert.trunc_sat_f32_u
+    let convert f v = Rep.of_i32x4 (List.map f (Rep.to_f32x4 v))
+    let trunc_sat_f32x4_s = convert I32_convert.trunc_sat_f32_s
+    let trunc_sat_f32x4_u = convert I32_convert.trunc_sat_f32_u
 
     let widen take_or_drop mask x =
       Rep.of_i32x4 (List.map (Int32.logand mask) (take_or_drop 4 (Rep.to_i16x8 x)))
@@ -378,8 +378,8 @@ struct
   end
 
   module F32x4_convert = struct
-    let convert_using f v = Rep.of_f32x4 (List.map f (Rep.to_i32x4 v))
-    let convert_i32x4_s = convert_using F32_convert.convert_i32_s
-    let convert_i32x4_u = convert_using F32_convert.convert_i32_u
+    let convert f v = Rep.of_f32x4 (List.map f (Rep.to_i32x4 v))
+    let convert_i32x4_s = convert F32_convert.convert_i32_s
+    let convert_i32x4_u = convert F32_convert.convert_i32_u
   end
 end
