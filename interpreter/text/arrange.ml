@@ -250,10 +250,10 @@ let storeop op =
 let var x = nat32 x.it
 let value v = string_of_value v.it
 let constop v =
-  let typename = value_type (type_of v.it) in
-  match v.it with
-  | V128 _ -> typename ^ ".const i32x4 "
-  | _ -> typename ^ ".const "
+  let shape = match v.it with
+    | V128 _ -> "i32x4 "
+    | _ -> ""
+  in value_type (type_of v.it) ^ ".const " ^ shape
 
 let block_type = function
   | VarBlockType x -> [Node ("type " ^ var x, [])]
