@@ -251,8 +251,8 @@ let value v = string_of_value v.it
 let constop v =
   let typename = value_type (type_of v.it) in
   match v.it with
-  | V128 _ -> typename ^ ".const i32x4"
-  | _ -> typename ^ ".const"
+  | V128 _ -> typename ^ ".const i32x4 "
+  | _ -> typename ^ ".const "
 
 let block_type = function
   | VarBlockType x -> [Node ("type " ^ var x, [])]
@@ -286,7 +286,7 @@ let rec instr e =
     | Store op -> storeop op, []
     | MemorySize -> "memory.size", []
     | MemoryGrow -> "memory.grow", []
-    | Const lit -> constop lit ^ " " ^ value lit, []
+    | Const lit -> constop lit ^ value lit, []
     | Test op -> testop op, []
     | Compare op -> relop op, []
     | Unary op -> unop op, []
