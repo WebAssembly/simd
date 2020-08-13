@@ -248,7 +248,11 @@ let storeop op =
 
 let var x = nat32 x.it
 let value v = string_of_value v.it
-let constop v = value_type (type_of v.it) ^ ".const"
+let constop v =
+  let typename = value_type (type_of v.it) in
+  match v.it with
+  | V128 _ -> typename ^ ".const i32x4"
+  | _ -> typename ^ ".const"
 
 let block_type = function
   | VarBlockType x -> [Node ("type " ^ var x, [])]
@@ -283,7 +287,6 @@ let rec instr e =
     | MemorySize -> "memory.size", []
     | MemoryGrow -> "memory.grow", []
     (* Special case for V128, which has a shape after the type *)
-    | Const (({it=V128(_); at}) as lit) -> constop lit ^ " i32x4 " ^ value lit, []
     | Const lit -> constop lit ^ " " ^ value lit, []
     | Test op -> testop op, []
     | Compare op -> relop op, []
@@ -428,11 +431,8 @@ let literal mode lit =
 
 (* Converts a literal into a constant instruction. *)
 let constant mode lit =
-  let type_name = string_of_value_type (type_of lit.it) in
   let lit_string = literal mode lit in
-  match lit.it with
-  | Values.V128 v -> Node ("v128.const i32x4 " ^ lit_string, [])
-  | _ -> Node (type_name ^ ".const " ^ lit_string, [])
+  Node (constop lit ^ lit_string, [])
 
 let definition mode x_opt def =
   try
