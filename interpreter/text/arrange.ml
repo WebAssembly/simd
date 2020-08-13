@@ -492,7 +492,7 @@ let result_simd mode res shape pats =
       | NanPat {it=Values.F64 n;_} -> nan n
       | _ -> assert false in
   let lits = (List.map (num_pat mode) pats) in
-  let tokens = ["v128.const"; Simd.string_of_simd_shape shape;] @ lits in
+  let tokens = ["v128.const"; Simd.string_of_shape shape;] @ lits in
   Node (String.concat " " tokens, [])
 
 let result mode res =

@@ -11,7 +11,7 @@ let lanes shape =
   | F32x4 -> 4
   | F64x2 -> 2
 
-let string_of_simd_shape = function
+let string_of_shape = function
   | I8x16 -> "i8x16"
   | I16x8 -> "i16x8"
   | I32x4 -> "i32x4"
