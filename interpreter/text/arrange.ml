@@ -211,8 +211,9 @@ let oper (intop, floatop, simdop) op =
    * each instruction will specify their prefix (shape).
    *)
   let prefix = match op with
-  | V128 o -> ""
-  | _ -> value_type (type_of op) ^ "." in
+    | V128 o -> ""
+    | _ -> value_type (type_of op) ^ "."
+  in
   let ops = match op with
   | I32 o -> intop "32" o
   | I64 o -> intop "64" o
@@ -422,11 +423,11 @@ let module_ = module_with_var_opt None
 let literal mode lit =
   let choose_mode bin not_bin = if mode = `Binary then bin else not_bin in
   match lit.it with
-  | Values.I32 i -> (choose_mode I32.to_hex_string I32.to_string_s) i
-  | Values.I64 i -> (choose_mode I64.to_hex_string I64.to_string_s) i
-  | Values.F32 z -> (choose_mode F32.to_hex_string F32.to_string) z
-  | Values.F64 z -> (choose_mode F64.to_hex_string F64.to_string) z
-  | Values.V128 v -> (choose_mode V128.to_hex_string V128.to_string) v
+  | Values.I32 i -> choose_mode I32.to_hex_string I32.to_string_s i
+  | Values.I64 i -> choose_mode I64.to_hex_string I64.to_string_s i
+  | Values.F32 z -> choose_mode F32.to_hex_string F32.to_string z
+  | Values.F64 z -> choose_mode F64.to_hex_string F64.to_string z
+  | Values.V128 v -> choose_mode V128.to_hex_string V128.to_string v
 
 (* Converts a literal into a constant instruction. *)
 let constant mode lit =
@@ -487,8 +488,8 @@ let result_simd mode res shape pats =
   let num_pat mode res =
       match res.it with
       | LitPat lit -> literal mode lit
-      | NanPat {it=Values.F32 n;_}
-      | NanPat {it=Values.F64 n;_} -> nan n
+      | NanPat {it = Values.F32 n; _}
+      | NanPat {it = Values.F64 n; _} -> nan n
       | _ -> assert false in
   let lits = (List.map (num_pat mode) pats) in
   let tokens = ["v128.const"; Simd.string_of_shape shape;] @ lits in
