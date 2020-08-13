@@ -215,11 +215,11 @@ let oper (intop, floatop, simdop) op =
     | _ -> value_type (type_of op) ^ "."
   in
   let ops = match op with
-  | I32 o -> intop "32" o
-  | I64 o -> intop "64" o
-  | F32 o -> floatop "32" o
-  | F64 o -> floatop "64" o
-  | V128 o -> simdop "128" o
+    | I32 o -> intop "32" o
+    | I64 o -> intop "64" o
+    | F32 o -> floatop "32" o
+    | F64 o -> floatop "64" o
+    | V128 o -> simdop "128" o
   in prefix ^ ops
 
 let unop = oper (IntOp.unop, FloatOp.unop, SimdOp.unop)
@@ -477,20 +477,21 @@ let result_numpat mode res =
     match res with
     | LitPat lit -> constant mode lit
     | NanPat nanop ->
-        match nanop.it with
-        | Values.I32 _ | Values.I64 _ | Values.V128 _ -> assert false
-        | Values.F32 n -> Node ("f32.const " ^ nan n, [])
-        | Values.F64 n -> Node ("f64.const " ^ nan n, [])
+      match nanop.it with
+      | Values.I32 _ | Values.I64 _ | Values.V128 _ -> assert false
+      | Values.F32 n -> Node ("f32.const " ^ nan n, [])
+      | Values.F64 n -> Node ("f64.const " ^ nan n, [])
 
 let result_simd mode res shape pats =
   (* A different text generation for SIMD, since the literals within
    * a SimdResult do not need the i32.const instruction *)
   let num_pat mode res =
-      match res.it with
-      | LitPat lit -> literal mode lit
-      | NanPat {it = Values.F32 n; _}
-      | NanPat {it = Values.F64 n; _} -> nan n
-      | _ -> assert false in
+    match res.it with
+    | LitPat lit -> literal mode lit
+    | NanPat {it = Values.F32 n; _}
+    | NanPat {it = Values.F64 n; _} -> nan n
+    | _ -> assert false
+  in
   let lits = (List.map (num_pat mode) pats) in
   let tokens = ["v128.const"; Simd.string_of_shape shape;] @ lits in
   Node (String.concat " " tokens, [])
