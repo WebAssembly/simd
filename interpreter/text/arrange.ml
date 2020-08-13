@@ -286,7 +286,6 @@ let rec instr e =
     | Store op -> storeop op, []
     | MemorySize -> "memory.size", []
     | MemoryGrow -> "memory.grow", []
-    (* Special case for V128, which has a shape after the type *)
     | Const lit -> constop lit ^ " " ^ value lit, []
     | Test op -> testop op, []
     | Compare op -> relop op, []
