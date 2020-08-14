@@ -353,7 +353,7 @@ let encode m =
       | Binary (F64 F64Op.CopySign) -> op 0xa6
 
       | Binary (V128 V128Op.(I8x16 Add)) -> simd_op 0x6el
-      | Binary (V128 V128Op.(I8x16 Sub)) -> simd_op 0x6fl
+      | Binary (V128 V128Op.(I8x16 Sub)) -> simd_op 0x71l
       | Binary (V128 V128Op.(I8x16 MinS)) -> simd_op 0x76l
       | Binary (V128 V128Op.(I8x16 MinU)) -> simd_op 0x77l
       | Binary (V128 V128Op.(I8x16 MaxS)) -> simd_op 0x78l

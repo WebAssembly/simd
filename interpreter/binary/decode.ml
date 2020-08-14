@@ -225,7 +225,7 @@ let simd_prefix s =
   | 0x60l -> i8x16_abs
   | 0x61l -> i8x16_neg
   | 0x6el -> i8x16_add
-  | 0x6fl -> i8x16_sub
+  | 0x71l -> i8x16_sub
   | 0x76l -> i8x16_min_s
   | 0x77l -> i8x16_min_u
   | 0x78l -> i8x16_max_s
