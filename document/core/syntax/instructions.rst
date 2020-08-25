@@ -210,7 +210,7 @@ SIMD instructions provide basic operations over :ref:`values <syntax-value>` of 
      \K{v128.}\vsunop \\&&|&
      \K{v128.}\vsbinop \\&&|&
      \K{v128.}\vsternop \\&&|&
-     \K{v8x16.}\SHUFFLE~\laneidx^{16} ~|~ \K{v8x16.}\SWIZZLE \\&&|&
+     \K{i8x16.}\SHUFFLE~\laneidx^{16} ~|~ \K{i8x16.}\SWIZZLE \\&&|&
      \X{vxx}\K{.}\SPLAT \\&&|&
      \K{i8x16.}\EXTRACTLANE\K{\_}\sx~\laneidx ~|~
      \K{i16x8.}\EXTRACTLANE\K{\_}\sx~\laneidx \\&&|&
@@ -424,10 +424,13 @@ Instructions in this group are concerned with linear :ref:`memory <syntax-mem>`.
      \K{i}\X{nn}\K{.}\STORE\K{8}~\memarg ~|~
      \K{i}\X{nn}\K{.}\STORE\K{16}~\memarg ~|~
      \K{i64.}\STORE\K{32}~\memarg \\&&|&
-     \K{i16x8.}\LOAD\K{8x8}\_\sx~\memarg ~|~
-     \K{i32x4.}\LOAD\K{16x4}\_\sx~\memarg ~|~
-     \K{i64x2.}\LOAD\K{32x2}\_\sx~\memarg \\&&|&
-     \X{vxx}\K{.}\LOAD\K{\_splat}~\memarg \\&&|&
+     \K{v128.}\LOAD\K{8x8}\_\sx~\memarg ~|~
+     \K{v128.}\LOAD\K{16x4}\_\sx~\memarg ~|~
+     \K{v128.}\LOAD\K{32x2}\_\sx~\memarg \\&&|&
+     \K{v128.}\LOAD\K{8\_splat}~\memarg ~|~
+     \K{v128.}\LOAD\K{16\_splat}~\memarg \\&&|&
+     \K{v128.}\LOAD\K{32\_splat}~\memarg ~|~
+     \K{v128.}\LOAD\K{64\_splat}~\memarg \\&&|&
      \MEMORYSIZE \\&&|&
      \MEMORYGROW \\
    \end{array}
@@ -437,7 +440,7 @@ They all take a *memory immediate* |memarg| that contains an address *offset* an
 Integer loads and stores can optionally specify a *storage size* that is smaller than the :ref:`bit width <syntax-valtype>` of the respective value type.
 In the case of loads, a sign extension mode |sx| is then required to select appropriate behavior.
 
-SIMD loads can specify a shape that is half the :ref:`bit width <syntax-valtype>` of |V128|. Each lane is half its usual size, and the sign extension mode |sx| then specifies how the smaller lane is extended to the larger lane. Alternatively, SIMD loads can perform a *splat*, such that only a single lane of the respective shape is loaded, and the result is duplicated to all other lanes.
+SIMD loads can specify a shape that is half the :ref:`bit width <syntax-valtype>` of |V128|. Each lane is half its usual size, and the sign extension mode |sx| then specifies how the smaller lane is extended to the larger lane. Alternatively, SIMD loads can perform a *splat*, such that only a single lane of the specified storage size is loaded, and the result is duplicated to all lanes.
 
 The static address offset is added to the dynamic address operand, yielding a 33 bit *effective address* that is the zero-based index at which the memory is accessed.
 All values are read and written in |LittleEndian|_ byte order.
