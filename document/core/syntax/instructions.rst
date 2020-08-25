@@ -173,12 +173,12 @@ Occasionally, it is convenient to group operators together according to the foll
 .. index:: ! simd instruction, fixed-width simd, value, value type
    pair: abstract syntax; instruction
 .. _syntax-laneidx:
-.. _syntax-vunop:
-.. _syntax-vbinop:
 .. _syntax-vsunop:
 .. _syntax-vsbinop:
 .. _syntax-vsternop:
 .. _syntax-vtestop:
+.. _syntax-virelop:
+.. _syntax-vfrelop:
 .. _syntax-vshiftop:
 .. _syntax-viunop:
 .. _syntax-vibinop:
@@ -186,8 +186,6 @@ Occasionally, it is convenient to group operators together according to the foll
 .. _syntax-vsatbinop:
 .. _syntax-vfunop:
 .. _syntax-vfbinop:
-.. _syntax-virelop:
-.. _syntax-vfrelop:
 .. _syntax-instr-simd:
 
 SIMD Instructions
