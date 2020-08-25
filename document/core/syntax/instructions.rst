@@ -208,7 +208,8 @@ SIMD instructions provide basic operations over :ref:`values <syntax-value>` of 
      \K{v128.}\vsunop \\&&|&
      \K{v128.}\vsbinop \\&&|&
      \K{v128.}\vsternop \\&&|&
-     \K{i8x16.}\SHUFFLE~\laneidx^{16} ~|~ \K{i8x16.}\SWIZZLE \\&&|&
+     \K{i8x16.}\SHUFFLE~\laneidx^{16} \\&&|&
+     \K{i8x16.}\SWIZZLE \\&&|&
      \X{vxx}\K{.}\SPLAT \\&&|&
      \K{i8x16.}\EXTRACTLANE\K{\_}\sx~\laneidx ~|~
      \K{i16x8.}\EXTRACTLANE\K{\_}\sx~\laneidx \\&&|&
@@ -318,9 +319,6 @@ Operations are performed point-wise on the values of each lane.
    The bitwidth of the numeric type :math:`t` times :math:`N` always is 128.
 
 Instructions prefixed with :math:`\K{v128}` do not involve a specific interpretation, and treat the |V128| as an |i128| value or a vector of 128 individual bits.
-
-.. todo::
-  write up runtime interpretation for the lane shapes
 
 SIMD instructions can be grouped into several subcategories:
 
