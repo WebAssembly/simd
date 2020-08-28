@@ -248,92 +248,92 @@ Auxiliary function to get number of lanes
 
 .. _valid-vunop:
 
-:math:`\vxx\K{.}\vunop`
-.......................
+:math:`\shape\K{.}\vunop`
+.........................
 
 * The instruction is valid with type :math:`[\V128] \to [\V128]`.
 
 .. math::
    \frac{
    }{
-     C \vdashinstr \vxx\K{.}\vunop : [\V128] \to [\V128]
+     C \vdashinstr \shape\K{.}\vunop : [\V128] \to [\V128]
    }
 
 
 .. _valid-vbinop:
 
-:math:`\vxx\K{.}\vbinop`
-........................
+:math:`\shape\K{.}\vbinop`
+..........................
 
 * The instruction is valid with type :math:`[\V128~\V128] \to [\V128]`.
 
 .. math::
    \frac{
    }{
-     C \vdashinstr \vxx\K{.}\vbinop : [\V128~\V128] \to [\V128]
+     C \vdashinstr \shape\K{.}\vbinop : [\V128~\V128] \to [\V128]
    }
 
 
 .. _valid-vternop:
 
-:math:`\vxx\K{.}\vternop`
-.........................
+:math:`\shape\K{.}\vternop`
+...........................
 
 * The instruction is valid with type :math:`[\V128~\V128~\V128] \to [\V128]`.
 
 .. math::
    \frac{
    }{
-     C \vdashinstr \vxx\K{.}\vternop : [\V128~\V128~\V128] \to [\V128]
+     C \vdashinstr \shape\K{.}\vternop : [\V128~\V128~\V128] \to [\V128]
    }
 
 
 .. _valid-vtestop:
 
-:math:`\vxx\K{.}\vtestop`
-.........................
+:math:`\shape\K{.}\vtestop`
+...........................
 
 * The instruction is valid with type :math:`[\V128] \to [\I32]`.
 
 .. math::
    \frac{
    }{
-     C \vdashinstr \vxx\K{.}\vtestop : [\V128] \to [\I32]
+     C \vdashinstr \shape\K{.}\vtestop : [\V128] \to [\I32]
    }
 
 
 .. _valid-simd-splat:
 
-:math:`\vxx\K{.}\SPLAT`
-.......................
+:math:`\shape\K{.}\SPLAT`
+.........................
 
-* Let :math:`t` be :math:`\unpacked(\vxx)`.
+* Let :math:`t` be :math:`\unpacked(\shape)`.
 
 * The instruction is valid with type :math:`[t] \to [\V128]`.
 
 .. math::
    \frac{
    }{
-     C \vdashinstr \vxx\K{.}\SPLAT : [\unpacked(\vxx)] \to [\V128]
+     C \vdashinstr \shape\K{.}\SPLAT : [\unpacked(\shape)] \to [\V128]
    }
 
 
 .. _valid-simd-replace-lane:
 
-:math:`\vxx\K{.}\REPLACELANE~\laneidx`
-......................................
+:math:`\shape\K{.}\REPLACELANE~\laneidx`
+........................................
 
-* The lane index :math:`\laneidx` must be smaller than :math:`\lanes(\vxx)`.
+* The lane index :math:`\laneidx` must be smaller than :math:`\lanes(\shape)`.
 
-* Let :math:`t` be :math:`\unpacked(\vxx)`.
+* Let :math:`t` be :math:`\unpacked(\shape)`.
 
 * The instruction is valid with type :math:`[\V128~t] \to [\V128]`.
 
 .. math::
    \frac{
-     \laneidx < \lanes(\vxx)
+     \laneidx < \lanes(\shape)
    }{
-     C \vdashinstr \vxx\K{.}\REPLACELANE~\laneidx : [\V128~\unpacked(\vxx)] \to [\V128]
+     C \vdashinstr \shape\K{.}\REPLACELANE~\laneidx : [\V128~\unpacked(\shape)] \to [\V128]
    }
 
 
@@ -373,28 +373,28 @@ Auxiliary function to get number of lanes
 
 .. _valid-simd-bitmask:
 
-:math:`\ixx\K{.}\BITMASK`
-.........................
+:math:`\ishape\K{.}\BITMASK`
+............................
 
 * The instruction is valid with type :math:`[\V128] \to [\I32]`.
 
 .. math::
    \frac{
    }{
-     C \vdashinstr \ixx\K{.}\BITMASK : [\V128] \to [\I32]
+     C \vdashinstr \ishape\K{.}\BITMASK : [\V128] \to [\I32]
    }
 
 .. _valid-simd-vshiftop:
 
-:math:`\ixx\K{.}\vshiftop`
-..........................
+:math:`\ishape\K{.}\vshiftop`
+.............................
 
 * The instruction is valid with type :math:`[\V128~\I32] \to [\V128]`.
 
 .. math::
    \frac{
    }{
-     C \vdashinstr \ixx\K{.}\vshiftop : [\V128~\I32] \to [\V128]
+     C \vdashinstr \ishape\K{.}\vshiftop : [\V128~\I32] \to [\V128]
    }
 
 

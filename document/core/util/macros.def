@@ -442,8 +442,9 @@
 .. |ftestop| mathdef:: \xref{syntax/instructions}{syntax-ftestop}{\X{ftestop}}
 .. |frelop| mathdef:: \xref{syntax/instructions}{syntax-frelop}{\X{frelop}}
 
-.. |ixx| mathdef:: \xref{syntax/instructions}{syntax-instr-simd}{\X{ixx}}
-.. |vxx| mathdef:: \xref{syntax/instructions}{syntax-instr-simd}{\X{vxx}}
+.. |ishape| mathdef:: \xref{syntax/instructions}{syntax-shape}{\X{ishape}}
+.. |fshape| mathdef:: \xref{syntax/instructions}{syntax-shape}{\X{fshape}}
+.. |shape| mathdef:: \xref{syntax/instructions}{syntax-shape}{\X{shape}}
 
 .. |vunop| mathdef:: \xref{syntax/instructions}{syntax-vunop}{\X{vunop}}
 .. |vbinop| mathdef:: \xref{syntax/instructions}{syntax-vbinop}{\X{vbinop}}

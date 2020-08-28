@@ -174,6 +174,7 @@ Occasionally, it is convenient to group operators together according to the foll
 .. index:: ! simd instruction, fixed-width simd, value, value type
    pair: abstract syntax; instruction
 .. _syntax-laneidx:
+.. _syntax-shape:
 .. _syntax-vunop:
 .. _syntax-vbinop:
 .. _syntax-vternop:
@@ -199,12 +200,12 @@ SIMD instructions provide basic operations over :ref:`values <syntax-value>` of 
 
 .. math::
    \begin{array}{llcl}
-   \production{ishape} & \X{ixx} &::=&
+   \production{ishape} & \ishape &::=&
      \K{i8x16} ~|~ \K{i16x8} ~|~ \K{i32x4} ~|~ \K{i64x2} \\
-   \production{fshape} & \X{fxx} &::=&
+   \production{fshape} & \fshape &::=&
      \K{f32x4} ~|~ \K{f64x2} \\
-   \production{vshape} & \X{vxx} &::=&
-     \X{ixx} ~|~ \X{fxx} \\
+   \production{shape} & \shape &::=&
+     \ishape ~|~ \fshape \\
    \production{lane index} & \laneidx &::=& \u8 \\
    \production{instruction} & \instr &::=&
      \dots \\&&|&
@@ -214,20 +215,20 @@ SIMD instructions provide basic operations over :ref:`values <syntax-value>` of 
      \K{v128.}\vsternop \\&&|&
      \K{i8x16.}\SHUFFLE~\laneidx^{16} \\&&|&
      \K{i8x16.}\SWIZZLE \\&&|&
-     \X{vxx}\K{.}\SPLAT \\&&|&
+     \shape\K{.}\SPLAT \\&&|&
      \K{i8x16.}\EXTRACTLANE\K{\_}\sx~\laneidx ~|~
      \K{i16x8.}\EXTRACTLANE\K{\_}\sx~\laneidx \\&&|&
      \K{i32x4.}\EXTRACTLANE~\laneidx ~|~
      \K{i64x2.}\EXTRACTLANE~\laneidx \\&&|&
-     \X{fxx}\K{.}\EXTRACTLANE~\laneidx \\&&|&
-     \X{vxx}\K{.}\REPLACELANE~\laneidx \\&&|&
-     \X{ixx}\K{.}\virelop \\&&|&
-     \X{fxx}\K{.}\vfrelop \\&&|&
+     \fshape\K{.}\EXTRACTLANE~\laneidx \\&&|&
+     \shape\K{.}\REPLACELANE~\laneidx \\&&|&
+     \ishape\K{.}\virelop \\&&|&
+     \fshape\K{.}\vfrelop \\&&|&
      \K{i8x16.}\viunop ~|~
      \K{i16x8.}\viunop ~|~
      \K{i32x4.}\viunop \\&&|&
      \K{i64x2.}\NEG \\&&|&
-     \X{fxx.}\vfunop \\&&|&
+     \fshape\K{.}\vfunop \\&&|&
      \K{i8x16.}\vtestop ~|~
      \K{i16x8.}\vtestop ~|~
      \K{i32x4.}\vtestop \\&&|&
@@ -240,8 +241,8 @@ SIMD instructions provide basic operations over :ref:`values <syntax-value>` of 
      \K{i32x4.}\WIDEN\K{\_low}\K{\_i16x8\_}\sx \\&&|&
      \K{i16x8.}\WIDEN\K{\_high}\K{\_i8x16\_}\sx ~|~
      \K{i32x4.}\WIDEN\K{\_high}\K{\_i16x8\_}\sx \\&&|&
-     \X{ixx}\K{.}\vshiftop \\&&|&
-     \X{ixx}\K{.}\vibinop \\&&|&
+     \ishape\K{.}\vshiftop \\&&|&
+     \ishape\K{.}\vibinop \\&&|&
      \K{i8x16.}\viminmaxop ~|~
      \K{i16x8.}\viminmaxop ~|~
      \K{i32x4.}\viminmaxop \\&&|&
@@ -252,7 +253,7 @@ SIMD instructions provide basic operations over :ref:`values <syntax-value>` of 
      \K{i64x2.}\K{mul} \\&&|&
      \K{i8x16.}\AVGR\K{\_u} ~|~
      \K{i16x8.}\AVGR\K{\_u} \\&&|&
-     \X{fxx.}\vfbinop \\&&|&
+     \fshape\K{.}\vfbinop \\&&|&
      \K{i32x4.}\TRUNC\K{\_sat\_f32x4\_}\sx ~|~
      \K{f32x4.}\CONVERT\K{\_i32x4\_}\sx \\&&|&
      \dots \\
