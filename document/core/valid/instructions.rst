@@ -165,28 +165,23 @@ SIMD Instructions
 
 .. _aux-unpacked:
 
-SIMD instructions can have a prefix to describe the :ref:`shape <syntax-simd-shape>` of the operand. Packed numeric types, |i8| and |i16|, are not :ref:`value type <syntax-valtype>`, we define an auxiliary function to map such packed types into value types:
+SIMD instructions can have a prefix to describe the :ref:`shape <syntax-simd-shape>` of the operand. Packed numeric types, |I8| and |I16|, are not :ref:`value type <syntax-valtype>`, we define an auxiliary function to map such packed types into value types:
 
 .. math::
    \begin{array}{lll@{\qquad}l}
    \unpacked(\K{i8x16}) &=& \I32 \\
    \unpacked(\K{i16x8}) &=& \I32 \\
-   \unpacked(t\K{x}N) &=& t \\
+   \unpacked(t\K{x}N) &=& t
    \end{array}
 
 
-Auxiliary function to get number of lanes
+We also define an auxiliary function to get number of packed numeric types in a |V128|:
 
 .. _aux-lanes:
 
 .. math::
    \begin{array}{lll@{\qquad}l}
-   \lanes(\K{i8x16}) &=& 16 \\
-   \lanes(\K{i16x8}) &=& 8 \\
-   \lanes(\K{i32x4}) &=& 4 \\
-   \lanes(\K{i64x2}) &=& 2 \\
-   \lanes(\K{f32x4}) &=& 4 \\
-   \lanes(\K{f64x2}) &=& 2 \\
+   \lanes(t\K{x}N) &=& N
    \end{array}
 
 
@@ -339,33 +334,33 @@ Auxiliary function to get number of lanes
 
 .. _valid-simd-extract-lane:
 
-:math:`t\K{x}N\K{.}\EXTRACTLANE~\laneidx`
+:math:`\shape\K{.}\EXTRACTLANE~\laneidx`
 .........................................
 
-* The lane index :math:`\laneidx` must be smaller than :math:`N`.
+* The lane index :math:`\laneidx` must be smaller than :math:`\lanes(\shape)`.
 
-* The instruction is valid with type :math:`[\V128] \to [t]`.
+* The instruction is valid with type :math:`[\V128] \to [\unpacked(\shape)]`.
 
 .. math::
    \frac{
-     \laneidx < N
+     \laneidx < \lanes(\shape)
    }{
-     C \vdashinstr t\K{x}N\K{.}\EXTRACTLANE~\laneidx : [\V128] \to [t]
+     C \vdashinstr t\K{x}N\K{.}\EXTRACTLANE~\laneidx : [\V128] \to [\unpacked(\shape)]
    }
 
 
 .. _valid-simd-extract-lane-sx:
 
-:math:`t\K{x}N\K{.}\EXTRACTLANE\K{\_}\sx~\laneidx`
+:math:`\shape\K{.}\EXTRACTLANE\K{\_}\sx~\laneidx`
 ..................................................
 
-* The lane index :math:`\laneidx` must be smaller than :math:`N`.
+* The lane index :math:`\laneidx` must be smaller than :math:`\lanes(\shape)`.
 
 * The instruction is valid with type :math:`[\V128] \to [\I32]`.
 
 .. math::
    \frac{
-     \laneidx < N
+     \laneidx < \lanes(\shape)
    }{
      C \vdashinstr t\K{x}N\K{.}\EXTRACTLANE\K{\_}\sx~\laneidx : [\V128] \to [\I32]
    }
