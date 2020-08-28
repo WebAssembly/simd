@@ -93,7 +93,7 @@ which are part of the instruction itself.</p>
 <p>Some instructions are <a class="reference internal" href="#syntax-instr-control"><span class="std std-ref">structured</span></a> in that they bracket nested sequences of instructions.</p>
 <p>The following sections group instructions into a number of different categories.</p>
 <div class="section" id="numeric-instructions">
-<span id="syntax-instr-numeric"></span><span id="syntax-frelop"></span><span id="syntax-ftestop"></span><span id="syntax-fbinop"></span><span id="syntax-funop"></span><span id="syntax-irelop"></span><span id="syntax-itestop"></span><span id="syntax-ibinop"></span><span id="syntax-iunop"></span><span id="syntax-cvtop"></span><span id="syntax-relop"></span><span id="syntax-testop"></span><span id="syntax-binop"></span><span id="syntax-unop"></span><span id="syntax-const"></span><span id="syntax-sx"></span><span id="index-1"></span><h2>Numeric Instructions<a class="headerlink" href="#numeric-instructions" title="Permalink to this headline">¶</a></h2>
+<span id="syntax-instr-numeric"></span><span id="syntax-frelop"></span><span id="syntax-ftestop"></span><span id="syntax-fbinop"></span><span id="syntax-funop"></span><span id="syntax-irelop"></span><span id="syntax-itestop"></span><span id="syntax-ibinop"></span><span id="syntax-iunop"></span><span id="syntax-const"></span><span id="syntax-sx"></span><span id="index-1"></span><h2>Numeric Instructions<a class="headerlink" href="#numeric-instructions" title="Permalink to this headline">¶</a></h2>
 <p>Numeric instructions provide basic operations over numeric <a class="reference internal" href="values.html#syntax-value"><span class="std std-ref">values</span></a> of specific <a class="reference internal" href="types.html#syntax-valtype"><span class="std std-ref">type</span></a>.
 These operations closely match respective operations available in hardware.</p>
 <div class="math notranslate nohighlight">
@@ -190,7 +190,7 @@ For each type, several subcategories can be distinguished:</p>
 where a signedness annotation <span class="math notranslate nohighlight">\(\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}\)</span> distinguishes whether the operands are to be <a class="reference internal" href="../exec/numerics.html#aux-signed"><span class="std std-ref">interpreted</span></a> as <a class="reference internal" href="values.html#syntax-uint"><span class="std std-ref">unsigned</span></a> or <a class="reference internal" href="values.html#syntax-sint"><span class="std std-ref">signed</span></a> integers.
 For the other integer instructions, the use of two’s complement for the signed interpretation means that they behave the same regardless of signedness.</p>
 <div class="section" id="conventions">
-<h3>Conventions<a class="headerlink" href="#conventions" title="Permalink to this headline">¶</a></h3>
+<span id="syntax-cvtop"></span><span id="syntax-relop"></span><span id="syntax-testop"></span><span id="syntax-binop"></span><span id="syntax-unop"></span><h3>Conventions<a class="headerlink" href="#conventions" title="Permalink to this headline">¶</a></h3>
 <p>Occasionally, it is convenient to group operators together according to the following grammar shorthands:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{llll}
