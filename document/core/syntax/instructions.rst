@@ -254,8 +254,8 @@ SIMD instructions provide basic operations over :ref:`values <syntax-value>` of 
      \K{i8x16.}\AVGR\K{\_u} ~|~
      \K{i16x8.}\AVGR\K{\_u} \\&&|&
      \fshape\K{.}\vfbinop \\&&|&
-     \K{i32x4.}\TRUNC\K{\_sat\_f32x4\_}\sx ~|~
-     \K{f32x4.}\CONVERT\K{\_i32x4\_}\sx \\&&|&
+     \K{i32x4.}\VTRUNC\K{\_sat\_f32x4\_}\sx \\ &&|&
+     \K{f32x4.}\VCONVERT\K{\_i32x4\_}\sx \\&&|&
      \dots \\
    \production{SIMD unary operator} & \vsunop &::=&
      \K{not} \\
@@ -360,9 +360,6 @@ For the other SIMD instructions, the use of two's complement for the signed inte
 Conventions
 ...........
 
-.. todo::
-   the macros here refer to the numeric instruction, we might want macros that refer to simd instructions of the same name
-
 Occasionally, it is convenient to group operators together according to the following grammar shorthands:
 
 .. math::
@@ -370,7 +367,7 @@ Occasionally, it is convenient to group operators together according to the foll
    \production{unary operator} & \vunop &::=&
      \viunop ~|~
      \vfunop \\&&|&
-     \NEG ~|~
+     \VNEG ~|~
      \WIDEN \\
    \production{binary operator} & \vbinop &::=&
      \vibinop ~|~ \vfbinop \\&&|&
@@ -378,10 +375,10 @@ Occasionally, it is convenient to group operators together according to the foll
      \viminmaxop ~|~ \visatbinop \\&&|&
      \SWIZZLE ~|~
      \NARROW ~|~
-     \MUL ~|~
-     \AVGRU ~|~
-     \TRUNC ~|~
-     \CONVERT \\
+     \VMUL ~|~
+     \AVGR\K{\_u} ~|~
+     \VTRUNC ~|~
+     \VCONVERT \\
    \production{ternary operator} & \vsternop &::=& \SHUFFLE \\
    \end{array}
 
