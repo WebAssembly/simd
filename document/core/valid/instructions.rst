@@ -165,21 +165,33 @@ SIMD Instructions
 
 
 .. todo::
-   do we need v128.const here again? It's covered above by Numeric Instructions.
-
-.. todo::
    can we define these instructions that begin with "v128." together with the numerics? The structure, "t.op" matches up. This will require us to specify in the conventions section of syntax/instructions to extend \binop, rather than define a new \vsbinop
 
-.. _aux-bool:
+.. _aux-unpacked:
 
 SIMD instructions can have a prefix to describe the :ref:`shape <syntax-simd-shape>` of the operand. Packed numeric types, |i8| and |i16|, are not :ref:`value type <syntax-valtype>`, we define an auxiliary function to map such packed types into value types:
 
 .. math::
    \begin{array}{lll@{\qquad}l}
-   \packed(\K{i8x16}) &=& \I32 \\
-   \packed(\K{i16x8}) &=& \I32 \\
-   \packed(t\K{x}N) &=& t \\
+   \unpacked(\K{i8x16}) &=& \I32 \\
+   \unpacked(\K{i16x8}) &=& \I32 \\
+   \unpacked(t\K{x}N) &=& t \\
    \end{array}
+
+
+
+.. _valid-vconst:
+
+:math:`v128\K{.}\VCONST~c`
+......................
+
+* The instruction is valid with type :math:`[] \to [\V128]`.
+
+.. math::
+   \frac{
+   }{
+     C \vdashinstr v128\K{.}\VCONST~c : [] \to [\V128]
+   }
 
 
 .. _valid-vsunop:
@@ -187,12 +199,12 @@ SIMD instructions can have a prefix to describe the :ref:`shape <syntax-simd-sha
 :math:`t\K{.}\vsunop`
 .....................
 
-* The instruction is valid with type :math:`[t] \to [t]`.
+* The instruction is valid with type :math:`[\V128] \to [\V128]`.
 
 .. math::
    \frac{
    }{
-     C \vdashinstr t\K{.}\vsunop : [t] \to [t]
+     C \vdashinstr t\K{.}\vsunop : [\V128] \to [\V128]
    }
 
 
@@ -201,12 +213,12 @@ SIMD instructions can have a prefix to describe the :ref:`shape <syntax-simd-sha
 :math:`t\K{.}\vsbinop`
 ......................
 
-* The instruction is valid with type :math:`[t~t] \to [t]`.
+* The instruction is valid with type :math:`[\V128~\V128] \to [\V128]`.
 
 .. math::
    \frac{
    }{
-     C \vdashinstr t\K{.}\vsbinop : [t~t] \to [t]
+     C \vdashinstr t\K{.}\vsbinop : [\V128~\V128] \to [\V128]
    }
 
 
@@ -215,12 +227,12 @@ SIMD instructions can have a prefix to describe the :ref:`shape <syntax-simd-sha
 :math:`t\K{.}\vsternop`
 .......................
 
-* The instruction is valid with type :math:`[t~t~t] \to [t]`.
+* The instruction is valid with type :math:`[\V128~\V128~\V128] \to [\V128]`.
 
 .. math::
    \frac{
    }{
-     C \vdashinstr t\K{.}\vsternop : [t~t~t] \to [t]
+     C \vdashinstr t\K{.}\vsternop : [\V128~\V128~\V128] \to [\V128]
    }
 
 
@@ -288,7 +300,7 @@ SIMD instructions can have a prefix to describe the :ref:`shape <syntax-simd-sha
 :math:`vxx\K{.}\SPLAT`
 ..........................
 
-* Let :math:`t` be :math:`\packed(vxx)`.
+* Let :math:`t` be :math:`\unpacked(vxx)`.
 * The instruction is valid with type :math:`[t] \to [\V128]`.
 
 .. math::

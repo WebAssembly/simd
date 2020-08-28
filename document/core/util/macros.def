@@ -826,7 +826,7 @@
 .. |vdashimportdesc| mathdef:: \xref{valid/modules}{valid-importdesc}{\vdash}
 .. |vdashmodule| mathdef:: \xref{valid/modules}{valid-module}{\vdash}
 
-.. |packed| mathdef:: \xref{valid/instructions}{aux-packed}{\F{packed}}
+.. |unpacked| mathdef:: \xref{valid/instructions}{aux-unpacked}{\F{unpacked}}
 
 
 .. Execution
