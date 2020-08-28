@@ -241,6 +241,92 @@ We also define an auxiliary function to get number of packed numeric types in a 
    }
 
 
+.. _valid-simd-shuffle:
+
+:math:`\K{v8x16.}\SHUFFLE~\laneidx^{16}`
+........................................
+
+* For all :math:`\laneidx_i`, in :math:`\laneidx^{16}`, :math:`\laneidx_i` must be smaller than :math:`32`.
+
+* The instruction is valid with type :math:`[\V128~\V128] \to [\V128]`.
+
+.. math::
+   \frac{
+     (\laneidx < 32)^{16}
+   }{
+     C \vdashinstr \K{v8x16.}\SHUFFLE~\laneidx^{16} : [\V128~\V128] \to [\V128]
+   }
+
+
+.. _valid-simd-splat:
+
+:math:`\shape\K{.}\SPLAT`
+.........................
+
+* Let :math:`t` be :math:`\unpacked(\shape)`.
+
+* The instruction is valid with type :math:`[t] \to [\V128]`.
+
+.. math::
+   \frac{
+   }{
+     C \vdashinstr \shape\K{.}\SPLAT : [\unpacked(\shape)] \to [\V128]
+   }
+
+
+.. _valid-simd-extract-lane:
+
+:math:`\shape\K{.}\EXTRACTLANE~\laneidx`
+.........................................
+
+* The lane index :math:`\laneidx` must be smaller than :math:`\lanes(\shape)`.
+
+* The instruction is valid with type :math:`[\V128] \to [\unpacked(\shape)]`.
+
+.. math::
+   \frac{
+     \laneidx < \lanes(\shape)
+   }{
+     C \vdashinstr t\K{x}N\K{.}\EXTRACTLANE~\laneidx : [\V128] \to [\unpacked(\shape)]
+   }
+
+
+.. _valid-simd-extract-lane-sx:
+
+:math:`\shape\K{.}\EXTRACTLANE\K{\_}\sx~\laneidx`
+..................................................
+
+* The lane index :math:`\laneidx` must be smaller than :math:`\lanes(\shape)`.
+
+* The instruction is valid with type :math:`[\V128] \to [\I32]`.
+
+.. math::
+   \frac{
+     \laneidx < \lanes(\shape)
+   }{
+     C \vdashinstr t\K{x}N\K{.}\EXTRACTLANE\K{\_}\sx~\laneidx : [\V128] \to [\I32]
+   }
+
+
+.. _valid-simd-replace-lane:
+
+:math:`\shape\K{.}\REPLACELANE~\laneidx`
+........................................
+
+* The lane index :math:`\laneidx` must be smaller than :math:`\lanes(\shape)`.
+
+* Let :math:`t` be :math:`\unpacked(\shape)`.
+
+* The instruction is valid with type :math:`[\V128~t] \to [\V128]`.
+
+.. math::
+   \frac{
+     \laneidx < \lanes(\shape)
+   }{
+     C \vdashinstr \shape\K{.}\REPLACELANE~\laneidx : [\V128~\unpacked(\shape)] \to [\V128]
+   }
+
+
 .. _valid-vunop:
 
 :math:`\shape\K{.}\vunop`
@@ -283,102 +369,6 @@ We also define an auxiliary function to get number of packed numeric types in a 
    }
 
 
-.. _valid-vtestop:
-
-:math:`\shape\K{.}\vtestop`
-...........................
-
-* The instruction is valid with type :math:`[\V128] \to [\I32]`.
-
-.. math::
-   \frac{
-   }{
-     C \vdashinstr \shape\K{.}\vtestop : [\V128] \to [\I32]
-   }
-
-
-.. _valid-simd-splat:
-
-:math:`\shape\K{.}\SPLAT`
-.........................
-
-* Let :math:`t` be :math:`\unpacked(\shape)`.
-
-* The instruction is valid with type :math:`[t] \to [\V128]`.
-
-.. math::
-   \frac{
-   }{
-     C \vdashinstr \shape\K{.}\SPLAT : [\unpacked(\shape)] \to [\V128]
-   }
-
-
-.. _valid-simd-replace-lane:
-
-:math:`\shape\K{.}\REPLACELANE~\laneidx`
-........................................
-
-* The lane index :math:`\laneidx` must be smaller than :math:`\lanes(\shape)`.
-
-* Let :math:`t` be :math:`\unpacked(\shape)`.
-
-* The instruction is valid with type :math:`[\V128~t] \to [\V128]`.
-
-.. math::
-   \frac{
-     \laneidx < \lanes(\shape)
-   }{
-     C \vdashinstr \shape\K{.}\REPLACELANE~\laneidx : [\V128~\unpacked(\shape)] \to [\V128]
-   }
-
-
-.. _valid-simd-extract-lane:
-
-:math:`\shape\K{.}\EXTRACTLANE~\laneidx`
-.........................................
-
-* The lane index :math:`\laneidx` must be smaller than :math:`\lanes(\shape)`.
-
-* The instruction is valid with type :math:`[\V128] \to [\unpacked(\shape)]`.
-
-.. math::
-   \frac{
-     \laneidx < \lanes(\shape)
-   }{
-     C \vdashinstr t\K{x}N\K{.}\EXTRACTLANE~\laneidx : [\V128] \to [\unpacked(\shape)]
-   }
-
-
-.. _valid-simd-extract-lane-sx:
-
-:math:`\shape\K{.}\EXTRACTLANE\K{\_}\sx~\laneidx`
-..................................................
-
-* The lane index :math:`\laneidx` must be smaller than :math:`\lanes(\shape)`.
-
-* The instruction is valid with type :math:`[\V128] \to [\I32]`.
-
-.. math::
-   \frac{
-     \laneidx < \lanes(\shape)
-   }{
-     C \vdashinstr t\K{x}N\K{.}\EXTRACTLANE\K{\_}\sx~\laneidx : [\V128] \to [\I32]
-   }
-
-
-.. _valid-simd-bitmask:
-
-:math:`\ishape\K{.}\BITMASK`
-............................
-
-* The instruction is valid with type :math:`[\V128] \to [\I32]`.
-
-.. math::
-   \frac{
-   }{
-     C \vdashinstr \ishape\K{.}\BITMASK : [\V128] \to [\I32]
-   }
-
 .. _valid-simd-vshiftop:
 
 :math:`\ishape\K{.}\vshiftop`
@@ -393,20 +383,31 @@ We also define an auxiliary function to get number of packed numeric types in a 
    }
 
 
-.. _valid-simd-shuffle:
+.. _valid-vtestop:
 
-:math:`\K{v8x16.}\SHUFFLE~\laneidx^{16}`
-........................................
+:math:`\shape\K{.}\vtestop`
+...........................
 
-* For all :math:`\laneidx_i`, in :math:`\laneidx^{16}`, :math:`\laneidx_i` must be smaller than :math:`32`.
-
-* The instruction is valid with type :math:`[\V128~\V128] \to [\V128]`.
+* The instruction is valid with type :math:`[\V128] \to [\I32]`.
 
 .. math::
    \frac{
-     (\laneidx < 32)^{16}
    }{
-     C \vdashinstr \K{v8x16.}\SHUFFLE~\laneidx^{16} : [\V128~\V128] \to [\V128]
+     C \vdashinstr \shape\K{.}\vtestop : [\V128] \to [\I32]
+   }
+
+
+.. _valid-simd-bitmask:
+
+:math:`\ishape\K{.}\BITMASK`
+............................
+
+* The instruction is valid with type :math:`[\V128] \to [\I32]`.
+
+.. math::
+   \frac{
+   }{
+     C \vdashinstr \ishape\K{.}\BITMASK : [\V128] \to [\I32]
    }
 
 
