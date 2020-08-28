@@ -827,6 +827,7 @@
 .. |vdashmodule| mathdef:: \xref{valid/modules}{valid-module}{\vdash}
 
 .. |unpacked| mathdef:: \xref{valid/instructions}{aux-unpacked}{\F{unpacked}}
+.. |lanes| mathdef:: \xref{valid/instructions}{aux-lanes}{\F{lanes}}
 
 
 .. Execution

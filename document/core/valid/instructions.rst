@@ -163,10 +163,6 @@ Numeric Instructions
 SIMD Instructions
 ~~~~~~~~~~~~~~~~~
 
-
-.. todo::
-   can we define these instructions that begin with "v128." together with the numerics? The structure, "t.op" matches up. This will require us to specify in the conventions section of syntax/instructions to extend \binop, rather than define a new \vsbinop
-
 .. _aux-unpacked:
 
 SIMD instructions can have a prefix to describe the :ref:`shape <syntax-simd-shape>` of the operand. Packed numeric types, |i8| and |i16|, are not :ref:`value type <syntax-valtype>`, we define an auxiliary function to map such packed types into value types:
@@ -179,60 +175,74 @@ SIMD instructions can have a prefix to describe the :ref:`shape <syntax-simd-sha
    \end{array}
 
 
+Auxiliary function to get number of lanes
+
+.. _aux-lanes:
+
+.. math::
+   \begin{array}{lll@{\qquad}l}
+   \lanes(\K{i8x16}) &=& 16 \\
+   \lanes(\K{i16x8}) &=& 8 \\
+   \lanes(\K{i32x4}) &=& 4 \\
+   \lanes(\K{i64x2}) &=& 2 \\
+   \lanes(\K{f32x4}) &=& 4 \\
+   \lanes(\K{f64x2}) &=& 2 \\
+   \end{array}
+
 
 .. _valid-vconst:
 
-:math:`v128\K{.}\VCONST~c`
-......................
+:math:`\V128\K{.}\VCONST~c`
+...........................
 
 * The instruction is valid with type :math:`[] \to [\V128]`.
 
 .. math::
    \frac{
    }{
-     C \vdashinstr v128\K{.}\VCONST~c : [] \to [\V128]
+     C \vdashinstr \V128\K{.}\VCONST~c : [] \to [\V128]
    }
 
 
 .. _valid-vsunop:
 
-:math:`t\K{.}\vsunop`
-.....................
+:math:`\V128\K{.}\vsunop`
+.........................
 
 * The instruction is valid with type :math:`[\V128] \to [\V128]`.
 
 .. math::
    \frac{
    }{
-     C \vdashinstr t\K{.}\vsunop : [\V128] \to [\V128]
+     C \vdashinstr \V128\K{.}\vsunop : [\V128] \to [\V128]
    }
 
 
 .. _valid-vsbinop:
 
-:math:`t\K{.}\vsbinop`
-......................
+:math:`\V128\K{.}\vsbinop`
+..........................
 
 * The instruction is valid with type :math:`[\V128~\V128] \to [\V128]`.
 
 .. math::
    \frac{
    }{
-     C \vdashinstr t\K{.}\vsbinop : [\V128~\V128] \to [\V128]
+     C \vdashinstr \V128\K{.}\vsbinop : [\V128~\V128] \to [\V128]
    }
 
 
 .. _valid-vsternop:
 
-:math:`t\K{.}\vsternop`
-.......................
+:math:`\V128\K{.}\vsternop`
+...........................
 
 * The instruction is valid with type :math:`[\V128~\V128~\V128] \to [\V128]`.
 
 .. math::
    \frac{
    }{
-     C \vdashinstr t\K{.}\vsternop : [\V128~\V128~\V128] \to [\V128]
+     C \vdashinstr \V128\K{.}\vsternop : [\V128~\V128~\V128] \to [\V128]
    }
 
 
@@ -291,119 +301,39 @@ SIMD instructions can have a prefix to describe the :ref:`shape <syntax-simd-sha
      C \vdashinstr vxx\K{.}\vtestop : [\V128] \to [\I32]
    }
 
-.. todo::
-   is this definition of splat okay? Or should we split out i8x16 and i16x8, like below.
-
 
 .. _valid-simd-splat:
 
 :math:`vxx\K{.}\SPLAT`
-..........................
+......................
 
 * Let :math:`t` be :math:`\unpacked(vxx)`.
-* The instruction is valid with type :math:`[t] \to [\V128]`.
-
-.. math::
-   \frac{
-   }{
-     C \vdashinstr vxx\K{.}\SPLAT : [t] \to [\V128]
-   }
-
-
-.. _valid-simd-splat-i8x16:
-
-:math:`\K{i8x16.}\SPLAT`
-..........................
-
-* The instruction is valid with type :math:`[\I32] \to [\V128]`.
-
-.. math::
-   \frac{
-   }{
-     C \vdashinstr \K{i8x16.}\SPLAT : [\I32] \to [\V128]
-   }
-
-
-.. _valid-simd-splat-i16x8:
-
-:math:`\K{i16x8.}\SPLAT`
-..........................
-
-* The instruction is valid with type :math:`[\I32] \to [\V128]`.
-
-.. math::
-   \frac{
-   }{
-     C \vdashinstr \K{i16x8.}\SPLAT : [\I32] \to [\V128]
-   }
-
-
-.. _valid-simd-splat:
-
-:math:`t\K{x}N\K{.}\SPLAT`
-..........................
 
 * The instruction is valid with type :math:`[t] \to [\V128]`.
 
 .. math::
    \frac{
    }{
-     C \vdashinstr t\K{x}N\K{.}\SPLAT : [t] \to [\V128]
-   }
-
-
-.. todo::
-   develop some sort of shorthand for this i8x16 and i16x8 repetition?
-
-
-.. _valid-simd-replace-lane-i8x16:
-
-:math:`\K{i8x16.}\REPLACELANE~\laneidx`
-.........................................
-
-* The lane index :math:`\laneidx` must be smaller than :math:`16`.
-
-* The instruction is valid with type :math:`[\V128~\I32] \to [\V128]`.
-
-.. math::
-   \frac{
-     \laneidx < 16
-   }{
-     C \vdashinstr \K{i8x16.}\REPLACELANE~\laneidx : [\V128~\I32] \to [\V128]
-   }
-
-
-.. _valid-simd-replace-lane-i16x8:
-
-:math:`\K{i16x8.}\REPLACELANE~\laneidx`
-.........................................
-
-* The lane index :math:`\laneidx` must be smaller than :math:`8`.
-
-* The instruction is valid with type :math:`[\V128~\I32] \to [\V128]`.
-
-.. math::
-   \frac{
-     \laneidx < 8
-   }{
-     C \vdashinstr \K{i16x8.}\REPLACELANE~\laneidx : [\V128~\I32] \to [\V128]
+     C \vdashinstr vxx\K{.}\SPLAT : [\unpacked(vxx)] \to [\V128]
    }
 
 
 .. _valid-simd-replace-lane:
 
-:math:`t\K{x}N\K{.}\REPLACELANE~\laneidx`
-.........................................
+:math:`vxx\K{.}\REPLACELANE~\laneidx`
+.................................
 
-* The lane index :math:`\laneidx` must be smaller than :math:`N`.
+* The lane index :math:`\laneidx` must be smaller than :math:`\lanes(vxx)`.
+
+* Let :math:`t` be :math:`\unpacked(vxx)`.
 
 * The instruction is valid with type :math:`[\V128~t] \to [\V128]`.
 
 .. math::
    \frac{
-     \laneidx < N
+     \laneidx < \lanes(vxx)
    }{
-     C \vdashinstr t\K{x}N\K{.}\REPLACELANE~\laneidx : [\V128~t] \to [\V128]
+     C \vdashinstr vxx\K{.}\REPLACELANE~\laneidx : [\V128~\unpacked(vxx)] \to [\V128]
    }
 
 
@@ -451,7 +381,7 @@ SIMD instructions can have a prefix to describe the :ref:`shape <syntax-simd-sha
 .. math::
    \frac{
    }{
-     C \vdashinstr t\K{x}N\K{.}\BITMASK : [\V128] \to [\I32]
+     C \vdashinstr ixx\K{.}\BITMASK : [\V128] \to [\I32]
    }
 
 .. _valid-simd-vshiftop:
@@ -473,15 +403,15 @@ SIMD instructions can have a prefix to describe the :ref:`shape <syntax-simd-sha
 :math:`\K{v8x16.}\SHUFFLE~\laneidx^{16}`
 ........................................
 
-* For all :math:`\laneidx_i`, in :math:`\laneidx^{16}`, :math:`\laneidx_i` must be smaller than :math:`N`.
+* For all :math:`\laneidx_i`, in :math:`\laneidx^{16}`, :math:`\laneidx_i` must be smaller than :math:`32`.
 
 * The instruction is valid with type :math:`[\V128~\V128] \to [\V128]`.
 
 .. math::
    \frac{
-     (\laneidx < N)^{16}
+     (\laneidx < 32)^{16}
    }{
-     C \vdashinstr \K{v8x16.}\SHUFFLE : [\V128~\V128] \to [\V128]
+     C \vdashinstr \K{v8x16.}\SHUFFLE~\laneidx^{16} : [\V128~\V128] \to [\V128]
    }
 
 
