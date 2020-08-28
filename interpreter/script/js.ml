@@ -276,7 +276,7 @@ let assert_return ress ts at =
       in
       let masks, canons = List.split (List.map (fun p -> mask_and_canonical p.it) pats) in
       let all_ones = V128.of_i32x4 (List.init 4 (fun _ -> Int32.minus_one)) in
-      let v128_mask, v128_expected = match shape with
+      let mask, expected = match shape with
         | Simd.I8x16 -> all_ones, V128.of_i8x16 (List.map Values.I32Value.of_value canons)
         | Simd.I16x8 -> all_ones, V128.of_i16x8 (List.map Values.I32Value.of_value canons)
         | Simd.I32x4 -> all_ones, V128.of_i32x4 (List.map Values.I32Value.of_value canons)
@@ -289,9 +289,9 @@ let assert_return ress ts at =
           V128.of_i64x2 (List.map Values.I64Value.of_value canons)
       in
       [
-        Const (Values.V128 v128_mask @@ at) @@ at;
+        Const (Values.V128 mask @@ at) @@ at;
         Binary (Values.V128 V128Op.(V128 And)) @@ at;
-        Const (Values.V128 v128_expected @@ at) @@ at;
+        Const (Values.V128 expected @@ at) @@ at;
         Binary (Values.V128 V128Op.(I8x16 Eq)) @@ at;
         (* If all lanes are non-zero, then they are equal *)
         Test (Values.V128 V128Op.(I8x16 AllTrue)) @@ at;
