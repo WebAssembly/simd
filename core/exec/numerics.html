@@ -162,9 +162,9 @@ When several of these placeholders occur in a single clause, then they must be r
 <p>When a number is stored into <a class="reference internal" href="../syntax/modules.html#syntax-mem"><span class="std std-ref">memory</span></a>, it is converted into a sequence of <a class="reference internal" href="../syntax/values.html#syntax-byte"><span class="std std-ref">bytes</span></a> in <a class="reference external" href="https://en.wikipedia.org/wiki/Endianness#Little-endian">little endian</a> byte order:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{lll&#64;{\qquad}l}
-\href{../exec/numerics.html#aux-bytes}{\mathrm{bytes}}_t(i) &amp;=&amp; \href{../exec/numerics.html#aux-littleendian}{\mathrm{littleendian}}(\href{../exec/numerics.html#aux-bits}{\mathrm{bits}}_t(i)) \\[1ex]
-\href{../exec/numerics.html#aux-littleendian}{\mathrm{littleendian}}(\epsilon) &amp;=&amp; \epsilon \\
-\href{../exec/numerics.html#aux-littleendian}{\mathrm{littleendian}}(d^8~{d'}^\ast~) &amp;=&amp; \href{../exec/numerics.html#aux-littleendian}{\mathrm{littleendian}}({d'}^\ast)~\href{../exec/numerics.html#aux-ibits}{\mathrm{ibits}}_8^{-1}(d^8) \\
+\href{../exec/numerics.html#aux-bytes}{\mathrm{bytes}}_t(i) &amp;=&amp; \href{../exec/numerics.html#aux-littleendian}{\mathrm{little~endian}}(\href{../exec/numerics.html#aux-bits}{\mathrm{bits}}_t(i)) \\[1ex]
+\href{../exec/numerics.html#aux-littleendian}{\mathrm{little~endian}}(\epsilon) &amp;=&amp; \epsilon \\
+\href{../exec/numerics.html#aux-littleendian}{\mathrm{little~endian}}(d^8~{d'}^\ast~) &amp;=&amp; \href{../exec/numerics.html#aux-littleendian}{\mathrm{little~endian}}({d'}^\ast)~\href{../exec/numerics.html#aux-ibits}{\mathrm{ibits}}_8^{-1}(d^8) \\
 \end{array}\end{split}\]</div>
 <p>Again these functions are invertable bijections.</p>
 </div>

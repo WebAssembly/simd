@@ -133,20 +133,21 @@ In order to distinguish symbols of the binary syntax from symbols of the abstrac
   \def\mathdef592#1{\mathtt{0x#1}}\mathdef592{7F} &amp;\Rightarrow&amp; \href{../syntax/types.html#syntax-valtype}{\mathsf{i32}} \\ &amp;&amp;|&amp;
   \def\mathdef593#1{\mathtt{0x#1}}\mathdef593{7E} &amp;\Rightarrow&amp; \href{../syntax/types.html#syntax-valtype}{\mathsf{i64}} \\ &amp;&amp;|&amp;
   \def\mathdef594#1{\mathtt{0x#1}}\mathdef594{7D} &amp;\Rightarrow&amp; \href{../syntax/types.html#syntax-valtype}{\mathsf{f32}} \\ &amp;&amp;|&amp;
-  \def\mathdef595#1{\mathtt{0x#1}}\mathdef595{7C} &amp;\Rightarrow&amp; \href{../syntax/types.html#syntax-valtype}{\mathsf{f64}} \\
+  \def\mathdef595#1{\mathtt{0x#1}}\mathdef595{7C} &amp;\Rightarrow&amp; \href{../syntax/types.html#syntax-valtype}{\mathsf{f64}} \\ &amp;&amp;|&amp;
+  \def\mathdef596#1{\mathtt{0x#1}}\mathdef596{7B} &amp;\Rightarrow&amp; \href{../syntax/types.html#syntax-valtype}{\mathsf{v128}} \\
 \end{array}\end{split}\]</div>
-<p>Consequently, the byte <span class="math notranslate nohighlight">\(\def\mathdef596#1{\mathtt{0x#1}}\mathdef596{7F}\)</span> encodes the type <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}\)</span>,
-<span class="math notranslate nohighlight">\(\def\mathdef597#1{\mathtt{0x#1}}\mathdef597{7E}\)</span> encodes the type <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i64}}\)</span>, and so forth.
+<p>Consequently, the byte <span class="math notranslate nohighlight">\(\def\mathdef597#1{\mathtt{0x#1}}\mathdef597{7F}\)</span> encodes the type <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}\)</span>,
+<span class="math notranslate nohighlight">\(\def\mathdef598#1{\mathtt{0x#1}}\mathdef598{7E}\)</span> encodes the type <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i64}}\)</span>, and so forth.
 No other byte value is allowed as the encoding of a value type.</p>
 <p>The <a class="reference internal" href="types.html#binary-limits"><span class="std std-ref">binary grammar</span></a> for <a class="reference internal" href="../syntax/types.html#syntax-limits"><span class="std std-ref">limits</span></a> is defined as follows:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{llclll}
 \def\mathdef554#1{{}}\mathdef554{limits} &amp; \href{../binary/types.html#binary-limits}{\mathtt{limits}} &amp;::=&amp;
-  \def\mathdef598#1{\mathtt{0x#1}}\mathdef598{00}~~n{:}\href{../binary/values.html#binary-int}{\def\mathdef559#1{{\mathtt{u}#1}}\mathdef559{\mathtt{32}}} &amp;\Rightarrow&amp; \{ \href{../syntax/types.html#syntax-limits}{\mathsf{min}}~n, \href{../syntax/types.html#syntax-limits}{\mathsf{max}}~\epsilon \} \\ &amp;&amp;|&amp;
-  \def\mathdef599#1{\mathtt{0x#1}}\mathdef599{01}~~n{:}\href{../binary/values.html#binary-int}{\def\mathdef559#1{{\mathtt{u}#1}}\mathdef559{\mathtt{32}}}~~m{:}\href{../binary/values.html#binary-int}{\def\mathdef559#1{{\mathtt{u}#1}}\mathdef559{\mathtt{32}}} &amp;\Rightarrow&amp; \{ \href{../syntax/types.html#syntax-limits}{\mathsf{min}}~n, \href{../syntax/types.html#syntax-limits}{\mathsf{max}}~m \} \\
+  \def\mathdef599#1{\mathtt{0x#1}}\mathdef599{00}~~n{:}\href{../binary/values.html#binary-int}{\def\mathdef559#1{{\mathtt{u}#1}}\mathdef559{\mathtt{32}}} &amp;\Rightarrow&amp; \{ \href{../syntax/types.html#syntax-limits}{\mathsf{min}}~n, \href{../syntax/types.html#syntax-limits}{\mathsf{max}}~\epsilon \} \\ &amp;&amp;|&amp;
+  \def\mathdef600#1{\mathtt{0x#1}}\mathdef600{01}~~n{:}\href{../binary/values.html#binary-int}{\def\mathdef559#1{{\mathtt{u}#1}}\mathdef559{\mathtt{32}}}~~m{:}\href{../binary/values.html#binary-int}{\def\mathdef559#1{{\mathtt{u}#1}}\mathdef559{\mathtt{32}}} &amp;\Rightarrow&amp; \{ \href{../syntax/types.html#syntax-limits}{\mathsf{min}}~n, \href{../syntax/types.html#syntax-limits}{\mathsf{max}}~m \} \\
 \end{array}\end{split}\]</div>
-<p>That is, a limits pair is encoded as either the byte <span class="math notranslate nohighlight">\(\def\mathdef600#1{\mathtt{0x#1}}\mathdef600{00}\)</span> followed by the encoding of a <span class="math notranslate nohighlight">\(\href{../syntax/values.html#syntax-int}{\mathit{u32}}\)</span> value,
-or the byte <span class="math notranslate nohighlight">\(\def\mathdef601#1{\mathtt{0x#1}}\mathdef601{01}\)</span> followed by two such encodings.
+<p>That is, a limits pair is encoded as either the byte <span class="math notranslate nohighlight">\(\def\mathdef601#1{\mathtt{0x#1}}\mathdef601{00}\)</span> followed by the encoding of a <span class="math notranslate nohighlight">\(\href{../syntax/values.html#syntax-int}{\mathit{u32}}\)</span> value,
+or the byte <span class="math notranslate nohighlight">\(\def\mathdef602#1{\mathtt{0x#1}}\mathdef602{01}\)</span> followed by two such encodings.
 The variables <span class="math notranslate nohighlight">\(n\)</span> and <span class="math notranslate nohighlight">\(m\)</span> name the attributes of the respective <span class="math notranslate nohighlight">\(\href{../binary/values.html#binary-int}{\def\mathdef559#1{{\mathtt{u}#1}}\mathdef559{\mathtt{32}}}\)</span> nonterminals, which in this case are the actual <a class="reference internal" href="../syntax/values.html#syntax-uint"><span class="std std-ref">unsigned integers</span></a> those decode into.
 The attribute of the complete production then is the abstract syntax for the limit, expressed in terms of the former values.</p>
 </div>
