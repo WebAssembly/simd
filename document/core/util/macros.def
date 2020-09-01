@@ -185,6 +185,7 @@
 .. |I64X2| mathdef:: \xref{syntax/types}{syntax-valtype}{\K{i64x2}}
 .. |F32X4| mathdef:: \xref{syntax/types}{syntax-valtype}{\K{f32x4}}
 .. |F64X2| mathdef:: \xref{syntax/types}{syntax-valtype}{\K{f64x2}}
+.. |I128| mathdef:: \K{i128}
 
 .. |FUNCREF| mathdef:: \xref{syntax/types}{syntax-elemtype}{\K{funcref}}
 
@@ -422,6 +423,8 @@
 .. |AVGR| mathdef:: \xref{syntax/instructions}{syntax-instr-simd}{\K{avgr}}
 .. |VTRUNC| mathdef:: \xref{syntax/instructions}{syntax-instr-simd}{\K{trunc}}
 .. |VCONVERT| mathdef:: \xref{syntax/instructions}{syntax-instr-simd}{\K{convert}}
+.. |ALLTRUE| mathdef:: \xref{syntax/instructions}{syntax-instr-simd}{\K{all\_true}}
+.. |ANYTRUE| mathdef:: \xref{syntax/instructions}{syntax-instr-simd}{\K{any\_true}}
 
 
 .. Instructions, non-terminals
@@ -830,6 +833,7 @@
 .. |vdashimportdesc| mathdef:: \xref{valid/modules}{valid-importdesc}{\vdash}
 .. |vdashmodule| mathdef:: \xref{valid/modules}{valid-module}{\vdash}
 
+.. |packed| mathdef:: \xref{valid/instructions}{aux-packed}{\F{packed}}
 .. |unpacked| mathdef:: \xref{valid/instructions}{aux-unpacked}{\F{unpacked}}
 .. |lanes| mathdef:: \xref{valid/instructions}{aux-lanes}{\F{lanes}}
 
@@ -988,7 +992,9 @@
 .. |idivs| mathdef:: \xref{exec/numerics}{op-idiv_s}{\F{idiv\_s}}
 .. |iremu| mathdef:: \xref{exec/numerics}{op-irem_u}{\F{irem\_u}}
 .. |irems| mathdef:: \xref{exec/numerics}{op-irem_s}{\F{irem\_s}}
+.. |inot| mathdef:: \xref{exec/numerics}{op-inot}{\F{inot}}
 .. |iand| mathdef:: \xref{exec/numerics}{op-iand}{\F{iand}}
+.. |iandnot| mathdef:: \xref{exec/numerics}{op-iandnot}{\F{iandnot}}
 .. |ior| mathdef:: \xref{exec/numerics}{op-ior}{\F{ior}}
 .. |ixor| mathdef:: \xref{exec/numerics}{op-ixor}{\F{ixor}}
 .. |ishl| mathdef:: \xref{exec/numerics}{op-ishl}{\F{ishl}}
@@ -1011,6 +1017,18 @@
 .. |igeu| mathdef:: \xref{exec/numerics}{op-ige_u}{\F{ige\_u}}
 .. |iges| mathdef:: \xref{exec/numerics}{op-ige_s}{\F{ige\_s}}
 .. |iextendMs| mathdef:: \xref{exec/numerics}{op-iextendn_s}{\F{iextend}M\F{\_s}}
+.. |ibitselect| mathdef:: \xref{exec/numerics}{op-ibitselect}{\F{ibitselect}}
+.. |iabs| mathdef:: \xref{exec/numerics}{op-iabs}{\F{iabs}}
+.. |ineg| mathdef:: \xref{exec/numerics}{op-ineg}{\F{ineg}}
+.. |iminu| mathdef:: \xref{exec/numerics}{op-imin_u}{\F{imin\_u}}
+.. |imins| mathdef:: \xref{exec/numerics}{op-imin_s}{\F{imin\_s}}
+.. |imaxu| mathdef:: \xref{exec/numerics}{op-imax_u}{\F{imax\_u}}
+.. |imaxs| mathdef:: \xref{exec/numerics}{op-imax_s}{\F{imax\_s}}
+.. |iaddsatu| mathdef:: \xref{exec/numerics}{op-iaddsat_u}{\F{iaddsat\_u}}
+.. |iaddsats| mathdef:: \xref{exec/numerics}{op-iaddsat_s}{\F{iaddsat\_s}}
+.. |isubsatu| mathdef:: \xref{exec/numerics}{op-isubsat_u}{\F{isubsat\_u}}
+.. |isubsats| mathdef:: \xref{exec/numerics}{op-isubsat_s}{\F{isubsat\_s}}
+.. |iavgru| mathdef:: \xref{exec/numerics}{op-iavgr_u}{\F{iavgr\_u}}
 
 .. |fadd| mathdef:: \xref{exec/numerics}{op-fadd}{\F{fadd}}
 .. |fsub| mathdef:: \xref{exec/numerics}{op-fsub}{\F{fsub}}
@@ -1046,6 +1064,11 @@
 .. |convertu| mathdef:: \xref{exec/numerics}{op-convert_u}{\F{convert}^{\K{u}}}
 .. |converts| mathdef:: \xref{exec/numerics}{op-convert_s}{\F{convert}^{\K{s}}}
 .. |reinterpret| mathdef:: \xref{exec/numerics}{op-reinterpret}{\F{reinterpret}}
+.. |saturateu| mathdef:: \xref{exec/numerics}{op-saturate_u}{\F{saturate}^{\K{u}}}
+.. |saturates| mathdef:: \xref{exec/numerics}{op-saturate_s}{\F{saturate}^{\K{s}}}
+.. |narrow| mathdef:: \xref{exec/numerics}{op-narrow_u}{\F{narrow}}
+.. |narrowu| mathdef:: \xref{exec/numerics}{op-narrow_u}{\F{narrow}^{\K{u}}}
+.. |narrows| mathdef:: \xref{exec/numerics}{op-narrow_s}{\F{narrow}^{\K{s}}}
 
 
 .. Numerics, meta functions
@@ -1063,6 +1086,9 @@
 .. |ieee| mathdef:: \xref{exec/numerics}{aux-ieee}{\F{float}}
 .. |nans| mathdef:: \xref{exec/numerics}{aux-nans}{\F{nans}}
 .. |trunc| mathdef:: \xref{exec/numerics}{aux-trunc}{\F{trunc}}
+
+.. |simdof| mathdef:: \xref{exec/numerics}{aux-simdof}{\F{simd\_of}}
+.. |simdto| mathdef:: \xref{exec/numerics}{aux-simdto}{\F{simd\_to}}
 
 
 .. Other meta functions

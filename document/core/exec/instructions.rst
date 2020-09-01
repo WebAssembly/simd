@@ -182,6 +182,494 @@ Where the underlying operators are non-deterministic, because they may return on
    \end{array}
 
 
+.. index:: SIMD instruction
+   pair: execution; instruction
+   single: abstract syntax; instruction
+.. _exec-instr-simd:
+
+SIMD Instructions
+~~~~~~~~~~~~~~~~~~~~
+
+SIMD instructions are defined in terms of generic numeric operators applied lane-wise based on the :ref:`shape <syntax-simd-shape>`.
+
+.. math::
+   \begin{array}{lll@{\qquad}l}
+   \X{op}_{t\K{x}N}(n_1,\dots,n_k) &=&
+   \simdof_{t\K{x}N}(
+   op_t(
+   \simdto_{t\K{x}N}(n_1))
+   ~\dots~
+   \simdto_{t\K{x}N}(n_k)
+   )
+   \end{array}
+
+.. note::
+   For example, the result of instruction :math:`\K{i32x4}.\ADD` applied to operands :math:`i_1, i_2`
+   invokes :math:`\ADD_{\K{i32x4}}(i_1, i_2)`, which maps to
+   :math:`\simdof_{\K{i32x4}}(\ADD_{\I32}(i_1^+, i_2^+))`,
+   where :math:`i_1^+` and :math:`i_2^+` are sequences resulting from invoking
+   :math:`\simdto_{\K{i32x4}}(i_1)` and :math:`\simdto_{\K{i32x4}}(i_2)`
+   respectively.
+
+
+..
+  .. math::
+     \begin{array}{lll@{\qquad}l}
+     \X{op}_{t\K{x}N}(n_1,\dots,n_k) &=&
+     \simdof_{t\K{x}N}(
+     \X{op}_t (n_{1,1}, \dots, n_{k,1})
+     \dots
+     \X{op}_t (n_{k,N}, \dots, n_{k,N})
+     ) \\
+     && (\where n_{i,1} \dots n_{i,N}) = \simdto_{t\K{x}N}(n_i)
+     \end{array}
+
+  .. note::
+     For example, the result of instruction :math:`\K{i32x4}.\ADD` applied to operands :math:`i_1, i_2`
+     invokes :math:`add_{i32x4}(i_1, i_2)`,
+     which adds the operands lane-wise, by first unpacking the value into the individual lanes using
+     :math:`\simdto_{\I32\K{x}4}(i_1) = n_{1,1}~n_{1,2}~n_{1,3}~n_{1,4}`,
+     and :math:`\simdto_{\I32\K{x}4}(i_2) =  n_{1,2}~n_{2,2}~n_{2,3}~n_{2,4}`,
+     then invoking :math:`\ADD_{i32}` on the corresponding lanes,
+     :math:`m_1 = \ADD_{i32}(n_{1,1}, n_{2,1}), m_2 = \ADD_{i32}(n_{1,2}, n_{2,2}), m_3 = \ADD_{i32}(n_{1,3}, n_{2,3}), m_4 = \ADD_{i32}(n_{1,4}, n_{2,4})`,
+     and finally packing the resulting sequence :math:`\simdof_{\I32\K{x}4}(m_1~m_2~m_3~m_4)`.
+
+
+.. _exec-simd-const:
+
+:math:`\V128\K{.}\CONST~c`
+..........................
+
+1. Push the value :math:`\V128.\CONST~c` to the stack.
+
+.. note::
+   No formal reduction rule is required for this instruction, since |CONST| instructions coincide with :ref:`values <syntax-val>`.
+
+
+.. _exec-simd-vsunop:
+
+:math:`\V128\K{.}\vsunop`
+.........................
+
+1. Assert: due to :ref:`validation <valid-vsunop>`, a value of :ref:`value type <syntax-valtype>` |V128| is on the top of the stack.
+
+2. Pop the value :math:`\V128.\CONST~c_1` from the stack.
+
+3. Let :math:`c` be the result of computing :math:`\vsunop_{\I128}(c_1)`.
+
+4. Push the value :math:`\V128.\CONST~c` to the stack.
+
+.. math::
+   \begin{array}{lcl@{\qquad}l}
+   (\V128\K{.}\CONST~c_1)~\V128\K{.}\vsunop &\stepto& (\V128\K{.}\CONST~c)
+     & (\iff c = \vsunop_{\I128}(c_1)) \\
+   \end{array}
+
+
+.. _exec-simd-vsbinop:
+
+:math:`\V128\K{.}\vsbinop`
+..........................
+
+1. Assert: due to :ref:`validation <valid-vsbinop>`, two values of :ref:`value type <syntax-valtype>` |V128| are on the top of the stack.
+
+2. Pop the value :math:`\V128.\CONST~c_2` from the stack.
+
+3. Pop the value :math:`\V128.\CONST~c_1` from the stack.
+
+4. Let :math:`c` be the result of computing :math:`\vsbinop_{\I128}(c_1, c_2)`.
+
+5. Push the value :math:`\V128.\CONST~c` to the stack.
+
+.. math::
+   \begin{array}{lcl@{\qquad}l}
+   (\V128\K{.}\CONST~c_1)~(\V128\K{.}\CONST~c_2)~\V128\K{.}\vsbinop &\stepto& (\V128\K{.}\CONST~c)
+     & (\iff c = \vsbinop_{\I128}(c_1, c_2)) \\
+   \end{array}
+
+
+.. _exec-simd-vsternop:
+
+:math:`\V128\K{.}\vsternop`
+...........................
+
+1. Assert: due to :ref:`validation <valid-vsternop>`, three values of :ref:`value type <syntax-valtype>` |V128| are on the top of the stack.
+
+2. Pop the value :math:`\V128.\CONST~c_3` from the stack.
+
+3. Pop the value :math:`\V128.\CONST~c_2` from the stack.
+
+4. Pop the value :math:`\V128.\CONST~c_1` from the stack.
+
+5. Let :math:`c` be the result of computing :math:`\vsternop_{\I128}(c_1, c_2, c_3)`.
+
+6. Push the value :math:`\V128.\CONST~c` to the stack.
+
+.. math::
+   \begin{array}{lcl@{\qquad}l}
+   (\V128\K{.}\CONST~c_1)~(\V128\K{.}\CONST~c_2)~(\V128\K{.}\CONST~c_3)~\V128\K{.}\vsternop &\stepto& (\V128\K{.}\CONST~c)
+     & (\iff c = \vsternop_{\I128}(c_1, c_2, c_3)) \\
+   \end{array}
+
+
+.. todo::
+   shuffle, load splat, load extend.
+
+
+.. _exec-simd-splat:
+
+:math:`\shape\K{.}\SPLAT`
+.........................
+
+1. Let :math:`t` be the type :math:`\unpacked(\shape)`.
+
+2. Assert: due to :ref:`validation <valid-simd-splat>`, a value of :ref:`value type <syntax-valtype>` :math:`t` is on the top of the stack.
+
+3. Pop the value :math:`t.\CONST~c_1` from the stack.
+
+4. Let :math:`n` be the integer :math:`\lanes(\shape)`.
+
+5. Let :math:`c` be the result of :math:`\simdof_{\shape}(c_1^n)`.
+
+6. Push the value :math:`\V128.\CONST~c` to the stack.
+
+.. math::
+   \begin{array}{lcl@{\qquad}l}
+   (t\K{.}\CONST~c_1)~\shape\K{.}\SPLAT &\stepto& (\V128\K{.}\CONST~c)
+     & (\iff t = \unpacked(\shape)
+       \wedge c = \simdof_{\shape}(c_1^{\lanes(\shape)}))
+     \\
+   \end{array}
+
+
+.. _exec-simd-extract-lane:
+.. _exec-simd-extract-lane-sx:
+
+:math:`\shape\K{.}\EXTRACTLANE\K{\_}\sx^?~\laneidx`
+...................................................
+
+1. Assert: due to :ref:`validation <valid-simd-extract-lane>`, :math:`\laneidx < \lanes(\shape)`.
+
+2. Assert: due to :ref:`validation <valid-simd-extract-lane>`, a value of :ref:`value type <syntax-valtype>` |V128| is on the top of the stack.
+
+3. Pop the value :math:`\V128.\CONST~c_1` from the stack.
+
+4. Let :math:`n` be the integer :math:`\lanes(\shape)`.
+
+5. Let :math:`i_1^n` be the sequence :math:`\simdto_{\shape}(c_1)`.
+
+6. Let :math:`t_1` be the type :math:`\packed(\shape)`.
+
+7. Let :math:`t_2` be the type :math:`\unpacked(\shape)`.
+
+8. Let :math:`c_2` be the result of computing :math:`\extend^{sx^?}_{t_1,t_2}(i_1^n[\laneidx])`.
+
+9. Push the value :math:`t_2.\CONST~c_2` to the stack.
+
+.. math::
+   \begin{array}{l}
+   \begin{array}{lcl@{\qquad}l}
+   (\V128\K{.}\CONST~c_1)~\V128\K{.}\EXTRACTLANE~\laneidx &\stepto& (t_2\K{.}\CONST~c_2)
+   \end{array}
+   \\ \qquad
+     \begin{array}[t]{@{}r@{~}l@{}}
+      (\iff & n = \lanes(\shape) \\
+       \wedge & t_1 = \packed(\shape) \\
+       \wedge & t_2 = \unpacked(\shape) \\
+       \wedge & c_2 = \extend^{sx^?}_{t_1,t_2}(\simdto_{\shape}(c_1)[\laneidx])
+     \end{array}
+   \end{array}
+
+
+.. _exec-simd-replace-lane:
+
+:math:`\shape\K{.}\REPLACELANE~\laneidx`
+........................................
+
+1. Assert: due to :ref:`validation <valid-simd-replace-lane>`, :math:`\laneidx < \lanes(\shape)`.
+
+2. Let :math:`t_1` be the type :math:`\unpacked(\shape)`.
+
+3. Assert: due to :ref:`validation <valid-simd-replace-lane>`, a value of :ref:`value type <syntax-valtype>` :math:`t_1` is on the top of the stack.
+
+4. Pop the value :math:`t_1.\CONST~v_1` from the stack.
+
+5. Assert: due to :ref:`validation <valid-simd-replace-lane>`, a value of :ref:`value type <syntax-valtype>` |V128| is on the top of the stack.
+
+6. Pop the value :math:`\V128.\CONST~c_2` from the stack.
+
+7. Let :math:`n` be the integer :math:`\lanes(\shape)`.
+
+8. Let :math:`i_2^n` be the sequence :math:`\simdto_{\shape}(c_2)`.
+
+9. Let :math:`c` be the result of computing :math:`\simdof_{\shape}(i_2^n \with [\laneidx] = v_1)`
+
+10. Push :math:`\V128.\CONST~c` on the stack.
+
+.. math::
+   \begin{array}{l}
+   \begin{array}{lcl@{\qquad}l}
+   (t_1\K{.}\CONST~v_1)~(\V128\K{.}\CONST~c_2)~\V128\K{.}\REPLACELANE~\laneidx &\stepto& (\V128\K{.}\CONST~c)
+   \end{array}
+   \\ \qquad
+     \begin{array}[t]{@{}r@{~}l@{}}
+      (\iff & n = \lanes(\shape) \\
+       \wedge & i_2^n = \simdto_{\shape}(c_2)) \\
+       \wedge & c = \simdof_{\shape}(i_2^n \with [\laneidx] = v_1)
+     \end{array}
+   \end{array}
+
+
+.. _exec-simd-vunop:
+
+:math:`\shape\K{.}\vunop`
+.........................
+
+1. Assert: due to :ref:`validation <valid-vunop>`, a value of :ref:`value type <syntax-valtype>` |V128| is on the top of the stack.
+
+2. Pop the value :math:`\V128.\CONST~c_1` from the stack.
+
+3. Let :math:`c` be the result of computing :math:`\vunop_{\shape}(c_1)`.
+
+4. Push the value :math:`\V128.\CONST~c` to the stack.
+
+.. math::
+   \begin{array}{lcl@{\qquad}l}
+   (\V128\K{.}\CONST~c_1)~\V128\K{.}\vunop &\stepto& (\V128\K{.}\CONST~c)
+     & (\iff c = \vunop_{\shape}(c_1))
+   \end{array}
+
+
+.. _exec-simd-vbinnop:
+
+:math:`\shape\K{.}\vbinop`
+..........................
+
+1. Assert: due to :ref:`validation <valid-vbinop>`, a value of :ref:`value type <syntax-valtype>` |V128| is on the top of the stack.
+
+2. Pop the value :math:`\V128.\CONST~c_2` from the stack.
+
+4. Pop the value :math:`\V128.\CONST~c_1` from the stack.
+
+4. If :math:`\vbinop_{\shape}(c_1, c_2)` is defined:
+
+   a. Let :math:`c` be a possible result of computing :math:`\vbinop_{\shape}(c_1, c_2)`.
+
+   b. Push the value :math:`\V128.\CONST~c` to the stack.
+
+5. Else:
+
+   a. Trap.
+
+.. math::
+   \begin{array}{lcl@{\qquad}l}
+   (\V128\K{.}\CONST~c_1)~(\V128\K{.}\CONST~c_2)~\V128\K{.}\vbinop &\stepto& (\V128\K{.}\CONST~c)
+     & (\iff c \in \vbinop_{\shape}(c_1, c_2)) \\
+   (\V128\K{.}\CONST~c_1)~(\V128\K{.}\CONST~c_2)~\V128\K{.}\vbinop &\stepto& \TRAP
+     & (\iff \vbinop_{\shape}(c_1, c_2) = \{\})
+   \end{array}
+
+
+.. _exec-simd-vshiftop:
+
+:math:`t\K{x}N\K{.}\vshiftop`
+.............................
+
+1. Assert: due to :ref:`validation <valid-vshiftop>`, a value of :ref:`value type <syntax-valtype>` |I32| is on the top of the stack.
+
+2. Pop the value :math:`\I32.\CONST~s` from the stack.
+
+3. Assert: due to :ref:`validation <valid-vshiftop>`, a value of :ref:`value type <syntax-valtype>` |V128| is on the top of the stack.
+
+4. Pop the value :math:`\V128.\CONST~c_1` from the stack.
+
+5. Let :math:`i_1^N` be the sequence :math:`\simdto_{\shape}(c_1)`.
+
+7. Let :math:`c` be :math:`\simdof_{\shape}(\vshiftop_{t}(i_1^N, s^N))`.
+
+8. Push the value :math:`\V128.\CONST~c` to the stack.
+
+.. math::
+   \begin{array}{l}
+   \begin{array}{lcl@{\qquad}l}
+   (\V128\K{.}\CONST~c_1)~(\I32\K{.}\CONST~s)~\V128\K{.}\vshiftop &\stepto& (\V128\K{.}\CONST~c)
+   \end{array}
+   \\ \qquad
+     \begin{array}[t]{@{}r@{~}l@{}}
+     (\iff & i_1^N = \simdto_{\shape}(c_1) \\
+     \wedge & c = \simdof_{\shape}(\vshiftop_{t}(i_1^N, s^N)))
+     \end{array}
+   \end{array}
+
+
+.. _exec-simd-vtestop:
+
+.. _exec-simd-alltrue:
+
+:math:`\shape\K{.}\ALLTRUE`
+...........................
+
+1. Assert: due to :ref:`validation <valid-vtestop>`, a value of :ref:`value type <syntax-valtype>` |V128| is on the top of the stack.
+
+2. Pop the value :math:`\V128.\CONST~c_1` from the stack.
+
+3. Let :math:`n` be the integer :math:`\lanes(\shape)`.
+
+4. Let :math:`i_1^n` be the sequence :math:`\simdto_{\shape}(c_1)`
+
+5. Let :math:`i` be the result of computing :math:`\bool((i_1 != 0)^n)`.
+
+6. Push the value :math:`\I32.\CONST~i` onto the stack.
+
+
+.. math::
+   \begin{array}{l}
+   \begin{array}{lcl@{\qquad}l}
+   (\V128\K{.}\CONST~c_1)~\shape\K{.}\ALLTRUE &\stepto& (\I32\K{.}\CONST~i)
+   \end{array}
+   \\ \qquad
+     \begin{array}[t]{@{}r@{~}l@{}}
+     (\iff & n = \lanes(\shape) \\
+     \wedge & i_1^n = \simdto_{\shape}(c) \\
+     \wedge & i = \bool((i_1 != 0)^n)
+     \end{array}
+   \end{array}
+
+
+.. _exec-simd-anytrue:
+
+:math:`\shape\K{.}\ANYTRUE`
+...........................
+
+1. Assert: due to :ref:`validation <valid-vtestop>`, a value of :ref:`value type <syntax-valtype>` |V128| is on the top of the stack.
+
+2. Pop the value :math:`\V128.\CONST~c_1` from the stack.
+
+3. Let :math:`i` be the result of computing :math:`\ine_{\K{128}}(c_1, 0)`.
+
+4. Push the value :math:`\I32.\CONST~i` onto the stack.
+
+.. math::
+   \begin{array}{lcl@{\qquad}l}
+   (\V128\K{.}\CONST~c_1)~\shape\K{.}\ANYTRUE &\stepto& (\I32\K{.}\CONST~i)
+     & (\iff i = \ine_{\K{128}}(c_1, 0) \\
+   \end{array}
+
+
+.. _exec-simd-bitmask:
+
+:math:`t\K{x}N\K{.}\BITMASK`
+............................
+
+1. Assert: due to :ref:`validation <valid-vtestop>`, a value of :ref:`value type <syntax-valtype>` |V128| is on the top of the stack.
+
+2. Pop the value :math:`\V128.\CONST~c_1` from the stack.
+
+3. Let :math:`i_1^N` be the sequence :math:`\simdto_{t\K{x}N}(c)`.
+
+4. Let :math:`B` be the :ref:`bit width <syntax-valtype>` :math:`|t|` of :ref:`value type <syntax-valtype>` :math:`t`.
+
+5. Let :math:`i_2^N` sequence as a result of computing :math:`\ilts_{B}(i_1^N, 0^N)`.
+
+6. Let :math:`c` be the integer :math:`ibits_{32}^{-1}(i_2^N)`.
+
+7. Push the value :math:`\I32.\CONST~c` onto the stack.
+
+.. math::
+   \begin{array}{lcl@{\qquad}l}
+   (\V128\K{.}\CONST~c_1)~\shape\K{.}\BITMASK &\stepto& (\I32\K{.}\CONST~c)
+     & (\iff c = ibits_{32}^{-1}(\ilts_{B}(\simdto_{t\K{x}N}(c), 0^N)))
+     \\
+   \end{array}
+
+
+.. _exec-simd-narrow:
+
+:math:`t_2\K{x}N\K{.}\NARROW\_t_1\K{x}M\_\sx`
+.............................................
+
+1. Assert: due to :ref:`validation <valid-vtestop>`, two values of :ref:`value type <syntax-valtype>` |V128| are on the top of the stack.
+
+2. Pop the value :math:`\V128.\CONST~c_2` from the stack.
+
+3. Let :math:`d_2^M` be the result of computing :math:`\narrow^{\sx}_{t_1, t_2}(\simdto_{t_1\K{x}M}(c_2))`.
+
+4. Pop the value :math:`\V128.\CONST~c_1` from the stack.
+
+5. Let :math:`d_1^M` be the result of computing :math:`\narrow^{\sx}_{t_1, t_2}(\simdto_{t_1\K{x}M}(c_1))`.
+
+6. Let :math:`c` be the result of :math:`\simdof_{t_2\K{x}N}(d_1^M~d_2^M)`.
+
+7. Push the value :math:`\V128.\CONST~c` onto the stack.
+
+.. math::
+   \begin{array}{l}
+   \begin{array}{lcl@{\qquad}l}
+   (\V128\K{.}\CONST~c_1)~(\V128\K{.}\CONST~c_2)~t_2\K{x}N\K{.}\NARROW\_t_1\K{x}M\_\sx &\stepto& (\V128\K{.}\CONST~c)
+   \end{array}
+   \\ \qquad
+     \begin{array}[t]{@{}r@{~}l@{}}
+     (\iff & d_1^M = \narrow^{\sx}_{t_1, t_2}( \simdto_{t_1\K{x}M}(c_1)) \\
+     \wedge & d_2^M = \narrow^{\sx}_{t_1, t_2}( \simdto_{t_1\K{x}M}(c_2)) \\
+     \wedge & c = \simdof_{t_2\K{x}N}(d_1^M~d_2^M)
+     \end{array}
+   \end{array}
+
+
+.. _exec-simd-widen:
+
+:math:`t_2\K{x}N\K{.}\WIDEN\_\K{low}\_t_1\K{x}M\_\sx`
+.....................................................
+
+1. Assert: due to :ref:`validation <valid-vtestop>`, a value of :ref:`value type <syntax-valtype>` |V128| is on the top of the stack.
+
+2. Pop the value :math:`\V128.\CONST~c_1` from the stack.
+
+3. Let :math:`i_1^N` be the sequence :math:`\simdto_{t_1\K{x}M}(c_1)[0 \slice N]`.
+
+4. Let :math:`c` be the result of computing :math:`\simdof_{t_2\K{x}N}((\extend^{\sx}_{t_1,t_2}(i_1))^N)`
+
+6. Push the value :math:`\V128.\CONST~c` onto the stack.
+
+.. math::
+   \begin{array}{l}
+   \begin{array}{lcl@{\qquad}l}
+   (\V128\K{.}\CONST~c_1)~t_2\K{x}N\K{.}\WIDEN\_\K{low}\_t_1\K{x}M\_\sx &\stepto& (\V128\K{.}\CONST~c) \\
+   \end{array}
+   \\ \qquad
+     \begin{array}[t]{@{}r@{~}l@{}}
+     (\iff & i_1^N = \simdto_{t_1\K{x}M}(c_1)[0 \slice N] \\
+     \wedge & c = \simdof_{t_2\K{x}N}((\extend^{\sx}_{M,N}(i_1))^N)
+     \end{array}
+   \end{array}
+
+
+:math:`t_2\K{x}N\K{.}\WIDEN\_\K{high}\_t_1\K{x}M\_\sx`
+......................................................
+
+1. Assert: due to :ref:`validation <valid-vtestop>`, a value of :ref:`value type <syntax-valtype>` |V128| is on the top of the stack.
+
+2. Pop the value :math:`\V128.\CONST~c_1` from the stack.
+
+3. Let :math:`i_1^N` be the sequence :math:`\simdto_{t_1\K{x}M}(c_1)[N \slice M]`.
+
+4. Let :math:`c` be the result of computing :math:`\simdof_{t_2\K{x}N}((\extend^{\sx}_{t_1,t_2}(i_1))^N)`
+
+6. Push the value :math:`\V128.\CONST~c` onto the stack.
+
+.. math::
+   \begin{array}{l}
+   \begin{array}{lcl@{\qquad}l}
+   (\V128\K{.}\CONST~c_1)~t_2\K{x}N\K{.}\WIDEN\_\K{high}\_t_1\K{x}M\_\sx &\stepto& (\V128\K{.}\CONST~c) \\
+   \end{array}
+   \\ \qquad
+     \begin{array}[t]{@{}r@{~}l@{}}
+     (\iff & i_1^N = \simdto_{t_1\K{x}M}(c_1)[N \slice M] \\
+     \wedge & c = \simdof_{t_2\K{x}N}((\extend^{\sx}_{M,N}(i_1))^N)
+     \end{array}
+   \end{array}
+
+
 .. index:: parametric instructions, value
    pair: execution; instruction
    single: abstract syntax; instruction

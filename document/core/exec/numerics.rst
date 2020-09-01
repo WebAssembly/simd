@@ -38,6 +38,23 @@ When several of these placeholders occur in a single clause, then they must be r
       \fcopysign_N(- p_1, + p_2) &=& + p_1 \\
       \end{array}
 
+Numeric operators are lifted to input sequences by applying the operator element-wise, returning a sequence of results. When there are multiple inputs, they must be of equal length.
+
+.. note::
+   For example, the unary operator |fabs|, when given a sequence of floating-point values, return a sequence of floating-point results:
+
+   .. math::
+      \begin{array}{lll@{\qquad}l}
+      \fabs_N(z^n) &=& \fabs_N(z[0])~\dots~\fabs_N(z[n])
+      \end{array}
+
+   For the binary operator |iadd|, when given two sequences of integers of the same length, :math:`n`, return a sequence of integer results:
+
+   .. math::
+      \begin{array}{lll@{\qquad}l}
+      \iadd_N(i_1^n, i_2^n) &=& \iadd_N(i_1[0], i_2[0])~\dots~\iadd_N(i_1[n], i_2[n])
+      \end{array}
+
 .. _aux-trunc:
 
 Conventions:
@@ -132,6 +149,143 @@ When a number is stored into :ref:`memory <syntax-mem>`, it is converted into a 
    \end{array}
 
 Again these functions are invertable bijections.
+
+
+.. index:: SIMD, shape
+.. _aux-simdto:
+.. _aux-simdof:
+
+SIMD
+....
+
+SIMD values have the same underlying representation as an |i128|. They can also be interpreted as numeric values packed into a |V128| with a particular |shape|.
+
+.. math::
+   \begin{array}{lll@{\qquad}l}
+   \simdto_{t\K{x}N}(c) &=&
+     c_0~\dots~c_N \\
+     && (\where
+       w = |t| / 8 \wedge
+       b^* = bytes_{\i128}(i) \\ &&
+       \wedge c_j = bytes_{t}^{-1}(b^*[j*w \slice ((j+1)*w)])
+       )
+   \end{array}
+
+..
+   bits_{i8}^{-1}(b^*[0 \slice 8])~
+   bits_{i8}^{-1}(b^*[8 \slice 16])~
+   bits_{i8}^{-1}(b^*[16 \slice 24])~
+   bits_{i8}^{-1}(b^*[24 \slice 32]) \\ &&
+   bits_{i8}^{-1}(b^*[32 \slice 40])~
+   bits_{i8}^{-1}(b^*[40 \slice 48])~
+   bits_{i8}^{-1}(b^*[48 \slice 56])~
+   bits_{i8}^{-1}(b^*[56 \slice 64]) \\ &&
+   bits_{i8}^{-1}(b^*[64 \slice 72])~
+   bits_{i8}^{-1}(b^*[72 \slice 80])~
+   bits_{i8}^{-1}(b^*[80 \slice 88])~
+   bits_{i8}^{-1}(b^*[88 \slice 96]) \\ &&
+   bits_{i8}^{-1}(b^*[96 \slice 104])~
+   bits_{i8}^{-1}(b^*[104 \slice 112])~
+   bits_{i8}^{-1}(b^*[112 \slice 120])~
+   bits_{i8}^{-1}(b^*[120 \slice 128]) \\
+
+  .. math::
+     \begin{array}{lll@{\qquad}l}
+     \simdto_{i8x16}(i) &=&
+       bytes_{i8}^{-1}(b^*[0]) ~ \dots ~ b^*[15] & (\iff bytes_\i128(i) = b^*) \\
+     \simdto_{i16x8}(i) &=&
+       b_{0,2} ~
+       b_{2,4} ~
+       b_{4,6} ~
+       b_{6,8} ~
+       b_{8,10} ~
+       b_{10,12} ~
+       b_{12,14} ~
+       b_{14,16}
+       & (\iff bytes_\i128(i) = b^* \wedge b_{i,j} = bytes_{i16}^{-1}(b^*[i \ slice j]) \\
+     \end{array}
+
+  .. math::
+     \begin{array}{lll@{\qquad}l}
+     \simdto_{i8x16}(i) &=&
+       bits_{i8}^{-1}(d_0^8) ~
+       bits_{i8}^{-1}(d_1^8) ~
+       bits_{i8}^{-1}(d_2^8) ~
+       bits_{i8}^{-1}(d_3^8) \\ &&
+       bits_{i8}^{-1}(d_4^8) ~
+       bits_{i8}^{-1}(d_5^8) ~
+       bits_{i8}^{-1}(d_6^8) ~
+       bits_{i8}^{-1}(d_7^8) \\ &&
+       bits_{i8}^{-1}(d_8^8) ~
+       bits_{i8}^{-1}(d_9^8) ~
+       bits_{i8}^{-1}(d_{10}^8) ~
+       bits_{i8}^{-1}(d_{11}^8) \\ &&
+       bits_{i8}^{-1}(d_{12}^8) ~
+       bits_{i8}^{-1}(d_{13}^8) ~
+       bits_{i8}^{-1}(d_{14}^8) ~
+       bits_{i8}^{-1}(d_{15}^8) \\ &&
+       \qquad (\iff \ibits_{128}(i) = d_{15}^{8}~d_{14}^{8}~d_{13}^{8}~d_{12}^{8}~d_{11}^{8}~d_{10}^{8}~d_9^{8}~d_8^{8}~d_7^{8}~d_6^{8}~d_5^{8}~d_4^{8}~d_3^{8}~d_2^{8}~d_1^{8}~d_0^{8}) \\
+     \simdto_{i16x8}(i) &=&
+       bits_{i16}^{-1}(d_0^{16}) ~
+       bits_{i16}^{-1}(d_1^{16}) ~
+       bits_{i16}^{-1}(d_2^{16}) ~
+       bits_{i16}^{-1}(d_3^{16}) \\ &&
+       bits_{i16}^{-1}(d_4^{16}) ~
+       bits_{i16}^{-1}(d_5^{16}) ~
+       bits_{i16}^{-1}(d_6^{16}) ~
+       bits_{i16}^{-1}(d_7^{16}) \\ &&
+       \qquad (\iff \ibits_{128}(i) = d_7^{16}~d_6^{16}~d_5^{16}~d_4^{16}~d_3^{16}~d_2^{16}~d_1^{16}~d_0^{16}) \\
+     \simdto_{i32x4}(i) &=&
+       bits_{i32}^{-1}(d_0^{32}) ~
+       bits_{i32}^{-1}(d_1^{32}) ~
+       bits_{i32}^{-1}(d_2^{32}) ~
+       bits_{i32}^{-1}(d_3^{32}) \\ &&
+       \qquad (\iff \ibits_{128}(i) = d_3^{32}~d_2^{32}~d_1^{32}~d_0^{32}) \\
+     \simdto_{i64x2}(i) &=&
+       bits_{i64}^{-1}(d_0^{64}) ~
+       bits_{i64}^{-1}(d_1^{64}) \\ &&
+       \qquad (\iff \ibits_{128}(i) = d_1^{64}~d_0^{64}) \\
+     \simdto_{f32x4}(i) &=&
+       bits_{f32}^{-1}(d_0^{32}) ~
+       bits_{f32}^{-1}(d_1^{32}) ~
+       bits_{f32}^{-1}(d_2^{32}) ~
+       bits_{f32}^{-1}(d_3^{32}) \\ &&
+       \qquad (\iff \ibits_{128}(i) = d_3^{32}~d_2^{32}~d_1^{32}~d_0^{32}) \\
+     \simdto_{f64x2}(i) &=&
+       bits_{f64}^{-1}(d_0^{64}) ~
+       bits_{f64}^{-1}(d_1^{64}) \\ &&
+       (\iff \ibits_{128}(i) = d_1^{64}~d_0^{64}) \\
+     \end{array}
+
+These functions are bijections, so they are invertible. For convenience, we give a name to the inverse function:
+
+.. math::
+   \begin{array}{lll@{\qquad}l}
+   \simdof_{\shape}(c^n) &=& \simdto_{\shape}^{-1}(c^n)
+   \end{array}
+
+
+..
+  :math:`\simdof_{shape}(c^n)`
+  ...........................................
+
+  * Let :math:`t` be the type :math:`\unpacked(shape)`.
+
+  * Let :math:`n` be the number of lanes :math:`\lanes(shape)`.
+
+  * Let :math:`b` be the bitwidth of the lane :math:`128 / n`.
+
+  * Let :math:`d_i^\ast` be the bit sequence :math:`\bits_{t}(c_i)[0 \slice b]`.
+
+  * Return the constant :math:`c'` for which :math:`bits_{v128}(c') = d_l^\ast \dots d_1^\ast`
+
+  .. math::
+     \begin{array}{lll@{\qquad}l}
+     \simdof_{shape}(c^n) &=&
+     \bits_{v128}^{-1}((bits_t(c)[0 \slice b])^n)
+     & \iff b = 128 / n \wedge n = \lanes(shape)
+     \\
+     \end{array}
 
 
 .. index:: integer
@@ -302,6 +456,18 @@ The integer result of predicates -- i.e., :ref:`tests <syntax-testop>` and :ref:
    it holds that :math:`i_1 = i_2\cdot\idivs(i_1, i_2) + \irems(i_1, i_2)`.
 
 
+.. _op-inot:
+
+:math:`\inot_N(i)`
+.........................
+
+* Return the bitwise negation of :math:`i`.
+
+.. math::
+   \begin{array}{@{}lcll}
+   \inot_N(i) &=& \ibits_N^{-1}(\ibits_N(i) \veebar \ibits_N(2^N-1))
+   \end{array}
+
 .. _op-iand:
 
 :math:`\iand_N(i_1, i_2)`
@@ -312,6 +478,18 @@ The integer result of predicates -- i.e., :ref:`tests <syntax-testop>` and :ref:
 .. math::
    \begin{array}{@{}lcll}
    \iand_N(i_1, i_2) &=& \ibits_N^{-1}(\ibits_N(i_1) \wedge \ibits_N(i_2))
+   \end{array}
+
+.. _op-iandnot:
+
+:math:`\iandnot_N(i_1, i_2)`
+............................
+
+* Return the bitwise conjunction of :math:`i_1` and the bitwise negation of :math:`i_2`.
+
+.. math::
+   \begin{array}{@{}lcll}
+   \iandnot_N(i_1, i_2) &=& \iand_N(i_1, \inot_N(i2))
    \end{array}
 
 .. _op-ior:
@@ -623,6 +801,214 @@ The integer result of predicates -- i.e., :ref:`tests <syntax-testop>` and :ref:
    \begin{array}{lll@{\qquad}l}
    \iextendMs_{N}(i) &=& \extends_{M,N}(i) \\
    \end{array}
+
+
+.. _op-ibitselect:
+
+:math:`\ibitselect_N(i_1, i_2, c)`
+..................................
+
+* Use the bits in :math:`c` to select corresponding bit from :math:`i_1` when 1 and :math:`i_2` when 0.
+
+.. math::
+   \begin{array}{@{}lcll}
+   \ibitselect_N(i_1, i_2, N) &=& \ior_N(\iand_N(i_1, c), \iand_N(i_2, \inot_N(c)))
+   \end{array}
+
+
+.. _op-iabs:
+
+:math:`\iabs_N(i)`
+..................
+
+* Let :math:`j` be the :ref:`signed interpretation <aux-signed>` of :math:`i`.
+
+* If :math:`j` greater than or equal to :math:`0`.
+
+* Else return the negation of `j`, modulo :math:`2^N`.
+
+.. math::
+   \begin{array}{@{}lcll}
+   \iabs_N(i) &=& i & (\iff \signed_N(i) \ge 0) \\
+   \iabs_N(i) &=& \signed_N^{-1}(-j) \mod 2^N & (\iff j = \signed_N(i) \wedge j < 0) \\
+   \end{array}
+
+
+.. _op-ineg:
+
+:math:`\ineg_N(i)`
+..................
+
+* Let :math:`j` be the :ref:`signed interpretation <aux-signed>` of :math:`i`.
+
+* If :math:`j` is :math:`0`, then return :math:`0`.
+
+* Else if :math:`j` is positive, then return :math:`-j`.
+
+* Else return the negation of :math:`j`, modulo :math:`2^N`.
+
+.. math::
+   \begin{array}{@{}lcll}
+   \ineg_N(0) &=& 0 \\
+   \end{array}
+
+
+.. _op-imin_u:
+
+:math:`\iminu_N(i_1, i_2)`
+..........................
+
+* Return :math:`i_1` if :math:`\iltu_N(i_1, i_2) = 1`, :math:`i_2` otherwise.
+
+.. math::
+   \begin{array}{@{}lcll}
+   \iminu_N(i_1, i_2) &=& i_1 & (\iff \iltu_N(i_1, i_2) = 1)\\
+   \iminu_N(i_1, i_2) &=& i_2
+   \end{array}
+
+
+.. _op-imin_s:
+
+:math:`\imins_N(i_1, i_2)`
+..........................
+
+* Return :math:`i_1` if :math:`\ilts_N(i_1, i_2) = 1`, :math:`i_2` otherwise.
+
+.. math::
+   \begin{array}{@{}lcll}
+   \iminu_N(i_1, i_2) &=& i_1 & (\iff \ilts_N(i_1, i_2) = 1)\\
+   \iminu_N(i_1, i_2) &=& i_2
+   \end{array}
+
+
+.. _op-imax_u:
+
+:math:`\imaxu_N(i_1, i_2)`
+..........................
+
+* Return :math:`i_1` if :math:`\igtu_N(i_1, i_2) = 1`, :math:`i_2` otherwise.
+
+.. math::
+   \begin{array}{@{}lcll}
+   \iminu_N(i_1, i_2) &=& i_1 & (\iff \igtu_N(i_1, i_2) = 1)\\
+   \iminu_N(i_1, i_2) &=& i_2
+   \end{array}
+
+
+.. _op-imax_s:
+
+:math:`\imaxs_N(i_1, i_2)`
+..........................
+
+* Return :math:`i_1` if :math:`\igts_N(i_1, i_2) = 1`, :math:`i_2` otherwise.
+
+.. math::
+   \begin{array}{@{}lcll}
+   \iminu_N(i_1, i_2) &=& i_1 & (\iff \igts_N(i_1, i_2) = 1)\\
+   \iminu_N(i_1, i_2) &=& i_2
+   \end{array}
+
+
+.. _op-iaddsat_u:
+
+:math:`\iaddsatu_N(i_1, i_2)`
+.............................
+
+* Let :math:`i` be the result of adding :math:`i_1` and :math:`i_2`.
+
+* If :math:`i` is greater than :math:`2^N-1`, return :math:`2^N-1`.
+
+* Else return :math:`i`.
+
+.. math::
+   \begin{array}{lll@{\qquad}l}
+   \iaddsatu_N(i_1, i_2) &=& 2^N-1 & (\iff i_1 + i_2 > 2^N-1)\\
+   \iaddsatu_N(i_1, i_2) &=& i_1 + i_2 & (\otherwise)
+   \end{array}
+
+
+.. _op-iaddsat_s:
+
+:math:`\iaddsats_N(i_1, i_2)`
+.............................
+
+* Let :math:`j_1` be the signed interpretation of :math:`i_1`
+* Let :math:`j_2` be the signed interpretation of :math:`i_2`
+
+* Let :math:`j` be the result of adding :math:`j_1` and :math:`j_2`.
+
+* If :math:`j` is less than :math:`-2^{N-1}`, return :math:`-2^{N-1}`.
+
+* If :math:`j` is greater than :math:`2^N-1`, return :math:`2^N-1`.
+
+* Return :math:`j` otherwise.
+
+.. math::
+   \begin{array}{lll@{\qquad}l}
+   \iaddsats_N(i_1, i_2) &=& -2^{N-1} & (\iff \signed(i_i) + \signed(i_2) < -2^{N-1})\\
+   \iaddsats_N(i_1, i_2) &=& 2^N-1 & (\iff \signed(i_i) + \signed(i_2) > 2^N-1)\\
+   \iaddsats_N(i_1, i_2) &=& \signed_N^{-1}(\signed(i_i) + \signed(i_2)) & (\otherwise)
+   \end{array}
+
+
+.. _op-isubsat_u:
+
+:math:`\isubsatu_N(i_1, i_2)`
+.............................
+
+* Let :math:`i` be the result of subtracting :math:`i_2` from :math:`i_1`.
+
+* If :math:`i` is less than :math:`0`, return :math:`0`.
+
+* Else, return :math:`i`.
+
+.. math::
+   \begin{array}{lll@{\qquad}l}
+   \isubsatu_N(i_1, i_2) &=& 0 & (\iff i_1 - i_2 < 0)\\
+   \isubsatu_N(i_1, i_2) &=& i_1 - i_2 & (\otherwise)
+   \end{array}
+
+
+.. _op-isubsat_s:
+
+:math:`\isubsats_N(i_1, i_2)`
+.............................
+
+* Let :math:`j_1` be the signed interpretation of :math:`i_1`
+
+* Let :math:`j_2` be the signed interpretation of :math:`i_2`
+
+* Let :math:`j` be the result of subtracting :math:`j_2` from :math:`j_1`.
+
+* If :math:`j` is less than :math:`-2^{N-1}`, return :math:`-2^{N-1}`.
+
+* If :math:`j` is greater than :math:`2^N-1`, return :math:`2^N-1`.
+
+* Return :math:`j` otherwise.
+
+.. math::
+   \begin{array}{lll@{\qquad}l}
+   \isubsats_N(i_1, i_2) &=& -2^{N-1} & (\iff \signed(i_i) - \signed(i_2) < -2^{N-1})\\
+   \isubsats_N(i_1, i_2) &=& 2^N-1 & (\iff \signed(i_i) - \signed(i_2) > 2^N-1)\\
+   \isubsats_N(i_1, i_2) &=& \signed_N^{-1}(\signed(i_i) - \signed(i_2)) & (\otherwise)
+   \end{array}
+
+
+.. _op-iavgr_u:
+
+:math:`\iavgru_N(i_1, i_2)`
+.............................
+
+* Let :math:`j` be the result of adding :math:`i_1`, :math:`i_2`, and :math:`1`.
+
+* Return the result of dividing :math:`j` by :math:`2`, truncated toward zero.
+
+.. math::
+   \begin{array}{lll@{\qquad}l}
+   \iavgru_N(i_1, i_2) &=& \trunc((i_1 + i_2 + 1) / 2)
+   \end{array}
+
+
 
 
 .. index:: floating-point, IEEE 754
@@ -1620,3 +2006,91 @@ Conversions
    \begin{array}{lll@{\qquad}l}
    \reinterpret_{t_1,t_2}(c) &=& \bits_{t_2}^{-1}(\bits_{t_1}(c)) \\
    \end{array}
+
+
+.. _op-saturate_u:
+
+:math:`\saturateu_N(i)`
+.......................
+
+* If :math:`i` is greater than :math:`2^N-1`, return :math:`2^N-1`.
+
+* Else return :math:`i`.
+
+.. math::
+   \begin{array}{lll@{\qquad}l}
+   \saturateu_N(i) &=& 2^N-1 & (\iff i > 2^N-1)\\
+   \saturateu_N(i) &=& i & (\otherwise)
+   \end{array}
+
+
+.. _op-saturate_s:
+
+:math:`\saturates_N(i)`
+.......................
+
+* Let :math:`j` be the :ref:`signed interpretation <aux-signed>` of :math:`i` of size :math:`N`.
+
+* If :math:`j` is less than :math:`-2^{N-1}`, return :math:`-2^{N-1}`.
+
+* If :math:`j` is greater than :math:`2^N-1`, return :math:`2^N-1`.
+
+* Else return :math:`i`.
+
+.. math::
+   \begin{array}{lll@{\qquad}l}
+   \saturates_N(i) &=& -2^{N-1} & (\iff \signed(i) < -2^{N-1})\\
+   \saturates_N(i) &=& 2^N-1 & (\iff \signed(i) > 2^N-1)\\
+   \saturates_N(i) &=& i & (\otherwise)
+   \end{array}
+
+
+.. _op-narrow_s:
+
+:math:`\narrows_{M,N}(i)`
+.........................
+
+* Let :math:`j` be the :ref:`signed interpretation <aux-signed>` of :math:`i` of size :math:`M`.
+
+* Return :math:`\saturates_N(j)`.
+
+.. math::
+   \begin{array}{lll@{\qquad}l}
+   \narrows_{M,N}(i) &=& \saturates_N(\signed_M(i))
+   \end{array}
+
+
+.. _op-narrow_u:
+
+:math:`\narrowu_{M,N}(i)`
+.........................
+
+* Let :math:`j` be the :ref:`signed interpretation <aux-signed>` of :math:`i` of size :math:`M`.
+
+* Return :math:`\saturateu_N(j)`.
+
+.. math::
+   \begin{array}{lll@{\qquad}l}
+   \narrowu_{M,N}(i) &=& \saturateu_N(\signed_M(i))
+   \end{array}
+
+
+:math:`\SPLAT_{shape}(c)`
+.........................
+
+* Let :math:`t` be the type :math:`\unpacked(shape)`.
+
+* Let :math:`n` be the type :math:`\lanes(shape)`.
+
+* Return :math:`\simdof_{\shape}(c^1 \dots c^n)`
+
+.. math::
+   \begin{array}{lll@{\qquad}l}
+   splat_{shape}(c) &=&
+   \simdof_{shape}(c^1 \dots c^n)
+   & \iff n = \lanes(shape)
+   \\
+   \end{array}
+
+.. todo::
+    shuffle, swizzle

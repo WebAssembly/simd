@@ -159,11 +159,11 @@ Numeric Instructions
    single: abstract syntax; instruction
 
 .. _valid-instr-simd:
+.. _aux-unpacked:
+.. _aux-packed:
 
 SIMD Instructions
 ~~~~~~~~~~~~~~~~~
-
-.. _aux-unpacked:
 
 SIMD instructions can have a prefix to describe the :ref:`shape <syntax-simd-shape>` of the operand. Packed numeric types, |I8| and |I16|, are not :ref:`value type <syntax-valtype>`, we define an auxiliary function to map such packed types into value types:
 
@@ -172,6 +172,11 @@ SIMD instructions can have a prefix to describe the :ref:`shape <syntax-simd-sha
    \unpacked(\K{i8x16}) &=& \I32 \\
    \unpacked(\K{i16x8}) &=& \I32 \\
    \unpacked(t\K{x}N) &=& t
+   \end{array}
+
+.. math::
+   \begin{array}{lll@{\qquad}l}
+   \packed(t\K{x}N) &=& t
    \end{array}
 
 
