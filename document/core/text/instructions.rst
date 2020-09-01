@@ -454,7 +454,7 @@ Numeric Instructions
 SIMD Instructions
 ~~~~~~~~~~~~~~~~~~~~
 
-SIMD memory instructions have optional offset and alignment immediates, the rules are the same as the :ref:`memory instructions <text-memarg>`.
+SIMD memory instructions have optional offset and alignment immediates, like the :ref:`memory instructions <text-memarg>`.
 
 .. math::
    \begin{array}{llclll}
