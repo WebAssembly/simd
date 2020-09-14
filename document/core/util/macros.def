@@ -145,6 +145,7 @@
 .. |s32| mathdef:: \xref{syntax/values}{syntax-int}{\X{s32}}
 .. |s64| mathdef:: \xref{syntax/values}{syntax-int}{\X{s64}}
 
+.. |iM| mathdef:: \xref{syntax/values}{syntax-int}{\X{i}M}
 .. |iN| mathdef:: \xref{syntax/values}{syntax-int}{\X{i}N}
 .. |i8| mathdef:: \xref{syntax/values}{syntax-int}{\X{i8}}
 .. |i16| mathdef:: \xref{syntax/values}{syntax-int}{\X{i16}}
