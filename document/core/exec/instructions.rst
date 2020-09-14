@@ -720,7 +720,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 2. Pop the value :math:`\V128.\CONST~c_1` from the stack.
 
-3. Let :math:`i_1^N` be the sequence :math:`\simdto_{t_1\K{x}M}(c_1)[N \slice M]`.
+3. Let :math:`i_1^N` be the sequence :math:`\simdto_{t_1\K{x}M}(c_1)[N \slice N]`.
 
 4. Let :math:`c` be the result of computing :math:`\simdof_{t_2\K{x}N}((\extend^{\sx}_{t_1,t_2}(i_1))^N)`
 
@@ -733,7 +733,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
    \end{array}
    \\ \qquad
      \begin{array}[t]{@{}r@{~}l@{}}
-     (\iff & i_1^N = \simdto_{t_1\K{x}M}(c_1)[N \slice M] \\
+     (\iff & i_1^N = \simdto_{t_1\K{x}M}(c_1)[N \slice N] \\
      \wedge & c = \simdof_{t_2\K{x}N}((\extend^{\sx}_{M,N}(i_1))^N)
      \end{array}
    \end{array}

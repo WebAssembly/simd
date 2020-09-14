@@ -158,16 +158,16 @@ Again these functions are invertable bijections.
 SIMD
 ....
 
-SIMD values have the same underlying representation as an |i128|. They can also be interpreted as numeric values packed into a |V128| with a particular |shape|.
+SIMD values have the same underlying representation as an |i128|. They can also be interpreted as a sequence numeric values packed into a |V128| with a particular |shape|.
 
 .. math::
    \begin{array}{lll@{\qquad}l}
    \simdto_{t\K{x}N}(c) &=&
-     c_0~\dots~c_N \\
+     c_0~\dots~c_{N-1} \\
      && (\where
-       w = |t| / 8 \wedge
-       b^* = bytes_{\i128}(i) \\ &&
-       \wedge c_j = bytes_{t}^{-1}(b^*[j*w \slice ((j+1)*w)])
+       B = |t| / 8 \wedge
+       b^* = bytes_{\i128}(c) \\ &&
+       \wedge c_i = bytes_{t}^{-1}(b^*[i*B \slice B])
        )
    \end{array}
 
