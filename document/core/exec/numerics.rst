@@ -2075,22 +2075,5 @@ Conversions
    \end{array}
 
 
-:math:`\SPLAT_{shape}(c)`
-.........................
-
-* Let :math:`t` be the type :math:`\unpacked(shape)`.
-
-* Let :math:`n` be the type :math:`\lanes(shape)`.
-
-* Return :math:`\simdof_{\shape}(c^1 \dots c^n)`
-
-.. math::
-   \begin{array}{lll@{\qquad}l}
-   splat_{shape}(c) &=&
-   \simdof_{shape}(c^1 \dots c^n)
-   & \iff n = \lanes(shape)
-   \\
-   \end{array}
-
 .. todo::
     shuffle, swizzle
