@@ -195,12 +195,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 .. math::
    \begin{array}{lll@{\qquad}l}
    \X{op}_{t\K{x}N}(n_1,\dots,n_k) &=&
-   \simdof_{t\K{x}N}(
-   op_t(
-   \simdto_{t\K{x}N}(n_1))
-   ~\dots~
-   \simdto_{t\K{x}N}(n_k)
-   )
+     \simdof_{t\K{x}N}(op_t(\simdto_{t\K{x}N}(n_1) ~\dots~ \simdto_{t\K{x}N}(n_k))
    \end{array}
 
 .. note::
