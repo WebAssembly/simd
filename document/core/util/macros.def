@@ -423,8 +423,6 @@
 .. |AVGR| mathdef:: \xref{syntax/instructions}{syntax-instr-simd}{\K{avgr}}
 .. |VTRUNC| mathdef:: \xref{syntax/instructions}{syntax-instr-simd}{\K{trunc}}
 .. |VCONVERT| mathdef:: \xref{syntax/instructions}{syntax-instr-simd}{\K{convert}}
-.. |ALLTRUE| mathdef:: \xref{syntax/instructions}{syntax-instr-simd}{\K{all\_true}}
-.. |ANYTRUE| mathdef:: \xref{syntax/instructions}{syntax-instr-simd}{\K{any\_true}}
 
 
 .. Instructions, non-terminals
