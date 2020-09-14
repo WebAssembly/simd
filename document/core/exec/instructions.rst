@@ -308,7 +308,85 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 
 .. todo::
-   shuffle, load splat, load extend.
+   load splat, load extend.
+
+
+.. _exec-simd-swizzle:
+
+:math:`\K{i8x16.}\SWIZZLE`
+..........................
+
+1. Assert: due to :ref:`validation <valid-vbinop>`, two values of :ref:`value type <syntax-valtype>` |V128| are on the top of the stack.
+
+2. Pop the value :math:`\V128.\CONST~c_2` from the stack.
+
+3. Let :math:`s^{16}` be the sequence :math:`\simdto_{i8x16}(c_2)`.
+
+4. Pop the value :math:`\V128.\CONST~c_1` from the stack.
+
+5. Let :math:`i^{16}` be the sequence :math:`\simdto_{i8x16}(c_1)`.
+
+6. Let :math:`v^{255}` be the concatenation of the two sequences :math:`i^{16}~0^{239}`
+
+7. Let :math:`d_i` be the result of :math:`d_i = v^{255}[ s^{16}[i] ]`.
+
+8. Let :math:`c` be the result of :math:`\simdof_{i8x16}(d_0 \dots d_{15})`.
+
+9. Push the value :math:`\V128.\CONST~c` onto the stack.
+
+.. math::
+   \begin{array}{l}
+   \begin{array}{lcl@{\qquad}l}
+   (\V128\K{.}\CONST~c_1)~(\V128\K{.}\CONST~c_2)~\V128\K{.}\SWIZZLE &\stepto& (\V128\K{.}\CONST~c)
+   \end{array}
+   \\ \qquad
+     \begin{array}[t]{@{}r@{~}l@{}}
+      (\iff & s^{16} = \simdto_{i8x16}(c_2) \\
+      \wedge & v^{255} = \simdto_{i8x16}(c_1)~0^{239} \\
+      \wedge & d_i = v^{255}[ s^{16}[i] ] \\
+      \wedge & c = \simdof_{i8x16}(d_0 \dots d_{15})
+     \end{array}
+   \end{array}
+
+
+.. _exec-simd-shuffle:
+
+:math:`\K{i8x16.}\SHUFFLE~\laneidx^{16}`
+........................................
+
+1. Assert: due to :ref:`validation <valid-simd-shuffle>`, two values of :ref:`value type <syntax-valtype>` |V128| are on the top of the stack.
+
+1. Assert: due to :ref:`validation <valid-simd-shuffle>`, that all :math:`\laneidx_i < 32`.
+
+2. Pop the value :math:`\V128.\CONST~c_2` from the stack.
+
+3. Let :math:`i_1^{16}` be the sequence :math:`\simdto_{i8x16}(c_2)`.
+
+4. Pop the value :math:`\V128.\CONST~c_1` from the stack.
+
+3. Let :math:`i_2^{16}` be the sequence :math:`\simdto_{i8x16}(c_2)`.
+
+3. Let :math:`i_3^{32}` be the concatenation of the two sequences :math:`i_1^{16}~i_2^{16}`.
+
+4. Let :math:`d_i` be :math:`i_3^{32}[\laneidx_i]`.
+
+8. Let :math:`c` be the result of :math:`\simdof_{i8x16}(d_0 \dots d_{15})`.
+
+9. Push the value :math:`\V128.\CONST~c` onto the stack.
+
+.. math::
+   \begin{array}{l}
+   \begin{array}{lcl@{\qquad}l}
+   (\V128\K{.}\CONST~c_1)~(\V128\K{.}\CONST~c_2)~\V128\K{.}\SHUFFLE~\laneidx^{16} &\stepto& (\V128\K{.}\CONST~c)
+   \end{array}
+   \\ \qquad
+     \begin{array}[t]{@{}r@{~}l@{}}
+      (\iff & i_1^{16} = \simdto_{i8x16}(c_1) \\
+      \wedge & i_2^{16} = \simdto_{i8x16}(c_2) \\
+      \wedge & d_i = (i_1^{16}~i_2^{16})[\laneidx_i] \\
+      \wedge & c = \simdof_{i8x16}(d_0 \dots d_{15})
+     \end{array}
+   \end{array}
 
 
 .. _exec-simd-splat:
@@ -435,7 +513,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
    \end{array}
 
 
-.. _exec-simd-vbinnop:
+.. _exec-simd-vbinop:
 
 :math:`\shape\K{.}\vbinop`
 ..........................
