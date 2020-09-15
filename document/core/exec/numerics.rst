@@ -165,9 +165,9 @@ SIMD values have the same underlying representation as an |i128|. They can also 
    \simdto_{t\K{x}N}(c) &=&
      c_0~\dots~c_{N-1} \\
      && (\where
-       B = |t| / 8 \wedge
+       B = |t| / 8 \wedge \\ &&
        b^* = bytes_{\i128}(c) \\ &&
-       \wedge c_i = bytes_{t}^{-1}(b^*[i*B \slice B])
+       \wedge c_i = \bytes_{t}^{-1}(b^*[i*B \slice B])
        )
    \end{array}
 
@@ -324,6 +324,13 @@ The integer result of predicates -- i.e., :ref:`tests <syntax-testop>` and :ref:
    \begin{array}{lll@{\qquad}l}
    \bool(C) &=& 1 & (\iff C) \\
    \bool(C) &=& 0 & (\otherwise) \\
+   \end{array}
+
+We lift :math:`\bool` to sequences of predicates by conjunction over the inputs.
+
+.. math::
+   \begin{array}{lll@{\qquad}l}
+   \bool(C_1~C_2^*) &=& \bool(C_1) \wedge \bool(C_2^*)
    \end{array}
 
 
@@ -808,7 +815,11 @@ The integer result of predicates -- i.e., :ref:`tests <syntax-testop>` and :ref:
 :math:`\ibitselect_N(i_1, i_2, c)`
 ..................................
 
-* Use the bits in :math:`c` to select corresponding bit from :math:`i_1` when 1 and :math:`i_2` when 0.
+* Let :math:`d_i` be the bit :math:`i` of :math:`i_1` if bit :math:`i` of :math:`c` is :math:`1`
+
+* Else let :math:`d_i` be the bit :math:`i` of of :math:`i_2`.
+
+* Return the number represented by all the concatenation of all bits :math:`d_i`.
 
 .. math::
    \begin{array}{@{}lcll}
@@ -823,7 +834,7 @@ The integer result of predicates -- i.e., :ref:`tests <syntax-testop>` and :ref:
 
 * Let :math:`j` be the :ref:`signed interpretation <aux-signed>` of :math:`i`.
 
-* If :math:`j` greater than or equal to :math:`0`.
+* If :math:`j` greater than or equal to :math:`0`, then return :math:`i`.
 
 * Else return the negation of `j`, modulo :math:`2^N`.
 
@@ -839,17 +850,11 @@ The integer result of predicates -- i.e., :ref:`tests <syntax-testop>` and :ref:
 :math:`\ineg_N(i)`
 ..................
 
-* Let :math:`j` be the :ref:`signed interpretation <aux-signed>` of :math:`i`.
-
-* If :math:`j` is :math:`0`, then return :math:`0`.
-
-* Else if :math:`j` is positive, then return :math:`-j`.
-
-* Else return the negation of :math:`j`, modulo :math:`2^N`.
+* Return the result of negating :math:`i`, modulo :math:`2^N`.
 
 .. math::
    \begin{array}{@{}lcll}
-   \ineg_N(0) &=& 0 \\
+   \ineg_N(i) &=& \iadd_N(\inot_N(i), 1) \\
    \end{array}
 
 
@@ -909,67 +914,56 @@ The integer result of predicates -- i.e., :ref:`tests <syntax-testop>` and :ref:
    \end{array}
 
 
-.. _op-iaddsat_u:
+.. _op-iadd_sat_u:
 
 :math:`\iaddsatu_N(i_1, i_2)`
 .............................
 
 * Let :math:`i` be the result of adding :math:`i_1` and :math:`i_2`.
 
-* If :math:`i` is greater than :math:`2^N-1`, return :math:`2^N-1`.
-
-* Else return :math:`i`.
+* Return :math:`\saturateu_N(i)`.
 
 .. math::
    \begin{array}{lll@{\qquad}l}
-   \iaddsatu_N(i_1, i_2) &=& 2^N-1 & (\iff i_1 + i_2 > 2^N-1)\\
-   \iaddsatu_N(i_1, i_2) &=& i_1 + i_2 & (\otherwise)
+   \iaddsatu_N(i_1, i_2) &=& \saturateu_N(i_1 + i_2)
    \end{array}
 
 
-.. _op-iaddsat_s:
+.. _op-iadd_sat_s:
 
 :math:`\iaddsats_N(i_1, i_2)`
 .............................
 
 * Let :math:`j_1` be the signed interpretation of :math:`i_1`
+
 * Let :math:`j_2` be the signed interpretation of :math:`i_2`
 
 * Let :math:`j` be the result of adding :math:`j_1` and :math:`j_2`.
 
-* If :math:`j` is less than :math:`-2^{N-1}`, return :math:`-2^{N-1}`.
-
-* If :math:`j` is greater than :math:`2^N-1`, return :math:`2^N-1`.
-
-* Return :math:`j` otherwise.
+* Return :math:`\saturates_N(j)`.
 
 .. math::
    \begin{array}{lll@{\qquad}l}
-   \iaddsats_N(i_1, i_2) &=& -2^{N-1} & (\iff \signed(i_i) + \signed(i_2) < -2^{N-1})\\
-   \iaddsats_N(i_1, i_2) &=& 2^N-1 & (\iff \signed(i_i) + \signed(i_2) > 2^N-1)\\
-   \iaddsats_N(i_1, i_2) &=& \signed_N^{-1}(\signed(i_i) + \signed(i_2)) & (\otherwise)
+   \iaddsats_N(i_1, i_2) &=& \saturates_N(\signed(i_1) + \signed(i_2))
    \end{array}
 
 
-.. _op-isubsat_u:
+.. _op-isub_sat_u:
 
 :math:`\isubsatu_N(i_1, i_2)`
 .............................
 
 * Let :math:`i` be the result of subtracting :math:`i_2` from :math:`i_1`.
 
-* If :math:`i` is less than :math:`0`, return :math:`0`.
-
-* Else, return :math:`i`.
+* Return :math:`\saturateu_N(i)`.
 
 .. math::
    \begin{array}{lll@{\qquad}l}
-   \isubsatu_N(i_1, i_2) &=& 0 & (\iff i_1 - i_2 < 0)\\
-   \isubsatu_N(i_1, i_2) &=& i_1 - i_2 & (\otherwise)
+   \isubsatu_N(i_1, i_2) &=& \saturateu_N(i_1 - i_2)
    \end{array}
 
 
-.. _op-isubsat_s:
+.. _op-isub_sat_s:
 
 :math:`\isubsats_N(i_1, i_2)`
 .............................
@@ -980,17 +974,11 @@ The integer result of predicates -- i.e., :ref:`tests <syntax-testop>` and :ref:
 
 * Let :math:`j` be the result of subtracting :math:`j_2` from :math:`j_1`.
 
-* If :math:`j` is less than :math:`-2^{N-1}`, return :math:`-2^{N-1}`.
-
-* If :math:`j` is greater than :math:`2^N-1`, return :math:`2^N-1`.
-
-* Return :math:`j` otherwise.
+* Return :math:`\saturates_N(j)`.
 
 .. math::
    \begin{array}{lll@{\qquad}l}
-   \isubsats_N(i_1, i_2) &=& -2^{N-1} & (\iff \signed(i_i) - \signed(i_2) < -2^{N-1})\\
-   \isubsats_N(i_1, i_2) &=& 2^N-1 & (\iff \signed(i_i) - \signed(i_2) > 2^N-1)\\
-   \isubsats_N(i_1, i_2) &=& \signed_N^{-1}(\signed(i_i) - \signed(i_2)) & (\otherwise)
+   \isubsats_N(i_1, i_2) &=& \saturates_N(\signed(i_i) - \signed(i_2))
    \end{array}
 
 

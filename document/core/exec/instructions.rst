@@ -518,7 +518,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 2. Pop the value :math:`\V128.\CONST~c_2` from the stack.
 
-4. Pop the value :math:`\V128.\CONST~c_1` from the stack.
+3. Pop the value :math:`\V128.\CONST~c_1` from the stack.
 
 4. If :math:`\vbinop_{\shape}(c_1, c_2)` is defined:
 
@@ -552,21 +552,21 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 4. Pop the value :math:`\V128.\CONST~c_1` from the stack.
 
-5. Let :math:`i_1^N` be the sequence :math:`\simdto_{\shape}(c_1)`.
+5. Let :math:`i_1^N` be the sequence :math:`\simdto_{t\K{x}N}(c_1)`.
 
-7. Let :math:`c` be :math:`\simdof_{\shape}(\vshiftop_{t}(i_1^N, s^N))`.
+7. Let :math:`c` be :math:`\simdof_{t\K{x}N}(\vshiftop_{t}(i_1^N, s^N))`.
 
 8. Push the value :math:`\V128.\CONST~c` to the stack.
 
 .. math::
    \begin{array}{l}
    \begin{array}{lcl@{\qquad}l}
-   (\V128\K{.}\CONST~c_1)~(\I32\K{.}\CONST~s)~\V128\K{.}\vshiftop &\stepto& (\V128\K{.}\CONST~c)
+   (\V128\K{.}\CONST~c_1)~(\I32\K{.}\CONST~s)~t\K{x}N\K{.}\vshiftop &\stepto& (\V128\K{.}\CONST~c)
    \end{array}
    \\ \qquad
      \begin{array}[t]{@{}r@{~}l@{}}
-     (\iff & i_1^N = \simdto_{\shape}(c_1) \\
-     \wedge & c = \simdof_{\shape}(\vshiftop_{t}(i_1^N, s^N)))
+     (\iff & i_1^N = \simdto_{t\K{x}N}(c_1) \\
+     \wedge & c = \simdof_{t\K{x}N}(\vshiftop_{t}(i_1^N, s^N)))
      \end{array}
    \end{array}
 
@@ -586,7 +586,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 4. Let :math:`i_1^n` be the sequence :math:`\simdto_{\shape}(c_1)`
 
-5. Let :math:`i` be the result of computing :math:`\bool((i_1 != 0)^n)`.
+5. Let :math:`i` be the result of computing :math:`\bool((i_1 \neq 0)^n)`.
 
 6. Push the value :math:`\I32.\CONST~i` onto the stack.
 
@@ -600,7 +600,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
      \begin{array}[t]{@{}r@{~}l@{}}
      (\iff & n = \lanes(\shape) \\
      \wedge & i_1^n = \simdto_{\shape}(c) \\
-     \wedge & i = \bool((i_1 != 0)^n)
+     \wedge & i = \bool((i_1 \neq 0)^n)
      \end{array}
    \end{array}
 
@@ -621,7 +621,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 .. math::
    \begin{array}{lcl@{\qquad}l}
    (\V128\K{.}\CONST~c_1)~\shape\K{.}\ANYTRUE &\stepto& (\I32\K{.}\CONST~i)
-     & (\iff i = \ine_{\K{128}}(c_1, 0) \\
+     & (\iff i = \ine_{\K{128}}(c_1, 0)) \\
    \end{array}
 
 
@@ -638,16 +638,16 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 4. Let :math:`B` be the :ref:`bit width <syntax-valtype>` :math:`|t|` of :ref:`value type <syntax-valtype>` :math:`t`.
 
-5. Let :math:`i_2^N` sequence as a result of computing :math:`\ilts_{B}(i_1^N, 0^N)`.
+5. Let :math:`i_2^N` be the sequence as a result of computing :math:`\ilts_{B}(i_1^N, 0^N)`.
 
-6. Let :math:`c` be the integer :math:`ibits_{32}^{-1}(i_2^N)`.
+6. Let :math:`c` be the integer :math:`\ibits_{32}^{-1}(i_2^N~0^{32-N})`.
 
 7. Push the value :math:`\I32.\CONST~c` onto the stack.
 
 .. math::
    \begin{array}{lcl@{\qquad}l}
    (\V128\K{.}\CONST~c_1)~\shape\K{.}\BITMASK &\stepto& (\I32\K{.}\CONST~c)
-     & (\iff c = ibits_{32}^{-1}(\ilts_{B}(\simdto_{t\K{x}N}(c), 0^N)))
+     & (\iff c = \ibits_{32}^{-1}(\ilts_{B}(\simdto_{t\K{x}N}(c), 0^N)))
      \\
    \end{array}
 
@@ -698,7 +698,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 4. Let :math:`c` be the result of computing :math:`\simdof_{t_2\K{x}N}((\extend^{\sx}_{t_1,t_2}(i_1))^N)`
 
-6. Push the value :math:`\V128.\CONST~c` onto the stack.
+5. Push the value :math:`\V128.\CONST~c` onto the stack.
 
 .. math::
    \begin{array}{l}
