@@ -181,7 +181,7 @@ Occasionally, it is convenient to group operators together according to the foll
 .. _syntax-vsunop:
 .. _syntax-vsbinop:
 .. _syntax-vsternop:
-.. _syntax-vtestop:
+.. _syntax-vitestop:
 .. _syntax-virelop:
 .. _syntax-vfrelop:
 .. _syntax-vshiftop:
@@ -229,9 +229,9 @@ SIMD instructions provide basic operations over :ref:`values <syntax-value>` of 
      \K{i32x4.}\viunop \\&&|&
      \K{i64x2.}\NEG \\&&|&
      \fshape\K{.}\vfunop \\&&|&
-     \K{i8x16.}\vtestop ~|~
-     \K{i16x8.}\vtestop ~|~
-     \K{i32x4.}\vtestop \\&&|&
+     \K{i8x16.}\vitestop ~|~
+     \K{i16x8.}\vitestop ~|~
+     \K{i32x4.}\vitestop \\&&|&
      \K{i8x16.}\BITMASK ~|~
      \K{i16x8.}\BITMASK ~|~
      \K{i32x4.}\BITMASK \\&&|&
@@ -266,7 +266,7 @@ SIMD instructions provide basic operations over :ref:`values <syntax-value>` of 
      \K{xor} \\
    \production{SIMD ternary operator} & \vsternop &::=&
      \K{bitselect} \\
-   \production{SIMD test operator} & \vtestop &::=&
+   \production{SIMD test operator} & \vitestop &::=&
      \K{any\_true} ~|~
      \K{all\_true} \\
    \production{SIMD integer relational operator} & \virelop &::=&
@@ -379,7 +379,6 @@ Occasionally, it is convenient to group operators together according to the foll
      \AVGR\K{\_u} ~|~
      \VTRUNC ~|~
      \VCONVERT \\
-   \production{ternary operator} & \vsternop &::=& \SHUFFLE \\
    \end{array}
 
 
