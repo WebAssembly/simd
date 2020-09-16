@@ -422,6 +422,3 @@
   "type mismatch"
 )
 
-;; combination
-(module
-)
