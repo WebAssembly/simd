@@ -823,11 +823,11 @@ We lift :math:`\bool` to sequences of predicates by conjunction over the inputs.
 :math:`\ibitselect_N(i_1, i_2, c)`
 ..................................
 
-* Let :math:`d_i` be the bit :math:`i` of :math:`i_1` if bit :math:`i` of :math:`c` is :math:`1`
+* If bit :math:`i` of :math:`c` is :math:`1`, then let :math:`d_i` be the bit :math:`i` of :math:`i_1`.
 
 * Else let :math:`d_i` be the bit :math:`i` of of :math:`i_2`.
 
-* Return the number represented by all the concatenation of all bits :math:`d_i`.
+* Return the number represented by the concatenation of all bits :math:`d_i`.
 
 .. math::
    \begin{array}{@{}lcll}
