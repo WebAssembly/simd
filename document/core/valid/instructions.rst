@@ -243,7 +243,7 @@ We also define an auxiliary function to get number of packed numeric types in a 
 
 .. _valid-simd-shuffle:
 
-:math:`\K{v8x16.}\SHUFFLE~\laneidx^{16}`
+:math:`\K{i8x16.}\SHUFFLE~\laneidx^{16}`
 ........................................
 
 * For all :math:`\laneidx_i`, in :math:`\laneidx^{16}`, :math:`\laneidx_i` must be smaller than :math:`32`.
@@ -254,7 +254,7 @@ We also define an auxiliary function to get number of packed numeric types in a 
    \frac{
      (\laneidx < 32)^{16}
    }{
-     C \vdashinstr \K{v8x16.}\SHUFFLE~\laneidx^{16} : [\V128~\V128] \to [\V128]
+     C \vdashinstr \K{i8x16.}\SHUFFLE~\laneidx^{16} : [\V128~\V128] \to [\V128]
    }
 
 
