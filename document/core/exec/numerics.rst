@@ -161,14 +161,17 @@ SIMD
 SIMD values have the same underlying representation as an |i128|. They can also be interpreted as a sequence numeric values packed into a |V128| with a particular |shape|.
 
 .. math::
+   \begin{array}{l}
    \begin{array}{lll@{\qquad}l}
    \simdto_{t\K{x}N}(c) &=&
      c_0~\dots~c_{N-1} \\
-     && (\where
-       B = |t| / 8 \wedge \\ &&
-       b^* = bytes_{\i128}(c) \\ &&
-       \wedge c_i = \bytes_{t}^{-1}(b^*[i*B \slice B])
-       )
+   \end{array}
+   \\ \qquad
+     \begin{array}[t]{@{}r@{~}l@{}}
+     (\where & B = |t| / 8 \\
+     \wedge & b^* = bytes_{\i128}(c) \\
+     \wedge & c_i = \bytes_{t}^{-1}(b^*[i*B \slice B]))
+     \end{array}
    \end{array}
 
 ..
