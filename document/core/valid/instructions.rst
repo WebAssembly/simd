@@ -383,9 +383,9 @@ We also define an auxiliary function to get number of packed numeric types in a 
    }
 
 
-.. _valid-vtestop:
+.. _valid-vitestop:
 
-:math:`\shape\K{.}\vtestop`
+:math:`\shape\K{.}\vitestop`
 ...........................
 
 * The instruction is valid with type :math:`[\V128] \to [\I32]`.
@@ -393,7 +393,7 @@ We also define an auxiliary function to get number of packed numeric types in a 
 .. math::
    \frac{
    }{
-     C \vdashinstr \shape\K{.}\vtestop : [\V128] \to [\I32]
+     C \vdashinstr \shape\K{.}\vitestop : [\V128] \to [\I32]
    }
 
 
