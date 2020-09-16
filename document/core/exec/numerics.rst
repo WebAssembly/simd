@@ -2071,7 +2071,3 @@ Conversions
    \begin{array}{lll@{\qquad}l}
    \narrowu_{M,N}(i) &=& \satu_N(\signed_M(i))
    \end{array}
-
-
-.. todo::
-    shuffle, swizzle
