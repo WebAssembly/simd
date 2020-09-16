@@ -134,7 +134,6 @@
 .. |uN| mathdef:: \xref{syntax/values}{syntax-int}{\X{u}N}
 .. |uM| mathdef:: \xref{syntax/values}{syntax-int}{\X{u}M}
 .. |u1| mathdef:: \xref{syntax/values}{syntax-int}{\X{u1}}
-.. |u4| mathdef:: \xref{syntax/values}{syntax-int}{\X{u4}}
 .. |u8| mathdef:: \xref{syntax/values}{syntax-int}{\X{u8}}
 .. |u16| mathdef:: \xref{syntax/values}{syntax-int}{\X{u16}}
 .. |u32| mathdef:: \xref{syntax/values}{syntax-int}{\X{u32}}
@@ -487,7 +486,6 @@
 
 .. |BuN| mathdef:: \xref{binary/values}{binary-int}{\BuX{N}}
 .. |Bu1| mathdef:: \xref{binary/values}{binary-int}{\BuX{\B{1}}}
-.. |Bu4| mathdef:: \xref{binary/values}{binary-int}{\BuX{\B{4}}}
 .. |Bu8| mathdef:: \xref{binary/values}{binary-int}{\BuX{\B{8}}}
 .. |Bu16| mathdef:: \xref{binary/values}{binary-int}{\BuX{\B{16}}}
 .. |Bu32| mathdef:: \xref{binary/values}{binary-int}{\BuX{\B{32}}}
