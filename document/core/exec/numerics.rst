@@ -158,7 +158,6 @@ Again these functions are invertable bijections.
 
 .. index:: SIMD, shape
 .. _aux-simdto:
-.. _aux-simdof:
 
 SIMD
 ....
@@ -178,92 +177,6 @@ SIMD values have the same underlying representation as an |i128|. They can also 
      \wedge & c_i = \bytes_{t}^{-1}(b^*[i*B \slice B]))
      \end{array}
    \end{array}
-
-..
-   bits_{i8}^{-1}(b^*[0 \slice 8])~
-   bits_{i8}^{-1}(b^*[8 \slice 16])~
-   bits_{i8}^{-1}(b^*[16 \slice 24])~
-   bits_{i8}^{-1}(b^*[24 \slice 32]) \\ &&
-   bits_{i8}^{-1}(b^*[32 \slice 40])~
-   bits_{i8}^{-1}(b^*[40 \slice 48])~
-   bits_{i8}^{-1}(b^*[48 \slice 56])~
-   bits_{i8}^{-1}(b^*[56 \slice 64]) \\ &&
-   bits_{i8}^{-1}(b^*[64 \slice 72])~
-   bits_{i8}^{-1}(b^*[72 \slice 80])~
-   bits_{i8}^{-1}(b^*[80 \slice 88])~
-   bits_{i8}^{-1}(b^*[88 \slice 96]) \\ &&
-   bits_{i8}^{-1}(b^*[96 \slice 104])~
-   bits_{i8}^{-1}(b^*[104 \slice 112])~
-   bits_{i8}^{-1}(b^*[112 \slice 120])~
-   bits_{i8}^{-1}(b^*[120 \slice 128]) \\
-
-  .. math::
-     \begin{array}{lll@{\qquad}l}
-     \simdto_{i8x16}(i) &=&
-       bytes_{i8}^{-1}(b^*[0]) ~ \dots ~ b^*[15] & (\iff bytes_\i128(i) = b^*) \\
-     \simdto_{i16x8}(i) &=&
-       b_{0,2} ~
-       b_{2,4} ~
-       b_{4,6} ~
-       b_{6,8} ~
-       b_{8,10} ~
-       b_{10,12} ~
-       b_{12,14} ~
-       b_{14,16}
-       & (\iff bytes_\i128(i) = b^* \wedge b_{i,j} = bytes_{i16}^{-1}(b^*[i \ slice j]) \\
-     \end{array}
-
-  .. math::
-     \begin{array}{lll@{\qquad}l}
-     \simdto_{i8x16}(i) &=&
-       bits_{i8}^{-1}(d_0^8) ~
-       bits_{i8}^{-1}(d_1^8) ~
-       bits_{i8}^{-1}(d_2^8) ~
-       bits_{i8}^{-1}(d_3^8) \\ &&
-       bits_{i8}^{-1}(d_4^8) ~
-       bits_{i8}^{-1}(d_5^8) ~
-       bits_{i8}^{-1}(d_6^8) ~
-       bits_{i8}^{-1}(d_7^8) \\ &&
-       bits_{i8}^{-1}(d_8^8) ~
-       bits_{i8}^{-1}(d_9^8) ~
-       bits_{i8}^{-1}(d_{10}^8) ~
-       bits_{i8}^{-1}(d_{11}^8) \\ &&
-       bits_{i8}^{-1}(d_{12}^8) ~
-       bits_{i8}^{-1}(d_{13}^8) ~
-       bits_{i8}^{-1}(d_{14}^8) ~
-       bits_{i8}^{-1}(d_{15}^8) \\ &&
-       \qquad (\iff \ibits_{128}(i) = d_{15}^{8}~d_{14}^{8}~d_{13}^{8}~d_{12}^{8}~d_{11}^{8}~d_{10}^{8}~d_9^{8}~d_8^{8}~d_7^{8}~d_6^{8}~d_5^{8}~d_4^{8}~d_3^{8}~d_2^{8}~d_1^{8}~d_0^{8}) \\
-     \simdto_{i16x8}(i) &=&
-       bits_{i16}^{-1}(d_0^{16}) ~
-       bits_{i16}^{-1}(d_1^{16}) ~
-       bits_{i16}^{-1}(d_2^{16}) ~
-       bits_{i16}^{-1}(d_3^{16}) \\ &&
-       bits_{i16}^{-1}(d_4^{16}) ~
-       bits_{i16}^{-1}(d_5^{16}) ~
-       bits_{i16}^{-1}(d_6^{16}) ~
-       bits_{i16}^{-1}(d_7^{16}) \\ &&
-       \qquad (\iff \ibits_{128}(i) = d_7^{16}~d_6^{16}~d_5^{16}~d_4^{16}~d_3^{16}~d_2^{16}~d_1^{16}~d_0^{16}) \\
-     \simdto_{i32x4}(i) &=&
-       bits_{i32}^{-1}(d_0^{32}) ~
-       bits_{i32}^{-1}(d_1^{32}) ~
-       bits_{i32}^{-1}(d_2^{32}) ~
-       bits_{i32}^{-1}(d_3^{32}) \\ &&
-       \qquad (\iff \ibits_{128}(i) = d_3^{32}~d_2^{32}~d_1^{32}~d_0^{32}) \\
-     \simdto_{i64x2}(i) &=&
-       bits_{i64}^{-1}(d_0^{64}) ~
-       bits_{i64}^{-1}(d_1^{64}) \\ &&
-       \qquad (\iff \ibits_{128}(i) = d_1^{64}~d_0^{64}) \\
-     \simdto_{f32x4}(i) &=&
-       bits_{f32}^{-1}(d_0^{32}) ~
-       bits_{f32}^{-1}(d_1^{32}) ~
-       bits_{f32}^{-1}(d_2^{32}) ~
-       bits_{f32}^{-1}(d_3^{32}) \\ &&
-       \qquad (\iff \ibits_{128}(i) = d_3^{32}~d_2^{32}~d_1^{32}~d_0^{32}) \\
-     \simdto_{f64x2}(i) &=&
-       bits_{f64}^{-1}(d_0^{64}) ~
-       bits_{f64}^{-1}(d_1^{64}) \\ &&
-       (\iff \ibits_{128}(i) = d_1^{64}~d_0^{64}) \\
-     \end{array}
 
 These functions are bijections, so they are invertible.
 

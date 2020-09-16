@@ -1086,7 +1086,6 @@
 .. |nans| mathdef:: \xref{exec/numerics}{aux-nans}{\F{nans}}
 .. |trunc| mathdef:: \xref{exec/numerics}{aux-trunc}{\F{trunc}}
 
-.. |simdof| mathdef:: \xref{exec/numerics}{aux-simdof}{\F{simd\_of}}
 .. |simdto| mathdef:: \xref{exec/numerics}{aux-simdto}{\F{simd\_to}}
 
 

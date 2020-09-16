@@ -207,29 +207,6 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
    respectively.
 
 
-..
-  .. math::
-     \begin{array}{lll@{\qquad}l}
-     \X{op}_{t\K{x}N}(n_1,\dots,n_k) &=&
-     \simdof_{t\K{x}N}(
-     \X{op}_t (n_{1,1}, \dots, n_{k,1})
-     \dots
-     \X{op}_t (n_{k,N}, \dots, n_{k,N})
-     ) \\
-     && (\where n_{i,1} \dots n_{i,N}) = \simdto_{t\K{x}N}(n_i)
-     \end{array}
-
-  .. note::
-     For example, the result of instruction :math:`\K{i32x4}.\ADD` applied to operands :math:`i_1, i_2`
-     invokes :math:`add_{i32x4}(i_1, i_2)`,
-     which adds the operands lane-wise, by first unpacking the value into the individual lanes using
-     :math:`\simdto_{\I32\K{x}4}(i_1) = n_{1,1}~n_{1,2}~n_{1,3}~n_{1,4}`,
-     and :math:`\simdto_{\I32\K{x}4}(i_2) =  n_{1,2}~n_{2,2}~n_{2,3}~n_{2,4}`,
-     then invoking :math:`\ADD_{i32}` on the corresponding lanes,
-     :math:`m_1 = \ADD_{i32}(n_{1,1}, n_{2,1}), m_2 = \ADD_{i32}(n_{1,2}, n_{2,2}), m_3 = \ADD_{i32}(n_{1,3}, n_{2,3}), m_4 = \ADD_{i32}(n_{1,4}, n_{2,4})`,
-     and finally packing the resulting sequence :math:`\simdof_{\I32\K{x}4}(m_1~m_2~m_3~m_4)`.
-
-
 .. _exec-simd-const:
 
 :math:`\V128\K{.}\CONST~c`
