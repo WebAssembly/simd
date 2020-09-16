@@ -40,6 +40,11 @@ When several of these placeholders occur in a single clause, then they must be r
 
 Numeric operators are lifted to input sequences by applying the operator element-wise, returning a sequence of results. When there are multiple inputs, they must be of equal length.
 
+.. math::
+   \begin{array}{lll@{\qquad}l}
+   op(c_1^n, \dots, c_k^n) &=& op(c_1^n[0], \dots, c_k^n[0])~\dots~op(c_1^n[n-1], \dots, c_k^n[n-1])
+   \end{array}
+
 .. note::
    For example, the unary operator |fabs|, when given a sequence of floating-point values, return a sequence of floating-point results:
 
