@@ -195,13 +195,13 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 .. math::
    \begin{array}{lll@{\qquad}l}
    \X{op}_{t\K{x}N}(n_1,\dots,n_k) &=&
-     \simdof_{t\K{x}N}(op_t(\simdto_{t\K{x}N}(n_1) ~\dots~ \simdto_{t\K{x}N}(n_k))
+     \simdto^{-1}_{t\K{x}N}(op_t(\simdto_{t\K{x}N}(n_1) ~\dots~ \simdto_{t\K{x}N}(n_k))
    \end{array}
 
 .. note::
    For example, the result of instruction :math:`\K{i32x4}.\ADD` applied to operands :math:`i_1, i_2`
    invokes :math:`\ADD_{\K{i32x4}}(i_1, i_2)`, which maps to
-   :math:`\simdof_{\K{i32x4}}(\ADD_{\I32}(i_1^+, i_2^+))`,
+   :math:`\simdto^{-1}_{\K{i32x4}}(\ADD_{\I32}(i_1^+, i_2^+))`,
    where :math:`i_1^+` and :math:`i_2^+` are sequences resulting from invoking
    :math:`\simdto_{\K{i32x4}}(i_1)` and :math:`\simdto_{\K{i32x4}}(i_2)`
    respectively.
@@ -326,7 +326,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 7. Let :math:`d_i` be the result of :math:`d_i = v^{255}[ s^{16}[i] ]`.
 
-8. Let :math:`c` be the result of :math:`\simdof_{i8x16}(d_0 \dots d_{15})`.
+8. Let :math:`c` be the result of :math:`\simdto^{-1}_{i8x16}(d_0 \dots d_{15})`.
 
 9. Push the value :math:`\V128.\CONST~c` onto the stack.
 
@@ -340,7 +340,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
       (\iff & s^{16} = \simdto_{i8x16}(c_2) \\
       \wedge & v^{255} = \simdto_{i8x16}(c_1)~0^{239} \\
       \wedge & d_i = v^{255}[ s^{16}[i] ] \\
-      \wedge & c = \simdof_{i8x16}(d_0 \dots d_{15})
+      \wedge & c = \simdto^{-1}_{i8x16}(d_0 \dots d_{15})
      \end{array}
    \end{array}
 
@@ -366,7 +366,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 4. Let :math:`d_i` be :math:`i_3^{32}[\laneidx_i]`.
 
-8. Let :math:`c` be the result of :math:`\simdof_{i8x16}(d_0 \dots d_{15})`.
+8. Let :math:`c` be the result of :math:`\simdto^{-1}_{i8x16}(d_0 \dots d_{15})`.
 
 9. Push the value :math:`\V128.\CONST~c` onto the stack.
 
@@ -380,7 +380,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
       (\iff & i_1^{16} = \simdto_{i8x16}(c_1) \\
       \wedge & i_2^{16} = \simdto_{i8x16}(c_2) \\
       \wedge & d_i = (i_1^{16}~i_2^{16})[\laneidx_i] \\
-      \wedge & c = \simdof_{i8x16}(d_0 \dots d_{15})
+      \wedge & c = \simdto^{-1}_{i8x16}(d_0 \dots d_{15})
      \end{array}
    \end{array}
 
@@ -398,7 +398,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 4. Let :math:`N` be the integer :math:`\lanes(\shape)`.
 
-5. Let :math:`c` be the result of :math:`\simdof_{\shape}(c_1^N)`.
+5. Let :math:`c` be the result of :math:`\simdto^{-1}_{\shape}(c_1^N)`.
 
 6. Push the value :math:`\V128.\CONST~c` to the stack.
 
@@ -406,7 +406,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
    \begin{array}{lcl@{\qquad}l}
    (t\K{.}\CONST~c_1)~\shape\K{.}\SPLAT &\stepto& (\V128\K{.}\CONST~c)
      & (\iff t = \unpacked(\shape)
-       \wedge c = \simdof_{\shape}(c_1^{\lanes(\shape)}))
+       \wedge c = \simdto^{-1}_{\shape}(c_1^{\lanes(\shape)}))
      \\
    \end{array}
 
@@ -471,7 +471,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 8. Let :math:`i_2^n` be the sequence :math:`\simdto_{\shape}(c_2)`.
 
-9. Let :math:`c` be the result of computing :math:`\simdof_{\shape}(i_2^n \with [\laneidx] = c_1)`
+9. Let :math:`c` be the result of computing :math:`\simdto^{-1}_{\shape}(i_2^n \with [\laneidx] = c_1)`
 
 10. Push :math:`\V128.\CONST~c` on the stack.
 
@@ -484,7 +484,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
      \begin{array}[t]{@{}r@{~}l@{}}
       (\iff & n = \lanes(\shape) \\
        \wedge & i_2^n = \simdto_{\shape}(c_2)) \\
-       \wedge & c = \simdof_{\shape}(i_2^n \with [\laneidx] = c_1)
+       \wedge & c = \simdto^{-1}_{\shape}(i_2^n \with [\laneidx] = c_1)
      \end{array}
    \end{array}
 
@@ -554,7 +554,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 5. Let :math:`i_1^N` be the sequence :math:`\simdto_{t\K{x}N}(c_1)`.
 
-7. Let :math:`c` be :math:`\simdof_{t\K{x}N}(\vshiftop_{t}(i_1^N, s^N))`.
+7. Let :math:`c` be :math:`\simdto^{-1}_{t\K{x}N}(\vshiftop_{t}(i_1^N, s^N))`.
 
 8. Push the value :math:`\V128.\CONST~c` to the stack.
 
@@ -566,7 +566,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
    \\ \qquad
      \begin{array}[t]{@{}r@{~}l@{}}
      (\iff & i_1^N = \simdto_{t\K{x}N}(c_1) \\
-     \wedge & c = \simdof_{t\K{x}N}(\vshiftop_{t}(i_1^N, s^N)))
+     \wedge & c = \simdto^{-1}_{t\K{x}N}(\vshiftop_{t}(i_1^N, s^N)))
      \end{array}
    \end{array}
 
@@ -667,7 +667,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 5. Let :math:`d_1^M` be the result of computing :math:`\narrow^{\sx}_{t_1, t_2}(\simdto_{t_1\K{x}M}(c_1))`.
 
-6. Let :math:`c` be the result of :math:`\simdof_{t_2\K{x}N}(d_1^M~d_2^M)`.
+6. Let :math:`c` be the result of :math:`\simdto^{-1}_{t_2\K{x}N}(d_1^M~d_2^M)`.
 
 7. Push the value :math:`\V128.\CONST~c` onto the stack.
 
@@ -680,7 +680,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
      \begin{array}[t]{@{}r@{~}l@{}}
      (\iff & d_1^M = \narrow^{\sx}_{t_1, t_2}( \simdto_{t_1\K{x}M}(c_1)) \\
      \wedge & d_2^M = \narrow^{\sx}_{t_1, t_2}( \simdto_{t_1\K{x}M}(c_2)) \\
-     \wedge & c = \simdof_{t_2\K{x}N}(d_1^M~d_2^M)
+     \wedge & c = \simdto^{-1}_{t_2\K{x}N}(d_1^M~d_2^M)
      \end{array}
    \end{array}
 
@@ -696,7 +696,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 3. Let :math:`i_1^N` be the sequence :math:`\simdto_{t_1\K{x}M}(c_1)[0 \slice N]`.
 
-4. Let :math:`c` be the result of computing :math:`\simdof_{t_2\K{x}N}((\extend^{\sx}_{t_1,t_2}(i_1))^N)`
+4. Let :math:`c` be the result of computing :math:`\simdto^{-1}_{t_2\K{x}N}((\extend^{\sx}_{t_1,t_2}(i_1))^N)`
 
 5. Push the value :math:`\V128.\CONST~c` onto the stack.
 
@@ -708,7 +708,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
    \\ \qquad
      \begin{array}[t]{@{}r@{~}l@{}}
      (\iff & i_1^N = \simdto_{t_1\K{x}M}(c_1)[0 \slice N] \\
-     \wedge & c = \simdof_{t_2\K{x}N}((\extend^{\sx}_{M,N}(i_1))^N)
+     \wedge & c = \simdto^{-1}_{t_2\K{x}N}((\extend^{\sx}_{M,N}(i_1))^N)
      \end{array}
    \end{array}
 
@@ -722,7 +722,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 3. Let :math:`i_1^N` be the sequence :math:`\simdto_{t_1\K{x}M}(c_1)[N \slice N]`.
 
-4. Let :math:`c` be the result of computing :math:`\simdof_{t_2\K{x}N}((\extend^{\sx}_{t_1,t_2}(i_1))^N)`
+4. Let :math:`c` be the result of computing :math:`\simdto^{-1}_{t_2\K{x}N}((\extend^{\sx}_{t_1,t_2}(i_1))^N)`
 
 6. Push the value :math:`\V128.\CONST~c` onto the stack.
 
@@ -734,7 +734,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
    \\ \qquad
      \begin{array}[t]{@{}r@{~}l@{}}
      (\iff & i_1^N = \simdto_{t_1\K{x}M}(c_1)[N \slice N] \\
-     \wedge & c = \simdof_{t_2\K{x}N}((\extend^{\sx}_{M,N}(i_1))^N)
+     \wedge & c = \simdto^{-1}_{t_2\K{x}N}((\extend^{\sx}_{M,N}(i_1))^N)
      \end{array}
    \end{array}
 
@@ -1059,7 +1059,7 @@ Memory Instructions
 
     b. Let :math:`L` be the integer :math:`128 / N`.
 
-    c. Let :math:`c` be the result of computing :math:`\simdof_{\iN\K{x}L}(n^L)`.
+    c. Let :math:`c` be the result of computing :math:`\simdto^{-1}_{\iN\K{x}L}(n^L)`.
 
 12. Else:
 
@@ -1069,7 +1069,7 @@ Memory Instructions
 
     c. Let :math:`n_i` be the result of :math:`\extend^{\sx}_{M,J}(m_i)`.
 
-    d. Let :math:`c` be the result of computing :math:`\simdof_{\X{i}J\K{x}L}(n_0 \dots n_{L-1})`.
+    d. Let :math:`c` be the result of computing :math:`\simdto^{-1}_{\X{i}J\K{x}L}(n_0 \dots n_{L-1})`.
 
 14. Push the value :math:`\V128.\CONST~c` to the stack.
 
@@ -1086,7 +1086,7 @@ Memory Instructions
      \wedge & \X{ea} + (M*L) \leq |S.\SMEMS[F.\AMODULE.\MIMEMS[0]].\MIDATA| \\
      \wedge & \bytes_{\iM}(m_i) = S.\SMEMS[F.\AMODULE.\MIMEMS[0]].\MIDATA[\X{ea} + i * (M/8) \slice M/8]) \\
      \wedge & J = M*2 \\
-     \wedge & c = \simdof_{\X{i}J\K{x}L}(\extend^{\sx}_{M,J}(m_0) \dots \extend^{\sx}_{M,J}(m_{L-1}))
+     \wedge & c = \simdto^{-1}_{\X{i}J\K{x}L}(\extend^{\sx}_{M,J}(m_0) \dots \extend^{\sx}_{M,J}(m_{L-1}))
      \end{array}
    \\[1ex]
    \begin{array}{lcl@{\qquad}l}
@@ -1097,7 +1097,7 @@ Memory Instructions
      (\iff & \X{ea} = i + \memarg.\OFFSET \\
      \wedge & \X{ea} + N/8 \leq |S.\SMEMS[F.\AMODULE.\MIMEMS[0]].\MIDATA| \\
      \wedge & \bytes_{\iN}(n) = S.\SMEMS[F.\AMODULE.\MIMEMS[0]].\MIDATA[\X{ea} \slice N/8]) \\
-     \wedge & c = \simdof_{\iN\K{x}L}(n^L)
+     \wedge & c = \simdto^{-1}_{\iN\K{x}L}(n^L)
      \end{array}
    \\[1ex]
    \begin{array}{lcl@{\qquad}l}

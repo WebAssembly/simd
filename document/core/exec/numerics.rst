@@ -265,35 +265,7 @@ SIMD values have the same underlying representation as an |i128|. They can also 
        (\iff \ibits_{128}(i) = d_1^{64}~d_0^{64}) \\
      \end{array}
 
-These functions are bijections, so they are invertible. For convenience, we give a name to the inverse function:
-
-.. math::
-   \begin{array}{lll@{\qquad}l}
-   \simdof_{\shape}(c^n) &=& \simdto_{\shape}^{-1}(c^n)
-   \end{array}
-
-
-..
-  :math:`\simdof_{shape}(c^n)`
-  ...........................................
-
-  * Let :math:`t` be the type :math:`\unpacked(shape)`.
-
-  * Let :math:`n` be the number of lanes :math:`\lanes(shape)`.
-
-  * Let :math:`b` be the bitwidth of the lane :math:`128 / n`.
-
-  * Let :math:`d_i^\ast` be the bit sequence :math:`\bits_{t}(c_i)[0 \slice b]`.
-
-  * Return the constant :math:`c'` for which :math:`bits_{v128}(c') = d_l^\ast \dots d_1^\ast`
-
-  .. math::
-     \begin{array}{lll@{\qquad}l}
-     \simdof_{shape}(c^n) &=&
-     \bits_{v128}^{-1}((bits_t(c)[0 \slice b])^n)
-     & \iff b = 128 / n \wedge n = \lanes(shape)
-     \\
-     \end{array}
+These functions are bijections, so they are invertible.
 
 
 .. index:: integer
