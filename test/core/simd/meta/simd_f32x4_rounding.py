@@ -70,7 +70,9 @@ class Simdf32x4RoundingCase(Simdf32x4ArithmeticCase):
         wast_filename = '../simd_{lane_type}_rounding.wast'.format(lane_type=self.LANE_TYPE)
         with open(wast_filename, 'w') as fp:
             txt_test_case = self.get_all_cases()
-            txt_test_case = txt_test_case.replace('f32x4 arithmetic', 'f32x4 [ceil, floor, trunc, nearest]')
+            txt_test_case = txt_test_case.replace(
+                    self.LANE_TYPE + ' arithmetic',
+                    self.LANE_TYPE + ' [ceil, floor, trunc, nearest]')
             fp.write(txt_test_case)
 
 

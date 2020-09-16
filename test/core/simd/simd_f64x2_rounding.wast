@@ -1,4 +1,4 @@
-;; Tests for f64x2 arithmetic operations on major boundary values and all special values.
+;; Tests for f64x2 [ceil, floor, trunc, nearest] operations on major boundary values and all special values.
 
 
 (module
