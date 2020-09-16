@@ -275,9 +275,10 @@ We also define an auxiliary function to get number of packed numeric types in a 
 
 
 .. _valid-simd-extract-lane:
+.. _valid-simd-extract-lane-sx:
 
-:math:`\shape\K{.}\EXTRACTLANE~\laneidx`
-.........................................
+:math:`\shape\K{.}\EXTRACTLANE\K{\_}\sx^?~\laneidx`
+.................................................
 
 * The lane index :math:`\laneidx` must be smaller than :math:`\lanes(\shape)`.
 
@@ -287,24 +288,7 @@ We also define an auxiliary function to get number of packed numeric types in a 
    \frac{
      \laneidx < \lanes(\shape)
    }{
-     C \vdashinstr t\K{x}N\K{.}\EXTRACTLANE~\laneidx : [\V128] \to [\unpacked(\shape)]
-   }
-
-
-.. _valid-simd-extract-lane-sx:
-
-:math:`\shape\K{.}\EXTRACTLANE\K{\_}\sx~\laneidx`
-..................................................
-
-* The lane index :math:`\laneidx` must be smaller than :math:`\lanes(\shape)`.
-
-* The instruction is valid with type :math:`[\V128] \to [\I32]`.
-
-.. math::
-   \frac{
-     \laneidx < \lanes(\shape)
-   }{
-     C \vdashinstr t\K{x}N\K{.}\EXTRACTLANE\K{\_}\sx~\laneidx : [\V128] \to [\I32]
+     C \vdashinstr t\K{x}N\K{.}\EXTRACTLANE\K{\_}\sx^?~\laneidx : [\V128] \to [\unpacked(\shape)]
    }
 
 
