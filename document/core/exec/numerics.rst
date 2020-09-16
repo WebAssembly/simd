@@ -931,11 +931,11 @@ We lift :math:`\bool` to sequences of predicates by conjunction over the inputs.
 
 * Let :math:`i` be the result of adding :math:`i_1` and :math:`i_2`.
 
-* Return :math:`\saturateu_N(i)`.
+* Return :math:`\satu_N(i)`.
 
 .. math::
    \begin{array}{lll@{\qquad}l}
-   \iaddsatu_N(i_1, i_2) &=& \saturateu_N(i_1 + i_2)
+   \iaddsatu_N(i_1, i_2) &=& \satu_N(i_1 + i_2)
    \end{array}
 
 
@@ -950,11 +950,11 @@ We lift :math:`\bool` to sequences of predicates by conjunction over the inputs.
 
 * Let :math:`j` be the result of adding :math:`j_1` and :math:`j_2`.
 
-* Return :math:`\saturates_N(j)`.
+* Return :math:`\sats_N(j)`.
 
 .. math::
    \begin{array}{lll@{\qquad}l}
-   \iaddsats_N(i_1, i_2) &=& \saturates_N(\signed(i_1) + \signed(i_2))
+   \iaddsats_N(i_1, i_2) &=& \sats_N(\signed(i_1) + \signed(i_2))
    \end{array}
 
 
@@ -965,11 +965,11 @@ We lift :math:`\bool` to sequences of predicates by conjunction over the inputs.
 
 * Let :math:`i` be the result of subtracting :math:`i_2` from :math:`i_1`.
 
-* Return :math:`\saturateu_N(i)`.
+* Return :math:`\satu_N(i)`.
 
 .. math::
    \begin{array}{lll@{\qquad}l}
-   \isubsatu_N(i_1, i_2) &=& \saturateu_N(i_1 - i_2)
+   \isubsatu_N(i_1, i_2) &=& \satu_N(i_1 - i_2)
    \end{array}
 
 
@@ -984,11 +984,11 @@ We lift :math:`\bool` to sequences of predicates by conjunction over the inputs.
 
 * Let :math:`j` be the result of subtracting :math:`j_2` from :math:`j_1`.
 
-* Return :math:`\saturates_N(j)`.
+* Return :math:`\sats_N(j)`.
 
 .. math::
    \begin{array}{lll@{\qquad}l}
-   \isubsats_N(i_1, i_2) &=& \saturates_N(\signed(i_i) - \signed(i_2))
+   \isubsats_N(i_1, i_2) &=& \sats_N(\signed(i_i) - \signed(i_2))
    \end{array}
 
 
@@ -2006,9 +2006,9 @@ Conversions
    \end{array}
 
 
-.. _op-saturate_u:
+.. _op-sat_u:
 
-:math:`\saturateu_N(i)`
+:math:`\satu_N(i)`
 .......................
 
 * If :math:`i` is greater than :math:`2^N-1`, return :math:`2^N-1`.
@@ -2017,14 +2017,14 @@ Conversions
 
 .. math::
    \begin{array}{lll@{\qquad}l}
-   \saturateu_N(i) &=& 2^N-1 & (\iff i > 2^N-1)\\
-   \saturateu_N(i) &=& i & (\otherwise)
+   \satu_N(i) &=& 2^N-1 & (\iff i > 2^N-1)\\
+   \satu_N(i) &=& i & (\otherwise)
    \end{array}
 
 
-.. _op-saturate_s:
+.. _op-sat_s:
 
-:math:`\saturates_N(i)`
+:math:`\sats_N(i)`
 .......................
 
 * Let :math:`j` be the :ref:`signed interpretation <aux-signed>` of :math:`i` of size :math:`N`.
@@ -2037,9 +2037,9 @@ Conversions
 
 .. math::
    \begin{array}{lll@{\qquad}l}
-   \saturates_N(i) &=& -2^{N-1} & (\iff \signed(i) < -2^{N-1})\\
-   \saturates_N(i) &=& 2^N-1 & (\iff \signed(i) > 2^N-1)\\
-   \saturates_N(i) &=& i & (\otherwise)
+   \sats_N(i) &=& -2^{N-1} & (\iff \signed(i) < -2^{N-1})\\
+   \sats_N(i) &=& 2^N-1 & (\iff \signed(i) > 2^N-1)\\
+   \sats_N(i) &=& i & (\otherwise)
    \end{array}
 
 
@@ -2050,11 +2050,11 @@ Conversions
 
 * Let :math:`j` be the :ref:`signed interpretation <aux-signed>` of :math:`i` of size :math:`M`.
 
-* Return :math:`\saturates_N(j)`.
+* Return :math:`\sats_N(j)`.
 
 .. math::
    \begin{array}{lll@{\qquad}l}
-   \narrows_{M,N}(i) &=& \saturates_N(\signed_M(i))
+   \narrows_{M,N}(i) &=& \sats_N(\signed_M(i))
    \end{array}
 
 
@@ -2065,11 +2065,11 @@ Conversions
 
 * Let :math:`j` be the :ref:`signed interpretation <aux-signed>` of :math:`i` of size :math:`M`.
 
-* Return :math:`\saturateu_N(j)`.
+* Return :math:`\satu_N(j)`.
 
 .. math::
    \begin{array}{lll@{\qquad}l}
-   \narrowu_{M,N}(i) &=& \saturateu_N(\signed_M(i))
+   \narrowu_{M,N}(i) &=& \satu_N(\signed_M(i))
    \end{array}
 
 
