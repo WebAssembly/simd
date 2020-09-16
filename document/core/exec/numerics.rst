@@ -474,7 +474,7 @@ We lift :math:`\bool` to sequences of predicates by conjunction over the inputs.
 .. _op-inot:
 
 :math:`\inot_N(i)`
-.........................
+..................
 
 * Return the bitwise negation of :math:`i`.
 
