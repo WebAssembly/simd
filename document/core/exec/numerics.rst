@@ -823,15 +823,17 @@ We lift :math:`\bool` to sequences of predicates by conjunction over the inputs.
 :math:`\ibitselect_N(i_1, i_2, c)`
 ..................................
 
-* If bit :math:`i` of :math:`c` is :math:`1`, then let :math:`d_i` be the bit :math:`i` of :math:`i_1`.
+* Let :math:`j_1` be the bitwise conjunction of :math:`i_1` and :math:`c`.
 
-* Else let :math:`d_i` be the bit :math:`i` of of :math:`i_2`.
+* Let :math:`c'` be the bitwise negation :math:`c`.
 
-* Return the number represented by the concatenation of all bits :math:`d_i`.
+* Let :math:`j_2` be the bitwise conjunction of :math:`i_2` and :math:`c'`.
+
+* Return the bitwise disjunction of :math:`j_1` and :math:`j_2`.
 
 .. math::
    \begin{array}{@{}lcll}
-   \ibitselect_N(i_1, i_2, N) &=& \ior_N(\iand_N(i_1, c), \iand_N(i_2, \inot_N(c)))
+   \ibitselect_N(i_1, i_2, c) &=& \ior_N(\iand_N(i_1, c), \iand_N(i_2, \inot_N(c)))
    \end{array}
 
 
