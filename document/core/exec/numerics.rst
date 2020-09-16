@@ -864,7 +864,7 @@ We lift :math:`\bool` to sequences of predicates by conjunction over the inputs.
 
 .. math::
    \begin{array}{@{}lcll}
-   \ineg_N(i) &=& \iadd_N(\inot_N(i), 1) \\
+   \ineg_N(i) &=& (0 - i) \mod 2^N
    \end{array}
 
 
