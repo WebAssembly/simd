@@ -299,9 +299,9 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 5. Let :math:`i^{16}` be the sequence :math:`\simdto_{i8x16}(c_1)`.
 
-6. Let :math:`v^{255}` be the concatenation of the two sequences :math:`i^{16}~0^{239}`
+6. Let :math:`v^{256}` be the concatenation of the two sequences :math:`i^{16}~0^{240}`
 
-7. Let :math:`d_i` be the result of :math:`d_i = v^{255}[ s^{16}[i] ]`.
+7. Let :math:`d_i` be the result of :math:`d_i = v^{256}[ s^{16}[i] ]`.
 
 8. Let :math:`c` be the result of :math:`\simdto^{-1}_{i8x16}(d_0 \dots d_{15})`.
 
@@ -315,8 +315,8 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
    \\ \qquad
      \begin{array}[t]{@{}r@{~}l@{}}
       (\iff & s^{16} = \simdto_{i8x16}(c_2) \\
-      \wedge & v^{255} = \simdto_{i8x16}(c_1)~0^{239} \\
-      \wedge & d_i = v^{255}[ s^{16}[i] ] \\
+      \wedge & v^{256} = \simdto_{i8x16}(c_1)~0^{240} \\
+      \wedge & d_i = v^{256}[ s^{16}[i] ] \\
       \wedge & c = \simdto^{-1}_{i8x16}(d_0 \dots d_{15})
      \end{array}
    \end{array}
