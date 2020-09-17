@@ -993,10 +993,9 @@ Memory Instructions
 
 
 .. _exec-load-extend:
-.. _exec-load-splat:
 
-:math:`\V128\K{.}\LOAD{M}\K{x}L\_\sx~\memarg` and :math:`\V128\K{.}\LOAD{N}\K{\_splat}~\memarg`
-...............................................................................................
+:math:`\V128\K{.}\LOAD{M}\K{x}L\_\sx~\memarg`
+.............................................
 
 1. Let :math:`F` be the :ref:`current <exec-notation-textual>` :ref:`frame <syntax-frame>`.
 
@@ -1014,9 +1013,7 @@ Memory Instructions
 
 8. Let :math:`\X{ea}` be the integer :math:`i + \memarg.\OFFSET`.
 
-9. If :math:`N` is not part of the instruction, then:
-
-   a. Let :math:`N` be :math:`M * L`.
+9. Let :math:`N` be :math:`M \cdot L`.
 
 10. If :math:`\X{ea} + N/8` is larger than the length of :math:`\X{mem}.\MIDATA`, then:
 
@@ -1024,25 +1021,15 @@ Memory Instructions
 
 11. Let :math:`b^\ast` be the byte sequence :math:`\X{mem}.\MIDATA[\X{ea} \slice N/8]`.
 
-12. If :math:`\K{splat}` is part of the instruction, then:
+12. Let :math:`m_i` be the integer for which :math:`\bytes_{\iM}(m_i) = b^\ast[i*M/8 \slice M/8]`.
 
-    a. Let :math:`n` be the integer for which :math:`\bytes_{\iN}(n) = b^\ast`.
+13. Let :math:`J` be the integer :math:`M*2`.
 
-    b. Let :math:`L` be the integer :math:`128 / N`.
+14. Let :math:`n_i` be the result of :math:`\extend^{\sx}_{M,J}(m_i)`.
 
-    c. Let :math:`c` be the result of computing :math:`\simdto^{-1}_{\iN\K{x}L}(n^L)`.
+15. Let :math:`c` be the result of computing :math:`\simdto^{-1}_{\X{i}J\K{x}L}(n_0 \dots n_{L-1})`.
 
-13. Else:
-
-    a. Let :math:`m_i` be the integer for which :math:`\bytes_{\iM}(m_i) = b^\ast[i*M/8 \slice M/8]`.
-
-    b. Let :math:`J` be the integer :math:`M*2`.
-
-    c. Let :math:`n_i` be the result of :math:`\extend^{\sx}_{M,J}(m_i)`.
-
-    d. Let :math:`c` be the result of computing :math:`\simdto^{-1}_{\X{i}J\K{x}L}(n_0 \dots n_{L-1})`.
-
-14. Push the value :math:`\V128.\CONST~c` to the stack.
+16. Push the value :math:`\V128.\CONST~c` to the stack.
 
 .. math::
    ~\\[-1ex]
@@ -1061,6 +1048,52 @@ Memory Instructions
      \end{array}
    \\[1ex]
    \begin{array}{lcl@{\qquad}l}
+   S; F; (\I32.\CONST~k)~(\V128.\LOAD{M}\K{x}L\K{\_}\sx~\memarg) &\stepto& S; F; \TRAP
+   \end{array}
+   \\ \qquad
+     (\otherwise) \\
+   \end{array}
+
+
+.. _exec-load-splat:
+
+:math:`\V128\K{.}\LOAD{N}\K{\_splat}~\memarg`
+.............................................
+
+1. Let :math:`F` be the :ref:`current <exec-notation-textual>` :ref:`frame <syntax-frame>`.
+
+2. Assert: due to :ref:`validation <valid-load-extend>`, :math:`F.\AMODULE.\MIMEMS[0]` exists.
+
+3. Let :math:`a` be the :ref:`memory address <syntax-memaddr>` :math:`F.\AMODULE.\MIMEMS[0]`.
+
+4. Assert: due to :ref:`validation <valid-load-extend>`, :math:`S.\SMEMS[a]` exists.
+
+5. Let :math:`\X{mem}` be the :ref:`memory instance <syntax-meminst>` :math:`S.\SMEMS[a]`.
+
+6. Assert: due to :ref:`validation <valid-load-extend>`, a value of :ref:`value type <syntax-valtype>` |I32| is on the top of the stack.
+
+7. Pop the value :math:`\I32.\CONST~i` from the stack.
+
+8. Let :math:`\X{ea}` be the integer :math:`i + \memarg.\OFFSET`.
+
+9. If :math:`\X{ea} + N/8` is larger than the length of :math:`\X{mem}.\MIDATA`, then:
+
+    a. Trap.
+
+10. Let :math:`b^\ast` be the byte sequence :math:`\X{mem}.\MIDATA[\X{ea} \slice N/8]`.
+
+11. Let :math:`n` be the integer for which :math:`\bytes_{\iN}(n) = b^\ast`.
+
+12. Let :math:`L` be the integer :math:`128 / N`.
+
+13. Let :math:`c` be the result of computing :math:`\simdto^{-1}_{\iN\K{x}L}(n^L)`.
+
+14. Push the value :math:`\V128.\CONST~c` to the stack.
+
+.. math::
+   ~\\[-1ex]
+   \begin{array}{l}
+   \begin{array}{lcl@{\qquad}l}
    S; F; (\I32.\CONST~i)~(\V128\K{.}\LOAD{N}\K{\_splat}~\memarg) &\stepto& S; F; (\V128.\CONST~c)
    \end{array}
    \\ \qquad
@@ -1071,11 +1104,6 @@ Memory Instructions
      \wedge & c = \simdto^{-1}_{\iN\K{x}L}(n^L)
      \end{array}
    \\[1ex]
-   \begin{array}{lcl@{\qquad}l}
-   S; F; (\I32.\CONST~k)~(\V128.\LOAD{M}\K{x}L\K{\_}\sx~\memarg) &\stepto& S; F; \TRAP
-   \end{array}
-   \\ \qquad
-     (\otherwise) \\
    \begin{array}{lcl@{\qquad}l}
    S; F; (\I32.\CONST~k)~(\V128.\LOAD{N}\K{\_splat}~\memarg) &\stepto& S; F; \TRAP
    \end{array}
