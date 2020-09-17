@@ -278,7 +278,7 @@ We also define an auxiliary function to get number of packed numeric types in a 
 .. _valid-simd-extract-lane-sx:
 
 :math:`\shape\K{.}\EXTRACTLANE\K{\_}\sx^?~\laneidx`
-.................................................
+...................................................
 
 * The lane index :math:`\laneidx` must be smaller than :math:`\lanes(\shape)`.
 
@@ -370,7 +370,7 @@ We also define an auxiliary function to get number of packed numeric types in a 
 .. _valid-vitestop:
 
 :math:`\shape\K{.}\vitestop`
-...........................
+............................
 
 * The instruction is valid with type :math:`[\V128] \to [\I32]`.
 
@@ -632,12 +632,12 @@ Memory Instructions
 
 .. _valid-load-extend:
 
-:math:`\K{v128.}\LOAD{M}\K{x}N\_\sx~\memarg`
+:math:`\K{v128.}\LOAD{N}\K{x}M\_\sx~\memarg`
 ...............................................
 
 * The memory :math:`C.\CMEMS[0]` must be defined in the context.
 
-* The alignment :math:`2^{\memarg.\ALIGN}` must not be larger than :math:`8`.
+* The alignment :math:`2^{\memarg.\ALIGN}` must not be larger than :math:`N/8 \cdot M`.
 
 * Then the instruction is valid with type :math:`[\I32] \to [\V128]`.
 
@@ -645,9 +645,9 @@ Memory Instructions
    \frac{
      C.\CMEMS[0] = \memtype
      \qquad
-     2^{\memarg.\ALIGN} \leq 8
+     2^{\memarg.\ALIGN} \leq N/8 \cdot M
    }{
-     C \vdashinstr \K{v128.}\K{.}\LOAD{M}\K{x}N\_\sx~\memarg : [\I32] \to [\V128]
+     C \vdashinstr \K{v128.}\K{.}\LOAD{N}\K{x}M\_\sx~\memarg : [\I32] \to [\V128]
    }
 
 

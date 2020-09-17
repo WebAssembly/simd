@@ -209,7 +209,7 @@ SIMD instructions provide basic operations over :ref:`values <syntax-value>` of 
    \production{lane index} & \laneidx &::=& \u8 \\
    \production{instruction} & \instr &::=&
      \dots \\&&|&
-     \K{v128.}\CONST~\i128 \\&&|&
+     \K{v128.}\VCONST~\i128 \\&&|&
      \K{v128.}\vsunop \\&&|&
      \K{v128.}\vsbinop \\&&|&
      \K{v128.}\vsternop \\&&|&
