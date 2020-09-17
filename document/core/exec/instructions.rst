@@ -563,7 +563,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 4. Let :math:`i_1^n` be the sequence :math:`\simdto_{\shape}(c_1)`
 
-5. Let :math:`i` be the result of computing :math:`\bool((i_1 \neq 0)^n)`.
+5. Let :math:`i` be the result of computing :math:`\bigwedge(i_1 \neq 0)^n`.
 
 6. Push the value :math:`\I32.\CONST~i` onto the stack.
 
@@ -577,7 +577,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
      \begin{array}[t]{@{}r@{~}l@{}}
      (\iff & n = \lanes(\shape) \\
      \wedge & i_1^n = \simdto_{\shape}(c) \\
-     \wedge & i = \bool((i_1 \neq 0)^n)
+     \wedge & i = \bigwedge(i_1 \neq 0)^n
      \end{array}
    \end{array}
 

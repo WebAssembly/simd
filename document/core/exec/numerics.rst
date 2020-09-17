@@ -219,13 +219,6 @@ The integer result of predicates -- i.e., :ref:`tests <syntax-testop>` and :ref:
    \bool(C) &=& 0 & (\otherwise) \\
    \end{array}
 
-We lift :math:`\bool` to sequences of predicates by conjunction over the inputs.
-
-.. math::
-   \begin{array}{lll@{\qquad}l}
-   \bool(C_1~C_2^*) &=& \bool(C_1) \wedge \bool(C_2^*)
-   \end{array}
-
 
 .. _op-iadd:
 
