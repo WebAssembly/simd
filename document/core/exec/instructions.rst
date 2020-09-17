@@ -525,9 +525,9 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 5. Let :math:`i_1^N` be the sequence :math:`\simdto_{t\K{x}N}(c_1)`.
 
-7. Let :math:`c` be :math:`\simdto^{-1}_{t\K{x}N}(\vshiftop_{t}(i_1^N, s^N))`.
+6. Let :math:`c` be :math:`\simdto^{-1}_{t\K{x}N}(\vshiftop_{t}(i_1^N, s^N))`.
 
-8. Push the value :math:`\V128.\CONST~c` to the stack.
+7. Push the value :math:`\V128.\CONST~c` to the stack.
 
 .. math::
    \begin{array}{l}
@@ -695,7 +695,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 4. Let :math:`c` be the result of computing :math:`\simdto^{-1}_{t_2\K{x}N}((\extend^{\sx}_{t_1,t_2}(i_1))^N)`
 
-6. Push the value :math:`\V128.\CONST~c` onto the stack.
+5. Push the value :math:`\V128.\CONST~c` onto the stack.
 
 .. math::
    \begin{array}{l}
@@ -1032,7 +1032,7 @@ Memory Instructions
 
     c. Let :math:`c` be the result of computing :math:`\simdto^{-1}_{\iN\K{x}L}(n^L)`.
 
-12. Else:
+13. Else:
 
     a. Let :math:`m_i` be the integer for which :math:`\bytes_{\iM}(m_i) = b^\ast[i*M/8 \slice M/8]`.
 
