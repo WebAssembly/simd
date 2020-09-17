@@ -486,6 +486,7 @@ SIMD const instructions have a mandatory :ref:`shape <syntax-simd-shape>` descri
      \text{v128.const}~~\text{f64x2}~~(z{:}\Tf64)^{2} &\Rightarrow& \V128.\VCONST~\bytes_{i128}^{-1}(\bytes_{f64}(z)^2)
    \end{array}
 
+.. math::
    \begin{array}{llclll}
    \phantom{\production{instruction}} & \phantom{\Tplaininstr_I} &\phantom{::=}& \phantom{averylonginstructionnameforsimdtext} && \phantom{simdhasreallylonginstructionnames} \\[-2ex] &&|&
      \text{i8x16.shuffle}~~(laneidx{:}\Tu8)^{16} &\Rightarrow& \I8X16.\SHUFFLE~laneidx^{16} \\ &&|&
