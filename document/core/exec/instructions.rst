@@ -326,21 +326,19 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 1. Assert: due to :ref:`validation <valid-simd-shuffle>`, two values of :ref:`value type <syntax-valtype>` |V128| are on the top of the stack.
 
-1. Assert: due to :ref:`validation <valid-simd-shuffle>`, that all :math:`\laneidx_i < 32`.
+2. Assert: due to :ref:`validation <valid-simd-shuffle>`, that all :math:`\laneidx_i < 32`.
 
-2. Pop the value :math:`\V128.\CONST~c_2` from the stack.
+3. Pop the value :math:`\V128.\CONST~c_2` from the stack.
 
-3. Let :math:`i_1^{16}` be the sequence :math:`\simdto_{i8x16}(c_2)`.
+4. Let :math:`i_1^{16}` be the sequence :math:`\simdto_{i8x16}(c_2)`.
 
-4. Pop the value :math:`\V128.\CONST~c_1` from the stack.
+5. Pop the value :math:`\V128.\CONST~c_1` from the stack.
 
-3. Let :math:`i_2^{16}` be the sequence :math:`\simdto_{i8x16}(c_2)`.
+6. Let :math:`i_2^{16}` be the sequence :math:`\simdto_{i8x16}(c_2)`.
 
-3. Let :math:`i_3^{32}` be the concatenation of the two sequences :math:`i_1^{16}~i_2^{16}`.
+7. Let :math:`i_3^{32}` be the concatenation of the two sequences :math:`i_1^{16}~i_2^{16}`.
 
-4. Let :math:`d_i` be :math:`i_3^{32}[\laneidx_i]`.
-
-8. Let :math:`c` be the result of :math:`\simdto^{-1}_{i8x16}(d_0 \dots d_{15})`.
+8. Let :math:`c` be the result of :math:`\simdto^{-1}_{i8x16}(i_3^{32}[\laneidx_0] \dots i_3^{32}[\laneidx_{15}])`.
 
 9. Push the value :math:`\V128.\CONST~c` onto the stack.
 
@@ -353,8 +351,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
      \begin{array}[t]{@{}r@{~}l@{}}
       (\iff & i_1^{16} = \simdto_{i8x16}(c_1) \\
       \wedge & i_2^{16} = \simdto_{i8x16}(c_2) \\
-      \wedge & d_i = (i_1^{16}~i_2^{16})[\laneidx_i] \\
-      \wedge & c = \simdto^{-1}_{i8x16}(d_0 \dots d_{15})
+      \wedge & c = \simdto^{-1}_{i8x16}((i_1^{16}~i_2^{16})[\laneidx_0] \dots (i_1^{16}~i_2^{16})[\laneidx_{15}])
      \end{array}
    \end{array}
 
