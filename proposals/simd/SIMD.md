@@ -691,9 +691,6 @@ def S.eq(a, b):
 ```
 
 ### Non-equality
-* `i8x16.ne(a: v128, b: v128) -> v128`
-* `i16x8.ne(a: v128, b: v128) -> v128`
-* `i32x4.ne(a: v128, b: v128) -> v128`
 * `f32x4.ne(a: v128, b: v128) -> v128`
 * `f64x2.ne(a: v128, b: v128) -> v128`
 

@@ -68,7 +68,6 @@ For example, `ImmLaneIdx16` is a byte with values in the range 0-15 (inclusive).
 | `f64x2.extract_lane`       |    `0x21`| i:ImmLaneIdx2      |
 | `f64x2.replace_lane`       |    `0x22`| i:ImmLaneIdx2      |
 | `i8x16.eq`                 |    `0x23`| -                  |
-| `i8x16.ne`                 |    `0x24`| -                  |
 | `i8x16.lt_s`               |    `0x25`| -                  |
 | `i8x16.lt_u`               |    `0x26`| -                  |
 | `i8x16.gt_s`               |    `0x27`| -                  |
@@ -78,7 +77,6 @@ For example, `ImmLaneIdx16` is a byte with values in the range 0-15 (inclusive).
 | `i8x16.ge_s`               |    `0x2b`| -                  |
 | `i8x16.ge_u`               |    `0x2c`| -                  |
 | `i16x8.eq`                 |    `0x2d`| -                  |
-| `i16x8.ne`                 |    `0x2e`| -                  |
 | `i16x8.lt_s`               |    `0x2f`| -                  |
 | `i16x8.lt_u`               |    `0x30`| -                  |
 | `i16x8.gt_s`               |    `0x31`| -                  |
@@ -88,7 +86,6 @@ For example, `ImmLaneIdx16` is a byte with values in the range 0-15 (inclusive).
 | `i16x8.ge_s`               |    `0x35`| -                  |
 | `i16x8.ge_u`               |    `0x36`| -                  |
 | `i32x4.eq`                 |    `0x37`| -                  |
-| `i32x4.ne`                 |    `0x38`| -                  |
 | `i32x4.lt_s`               |    `0x39`| -                  |
 | `i32x4.lt_u`               |    `0x3a`| -                  |
 | `i32x4.gt_s`               |    `0x3b`| -                  |

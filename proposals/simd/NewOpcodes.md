@@ -48,7 +48,6 @@
 | i8x16 Cmp  | opcode | i16x8 Cmp  | opcode | i32x4 Cmp  | opcode |
 | ---------- | ------ | ---------- | ------ | ---------- | ------ |
 | i8x16.eq   | 0x23   | i16x8.eq   | 0x2d   | i32x4.eq   | 0x37   |
-| i8x16.ne   | 0x24   | i16x8.ne   | 0x2e   | i32x4.ne   | 0x38   |
 | i8x16.lt_s | 0x25   | i16x8.lt_s | 0x2f   | i32x4.lt_s | 0x39   |
 | i8x16.lt_u | 0x26   | i16x8.lt_u | 0x30   | i32x4.lt_u | 0x3a   |
 | i8x16.gt_s | 0x27   | i16x8.gt_s | 0x31   | i32x4.gt_s | 0x3b   |
