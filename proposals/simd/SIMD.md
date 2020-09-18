@@ -1105,3 +1105,13 @@ def S.widen_low_T_u(a):
 def S.widen_high_T_u(a):
     return S.widen_high_T(Zext, a)
 ```
+
+### Prefetch
+
+* `prefetch.t(memarg)`
+* `prefetch.nt(memarg)`
+
+Prefetch memory location into lowest-level cache. Prefetch with temporal hint
+(`prefetch.t`) should be used for data that will be used only once, and
+prefetch with non-temporal (`prefetch.nt`) hint for data that will be reused
+multiple times.

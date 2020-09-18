@@ -130,3 +130,8 @@
 | i32x4.trunc_sat_f32x4_u | 0xf9   |
 | f32x4.convert_i32x4_s   | 0xfa   |
 | f32x4.convert_i32x4_u   | 0xfb   |
+
+| Prefetch Op | opcode |
+| ------------| ------ |
+| prefetch.t  | 0xfc   |
+| prefetch.nt | 0xfd   |
