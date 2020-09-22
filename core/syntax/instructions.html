@@ -320,14 +320,20 @@ For the other integer instructions, the use of two’s complement for the signed
 \def\mathdef1737#1{{}}\mathdef1737{SIMD floating-point unary operator} &amp; \href{../syntax/instructions.html#syntax-vfunop}{\mathit{vfunop}} &amp;::=&amp;
   \mathsf{abs} ~|~
   \mathsf{neg} ~|~
-  \mathsf{sqrt} \\
+  \mathsf{sqrt} ~|~
+  \mathsf{ceil} ~|~
+  \mathsf{floor} ~|~
+  \mathsf{trunc} ~|~
+  \mathsf{nearest} \\
 \def\mathdef1737#1{{}}\mathdef1737{SIMD floating-point binary operator} &amp; \href{../syntax/instructions.html#syntax-vfbinop}{\mathit{vfbinop}} &amp;::=&amp;
   \mathsf{add} ~|~
   \mathsf{sub} ~|~
   \mathsf{mul} ~|~
   \mathsf{div} ~|~
   \mathsf{min} ~|~
-  \mathsf{max} \\
+  \mathsf{max} ~|~
+  \mathsf{pmin} ~|~
+  \mathsf{pmax} \\
 \end{array}\end{split}\]</div>
 <p id="syntax-simd-shape">SIMD instructions have a naming convention involving a prefix that
 determines how their operands will be interpreted.
