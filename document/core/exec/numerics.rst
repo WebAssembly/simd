@@ -53,7 +53,7 @@ Numeric operators are lifted to input sequences by applying the operator element
       \fabs_N(z^n) &=& \fabs_N(z[0])~\dots~\fabs_N(z[n])
       \end{array}
 
-   For the binary operator |iadd|, when given two sequences of integers of the same length, :math:`n`, return a sequence of integer results:
+   The binary operator |iadd|, when given two sequences of integers of the same length, :math:`n`, return a sequence of integer results:
 
    .. math::
       \begin{array}{lll@{\qquad}l}
@@ -173,8 +173,8 @@ SIMD values have the same underlying representation as an |i128|. They can also 
    \\ \qquad
      \begin{array}[t]{@{}r@{~}l@{}}
      (\where & B = |t| / 8 \\
-     \wedge & b^* = bytes_{\i128}(c) \\
-     \wedge & c_i = \bytes_{t}^{-1}(b^*[i*B \slice B]))
+     \wedge & b^{16} = bytes_{\i128}(c) \\
+     \wedge & c_i = \bytes_{t}^{-1}(b^{16}[i \cdot B \slice B]))
      \end{array}
    \end{array}
 
