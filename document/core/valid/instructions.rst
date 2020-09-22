@@ -353,7 +353,7 @@ We also define an auxiliary function to get number of packed numeric types in a 
    }
 
 
-.. _valid-simd-vshiftop:
+.. _valid-vshiftop:
 
 :math:`\ishape\K{.}\vshiftop`
 .............................
