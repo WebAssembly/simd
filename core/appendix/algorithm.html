@@ -96,7 +96,7 @@ Consequently, it can be integrated directly into a decoder.</p>
 <p>The algorithm uses two separate stacks: the <em>operand stack</em> and the <em>control stack</em>.
 The former tracks the <a class="reference internal" href="../syntax/types.html#syntax-valtype"><span class="std std-ref">types</span></a> of operand values on the <a class="reference internal" href="../exec/runtime.html#stack"><span class="std std-ref">stack</span></a>,
 the latter surrounding <a class="reference internal" href="../syntax/instructions.html#syntax-instr-control"><span class="std std-ref">structured control instructions</span></a> and their associated <a class="reference internal" href="../syntax/instructions.html#syntax-instr-control"><span class="std std-ref">blocks</span></a>.</p>
-<div class="highlight-pseudo notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> <span class="nf">val_type</span> = I32 | I64 | F32 | F64
+<div class="highlight-pseudo notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> <span class="nf">val_type</span> = I32 | I64 | F32 | F64 | V128
 
 <span class="k">type</span> <span class="nf">opd_stack</span> = stack(val_type | Unknown)
 
