@@ -79,11 +79,11 @@
 <span id="index-instr"></span><span id="index-0"></span><h1>Index of Instructions<a class="headerlink" href="#index-of-instructions" title="Permalink to this headline">¶</a></h1>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 9%" />
-<col style="width: 22%" />
-<col style="width: 19%" />
-<col style="width: 30%" />
+<col style="width: 17%" />
+<col style="width: 8%" />
+<col style="width: 18%" />
+<col style="width: 23%" />
+<col style="width: 34%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Instruction</p></th>
@@ -1323,6 +1323,1074 @@
 <td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{f64}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{i64}}]\)</span></p></td>
 <td><p><a class="reference internal" href="../valid/instructions.html#valid-cvtop"><span class="std std-ref">validation</span></a></p></td>
 <td><p><a class="reference internal" href="../exec/instructions.html#exec-cvtop"><span class="std std-ref">execution</span></a>, <a class="reference internal" href="../exec/numerics.html#op-trunc-sat-u"><span class="std std-ref">operator</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}.\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{load}}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef442#1{\mathtt{0x#1}}\mathdef442{FD}~~0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{load}}\mathsf{8x8\_s}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef443#1{\mathtt{0x#1}}\mathdef443{FD}~~1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{load}}\mathsf{8x8\_u}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef444#1{\mathtt{0x#1}}\mathdef444{FD}~~2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{load}}\mathsf{16x4\_s}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef445#1{\mathtt{0x#1}}\mathdef445{FD}~~3\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{load}}\mathsf{16x4\_u}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef446#1{\mathtt{0x#1}}\mathdef446{FD}~~4\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i64x2}}.\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{load}}\mathsf{32x2\_s}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef447#1{\mathtt{0x#1}}\mathdef447{FD}~~5\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i64x2}}.\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{load}}\mathsf{32x2\_u}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef448#1{\mathtt{0x#1}}\mathdef448{FD}~~6\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{load}}\mathsf{\_splat}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef449#1{\mathtt{0x#1}}\mathdef449{FD}~~7\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{load}}\mathsf{\_splat}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef450#1{\mathtt{0x#1}}\mathdef450{FD}~~8\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{load}}\mathsf{\_splat}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef451#1{\mathtt{0x#1}}\mathdef451{FD}~~9\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i64x2}}.\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{load}}\mathsf{\_splat}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef452#1{\mathtt{0x#1}}\mathdef452{FD}~~10\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}.\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{store}}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef453#1{\mathtt{0x#1}}\mathdef453{FD}~~11\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~\href{../syntax/values.html#syntax-int}{\mathit{i128}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef454#1{\mathtt{0x#1}}\mathdef454{FD}~~12\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{shuffle}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}}^{16}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef455#1{\mathtt{0x#1}}\mathdef455{FD}~~13\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{swizzle}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef456#1{\mathtt{0x#1}}\mathdef456{FD}~~14\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{splat}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef457#1{\mathtt{0x#1}}\mathdef457{FD}~~15\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{splat}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef458#1{\mathtt{0x#1}}\mathdef458{FD}~~16\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{splat}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef459#1{\mathtt{0x#1}}\mathdef459{FD}~~17\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{splat}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef460#1{\mathtt{0x#1}}\mathdef460{FD}~~18\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{i64}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{splat}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef461#1{\mathtt{0x#1}}\mathdef461{FD}~~19\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{f32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{splat}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef462#1{\mathtt{0x#1}}\mathdef462{FD}~~20\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{f64}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extract\_lane}}\mathsf{\_s}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef463#1{\mathtt{0x#1}}\mathdef463{FD}~~21\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extract\_lane}}\mathsf{\_u}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef464#1{\mathtt{0x#1}}\mathdef464{FD}~~22\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{replace\_lane}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef465#1{\mathtt{0x#1}}\mathdef465{FD}~~23\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extract\_lane}}\mathsf{\_s}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef466#1{\mathtt{0x#1}}\mathdef466{FD}~~24\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extract\_lane}}\mathsf{\_u}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef467#1{\mathtt{0x#1}}\mathdef467{FD}~~25\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{replace\_lane}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef468#1{\mathtt{0x#1}}\mathdef468{FD}~~26\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}} \href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extract\_lane}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef469#1{\mathtt{0x#1}}\mathdef469{FD}~~27\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{replace\_lane}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef470#1{\mathtt{0x#1}}\mathdef470{FD}~~28\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extract\_lane}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef471#1{\mathtt{0x#1}}\mathdef471{FD}~~29\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{i64}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{replace\_lane}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef472#1{\mathtt{0x#1}}\mathdef472{FD}~~30\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{i64}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extract\_lane}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef473#1{\mathtt{0x#1}}\mathdef473{FD}~~31\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{f32}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{replace\_lane}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef474#1{\mathtt{0x#1}}\mathdef474{FD}~~32\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{f32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extract\_lane}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef475#1{\mathtt{0x#1}}\mathdef475{FD}~~33\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{f64}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{replace\_lane}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef476#1{\mathtt{0x#1}}\mathdef476{FD}~~34\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{f64}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{eq}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef477#1{\mathtt{0x#1}}\mathdef477{FD}~~35\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{ne}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef478#1{\mathtt{0x#1}}\mathdef478{FD}~~36\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{lt}}\mathsf{\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef479#1{\mathtt{0x#1}}\mathdef479{FD}~~37\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{lt}}\mathsf{\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef480#1{\mathtt{0x#1}}\mathdef480{FD}~~38\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{gt}}\mathsf{\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef481#1{\mathtt{0x#1}}\mathdef481{FD}~~39\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{gt}}\mathsf{\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef482#1{\mathtt{0x#1}}\mathdef482{FD}~~40\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{le}}\mathsf{\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef483#1{\mathtt{0x#1}}\mathdef483{FD}~~41\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{le}}\mathsf{\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef484#1{\mathtt{0x#1}}\mathdef484{FD}~~42\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{ge}}\mathsf{\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef485#1{\mathtt{0x#1}}\mathdef485{FD}~~43\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{ge}}\mathsf{\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef486#1{\mathtt{0x#1}}\mathdef486{FD}~~44\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{eq}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef487#1{\mathtt{0x#1}}\mathdef487{FD}~~45\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{ne}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef488#1{\mathtt{0x#1}}\mathdef488{FD}~~46\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{lt}}\mathsf{\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef489#1{\mathtt{0x#1}}\mathdef489{FD}~~47\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{lt}}\mathsf{\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef490#1{\mathtt{0x#1}}\mathdef490{FD}~~48\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{gt}}\mathsf{\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef491#1{\mathtt{0x#1}}\mathdef491{FD}~~49\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{gt}}\mathsf{\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef492#1{\mathtt{0x#1}}\mathdef492{FD}~~50\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{le}}\mathsf{\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef493#1{\mathtt{0x#1}}\mathdef493{FD}~~51\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{le}}\mathsf{\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef494#1{\mathtt{0x#1}}\mathdef494{FD}~~52\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{ge}}\mathsf{\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef495#1{\mathtt{0x#1}}\mathdef495{FD}~~53\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{ge}}\mathsf{\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef496#1{\mathtt{0x#1}}\mathdef496{FD}~~54\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{eq}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef497#1{\mathtt{0x#1}}\mathdef497{FD}~~55\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{ne}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef498#1{\mathtt{0x#1}}\mathdef498{FD}~~56\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{lt}}\mathsf{\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef499#1{\mathtt{0x#1}}\mathdef499{FD}~~57\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{lt}}\mathsf{\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef500#1{\mathtt{0x#1}}\mathdef500{FD}~~58\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{gt}}\mathsf{\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef501#1{\mathtt{0x#1}}\mathdef501{FD}~~59\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{gt}}\mathsf{\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef502#1{\mathtt{0x#1}}\mathdef502{FD}~~60\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{le}}\mathsf{\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef503#1{\mathtt{0x#1}}\mathdef503{FD}~~61\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{le}}\mathsf{\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef504#1{\mathtt{0x#1}}\mathdef504{FD}~~62\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{ge}}\mathsf{\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef505#1{\mathtt{0x#1}}\mathdef505{FD}~~63\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{ge}}\mathsf{\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef506#1{\mathtt{0x#1}}\mathdef506{FD}~~64\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{eq}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef507#1{\mathtt{0x#1}}\mathdef507{FD}~~65\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{ne}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef508#1{\mathtt{0x#1}}\mathdef508{FD}~~66\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{lt}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef509#1{\mathtt{0x#1}}\mathdef509{FD}~~67\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{gt}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef510#1{\mathtt{0x#1}}\mathdef510{FD}~~68\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{le}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef511#1{\mathtt{0x#1}}\mathdef511{FD}~~69\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{ge}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef512#1{\mathtt{0x#1}}\mathdef512{FD}~~70\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{eq}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef513#1{\mathtt{0x#1}}\mathdef513{FD}~~71\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{ne}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef514#1{\mathtt{0x#1}}\mathdef514{FD}~~72\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{lt}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef515#1{\mathtt{0x#1}}\mathdef515{FD}~~73\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{gt}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef516#1{\mathtt{0x#1}}\mathdef516{FD}~~74\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{le}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef517#1{\mathtt{0x#1}}\mathdef517{FD}~~75\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{ge}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef518#1{\mathtt{0x#1}}\mathdef518{FD}~~76\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{not}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef519#1{\mathtt{0x#1}}\mathdef519{FD}~~77\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{and}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef520#1{\mathtt{0x#1}}\mathdef520{FD}~~78\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{andnot}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef521#1{\mathtt{0x#1}}\mathdef521{FD}~~79\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{or}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef522#1{\mathtt{0x#1}}\mathdef522{FD}~~80\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{xor}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef523#1{\mathtt{0x#1}}\mathdef523{FD}~~81\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{bitselect}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef524#1{\mathtt{0x#1}}\mathdef524{FD}~~82\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{abs}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef525#1{\mathtt{0x#1}}\mathdef525{FD}~~96\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{neg}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef526#1{\mathtt{0x#1}}\mathdef526{FD}~~97\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{any\_true}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef527#1{\mathtt{0x#1}}\mathdef527{FD}~~98\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{all\_true}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef528#1{\mathtt{0x#1}}\mathdef528{FD}~~99\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{bitmask}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef529#1{\mathtt{0x#1}}\mathdef529{FD}~~100\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{narrow}}\mathsf{\_i16x8\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef530#1{\mathtt{0x#1}}\mathdef530{FD}~~101\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{narrow}}\mathsf{\_i16x8\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef531#1{\mathtt{0x#1}}\mathdef531{FD}~~102\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{shl}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef532#1{\mathtt{0x#1}}\mathdef532{FD}~~107\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{shr}}\mathsf{\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef533#1{\mathtt{0x#1}}\mathdef533{FD}~~108\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{shr}}\mathsf{\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef534#1{\mathtt{0x#1}}\mathdef534{FD}~~109\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{add}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef535#1{\mathtt{0x#1}}\mathdef535{FD}~~110\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{add}}\mathsf{\_sat\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef536#1{\mathtt{0x#1}}\mathdef536{FD}~~111\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{add}}\mathsf{\_sat\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef537#1{\mathtt{0x#1}}\mathdef537{FD}~~112\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{sub}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef538#1{\mathtt{0x#1}}\mathdef538{FD}~~113\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{sub}}\mathsf{\_sat\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef539#1{\mathtt{0x#1}}\mathdef539{FD}~~114\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{sub}}\mathsf{\_sat\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef540#1{\mathtt{0x#1}}\mathdef540{FD}~~115\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{min}}\mathsf{\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef541#1{\mathtt{0x#1}}\mathdef541{FD}~~118\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{min}}\mathsf{\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef542#1{\mathtt{0x#1}}\mathdef542{FD}~~119\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{max}}\mathsf{\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef543#1{\mathtt{0x#1}}\mathdef543{FD}~~120\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{max}}\mathsf{\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef544#1{\mathtt{0x#1}}\mathdef544{FD}~~121\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i8x16}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{avgr}}\mathsf{\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef545#1{\mathtt{0x#1}}\mathdef545{FD}~~123\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{abs}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef546#1{\mathtt{0x#1}}\mathdef546{FD}~~128\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{neg}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef547#1{\mathtt{0x#1}}\mathdef547{FD}~~129\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{any\_true}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef548#1{\mathtt{0x#1}}\mathdef548{FD}~~130\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{all\_true}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef549#1{\mathtt{0x#1}}\mathdef549{FD}~~131\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{bitmask}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef550#1{\mathtt{0x#1}}\mathdef550{FD}~~132\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{narrow}}\mathsf{\_i16x8\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef551#1{\mathtt{0x#1}}\mathdef551{FD}~~133\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{narrow}}\mathsf{\_i16x8\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef552#1{\mathtt{0x#1}}\mathdef552{FD}~~134\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{widen}}\mathsf{\_low\_i8x16\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef553#1{\mathtt{0x#1}}\mathdef553{FD}~~135\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{widen}}\mathsf{\_high\_i8x16\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef554#1{\mathtt{0x#1}}\mathdef554{FD}~~136\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{widen}}\mathsf{\_low\_i8x16\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef555#1{\mathtt{0x#1}}\mathdef555{FD}~~137\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{widen}}\mathsf{\_high\_i8x16\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef556#1{\mathtt{0x#1}}\mathdef556{FD}~~138\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{shl}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef557#1{\mathtt{0x#1}}\mathdef557{FD}~~139\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{shr}}\mathsf{\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef558#1{\mathtt{0x#1}}\mathdef558{FD}~~140\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{shr}}\mathsf{\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef559#1{\mathtt{0x#1}}\mathdef559{FD}~~141\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{add}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef560#1{\mathtt{0x#1}}\mathdef560{FD}~~142\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{add}}\mathsf{\_sat\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef561#1{\mathtt{0x#1}}\mathdef561{FD}~~143\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{add}}\mathsf{\_sat\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef562#1{\mathtt{0x#1}}\mathdef562{FD}~~144\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{sub}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef563#1{\mathtt{0x#1}}\mathdef563{FD}~~145\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{sub}}\mathsf{\_sat\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef564#1{\mathtt{0x#1}}\mathdef564{FD}~~146\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{sub}}\mathsf{\_sat\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef565#1{\mathtt{0x#1}}\mathdef565{FD}~~147\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{mul}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef566#1{\mathtt{0x#1}}\mathdef566{FD}~~149\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{min}}\mathsf{\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef567#1{\mathtt{0x#1}}\mathdef567{FD}~~150\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{min}}\mathsf{\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef568#1{\mathtt{0x#1}}\mathdef568{FD}~~151\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{max}}\mathsf{\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef569#1{\mathtt{0x#1}}\mathdef569{FD}~~152\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{max}}\mathsf{\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef570#1{\mathtt{0x#1}}\mathdef570{FD}~~153\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i16x8}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{avgr}}\mathsf{\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef571#1{\mathtt{0x#1}}\mathdef571{FD}~~155\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{abs}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef572#1{\mathtt{0x#1}}\mathdef572{FD}~~160\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{neg}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef573#1{\mathtt{0x#1}}\mathdef573{FD}~~161\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{any\_true}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef574#1{\mathtt{0x#1}}\mathdef574{FD}~~162\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{all\_true}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef575#1{\mathtt{0x#1}}\mathdef575{FD}~~163\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{bitmask}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef576#1{\mathtt{0x#1}}\mathdef576{FD}~~164\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{widen}}\mathsf{\_low\_i16x8\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef577#1{\mathtt{0x#1}}\mathdef577{FD}~~167\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{widen}}\mathsf{\_high\_i16x8\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef578#1{\mathtt{0x#1}}\mathdef578{FD}~~168\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{widen}}\mathsf{\_low\_i16x8\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef579#1{\mathtt{0x#1}}\mathdef579{FD}~~169\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{widen}}\mathsf{\_high\_i16x8\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef580#1{\mathtt{0x#1}}\mathdef580{FD}~~170\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{shl}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef581#1{\mathtt{0x#1}}\mathdef581{FD}~~171\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{shr}}\mathsf{\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef582#1{\mathtt{0x#1}}\mathdef582{FD}~~172\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{shr}}\mathsf{\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef583#1{\mathtt{0x#1}}\mathdef583{FD}~~173\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{add}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef584#1{\mathtt{0x#1}}\mathdef584{FD}~~174\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{sub}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef585#1{\mathtt{0x#1}}\mathdef585{FD}~~177\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{mul}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef586#1{\mathtt{0x#1}}\mathdef586{FD}~~181\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{min}}\mathsf{\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef587#1{\mathtt{0x#1}}\mathdef587{FD}~~182\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{min}}\mathsf{\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef588#1{\mathtt{0x#1}}\mathdef588{FD}~~183\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{max}}\mathsf{\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef589#1{\mathtt{0x#1}}\mathdef589{FD}~~184\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{max}}\mathsf{\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef590#1{\mathtt{0x#1}}\mathdef590{FD}~~185\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{neg}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef591#1{\mathtt{0x#1}}\mathdef591{FD}~~193\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{shl}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef592#1{\mathtt{0x#1}}\mathdef592{FD}~~203\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{shr}}\mathsf{\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef593#1{\mathtt{0x#1}}\mathdef593{FD}~~204\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{shr}}\mathsf{\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef594#1{\mathtt{0x#1}}\mathdef594{FD}~~205\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{add}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef595#1{\mathtt{0x#1}}\mathdef595{FD}~~206\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{sub}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef596#1{\mathtt{0x#1}}\mathdef596{FD}~~209\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{mul}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef597#1{\mathtt{0x#1}}\mathdef597{FD}~~213\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{abs}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef598#1{\mathtt{0x#1}}\mathdef598{FD}~~224\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{neg}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef599#1{\mathtt{0x#1}}\mathdef599{FD}~~225\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{sqrt}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef600#1{\mathtt{0x#1}}\mathdef600{FD}~~227\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{add}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef601#1{\mathtt{0x#1}}\mathdef601{FD}~~228\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{sub}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef602#1{\mathtt{0x#1}}\mathdef602{FD}~~229\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{mul}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef603#1{\mathtt{0x#1}}\mathdef603{FD}~~230\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{div}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef604#1{\mathtt{0x#1}}\mathdef604{FD}~~231\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{min}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef605#1{\mathtt{0x#1}}\mathdef605{FD}~~232\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f32x4}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{max}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef606#1{\mathtt{0x#1}}\mathdef606{FD}~~233\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{abs}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef607#1{\mathtt{0x#1}}\mathdef607{FD}~~236\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{neg}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef608#1{\mathtt{0x#1}}\mathdef608{FD}~~237\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{sqrt}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef609#1{\mathtt{0x#1}}\mathdef609{FD}~~239\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{i32}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{add}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef610#1{\mathtt{0x#1}}\mathdef610{FD}~~240\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{sub}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef611#1{\mathtt{0x#1}}\mathdef611{FD}~~241\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{mul}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef612#1{\mathtt{0x#1}}\mathdef612{FD}~~242\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{div}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef613#1{\mathtt{0x#1}}\mathdef613{FD}~~243\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{min}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef614#1{\mathtt{0x#1}}\mathdef614{FD}~~244\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f64x2}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{max}}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef615#1{\mathtt{0x#1}}\mathdef615{FD}~~245\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}~\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-numeric}{\mathsf{trunc}}\mathsf{\_sat\_f32x4\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef616#1{\mathtt{0x#1}}\mathdef616{FD}~~248\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{i32x4}}.\href{../syntax/instructions.html#syntax-instr-numeric}{\mathsf{trunc}}\mathsf{\_sat\_f32x4\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef617#1{\mathtt{0x#1}}\mathdef617{FD}~~249\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f32x4}}.\href{../syntax/instructions.html#syntax-instr-numeric}{\mathsf{convert}}\mathsf{\_i32x4\_s}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef618#1{\mathtt{0x#1}}\mathdef618{FD}~~250\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{f32x4}}.\href{../syntax/instructions.html#syntax-instr-numeric}{\mathsf{convert}}\mathsf{\_i32x4\_u}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\def\mathdef619#1{\mathtt{0x#1}}\mathdef619{FD}~~251\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}] \href{../syntax/types.html#syntax-functype}{\rightarrow} [\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}]\)</span></p></td>
+<td><p><span class="xref std std-ref">validation</span></p></td>
+<td><p><span class="xref std std-ref">execution</span>, <span class="xref std std-ref">operator</span></p></td>
 </tr>
 </tbody>
 </table>
