@@ -1023,3 +1023,33 @@ def S.widen_low_T_u(a):
 def S.widen_high_T_u(a):
     return S.widen_high_T(Zext, a)
 ```
+
+
+### Move and Zero-Pad
+
+* `v128.move32_zero_r(x: i32) -> v128`
+* `v128.move32_zero_v(a: v128) -> v128`
+* `v128.move64_zero_r(x: i64) -> v128`
+* `v128.move64_zero_v(a: v128) -> v128`
+
+Move a single 32-bit or 64-bit element into the lowest bits of `v128` vector,
+and initialize all other bits of the `v128` vector to zero.
+```python
+def S.moveT_zero_r(x):
+    result = S.New()
+    for i in range(S.Lanes):
+        if i == 0:
+            result[i] = x
+        else:
+            result[i] = 0
+    return result
+
+def S.moveT_zero_v(a):
+    result = S.New()
+    for i in range(S.Lanes):
+        if i == 0:
+            result[i] = a[i]
+        else:
+            result[i] = 0
+    return result
+```

@@ -222,3 +222,7 @@ For example, `ImmLaneIdx16` is a byte with values in the range 0-15 (inclusive).
 | `i32x4.trunc_sat_f32x4_u`  |    `0xf9`| -                  |
 | `f32x4.convert_i32x4_s`    |    `0xfa`| -                  |
 | `f32x4.convert_i32x4_u`    |    `0xfb`| -                  |
+| `v128.move32_zero_r`       |    `0xfe`| -                  |
+| `v128.move32_zero_v`       |    `0xff`| -                  |
+| `v128.move64_zero_r`       |   `0x100`| -                  |
+| `v128.move64_zero_v`       |   `0x101`| -                  | 
