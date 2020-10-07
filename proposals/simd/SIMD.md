@@ -938,6 +938,14 @@ Lane-wise rounding to the nearest integral value with the magnitude not larger t
 
 Lane-wise rounding to the nearest integral value; if two values are equally near, rounds to the even one.
 
+## Pairwise Arithmetics
+
+### Addition
+* `f32x4.add_pairwise(a: v128, b: v128) -> v128`
+* `f64x2.add_pairwise(a: v128, b: v128) -> v128`
+
+IEEE `addition` of pairs of elements in concantation of `a` and `b` vectors.
+
 ## Conversions
 ### Integer to floating point
 * `f32x4.convert_i32x4_s(a: v128) -> v128`
