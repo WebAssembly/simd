@@ -1023,3 +1023,18 @@ def S.widen_low_T_u(a):
 def S.widen_high_T_u(a):
     return S.widen_high_T(Zext, a)
 ```
+
+
+### Horizontal Multiply Extend and Add
+* `u8x16.ext_mul_padd_u8(a: v128, b: v128) -> v128`
+
+Multiplies two u8x16 vectors, temporarily expands the values to two i16x8s, before performing 
+pairwise addition leading to one i16x8/u16x8.
+
+```python
+def S.ext_mul_padd_u8(a, b):
+    result = S.New()
+    for i in S.range(S.Lanes/2):
+        result[i] = (a[i]*b[i])+(a[i+1]*b[i+1])
+    return result
+```
