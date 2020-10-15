@@ -1026,7 +1026,7 @@ def S.widen_high_T_u(a):
 
 
 ### Horizontal Multiply Extend and Add
-* `i16x8.extmul_padd_i8x16_u(a: v128, b: v128) -> v128`
+* `i16x8.dot_i8x16_u(a: v128, b: v128) -> v128`
 
 Multiplies two u8x16 vectors, temporarily expands the values to two i16x8s, before performing 
 pairwise addition leading to one i16x8/u16x8.
