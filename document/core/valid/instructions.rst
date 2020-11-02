@@ -174,13 +174,13 @@ SIMD instructions can have a prefix to describe the :ref:`shape <syntax-simd-sha
    \end{array}
 
 
-We also define an auxiliary function to get number of packed numeric types in a |V128|:
+We also define an auxiliary function to get number of packed numeric types in a |V128|, *dimension*:
 
-.. _aux-lanes:
+.. _aux-dim:
 
 .. math::
    \begin{array}{lll@{\qquad}l}
-   \lanes(t\K{x}N) &=& N
+   \dim(t\K{x}N) &=& N
    \end{array}
 
 
@@ -279,13 +279,13 @@ We also define an auxiliary function to get number of packed numeric types in a 
 :math:`\shape\K{.}\EXTRACTLANE\K{\_}\sx^?~\laneidx`
 ...................................................
 
-* The lane index :math:`\laneidx` must be smaller than :math:`\lanes(\shape)`.
+* The lane index :math:`\laneidx` must be smaller than :math:`\dim(\shape)`.
 
 * The instruction is valid with type :math:`[\V128] \to [\unpacked(\shape)]`.
 
 .. math::
    \frac{
-     \laneidx < \lanes(\shape)
+     \laneidx < \dim(\shape)
    }{
      C \vdashinstr t\K{x}N\K{.}\EXTRACTLANE\K{\_}\sx^?~\laneidx : [\V128] \to [\unpacked(\shape)]
    }
@@ -296,7 +296,7 @@ We also define an auxiliary function to get number of packed numeric types in a 
 :math:`\shape\K{.}\REPLACELANE~\laneidx`
 ........................................
 
-* The lane index :math:`\laneidx` must be smaller than :math:`\lanes(\shape)`.
+* The lane index :math:`\laneidx` must be smaller than :math:`\dim(\shape)`.
 
 * Let :math:`t` be :math:`\unpacked(\shape)`.
 
@@ -304,7 +304,7 @@ We also define an auxiliary function to get number of packed numeric types in a 
 
 .. math::
    \frac{
-     \laneidx < \lanes(\shape)
+     \laneidx < \dim(\shape)
    }{
      C \vdashinstr \shape\K{.}\REPLACELANE~\laneidx : [\V128~\unpacked(\shape)] \to [\V128]
    }

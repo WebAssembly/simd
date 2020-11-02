@@ -367,7 +367,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 3. Pop the value :math:`t.\CONST~c_1` from the stack.
 
-4. Let :math:`N` be the integer :math:`\lanes(\shape)`.
+4. Let :math:`N` be the integer :math:`\dim(\shape)`.
 
 5. Let :math:`c` be the result of :math:`\simdto^{-1}_{\shape}(c_1^N)`.
 
@@ -377,7 +377,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
    \begin{array}{lcl@{\qquad}l}
    (t\K{.}\CONST~c_1)~\shape\K{.}\SPLAT &\stepto& (\V128\K{.}\VCONST~c)
      & (\iff t = \unpacked(\shape)
-       \wedge c = \simdto^{-1}_{\shape}(c_1^{\lanes(\shape)}))
+       \wedge c = \simdto^{-1}_{\shape}(c_1^{\dim(\shape)}))
      \\
    \end{array}
 
@@ -388,7 +388,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 :math:`t_1\K{x}N\K{.}\EXTRACTLANE\K{\_}\sx^?~\laneidx`
 ......................................................
 
-1. Assert: due to :ref:`validation <valid-simd-extract-lane>`, :math:`\laneidx < \lanes(\shape)`.
+1. Assert: due to :ref:`validation <valid-simd-extract-lane>`, :math:`\laneidx < \dim(\shape)`.
 
 2. Assert: due to :ref:`validation <valid-simd-extract-lane>`, a value of :ref:`value type <syntax-valtype>` |V128| is on the top of the stack.
 
@@ -420,7 +420,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 :math:`\shape\K{.}\REPLACELANE~\laneidx`
 ........................................
 
-1. Assert: due to :ref:`validation <valid-simd-replace-lane>`, :math:`\laneidx < \lanes(\shape)`.
+1. Assert: due to :ref:`validation <valid-simd-replace-lane>`, :math:`\laneidx < \dim(\shape)`.
 
 2. Let :math:`t_1` be the type :math:`\unpacked(\shape)`.
 
@@ -432,7 +432,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 6. Pop the value :math:`\V128.\VCONST~c_2` from the stack.
 
-7. Let :math:`n` be the integer :math:`\lanes(\shape)`.
+7. Let :math:`n` be the integer :math:`\dim(\shape)`.
 
 8. Let :math:`i_2^n` be the sequence :math:`\simdto_{\shape}(c_2)`.
 
@@ -447,7 +447,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
    \end{array}
    \\ \qquad
      \begin{array}[t]{@{}r@{~}l@{}}
-      (\iff & n = \lanes(\shape) \\
+      (\iff & n = \dim(\shape) \\
        \wedge & i_2^n = \simdto_{\shape}(c_2)) \\
        \wedge & c = \simdto^{-1}_{\shape}(i_2^n \with [\laneidx] = c_1)
      \end{array}
@@ -546,7 +546,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 2. Pop the value :math:`\V128.\VCONST~c_1` from the stack.
 
-3. Let :math:`n` be the integer :math:`\lanes(\shape)`.
+3. Let :math:`n` be the integer :math:`\dim(\shape)`.
 
 4. Let :math:`i_1^n` be the sequence :math:`\simdto_{\shape}(c_1)`
 
@@ -562,7 +562,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
    \end{array}
    \\ \qquad
      \begin{array}[t]{@{}r@{~}l@{}}
-     (\iff & n = \lanes(\shape) \\
+     (\iff & n = \dim(\shape) \\
      \wedge & i_1^n = \simdto_{\shape}(c) \\
      \wedge & i = \bigwedge(i_1 \neq 0)^n
      \end{array}
