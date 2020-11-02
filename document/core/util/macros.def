@@ -1085,7 +1085,7 @@
 .. |nans| mathdef:: \xref{exec/numerics}{aux-nans}{\F{nans}}
 .. |trunc| mathdef:: \xref{exec/numerics}{aux-trunc}{\F{trunc}}
 
-.. |simdto| mathdef:: \xref{exec/numerics}{aux-simdto}{\F{simd\_to}}
+.. |lanes| mathdef:: \xref{exec/numerics}{aux-lanes}{\F{lanes}}
 
 
 .. Other meta functions

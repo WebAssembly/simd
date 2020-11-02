@@ -157,7 +157,7 @@ Again these functions are invertable bijections.
 
 
 .. index:: SIMD, shape
-.. _aux-simdto:
+.. _aux-lanes:
 
 SIMD
 ....
@@ -167,7 +167,7 @@ SIMD values have the same underlying representation as an |i128|. They can also 
 .. math::
    \begin{array}{l}
    \begin{array}{lll@{\qquad}l}
-   \simdto_{t\K{x}N}(c) &=&
+   \lanes_{t\K{x}N}(c) &=&
      c_0~\dots~c_{N-1} \\
    \end{array}
    \\ \qquad
