@@ -193,6 +193,12 @@
 | `f32x4.convert_i32x4_u`    |               `-msimd128` | :heavy_check_mark: |                    |                    | :heavy_check_mark: |
 | `v128.load32_zero`         |                           | :heavy_check_mark: |                    |                    | :heavy_check_mark: |
 | `v128.load64_zero`         |                           | :heavy_check_mark: |                    |                    | :heavy_check_mark: |
+| `i32x4.widen_i8x16_u`      |                           | -                  |                    |                    |                    |
+| `i32x4.widen_i8x16_s`      |                           | -                  |                    |                    |                    |
+| `i64x2.widen_i8x16_u`      |                           | -                  |                    |                    |                    |
+| `i64x2.widen_i8x16_s`      |                           | -                  |                    |                    |                    |
+| `i64x2.widen_i16x8_u`      |                           | -                  |                    |                    |                    |
+| `i64x2.widen_i16x8_s`      |                           | -                  |                    |                    |                    |
 
 [1] Tip of tree LLVM as of May 20, 2020
 

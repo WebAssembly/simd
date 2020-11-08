@@ -1046,3 +1046,25 @@ def S.widen_low_T_u(a):
 def S.widen_high_T_u(a):
     return S.widen_high_T(Zext, a)
 ```
+### Integer to integer Widening (Constant Immediate)
+* `i32x4.widen_i8x16_u(v128: a, ImmLaneIdx4: c) -> v128`
+* `i32x4.widen_i8x16_s(v128: a, ImmLaneIdx4: c) -> v128`
+* `i64x2.widen_i8x16_u(v128: a, ImmLaneIdx8: c) -> v128`
+* `i64x2.widen_i8x16_s(v128: a, ImmLaneIdx8: c) -> v128`
+* `i64x2.widen_i16x8_u(v128: a, ImmLaneIdx4: c) -> v128`
+* `i64x2.widen_i16x8_s(v128: a, ImmLaneIdx4: c) -> v128`
+
+Using the constant immediate, widens selected integers with zero or sign extension.
+```python
+def S.widen_T_u(a,c):
+    result = S.New()
+    for i in range(S.Lanes):
+            result[i] = Zext(a[S.Lanes + i + c])
+    return result
+
+def S.widen_T_s(a,c):
+    result = S.New()
+    for i in range(S.Lanes):
+            result[i] = Sext(a[S.Lanes + i + c])
+    return result
+```
