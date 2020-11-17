@@ -1014,11 +1014,11 @@ Memory Instructions
 
 11. Let :math:`b^\ast` be the byte sequence :math:`\X{mem}.\MIDATA[\X{ea} \slice N/8]`.
 
-12. Let :math:`m_i` be the integer for which :math:`\bytes_{\iM}(m_i) = b^\ast[i*M/8 \slice M/8]`.
+12. Let :math:`m_k` be the integer for which :math:`\bytes_{\iM}(m_k) = b^\ast[k*M/8 \slice M/8]`.
 
 13. Let :math:`J` be the integer :math:`M*2`.
 
-14. Let :math:`n_i` be the result of :math:`\extend^{\sx}_{M,J}(m_i)`.
+14. Let :math:`n_k` be the result of :math:`\extend^{\sx}_{M,J}(m_k)`.
 
 15. Let :math:`c` be the result of computing :math:`\lanes^{-1}_{\X{i}J\K{x}L}(n_0 \dots n_{L-1})`.
 
@@ -1035,7 +1035,7 @@ Memory Instructions
      \begin{array}[t]{@{}r@{~}l@{}}
      (\iff & \X{ea} = i + \memarg.\OFFSET \\
      \wedge & \X{ea} + (M*L) \leq |S.\SMEMS[F.\AMODULE.\MIMEMS[0]].\MIDATA| \\
-     \wedge & \bytes_{\iM}(m_i) = S.\SMEMS[F.\AMODULE.\MIMEMS[0]].\MIDATA[\X{ea} + i * (M/8) \slice M/8]) \\
+     \wedge & \bytes_{\iM}(m_k) = S.\SMEMS[F.\AMODULE.\MIMEMS[0]].\MIDATA[\X{ea} + k * (M/8) \slice M/8]) \\
      \wedge & J = M*2 \\
      \wedge & c = \lanes^{-1}_{\X{i}J\K{x}L}(\extend^{\sx}_{M,J}(m_0) \dots \extend^{\sx}_{M,J}(m_{L-1}))
      \end{array}
