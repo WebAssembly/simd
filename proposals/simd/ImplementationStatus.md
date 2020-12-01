@@ -200,7 +200,7 @@
 
 [3] Not known to be updated after latest renumbering. Requires flag `--enable simd`
 
-[4] Not known to be updated after latest renumbering. Requires (case-insensitive) flag `-wasmsimd`
+[4] Only in 1.12.* (development branch). Requires (case-insensitive) flag `-wasmsimd`
 
 [5] Firefox x64/x86 SSE4.1+ only, enabled in Nightly, disabled in other channels, control in about:config under `javascript.options.wasm_simd`
 
