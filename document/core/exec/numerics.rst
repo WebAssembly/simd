@@ -809,11 +809,11 @@ The integer result of predicates -- i.e., :ref:`tests <syntax-testop>` and :ref:
 
 * Let :math:`i` be the result of adding :math:`i_1` and :math:`i_2`.
 
-* Return :math:`\satu_N(i)`.
+* Return :math:`\satu_N(\signed_N(i))`.
 
 .. math::
    \begin{array}{lll@{\qquad}l}
-   \iaddsatu_N(i_1, i_2) &=& \satu_N(i_1 + i_2)
+   \iaddsatu_N(i_1, i_2) &=& \satu_N(\signed_N(i_1 + i_2))
    \end{array}
 
 
@@ -843,11 +843,11 @@ The integer result of predicates -- i.e., :ref:`tests <syntax-testop>` and :ref:
 
 * Let :math:`i` be the result of subtracting :math:`i_2` from :math:`i_1`.
 
-* Return :math:`\satu_N(i)`.
+* Return :math:`\satu_N(\signed_N(i))`.
 
 .. math::
    \begin{array}{lll@{\qquad}l}
-   \isubsatu_N(i_1, i_2) &=& \satu_N(i_1 - i_2)
+   \isubsatu_N(i_1, i_2) &=& \satu_N(\signed_N(i_1 - i_2))
    \end{array}
 
 
