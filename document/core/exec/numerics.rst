@@ -1776,20 +1776,14 @@ Conversions
 
 * Else if :math:`z` is positive infinity, then return :math:`2^N - 1`.
 
-* Else if :math:`\trunc(z)` is less than :math:`0`, then return :math:`0`.
-
-* Else if :math:`\trunc(z)` is greater than :math:`2^N - 1`, then return :math:`2^N - 1`.
-
-* Else, return :math:`\trunc(z)`.
+* Else, return :math:`\satu_N(\trunc(z))`.
 
 .. math::
    \begin{array}{lll@{\qquad}l}
    \truncsatu_{M,N}(\pm \NAN(n)) &=& 0 \\
    \truncsatu_{M,N}(- \infty) &=& 0 \\
    \truncsatu_{M,N}(+ \infty) &=& 2^N - 1 \\
-   \truncsatu_{M,N}(- q) &=& 0 & (\iff \trunc(- q) < 0) \\
-   \truncsatu_{M,N}(+ q) &=& 2^N - 1 & (\iff \trunc(+ q) > 2^N - 1) \\
-   \truncsatu_{M,N}(\pm q) &=& \trunc(\pm q) & (otherwise) \\
+   \truncsatu_{M,N}(z) &=& \satu_N(\trunc(z)) \\
    \end{array}
 
 
@@ -1804,20 +1798,14 @@ Conversions
 
 * Else if :math:`z` is positive infinity, then return :math:`2^{N-1} - 1`.
 
-* Else if :math:`\trunc(z)` is less than :math:`-2^{N-1}`, then return :math:`-2^{N-1}`.
-
-* Else if :math:`\trunc(z)` is greater than :math:`2^{N-1} - 1`, then return :math:`2^{N-1} - 1`.
-
-* Else, return :math:`\trunc(z)`.
+* Else, return :math:`\sats_N(\trunc(z))`.
 
 .. math::
    \begin{array}{lll@{\qquad}l}
    \truncsats_{M,N}(\pm \NAN(n)) &=& 0 \\
    \truncsats_{M,N}(- \infty) &=& -2^{N-1} \\
    \truncsats_{M,N}(+ \infty) &=& 2^{N-1}-1 \\
-   \truncsats_{M,N}(- q) &=& -2^{N-1} & (\iff \trunc(- q) < -2^{N-1}) \\
-   \truncsats_{M,N}(+ q) &=& 2^{N-1} - 1 & (\iff \trunc(+ q) > 2^{N-1} - 1) \\
-   \truncsats_{M,N}(\pm q) &=& \trunc(\pm q) & (otherwise) \\
+   \truncsats_{M,N}(z) &=& \sats_N(\trunc(z)) \\
    \end{array}
 
 
