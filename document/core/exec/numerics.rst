@@ -1919,25 +1919,10 @@ Conversions
    \end{array}
 
 
-.. _op-narrow_s:
+.. _op-inarrow_u:
 
-:math:`\narrows_{M,N}(i)`
-.........................
-
-* Let :math:`j` be the :ref:`signed interpretation <aux-signed>` of :math:`i` of size :math:`M`.
-
-* Return :math:`\sats_N(j)`.
-
-.. math::
-   \begin{array}{lll@{\qquad}l}
-   \narrows_{M,N}(i) &=& \sats_N(\signed_M(i))
-   \end{array}
-
-
-.. _op-narrow_u:
-
-:math:`\narrowu_{M,N}(i)`
-.........................
+:math:`\inarrowu_{M,N}(i)`
+..........................
 
 * Let :math:`j` be the :ref:`signed interpretation <aux-signed>` of :math:`i` of size :math:`M`.
 
@@ -1945,5 +1930,20 @@ Conversions
 
 .. math::
    \begin{array}{lll@{\qquad}l}
-   \narrowu_{M,N}(i) &=& \satu_N(\signed_M(i))
+   \inarrowu_{M,N}(i) &=& \satu_N(\signed_M(i))
+   \end{array}
+
+
+.. _op-inarrow_s:
+
+:math:`\inarrows_{M,N}(i)`
+..........................
+
+* Let :math:`j` be the :ref:`signed interpretation <aux-signed>` of :math:`i` of size :math:`M`.
+
+* Return :math:`\sats_N(j)`.
+
+.. math::
+   \begin{array}{lll@{\qquad}l}
+   \inarrows_{M,N}(i) &=& \sats_N(\signed_M(i))
    \end{array}

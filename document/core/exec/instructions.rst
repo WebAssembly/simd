@@ -625,11 +625,11 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 2. Pop the value :math:`\V128.\VCONST~c_2` from the stack.
 
-3. Let :math:`d_2^M` be the result of computing :math:`\narrow^{\sx}_{t_1, t_2}(\lanes_{t_1\K{x}M}(c_2))`.
+3. Let :math:`d_2^M` be the result of computing :math:`\inarrow^{\sx}_{t_1, t_2}(\lanes_{t_1\K{x}M}(c_2))`.
 
 4. Pop the value :math:`\V128.\VCONST~c_1` from the stack.
 
-5. Let :math:`d_1^M` be the result of computing :math:`\narrow^{\sx}_{t_1, t_2}(\lanes_{t_1\K{x}M}(c_1))`.
+5. Let :math:`d_1^M` be the result of computing :math:`\inarrow^{\sx}_{t_1, t_2}(\lanes_{t_1\K{x}M}(c_1))`.
 
 6. Let :math:`c` be the result of :math:`\lanes^{-1}_{t_2\K{x}N}(d_1^M~d_2^M)`.
 
@@ -642,8 +642,8 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
    \end{array}
    \\ \qquad
      \begin{array}[t]{@{}r@{~}l@{}}
-     (\iff & d_1^M = \narrow^{\sx}_{t_1, t_2}( \lanes_{t_1\K{x}M}(c_1)) \\
-     \wedge & d_2^M = \narrow^{\sx}_{t_1, t_2}( \lanes_{t_1\K{x}M}(c_2)) \\
+     (\iff & d_1^M = \inarrow^{\sx}_{t_1, t_2}( \lanes_{t_1\K{x}M}(c_1)) \\
+     \wedge & d_2^M = \inarrow^{\sx}_{t_1, t_2}( \lanes_{t_1\K{x}M}(c_2)) \\
      \wedge & c = \lanes^{-1}_{t_2\K{x}N}(d_1^M~d_2^M)
      \end{array}
    \end{array}
