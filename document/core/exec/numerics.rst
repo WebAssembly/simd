@@ -1905,18 +1905,16 @@ Conversions
 :math:`\sats_N(i)`
 .......................
 
-* Let :math:`j` be the :ref:`signed interpretation <aux-signed>` of :math:`i` of size :math:`N`.
+* If :math:`i` is less than :math:`-2^{N-1}`, return the number that has the signed representation :math:`-2^{N-1}`.
 
-* If :math:`j` is less than :math:`-2^{N-1}`, return :math:`-2^{N-1}`.
-
-* If :math:`j` is greater than :math:`2^N-1`, return :math:`2^N-1`.
+* If :math:`i` is greater than :math:`2^N-1`, return the number that has the signed interpretation :math:`2^N-1`.
 
 * Else return :math:`i`.
 
 .. math::
    \begin{array}{lll@{\qquad}l}
-   \sats_N(i) &=& \signed_N^{-1}(-2^{N-1}) & (\iff \signed_N(i) < -2^{N-1})\\
-   \sats_N(i) &=& 2^N-1 & (\iff \signed_N(i) > 2^N-1)\\
+   \sats_N(i) &=& \signed_N^{-1}(-2^{N-1}) & (\iff i < -2^{N-1})\\
+   \sats_N(i) &=& \signed_N^{-1}(2^N-1) & (\iff i > 2^N-1)\\
    \sats_N(i) &=& i & (\otherwise)
    \end{array}
 
