@@ -1062,8 +1062,6 @@
 .. |convertu| mathdef:: \xref{exec/numerics}{op-convert_u}{\F{convert}^{\K{u}}}
 .. |converts| mathdef:: \xref{exec/numerics}{op-convert_s}{\F{convert}^{\K{s}}}
 .. |reinterpret| mathdef:: \xref{exec/numerics}{op-reinterpret}{\F{reinterpret}}
-.. |satu| mathdef:: \xref{exec/numerics}{op-sat_u}{\F{sat}^{\K{u}}}
-.. |sats| mathdef:: \xref{exec/numerics}{op-sat_s}{\F{sat}^{\K{s}}}
 .. |narrow| mathdef:: \xref{exec/numerics}{op-narrow_u}{\F{narrow}}
 .. |narrowu| mathdef:: \xref{exec/numerics}{op-narrow_u}{\F{narrow}^{\K{u}}}
 .. |narrows| mathdef:: \xref{exec/numerics}{op-narrow_s}{\F{narrow}^{\K{s}}}
@@ -1084,6 +1082,8 @@
 .. |ieee| mathdef:: \xref{exec/numerics}{aux-ieee}{\F{float}}
 .. |nans| mathdef:: \xref{exec/numerics}{aux-nans}{\F{nans}}
 .. |trunc| mathdef:: \xref{exec/numerics}{aux-trunc}{\F{trunc}}
+.. |satu| mathdef:: \xref{exec/numerics}{aux-sat_u}{\F{sat}^{\K{u}}}
+.. |sats| mathdef:: \xref{exec/numerics}{aux-sat_s}{\F{sat}^{\K{s}}}
 
 .. |lanes| mathdef:: \xref{exec/numerics}{aux-lanes}{\F{lanes}}
 

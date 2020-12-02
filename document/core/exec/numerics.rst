@@ -79,6 +79,30 @@ Conventions:
      \trunc(\pm q) &=& \pm i & (\iff i \in \mathbb{N} \wedge +q - 1 < i \leq +q) \\
      \end{array}
 
+.. _aux-sat_u:
+.. _aux-sat_s:
+
+* Saturation of integers is written :math:`\satu_N(i)` and :math:`\sats_N(i)`. The arguments to these two functions range over arbitrary signed integers.
+
+  * Unsigned saturation, :math:`\satu_N(i)` clamps :math:`i` to between :math:`0` and :math:`2^N-1`:
+
+    .. math::
+       \begin{array}{lll@{\qquad}l}
+       \satu_N(i) &=& 2^N-1 & (\iff i > 2^N-1)\\
+       \satu_N(i) &=& 0 & (\iff i < 0) \\
+       \satu_N(i) &=& i & (\otherwise) \\
+       \end{array}
+
+  * Signed saturation, :math:`\sats_N(i)` clamps :math:`i` to between :math:`-2^{N-1}` and :math:`2^N-1`:
+
+  .. math::
+     \begin{array}{lll@{\qquad}l}
+     \sats_N(i) &=& \signed_N^{-1}(-2^{N-1}) & (\iff i < -2^{N-1})\\
+     \sats_N(i) &=& \signed_N^{-1}(2^N-1) & (\iff i > 2^N-1)\\
+     \sats_N(i) &=& i & (\otherwise)
+     \end{array}
+
+
 
 .. index:: bit, integer, floating-point
 .. _aux-bits:
@@ -1881,41 +1905,6 @@ Conversions
 .. math::
    \begin{array}{lll@{\qquad}l}
    \reinterpret_{t_1,t_2}(c) &=& \bits_{t_2}^{-1}(\bits_{t_1}(c)) \\
-   \end{array}
-
-
-.. _op-sat_u:
-
-:math:`\satu_N(i)`
-.......................
-
-* If :math:`i` is greater than :math:`2^N-1`, return :math:`2^N-1`.
-
-* Else return :math:`i`.
-
-.. math::
-   \begin{array}{lll@{\qquad}l}
-   \satu_N(i) &=& 2^N-1 & (\iff i > 2^N-1)\\
-   \satu_N(i) &=& i & (\otherwise)
-   \end{array}
-
-
-.. _op-sat_s:
-
-:math:`\sats_N(i)`
-.......................
-
-* If :math:`i` is less than :math:`-2^{N-1}`, return the number that has the signed representation :math:`-2^{N-1}`.
-
-* If :math:`i` is greater than :math:`2^N-1`, return the number that has the signed interpretation :math:`2^N-1`.
-
-* Else return :math:`i`.
-
-.. math::
-   \begin{array}{lll@{\qquad}l}
-   \sats_N(i) &=& \signed_N^{-1}(-2^{N-1}) & (\iff i < -2^{N-1})\\
-   \sats_N(i) &=& \signed_N^{-1}(2^N-1) & (\iff i > 2^N-1)\\
-   \sats_N(i) &=& i & (\otherwise)
    \end{array}
 
 
