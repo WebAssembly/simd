@@ -699,7 +699,7 @@ The integer result of predicates -- i.e., :ref:`tests <syntax-testop>` and :ref:
 .. _op-ibitselect:
 
 :math:`\ibitselect_N(i_1, i_2, i_3)`
-..................................
+....................................
 
 * Let :math:`j_1` be the bitwise conjunction of :math:`i_1` and :math:`i_3`.
 
