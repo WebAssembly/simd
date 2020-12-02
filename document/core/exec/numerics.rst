@@ -703,7 +703,7 @@ The integer result of predicates -- i.e., :ref:`tests <syntax-testop>` and :ref:
 
 * Let :math:`j_1` be the bitwise conjunction of :math:`i_1` and :math:`c`.
 
-* Let :math:`c'` be the bitwise negation :math:`c`.
+* Let :math:`c'` be the bitwise negation of :math:`c`.
 
 * Let :math:`j_2` be the bitwise conjunction of :math:`i_2` and :math:`c'`.
 
@@ -742,7 +742,7 @@ The integer result of predicates -- i.e., :ref:`tests <syntax-testop>` and :ref:
 
 .. math::
    \begin{array}{@{}lcll}
-   \ineg_N(i) &=& (0 - i) \mod 2^N
+   \ineg_N(i) &=& (2^N - i) \mod 2^N
    \end{array}
 
 
@@ -751,12 +751,12 @@ The integer result of predicates -- i.e., :ref:`tests <syntax-testop>` and :ref:
 :math:`\iminu_N(i_1, i_2)`
 ..........................
 
-* Return :math:`i_1` if :math:`\iltu_N(i_1, i_2) = 1`, :math:`i_2` otherwise.
+* Return :math:`i_1` if :math:`\iltu_N(i_1, i_2)` is :math:`1`, return :math:`i_2` otherwise.
 
 .. math::
    \begin{array}{@{}lcll}
    \iminu_N(i_1, i_2) &=& i_1 & (\iff \iltu_N(i_1, i_2) = 1)\\
-   \iminu_N(i_1, i_2) &=& i_2
+   \iminu_N(i_1, i_2) &=& i_2 & (\otherwise)
    \end{array}
 
 
@@ -765,12 +765,12 @@ The integer result of predicates -- i.e., :ref:`tests <syntax-testop>` and :ref:
 :math:`\imins_N(i_1, i_2)`
 ..........................
 
-* Return :math:`i_1` if :math:`\ilts_N(i_1, i_2) = 1`, :math:`i_2` otherwise.
+* Return :math:`i_1` if :math:`\ilts_N(i_1, i_2)` is :math:`1`, return :math:`i_2` otherwise.
 
 .. math::
    \begin{array}{@{}lcll}
    \iminu_N(i_1, i_2) &=& i_1 & (\iff \ilts_N(i_1, i_2) = 1)\\
-   \iminu_N(i_1, i_2) &=& i_2
+   \iminu_N(i_1, i_2) &=& i_2 & (\otherwise)
    \end{array}
 
 
@@ -779,12 +779,12 @@ The integer result of predicates -- i.e., :ref:`tests <syntax-testop>` and :ref:
 :math:`\imaxu_N(i_1, i_2)`
 ..........................
 
-* Return :math:`i_1` if :math:`\igtu_N(i_1, i_2) = 1`, :math:`i_2` otherwise.
+* Return :math:`i_1` if :math:`\igtu_N(i_1, i_2)` is :math:`1`, return :math:`i_2` otherwise.
 
 .. math::
    \begin{array}{@{}lcll}
    \iminu_N(i_1, i_2) &=& i_1 & (\iff \igtu_N(i_1, i_2) = 1)\\
-   \iminu_N(i_1, i_2) &=& i_2
+   \iminu_N(i_1, i_2) &=& i_2 & (\otherwise)
    \end{array}
 
 
@@ -793,12 +793,12 @@ The integer result of predicates -- i.e., :ref:`tests <syntax-testop>` and :ref:
 :math:`\imaxs_N(i_1, i_2)`
 ..........................
 
-* Return :math:`i_1` if :math:`\igts_N(i_1, i_2) = 1`, :math:`i_2` otherwise.
+* Return :math:`i_1` if :math:`\igts_N(i_1, i_2)` is :math:`1`, return :math:`i_2` otherwise.
 
 .. math::
    \begin{array}{@{}lcll}
    \iminu_N(i_1, i_2) &=& i_1 & (\iff \igts_N(i_1, i_2) = 1)\\
-   \iminu_N(i_1, i_2) &=& i_2
+   \iminu_N(i_1, i_2) &=& i_2 & (\otherwise)
    \end{array}
 
 
@@ -832,7 +832,7 @@ The integer result of predicates -- i.e., :ref:`tests <syntax-testop>` and :ref:
 
 .. math::
    \begin{array}{lll@{\qquad}l}
-   \iaddsats_N(i_1, i_2) &=& \sats_N(\signed(i_1) + \signed(i_2))
+   \iaddsats_N(i_1, i_2) &=& \sats_N(\signed_N(i_1) + \signed_N(i_2))
    \end{array}
 
 
@@ -866,7 +866,7 @@ The integer result of predicates -- i.e., :ref:`tests <syntax-testop>` and :ref:
 
 .. math::
    \begin{array}{lll@{\qquad}l}
-   \isubsats_N(i_1, i_2) &=& \sats_N(\signed(i_i) - \signed(i_2))
+   \isubsats_N(i_1, i_2) &=& \sats_N(\signed_N(i_1) - \signed_N(i_2))
    \end{array}
 
 
@@ -1915,8 +1915,8 @@ Conversions
 
 .. math::
    \begin{array}{lll@{\qquad}l}
-   \sats_N(i) &=& -2^{N-1} & (\iff \signed(i) < -2^{N-1})\\
-   \sats_N(i) &=& 2^N-1 & (\iff \signed(i) > 2^N-1)\\
+   \sats_N(i) &=& \signed_N^{-1}(-2^{N-1}) & (\iff \signed_N(i) < -2^{N-1})\\
+   \sats_N(i) &=& 2^N-1 & (\iff \signed_N(i) > 2^N-1)\\
    \sats_N(i) &=& i & (\otherwise)
    \end{array}
 
