@@ -698,20 +698,20 @@ The integer result of predicates -- i.e., :ref:`tests <syntax-testop>` and :ref:
 
 .. _op-ibitselect:
 
-:math:`\ibitselect_N(i_1, i_2, c)`
+:math:`\ibitselect_N(i_1, i_2, i_3)`
 ..................................
 
-* Let :math:`j_1` be the bitwise conjunction of :math:`i_1` and :math:`c`.
+* Let :math:`j_1` be the bitwise conjunction of :math:`i_1` and :math:`i_3`.
 
-* Let :math:`c'` be the bitwise negation of :math:`c`.
+* Let :math:`j_3'` be the bitwise negation of :math:`i_3`.
 
-* Let :math:`j_2` be the bitwise conjunction of :math:`i_2` and :math:`c'`.
+* Let :math:`j_2` be the bitwise conjunction of :math:`i_2` and :math:`j_3'`.
 
 * Return the bitwise disjunction of :math:`j_1` and :math:`j_2`.
 
 .. math::
    \begin{array}{@{}lcll}
-   \ibitselect_N(i_1, i_2, c) &=& \ior_N(\iand_N(i_1, c), \iand_N(i_2, \inot_N(c)))
+   \ibitselect_N(i_1, i_2, i_3) &=& \ior_N(\iand_N(i_1, i_3), \iand_N(i_2, \inot_N(i_3)))
    \end{array}
 
 
