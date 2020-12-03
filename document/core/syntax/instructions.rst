@@ -368,17 +368,18 @@ Occasionally, it is convenient to group operators together according to the foll
      \viunop ~|~
      \vfunop \\&&|&
      \VNEG ~|~
-     \WIDEN \\
+     \WIDEN\K{\_low\_}\shape\K{\_}\sx ~|~
+     \WIDEN\K{\_high\_}\shape\K{\_}\sx \\
    \production{binary operator} & \vbinop &::=&
      \vibinop ~|~ \vfbinop \\&&|&
      \virelop ~|~ \vfrelop \\&&|&
      \viminmaxop ~|~ \visatbinop \\&&|&
      \SWIZZLE ~|~
-     \NARROW ~|~
      \VMUL ~|~
-     \AVGR\K{\_u} ~|~
-     \VTRUNC ~|~
-     \VCONVERT \\
+     \AVGR\K{\_u} \\&&|&
+     \NARROW\K{\_}\shape\K{\_}\sx ~|~
+     \VTRUNC\K{\_sat\_}\shape\K{\_}\sx ~|~
+     \VCONVERT\K{\_}\shape\K{\_}\sx \\
    \end{array}
 
 

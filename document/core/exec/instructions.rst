@@ -613,19 +613,21 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 :math:`t_2\K{x}N\K{.}\NARROW\K{\_}t_1\K{x}M\K{\_}\sx`
 .....................................................
 
-1. Assert: due to :ref:`validation <valid-vitestop>`, two values of :ref:`value type <syntax-valtype>` |V128| are on the top of the stack.
+1. Assert: due to :ref:`syntax <syntax-instr-simd>`, that :math:`N = 2M`.
 
-2. Pop the value :math:`\V128.\VCONST~c_2` from the stack.
+2. Assert: due to :ref:`validation <valid-vitestop>`, two values of :ref:`value type <syntax-valtype>` |V128| are on the top of the stack.
 
-3. Let :math:`d_2^M` be the result of computing :math:`\narrow^{\sx}_{t_1, t_2}(\lanes_{t_1\K{x}M}(c_2))`.
+3. Pop the value :math:`\V128.\VCONST~c_2` from the stack.
 
-4. Pop the value :math:`\V128.\VCONST~c_1` from the stack.
+4. Let :math:`d_2^M` be the result of computing :math:`\narrow^{\sx}_{t_1, t_2}(\lanes_{t_1\K{x}M}(c_2))`.
 
-5. Let :math:`d_1^M` be the result of computing :math:`\narrow^{\sx}_{t_1, t_2}(\lanes_{t_1\K{x}M}(c_1))`.
+5. Pop the value :math:`\V128.\VCONST~c_1` from the stack.
 
-6. Let :math:`c` be the result of :math:`\lanes^{-1}_{t_2\K{x}N}(d_1^M~d_2^M)`.
+6. Let :math:`d_1^M` be the result of computing :math:`\narrow^{\sx}_{t_1, t_2}(\lanes_{t_1\K{x}M}(c_1))`.
 
-7. Push the value :math:`\V128.\VCONST~c` onto the stack.
+7. Let :math:`c` be the result of :math:`\lanes^{-1}_{t_2\K{x}N}(d_1^M~d_2^M)`.
+
+8. Push the value :math:`\V128.\VCONST~c` onto the stack.
 
 .. math::
    \begin{array}{l}
