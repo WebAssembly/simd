@@ -753,7 +753,7 @@ The integer result of predicates -- i.e., :ref:`tests <syntax-testop>` and :ref:
 .. math::
    \begin{array}{@{}lcll}
    \iabs_N(i) &=& i & (\iff \signed_N(i) \ge 0) \\
-   \iabs_N(i) &=& \signed_N^{-1}(-j) \mod 2^N & (\iff j = \signed_N(i) \wedge j < 0) \\
+   \iabs_N(i) &=& -\signed_N(i) \mod 2^N & (\otherwise) \\
    \end{array}
 
 
