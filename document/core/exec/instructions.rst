@@ -981,7 +981,7 @@ Memory Instructions
 
 .. _exec-load-extend:
 
-:math:`\V128\K{.}\LOAD{M}\K{x}L\_\sx~\memarg`
+:math:`\V128\K{.}\LOAD{M}\K{x}N\_\sx~\memarg`
 .............................................
 
 1. Let :math:`F` be the :ref:`current <exec-notation-textual>` :ref:`frame <syntax-frame>`.
@@ -1000,41 +1000,40 @@ Memory Instructions
 
 8. Let :math:`\X{ea}` be the integer :math:`i + \memarg.\OFFSET`.
 
-9. Let :math:`N` be :math:`M \cdot L`.
-
-10. If :math:`\X{ea} + N/8` is larger than the length of :math:`\X{mem}.\MIDATA`, then:
+9. If :math:`\X{ea} + M \cdot N /8` is larger than the length of :math:`\X{mem}.\MIDATA`, then:
 
     a. Trap.
 
-11. Let :math:`b^\ast` be the byte sequence :math:`\X{mem}.\MIDATA[\X{ea} \slice N/8]`.
+10. Let :math:`b^\ast` be the byte sequence :math:`\X{mem}.\MIDATA[\X{ea} \slice M \cdot N /8]`.
 
-12. Let :math:`m_k` be the integer for which :math:`\bytes_{\iM}(m_k) = b^\ast[k*M/8 \slice M/8]`.
+11. Let :math:`m_k` be the integer for which :math:`\bytes_{\iM}(m_k) = b^\ast[k \cdot M/8 \slice M/8]`.
 
-13. Let :math:`J` be the integer :math:`M*2`.
+12. Let :math:`W` be the integer :math:`M \cdot 2`.
 
-14. Let :math:`n_k` be the result of :math:`\extend^{\sx}_{M,J}(m_k)`.
+13. Let :math:`n_k` be the result of :math:`\extend^{\sx}_{M,W}(m_k)`.
 
-15. Let :math:`c` be the result of computing :math:`\lanes^{-1}_{\X{i}J\K{x}L}(n_0 \dots n_{L-1})`.
+14. Let :math:`c` be the result of computing :math:`\lanes^{-1}_{\X{i}W\K{x}N}(n_0 \dots n_{N-1})`.
 
-16. Push the value :math:`\V128.\CONST~c` to the stack.
+15. Push the value :math:`\V128.\CONST~c` to the stack.
 
 .. math::
    ~\\[-1ex]
    \begin{array}{l}
    \begin{array}{lcl@{\qquad}l}
-   S; F; (\I32.\CONST~i)~(\V128.\LOAD{M}\K{x}L\_\sx~\memarg) &\stepto&
+   S; F; (\I32.\CONST~i)~(\V128.\LOAD{M}\K{x}N\_\sx~\memarg) &\stepto&
      S; F; (\V128.\CONST~c)
    \end{array}
    \\ \qquad
      \begin{array}[t]{@{}r@{~}l@{}}
      (\iff & \X{ea} = i + \memarg.\OFFSET \\
-     \wedge & \X{ea} + M \cdot L / 8 \leq |S.\SMEMS[F.\AMODULE.\MIMEMS[0]].\MIDATA| \\
-     \wedge & \bytes_{\iM}(m_k) = S.\SMEMS[F.\AMODULE.\MIMEMS[0]].\MIDATA[\X{ea} + k * (M/8) \slice M/8]) \\
-     \wedge & c = \lanes^{-1}_{\X{i}M\cdot2\K{x}L}(\extend^{\sx}_{M,M\cdot2}(m_0) \dots \extend^{\sx}_{M,M\cdot2}(m_{L-1}))
+     \wedge & \X{ea} + M \cdot N / 8 \leq |S.\SMEMS[F.\AMODULE.\MIMEMS[0]].\MIDATA| \\
+     \wedge & \bytes_{\iM}(m_k) = S.\SMEMS[F.\AMODULE.\MIMEMS[0]].\MIDATA[\X{ea} + k \cdot (M/8) \slice M/8]) \\
+     \wedge & W = M \cdot 2 \\
+     \wedge & c = \lanes^{-1}_{\X{i}W\K{x}N}(\extend^{\sx}_{M,W}(m_0) \dots \extend^{\sx}_{M,W}(m_{N-1}))
      \end{array}
    \\[1ex]
    \begin{array}{lcl@{\qquad}l}
-   S; F; (\I32.\CONST~k)~(\V128.\LOAD{M}\K{x}L\K{\_}\sx~\memarg) &\stepto& S; F; \TRAP
+   S; F; (\I32.\CONST~k)~(\V128.\LOAD{M}\K{x}N\K{\_}\sx~\memarg) &\stepto& S; F; \TRAP
    \end{array}
    \\ \qquad
      (\otherwise) \\
