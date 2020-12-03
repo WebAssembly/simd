@@ -381,15 +381,14 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
    \end{array}
 
 
-.. _exec-simd-extract-lane:
-.. _exec-simd-extract-lane-sx:
+.. _exec-simd-extract_lane:
 
 :math:`t_1\K{x}N\K{.}\EXTRACTLANE\K{\_}\sx^?~\laneidx`
 ......................................................
 
-1. Assert: due to :ref:`validation <valid-simd-extract-lane>`, :math:`\laneidx < \dim(\shape)`.
+1. Assert: due to :ref:`validation <valid-simd-extract_lane>`, :math:`\laneidx < \dim(\shape)`.
 
-2. Assert: due to :ref:`validation <valid-simd-extract-lane>`, a value of :ref:`value type <syntax-valtype>` |V128| is on the top of the stack.
+2. Assert: due to :ref:`validation <valid-simd-extract_lane>`, a value of :ref:`value type <syntax-valtype>` |V128| is on the top of the stack.
 
 3. Pop the value :math:`\V128.\VCONST~c_1` from the stack.
 
@@ -404,7 +403,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 .. math::
    \begin{array}{l}
    \begin{array}{lcl@{\qquad}l}
-   (\V128\K{.}\VCONST~c_1)~\V128\K{.}\EXTRACTLANE~\laneidx &\stepto& (t_2\K{.}\CONST~c_2)
+   (\V128\K{.}\VCONST~c_1)~t_1\K{x}N\K{.}\EXTRACTLANE~\laneidx &\stepto& (t_2\K{.}\CONST~c_2)
    \end{array}
    \\ \qquad
      \begin{array}[t]{@{}r@{~}l@{}}
@@ -414,41 +413,38 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
    \end{array}
 
 
-.. _exec-simd-replace-lane:
+.. _exec-simd-replace_lane:
 
-:math:`\shape\K{.}\REPLACELANE~\laneidx`
+:math:`\shape\K{.}\REPLACELANE~x`
 ........................................
 
-1. Assert: due to :ref:`validation <valid-simd-replace-lane>`, :math:`\laneidx < \dim(\shape)`.
+1. Assert: due to :ref:`validation <valid-simd-replace_lane>`, :math:`x < \dim(\shape)`.
 
 2. Let :math:`t_1` be the type :math:`\unpacked(\shape)`.
 
-3. Assert: due to :ref:`validation <valid-simd-replace-lane>`, a value of :ref:`value type <syntax-valtype>` :math:`t_1` is on the top of the stack.
+3. Assert: due to :ref:`validation <valid-simd-replace_lane>`, a value of :ref:`value type <syntax-valtype>` :math:`t_1` is on the top of the stack.
 
 4. Pop the value :math:`t_1.\CONST~c_1` from the stack.
 
-5. Assert: due to :ref:`validation <valid-simd-replace-lane>`, a value of :ref:`value type <syntax-valtype>` |V128| is on the top of the stack.
+5. Assert: due to :ref:`validation <valid-simd-replace_lane>`, a value of :ref:`value type <syntax-valtype>` |V128| is on the top of the stack.
 
 6. Pop the value :math:`\V128.\VCONST~c_2` from the stack.
 
-7. Let :math:`n` be the integer :math:`\dim(\shape)`.
+7. Let :math:`i_2^\ast` be the sequence :math:`\lanes_{\shape}(c_2)`.
 
-8. Let :math:`i_2^n` be the sequence :math:`\lanes_{\shape}(c_2)`.
+8. Let :math:`c` be the result of computing :math:`\lanes^{-1}_{\shape}(i_2^\ast \with [x] = c_1)`
 
-9. Let :math:`c` be the result of computing :math:`\lanes^{-1}_{\shape}(i_2^n \with [\laneidx] = c_1)`
-
-10. Push :math:`\V128.\VCONST~c` on the stack.
+9. Push :math:`\V128.\VCONST~c` on the stack.
 
 .. math::
    \begin{array}{l}
    \begin{array}{lcl@{\qquad}l}
-   (t_1\K{.}\CONST~c_1)~(\V128\K{.}\VCONST~c_2)~\V128\K{.}\REPLACELANE~\laneidx &\stepto& (\V128\K{.}\VCONST~c)
+   (t_1\K{.}\CONST~c_1)~(\V128\K{.}\VCONST~c_2)~\shape\K{.}\REPLACELANE~x &\stepto& (\V128\K{.}\VCONST~c)
    \end{array}
    \\ \qquad
      \begin{array}[t]{@{}r@{~}l@{}}
-      (\iff & n = \dim(\shape) \\
-       \wedge & i_2^n = \lanes_{\shape}(c_2)) \\
-       \wedge & c = \lanes^{-1}_{\shape}(i_2^n \with [\laneidx] = c_1)
+      (\iff & i_2^\ast = \lanes_{\shape}(c_2)) \\
+       \wedge & c = \lanes^{-1}_{\shape}(i_2^\ast \with [x] = c_1)
      \end{array}
    \end{array}
 
@@ -516,9 +512,9 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 4. Pop the value :math:`\V128.\VCONST~c_1` from the stack.
 
-5. Let :math:`i_1^N` be the sequence :math:`\lanes_{t\K{x}N}(c_1)`.
+5. Let :math:`i^\ast` be the sequence :math:`\lanes_{t\K{x}N}(c_1)`.
 
-6. Let :math:`c` be :math:`\lanes^{-1}_{t\K{x}N}(\vshiftop_{t}(i_1^N, s^N))`.
+6. Let :math:`c` be :math:`\lanes^{-1}_{t\K{x}N}(\vshiftop_{t}(i^\ast, s^N))`.
 
 7. Push the value :math:`\V128.\VCONST~c` to the stack.
 
@@ -529,8 +525,8 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
    \end{array}
    \\ \qquad
      \begin{array}[t]{@{}r@{~}l@{}}
-     (\iff & i_1^N = \lanes_{t\K{x}N}(c_1) \\
-     \wedge & c = \lanes^{-1}_{t\K{x}N}(\vshiftop_{t}(i_1^N, s^N)))
+     (\iff & i^\ast = \lanes_{t\K{x}N}(c_1) \\
+     \wedge & c = \lanes^{-1}_{t\K{x}N}(\vshiftop_{t}(i^\ast, s^N)))
      \end{array}
    \end{array}
 
@@ -545,13 +541,11 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 2. Pop the value :math:`\V128.\VCONST~c_1` from the stack.
 
-3. Let :math:`n` be the integer :math:`\dim(\shape)`.
+3. Let :math:`i_1^\ast` be the sequence :math:`\lanes_{\shape}(c_1)`
 
-4. Let :math:`i_1^n` be the sequence :math:`\lanes_{\shape}(c_1)`
+4. Let :math:`i` be the result of computing :math:`\bool(\bigwedge(i_1 \neq 0)^\ast)`.
 
-5. Let :math:`i` be the result of computing :math:`\bigwedge(i_1 \neq 0)^n`.
-
-6. Push the value :math:`\I32.\CONST~i` onto the stack.
+5. Push the value :math:`\I32.\CONST~i` onto the stack.
 
 
 .. math::
@@ -561,9 +555,8 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
    \end{array}
    \\ \qquad
      \begin{array}[t]{@{}r@{~}l@{}}
-     (\iff & n = \dim(\shape) \\
-     \wedge & i_1^n = \lanes_{\shape}(c) \\
-     \wedge & i = \bigwedge(i_1 \neq 0)^n
+     (\iff & i_1^\ast = \lanes_{\shape}(c) \\
+     \wedge & i = \bool(\bigwedge(i_1 \neq 0)^\ast)
      \end{array}
    \end{array}
 
@@ -577,14 +570,14 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 2. Pop the value :math:`\V128.\VCONST~c_1` from the stack.
 
-3. Let :math:`i` be the result of computing :math:`\ine_{\K{128}}(c_1, 0)`.
+3. Let :math:`i` be the result of computing :math:`\ine_{128}(c_1, 0)`.
 
 4. Push the value :math:`\I32.\CONST~i` onto the stack.
 
 .. math::
    \begin{array}{lcl@{\qquad}l}
    (\V128\K{.}\VCONST~c_1)~\shape\K{.}\ANYTRUE &\stepto& (\I32\K{.}\CONST~i)
-     & (\iff i = \ine_{\K{128}}(c_1, 0)) \\
+     & (\iff i = \ine_{128}(c_1, 0)) \\
    \end{array}
 
 
@@ -609,16 +602,16 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 .. math::
    \begin{array}{lcl@{\qquad}l}
-   (\V128\K{.}\VCONST~c_1)~\shape\K{.}\BITMASK &\stepto& (\I32\K{.}\CONST~c)
-     & (\iff c = \ibits_{32}^{-1}(\ilts_{B}(\lanes_{t\K{x}N}(c), 0^N)))
+   (\V128\K{.}\VCONST~c_1)~t\K{x}N\K{.}\BITMASK &\stepto& (\I32\K{.}\CONST~c)
+     & (\iff c = \ibits_{32}^{-1}(\ilts_{|t|}(\lanes_{t\K{x}N}(c), 0^N)))
      \\
    \end{array}
 
 
 .. _exec-simd-narrow:
 
-:math:`t_2\K{x}N\K{.}\NARROW\_t_1\K{x}M\_\sx`
-.............................................
+:math:`t_2\K{x}N\K{.}\NARROW\K{\_}t_1\K{x}M\K{\_}\sx`
+.....................................................
 
 1. Assert: due to :ref:`validation <valid-vitestop>`, two values of :ref:`value type <syntax-valtype>` |V128| are on the top of the stack.
 
@@ -1033,10 +1026,9 @@ Memory Instructions
    \\ \qquad
      \begin{array}[t]{@{}r@{~}l@{}}
      (\iff & \X{ea} = i + \memarg.\OFFSET \\
-     \wedge & \X{ea} + (M*L) \leq |S.\SMEMS[F.\AMODULE.\MIMEMS[0]].\MIDATA| \\
+     \wedge & \X{ea} + M \cdot L / 8 \leq |S.\SMEMS[F.\AMODULE.\MIMEMS[0]].\MIDATA| \\
      \wedge & \bytes_{\iM}(m_k) = S.\SMEMS[F.\AMODULE.\MIMEMS[0]].\MIDATA[\X{ea} + k * (M/8) \slice M/8]) \\
-     \wedge & J = M*2 \\
-     \wedge & c = \lanes^{-1}_{\X{i}J\K{x}L}(\extend^{\sx}_{M,J}(m_0) \dots \extend^{\sx}_{M,J}(m_{L-1}))
+     \wedge & c = \lanes^{-1}_{\X{i}M\cdot2\K{x}L}(\extend^{\sx}_{M,M\cdot2}(m_0) \dots \extend^{\sx}_{M,M\cdot2}(m_{L-1}))
      \end{array}
    \\[1ex]
    \begin{array}{lcl@{\qquad}l}

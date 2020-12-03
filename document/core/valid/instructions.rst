@@ -273,8 +273,7 @@ We also define an auxiliary function to get number of packed numeric types in a 
    }
 
 
-.. _valid-simd-extract-lane:
-.. _valid-simd-extract-lane-sx:
+.. _valid-simd-extract_lane:
 
 :math:`\shape\K{.}\EXTRACTLANE\K{\_}\sx^?~\laneidx`
 ...................................................
@@ -291,7 +290,7 @@ We also define an auxiliary function to get number of packed numeric types in a 
    }
 
 
-.. _valid-simd-replace-lane:
+.. _valid-simd-replace_lane:
 
 :math:`\shape\K{.}\REPLACELANE~\laneidx`
 ........................................
