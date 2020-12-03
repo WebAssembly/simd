@@ -326,7 +326,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 1. Assert: due to :ref:`validation <valid-simd-shuffle>`, two values of :ref:`value type <syntax-valtype>` |V128| are on the top of the stack.
 
-2. Assert: due to :ref:`validation <valid-simd-shuffle>`, that all :math:`x^\ast[i] < 32`.
+2. Assert: due to :ref:`validation <valid-simd-shuffle>`, for all :math:`x_i` in :math:`x^\ast` it holds that :math:`x_i < 32`.
 
 3. Pop the value :math:`\V128.\VCONST~c_2` from the stack.
 
@@ -336,9 +336,9 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 6. Let :math:`i_1^\ast` be the sequence :math:`\lanes_{i8x16}(c_1)`.
 
-7. Let :math:`i` be the concatenation of the two sequences :math:`i_1^\ast~i_2^\ast`.
+7. Let :math:`i^\ast` be the concatenation of the two sequences :math:`i_1^\ast~i_2^\ast`.
 
-8. Let :math:`c` be the result of :math:`\lanes^{-1}_{i8x16}(i[x^\ast[0]] \dots i[x^\ast[15]])`.
+8. Let :math:`c` be the result of :math:`\lanes^{-1}_{i8x16}(i^\ast[x^\ast[0]] \dots i^\ast[x^\ast[15]])`.
 
 9. Push the value :math:`\V128.\VCONST~c` onto the stack.
 
@@ -349,8 +349,8 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
    \end{array}
    \\ \qquad
      \begin{array}[t]{@{}r@{~}l@{}}
-      (\iff & i = \lanes_{i8x16}(c_1)~\lanes_{i8x16}(c_2) \\
-      \wedge & c = \lanes^{-1}_{i8x16}(i[x^\ast[0]] \dots i[x^\ast[15]])
+      (\iff & i^\ast = \lanes_{i8x16}(c_1)~\lanes_{i8x16}(c_2) \\
+      \wedge & c = \lanes^{-1}_{i8x16}(i^\ast[x^\ast[0]] \dots i^\ast[x^\ast[15]])
      \end{array}
    \end{array}
 
@@ -532,7 +532,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 
 .. _exec-vitestop:
-.. _exec-simd-alltrue:
+.. _exec-simd-all_true:
 
 :math:`\shape\K{.}\ALLTRUE`
 ...........................
@@ -561,7 +561,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
    \end{array}
 
 
-.. _exec-simd-anytrue:
+.. _exec-simd-any_true:
 
 :math:`\shape\K{.}\ANYTRUE`
 ...........................
@@ -613,7 +613,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 :math:`t_2\K{x}N\K{.}\NARROW\K{\_}t_1\K{x}M\K{\_}\sx`
 .....................................................
 
-1. Assert: due to :ref:`syntax <syntax-instr-simd>`, that :math:`N = 2M`.
+1. Assert: due to :ref:`syntax <syntax-instr-simd>`, :math:`N = 2\cdot M`.
 
 2. Assert: due to :ref:`validation <valid-vitestop>`, two values of :ref:`value type <syntax-valtype>` |V128| are on the top of the stack.
 
