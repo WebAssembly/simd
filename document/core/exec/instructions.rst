@@ -322,7 +322,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 .. _exec-simd-shuffle:
 
 :math:`\K{i8x16.}\SHUFFLE~x^\ast`
-........................................
+.................................
 
 1. Assert: due to :ref:`validation <valid-simd-shuffle>`, two values of :ref:`value type <syntax-valtype>` |V128| are on the top of the stack.
 
@@ -384,7 +384,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 .. _exec-simd-extract_lane:
 
 :math:`t_1\K{x}N\K{.}\EXTRACTLANE\K{\_}\sx^?~x`
-......................................................
+...............................................
 
 1. Assert: due to :ref:`validation <valid-simd-extract_lane>`, :math:`x < \dim(\shape)`.
 
@@ -416,7 +416,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 .. _exec-simd-replace_lane:
 
 :math:`\shape\K{.}\REPLACELANE~x`
-........................................
+.................................
 
 1. Assert: due to :ref:`validation <valid-simd-replace_lane>`, :math:`x < \dim(\shape)`.
 
