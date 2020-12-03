@@ -293,28 +293,28 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 2. Pop the value :math:`\V128.\VCONST~c_2` from the stack.
 
-3. Let :math:`s^{16}` be the sequence :math:`\lanes_{i8x16}(c_2)`.
+3. Let :math:`i^\ast` be the sequence :math:`\lanes_{i8x16}(c_2)`.
 
 4. Pop the value :math:`\V128.\VCONST~c_1` from the stack.
 
-5. Let :math:`i^{16}` be the sequence :math:`\lanes_{i8x16}(c_1)`.
+5. Let :math:`j^\ast` be the sequence :math:`\lanes_{i8x16}(c_1)`.
 
-6. Let :math:`v^{256}` be the concatenation of the two sequences :math:`i^{16}~0^{240}`
+6. Let :math:`c^\ast` be the concatenation of the two sequences :math:`j^\ast~0^{240}`
 
-7. Let :math:`c` be the result of :math:`\lanes^{-1}_{i8x16}(v^{256}[ s^{16}[0] ] \dots v^{256}[ s^{16}[15] ])`.
+7. Let :math:`c'` be the result of :math:`\lanes^{-1}_{i8x16}(c^\ast[ i^\ast[0] ] \dots c^\ast[ i^\ast[15] ])`.
 
-8. Push the value :math:`\V128.\VCONST~c` onto the stack.
+8. Push the value :math:`\V128.\VCONST~c'` onto the stack.
 
 .. math::
    \begin{array}{l}
    \begin{array}{lcl@{\qquad}l}
-   (\V128\K{.}\VCONST~c_1)~(\V128\K{.}\VCONST~c_2)~\V128\K{.}\SWIZZLE &\stepto& (\V128\K{.}\VCONST~c)
+   (\V128\K{.}\VCONST~c_1)~(\V128\K{.}\VCONST~c_2)~\V128\K{.}\SWIZZLE &\stepto& (\V128\K{.}\VCONST~c')
    \end{array}
    \\ \qquad
      \begin{array}[t]{@{}r@{~}l@{}}
-      (\iff & s^{16} = \lanes_{i8x16}(c_2) \\
-      \wedge & v^{256} = \lanes_{i8x16}(c_1)~0^{240} \\
-      \wedge & c = \lanes^{-1}_{i8x16}(v^{256}[ s^{16}[0] ] \dots v^{256}[ s^{16}[15] ])
+      (\iff & i^\ast = \lanes_{i8x16}(c_2) \\
+      \wedge & c^\ast = \lanes_{i8x16}(c_1)~0^{240} \\
+      \wedge & c' = \lanes^{-1}_{i8x16}(c^\ast[ i^\ast[0] ] \dots c^\ast[ i^\ast[15] ])
      \end{array}
    \end{array}
 
