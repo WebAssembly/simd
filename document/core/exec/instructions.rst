@@ -321,37 +321,36 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 .. _exec-simd-shuffle:
 
-:math:`\K{i8x16.}\SHUFFLE~\laneidx^{16}`
+:math:`\K{i8x16.}\SHUFFLE~x^\ast`
 ........................................
 
 1. Assert: due to :ref:`validation <valid-simd-shuffle>`, two values of :ref:`value type <syntax-valtype>` |V128| are on the top of the stack.
 
-2. Assert: due to :ref:`validation <valid-simd-shuffle>`, that all :math:`\laneidx_i < 32`.
+2. Assert: due to :ref:`validation <valid-simd-shuffle>`, that all :math:`x^\ast[i] < 32`.
 
 3. Pop the value :math:`\V128.\VCONST~c_2` from the stack.
 
-4. Let :math:`i_1^{16}` be the sequence :math:`\lanes_{i8x16}(c_2)`.
+4. Let :math:`i_2^\ast` be the sequence :math:`\lanes_{i8x16}(c_2)`.
 
 5. Pop the value :math:`\V128.\VCONST~c_1` from the stack.
 
-6. Let :math:`i_2^{16}` be the sequence :math:`\lanes_{i8x16}(c_2)`.
+6. Let :math:`i_1^\ast` be the sequence :math:`\lanes_{i8x16}(c_1)`.
 
-7. Let :math:`i_3^{32}` be the concatenation of the two sequences :math:`i_1^{16}~i_2^{16}`.
+7. Let :math:`i` be the concatenation of the two sequences :math:`i_1^\ast~i_2^\ast`.
 
-8. Let :math:`c` be the result of :math:`\lanes^{-1}_{i8x16}(i_3^{32}[\laneidx_0] \dots i_3^{32}[\laneidx_{15}])`.
+8. Let :math:`c` be the result of :math:`\lanes^{-1}_{i8x16}(i[x^\ast[0]] \dots i[x^\ast[15]])`.
 
 9. Push the value :math:`\V128.\VCONST~c` onto the stack.
 
 .. math::
    \begin{array}{l}
    \begin{array}{lcl@{\qquad}l}
-   (\V128\K{.}\VCONST~c_1)~(\V128\K{.}\VCONST~c_2)~\V128\K{.}\SHUFFLE~\laneidx^{16} &\stepto& (\V128\K{.}\VCONST~c)
+   (\V128\K{.}\VCONST~c_1)~(\V128\K{.}\VCONST~c_2)~\V128\K{.}\SHUFFLE~x^\ast &\stepto& (\V128\K{.}\VCONST~c)
    \end{array}
    \\ \qquad
      \begin{array}[t]{@{}r@{~}l@{}}
-      (\iff & i_1^{16} = \lanes_{i8x16}(c_1) \\
-      \wedge & i_2^{16} = \lanes_{i8x16}(c_2) \\
-      \wedge & c = \lanes^{-1}_{i8x16}((i_1^{16}~i_2^{16})[\laneidx_0] \dots (i_1^{16}~i_2^{16})[\laneidx_{15}])
+      (\iff & i = \lanes_{i8x16}(c_1)~\lanes_{i8x16}(c_2) \\
+      \wedge & c = \lanes^{-1}_{i8x16}(i[x^\ast[0]] \dots i[x^\ast[15]])
      \end{array}
    \end{array}
 
