@@ -383,10 +383,10 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 .. _exec-simd-extract_lane:
 
-:math:`t_1\K{x}N\K{.}\EXTRACTLANE\K{\_}\sx^?~\laneidx`
+:math:`t_1\K{x}N\K{.}\EXTRACTLANE\K{\_}\sx^?~x`
 ......................................................
 
-1. Assert: due to :ref:`validation <valid-simd-extract_lane>`, :math:`\laneidx < \dim(\shape)`.
+1. Assert: due to :ref:`validation <valid-simd-extract_lane>`, :math:`x < \dim(\shape)`.
 
 2. Assert: due to :ref:`validation <valid-simd-extract_lane>`, a value of :ref:`value type <syntax-valtype>` |V128| is on the top of the stack.
 
@@ -396,19 +396,19 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 5. Let :math:`t_2` be the type :math:`\unpacked(t_1\K{x}N)`.
 
-6. Let :math:`c_2` be the result of computing :math:`\extend^{sx^?}_{t_1,t_2}(i_1^n[\laneidx])`.
+6. Let :math:`c_2` be the result of computing :math:`\extend^{sx^?}_{t_1,t_2}(i_1^n[x])`.
 
 7. Push the value :math:`t_2.\CONST~c_2` to the stack.
 
 .. math::
    \begin{array}{l}
    \begin{array}{lcl@{\qquad}l}
-   (\V128\K{.}\VCONST~c_1)~t_1\K{x}N\K{.}\EXTRACTLANE~\laneidx &\stepto& (t_2\K{.}\CONST~c_2)
+   (\V128\K{.}\VCONST~c_1)~t_1\K{x}N\K{.}\EXTRACTLANE~x &\stepto& (t_2\K{.}\CONST~c_2)
    \end{array}
    \\ \qquad
      \begin{array}[t]{@{}r@{~}l@{}}
       (\iff & t_2 = \unpacked(t_1\K{x}N) \\
-       \wedge & c_2 = \extend^{sx^?}_{t_1,t_2}(\lanes_{t_1\K{x}N}(c_1)[\laneidx])
+       \wedge & c_2 = \extend^{sx^?}_{t_1,t_2}(\lanes_{t_1\K{x}N}(c_1)[x])
      \end{array}
    \end{array}
 
