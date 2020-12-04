@@ -451,6 +451,7 @@
 .. |vunop| mathdef:: \xref{syntax/instructions}{syntax-vunop}{\X{vunop}}
 .. |vbinop| mathdef:: \xref{syntax/instructions}{syntax-vbinop}{\X{vbinop}}
 .. |vternop| mathdef:: \xref{syntax/instructions}{syntax-vternop}{\X{vternop}}
+.. |vwiden| mathdef:: \xref{syntax/instructions}{syntax-vwiden}{\X{vwiden}}
 
 .. |laneidx| mathdef:: \xref{syntax/instructions}{syntax-laneidx}{\X{laneidx}}
 .. |vsunop| mathdef:: \xref{syntax/instructions}{syntax-vsunop}{\X{vsunop}}

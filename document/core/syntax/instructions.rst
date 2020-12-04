@@ -175,8 +175,6 @@ Occasionally, it is convenient to group operators together according to the foll
    pair: abstract syntax; instruction
 .. _syntax-laneidx:
 .. _syntax-shape:
-.. _syntax-vunop:
-.. _syntax-vbinop:
 .. _syntax-vternop:
 .. _syntax-vsunop:
 .. _syntax-vsbinop:
@@ -357,6 +355,10 @@ Some SIMD instructions have a signedness annotation |sx| which distinguishes whe
 For the other SIMD instructions, the use of two's complement for the signed interpretation means that they behave the same regardless of signedness.
 
 
+.. _syntax-vunop:
+.. _syntax-vbinop:
+.. _syntax-vwiden:
+
 Conventions
 ...........
 
@@ -366,10 +368,8 @@ Occasionally, it is convenient to group operators together according to the foll
    \begin{array}{llll}
    \production{unary operator} & \vunop &::=&
      \viunop ~|~
-     \vfunop \\&&|&
-     \VNEG ~|~
-     \WIDEN\K{\_low\_}\shape\K{\_}\sx ~|~
-     \WIDEN\K{\_high\_}\shape\K{\_}\sx \\
+     \vfunop ~|~
+     \VNEG \\
    \production{binary operator} & \vbinop &::=&
      \vibinop ~|~ \vfbinop \\&&|&
      \virelop ~|~ \vfrelop \\&&|&
@@ -377,9 +377,11 @@ Occasionally, it is convenient to group operators together according to the foll
      \SWIZZLE ~|~
      \VMUL ~|~
      \AVGR\K{\_u} \\&&|&
-     \NARROW\K{\_}\shape\K{\_}\sx ~|~
      \VTRUNC\K{\_sat\_}\shape\K{\_}\sx ~|~
      \VCONVERT\K{\_}\shape\K{\_}\sx \\
+   \production{widen operator} & \vwiden &::=&
+     \WIDEN\K{\_low\_}\shape\K{\_}\sx ~|~
+     \WIDEN\K{\_high\_}\shape\K{\_}\sx \\
    \end{array}
 
 
