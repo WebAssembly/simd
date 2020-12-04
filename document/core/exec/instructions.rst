@@ -1027,7 +1027,7 @@ Memory Instructions
      \begin{array}[t]{@{}r@{~}l@{}}
      (\iff & \X{ea} = i + \memarg.\OFFSET \\
      \wedge & \X{ea} + M \cdot N / 8 \leq |S.\SMEMS[F.\AMODULE.\MIMEMS[0]].\MIDATA| \\
-     \wedge & \bytes_{\iM}(m_k) = S.\SMEMS[F.\AMODULE.\MIMEMS[0]].\MIDATA[\X{ea} + k \cdot (M/8) \slice M/8]) \\
+     \wedge & \bytes_{\iM}(m_k) = S.\SMEMS[F.\AMODULE.\MIMEMS[0]].\MIDATA[\X{ea} + k \cdot M/8 \slice M/8]) \\
      \wedge & W = M \cdot 2 \\
      \wedge & c = \lanes^{-1}_{\X{i}W\K{x}N}(\extend^{\sx}_{M,W}(m_0) \dots \extend^{\sx}_{M,W}(m_{N-1}))
      \end{array}
