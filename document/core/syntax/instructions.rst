@@ -376,7 +376,8 @@ Occasionally, it is convenient to group operators together according to the foll
      \viminmaxop ~|~ \visatbinop \\&&|&
      \SWIZZLE ~|~
      \VMUL ~|~
-     \AVGR\K{\_u} \\&&|&
+     \AVGR\K{\_u} \\
+   \production{conversion operator} & \vcvtop &::=&
      \VTRUNC\K{\_sat\_}\shape\K{\_}\sx ~|~
      \VCONVERT\K{\_}\shape\K{\_}\sx \\
    \production{widen operator} & \vwiden &::=&

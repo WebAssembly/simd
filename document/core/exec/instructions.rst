@@ -608,6 +608,34 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
    \end{array}
 
 
+.. _exec-vcvtop:
+
+:math:`t_2\K{x}N\K{.}\vcvtop\K{\_}t_1\K{x}M\K{\_}\sx`
+.....................................................
+
+1. Assert: due to :ref:`validation <valid-vcvtop>`, a value of :ref:`value type <syntax-valtype>` |V128| is on the top of the stack.
+
+2. Pop the value :math:`\V128.\VCONST~c_1` from the stack.
+
+3. Let :math:`i^\ast` be the sequence :math:`\lanes_{t_1\K{x}M}(c_1)`.
+
+4. Let :math:`c` be the result of computing :math:`\lanes^{-1}_{t_2\K{x}N}(\vcvtop^{\sx}_{M,N}(i^\ast))`
+
+5. Push the value :math:`\V128.\VCONST~c` onto the stack.
+
+.. math::
+   \begin{array}{l}
+   \begin{array}{lcl@{\qquad}l}
+   (\V128\K{.}\VCONST~c_1)~t_2\K{x}N\K{.}\vcvtop\K{\_}t_1\K{x}M\K{\_}\sx &\stepto& (\V128\K{.}\VCONST~c) \\
+   \end{array}
+   \\ \qquad
+     \begin{array}[t]{@{}r@{~}l@{}}
+     (\iff & i^\ast = \lanes_{t_1\K{x}M}(c_1) \\
+     \wedge & c = \lanes^{-1}_{t_2\K{x}N}(\vcvtop^{\sx}_{M,N}(i^\ast))
+     \end{array}
+   \end{array}
+
+
 .. _exec-simd-narrow:
 
 :math:`t_2\K{x}N\K{.}\NARROW\K{\_}t_1\K{x}M\K{\_}\sx`
