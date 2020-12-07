@@ -378,8 +378,8 @@ Occasionally, it is convenient to group operators together according to the foll
      \VMUL ~|~
      \AVGR\K{\_u} \\
    \production{conversion operator} & \vcvtop &::=&
-     \VTRUNC\K{\_sat\_}\shape\K{\_}\sx ~|~
-     \VCONVERT\K{\_}\shape\K{\_}\sx \\
+     \VTRUNC\K{\_sat} ~|~
+     \VCONVERT \\
    \production{widen operator} & \vwiden &::=&
      \WIDEN\K{\_low\_}\shape\K{\_}\sx ~|~
      \WIDEN\K{\_high\_}\shape\K{\_}\sx \\
