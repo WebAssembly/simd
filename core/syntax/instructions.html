@@ -214,7 +214,7 @@ For the other integer instructions, the use of two’s complement for the signed
 </div>
 </div>
 <div class="section" id="simd-instructions">
-<span id="syntax-instr-simd"></span><span id="syntax-vfbinop"></span><span id="syntax-vfunop"></span><span id="syntax-visatbinop"></span><span id="syntax-viminmaxop"></span><span id="syntax-vibinop"></span><span id="syntax-viunop"></span><span id="syntax-vshiftop"></span><span id="syntax-vfrelop"></span><span id="syntax-virelop"></span><span id="syntax-vitestop"></span><span id="syntax-vsternop"></span><span id="syntax-vsbinop"></span><span id="syntax-vsunop"></span><span id="syntax-vternop"></span><span id="syntax-vbinop"></span><span id="syntax-vunop"></span><span id="syntax-shape"></span><span id="syntax-laneidx"></span><span id="index-2"></span><h2>SIMD Instructions<a class="headerlink" href="#simd-instructions" title="Permalink to this headline">¶</a></h2>
+<span id="syntax-instr-simd"></span><span id="syntax-vfbinop"></span><span id="syntax-vfunop"></span><span id="syntax-visatbinop"></span><span id="syntax-viminmaxop"></span><span id="syntax-vibinop"></span><span id="syntax-viunop"></span><span id="syntax-vshiftop"></span><span id="syntax-vfrelop"></span><span id="syntax-virelop"></span><span id="syntax-vitestop"></span><span id="syntax-vsternop"></span><span id="syntax-vsbinop"></span><span id="syntax-vsunop"></span><span id="syntax-vternop"></span><span id="syntax-shape"></span><span id="syntax-laneidx"></span><span id="index-2"></span><h2>SIMD Instructions<a class="headerlink" href="#simd-instructions" title="Permalink to this headline">¶</a></h2>
 <p>SIMD instructions provide basic operations over <a class="reference internal" href="values.html#syntax-value"><span class="std std-ref">values</span></a> of type <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{llcl}
@@ -361,26 +361,28 @@ The bitwidth of the numeric type <span class="math notranslate nohighlight">\(t\
 </ul>
 <p>Some SIMD instructions have a signedness annotation <span class="math notranslate nohighlight">\(\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}\)</span> which distinguishes whether the elements in the operands are to be <a class="reference internal" href="../exec/numerics.html#aux-signed"><span class="std std-ref">interpreted</span></a> as <a class="reference internal" href="values.html#syntax-uint"><span class="std std-ref">unsigned</span></a> or <a class="reference internal" href="values.html#syntax-sint"><span class="std std-ref">signed</span></a> integers.
 For the other SIMD instructions, the use of two’s complement for the signed interpretation means that they behave the same regardless of signedness.</p>
-<div class="section" id="id1">
-<h3>Conventions<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="syntax-vwiden">
+<span id="syntax-vbinop"></span><span id="syntax-vunop"></span><span id="id1"></span><h3>Conventions<a class="headerlink" href="#syntax-vwiden" title="Permalink to this headline">¶</a></h3>
 <p>Occasionally, it is convenient to group operators together according to the following grammar shorthands:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{llll}
 \def\mathdef1916#1{{}}\mathdef1916{unary operator} &amp; \href{../syntax/instructions.html#syntax-vunop}{\mathit{vunop}} &amp;::=&amp;
   \href{../syntax/instructions.html#syntax-viunop}{\mathit{viunop}} ~|~
-  \href{../syntax/instructions.html#syntax-vfunop}{\mathit{vfunop}} \\&amp;&amp;|&amp;
-  \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{neg}} ~|~
-  \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{widen}} \\
+  \href{../syntax/instructions.html#syntax-vfunop}{\mathit{vfunop}} ~|~
+  \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{neg}} \\
 \def\mathdef1916#1{{}}\mathdef1916{binary operator} &amp; \href{../syntax/instructions.html#syntax-vbinop}{\mathit{vbinop}} &amp;::=&amp;
   \href{../syntax/instructions.html#syntax-vibinop}{\mathit{vibinop}} ~|~ \href{../syntax/instructions.html#syntax-vfbinop}{\mathit{vfbinop}} \\&amp;&amp;|&amp;
   \href{../syntax/instructions.html#syntax-virelop}{\mathit{virelop}} ~|~ \href{../syntax/instructions.html#syntax-vfrelop}{\mathit{vfrelop}} \\&amp;&amp;|&amp;
   \href{../syntax/instructions.html#syntax-viminmaxop}{\mathit{viminmaxop}} ~|~ \href{../syntax/instructions.html#syntax-visatbinop}{\mathit{visatbinop}} \\&amp;&amp;|&amp;
   \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{swizzle}} ~|~
-  \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{narrow}} ~|~
   \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{mul}} ~|~
-  \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{avgr}}\mathsf{\_u} ~|~
-  \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{trunc}} ~|~
+  \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{avgr}}\mathsf{\_u} \\
+\def\mathdef1916#1{{}}\mathdef1916{conversion operator} &amp; \href{../syntax/instructions.html#syntax-vcvtop}{\mathit{vcvtop}} &amp;::=&amp;
+  \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{trunc}}\mathsf{\_sat} ~|~
   \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{convert}} \\
+\def\mathdef1916#1{{}}\mathdef1916{widen operator} &amp; \href{../syntax/instructions.html#syntax-vwiden}{\mathit{vwiden}} &amp;::=&amp;
+  \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{widen}}\mathsf{\_low\_}\href{../syntax/instructions.html#syntax-shape}{\mathit{shape}}\mathsf{\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
+  \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{widen}}\mathsf{\_high\_}\href{../syntax/instructions.html#syntax-shape}{\mathit{shape}}\mathsf{\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\
 \end{array}\end{split}\]</div>
 </div>
 </div>
