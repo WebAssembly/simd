@@ -374,7 +374,7 @@ respectively.</p>
 <li><p>Pop the value <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c_1\)</span> from the stack.</p></li>
 <li><p>Let <span class="math notranslate nohighlight">\(i^\ast\)</span> be the sequence <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{t_1\mathsf{x}N}(c_1)\)</span>.</p></li>
 <li><p>Let <span class="math notranslate nohighlight">\(t_2\)</span> be the type <span class="math notranslate nohighlight">\(\href{../valid/instructions.html#aux-unpacked}{\mathrm{unpacked}}(t_1\mathsf{x}N)\)</span>.</p></li>
-<li><p>Let <span class="math notranslate nohighlight">\(c_2\)</span> be the result of computing <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#op-extend-u}{\mathrm{extend}}^{sx^?}_{|t_1|,|t_2|}(i^\ast[x])\)</span>.</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(c_2\)</span> be the result of computing <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#op-extend-u}{\mathrm{extend}}^{sx^?}_{t_1,t_2}(i^\ast[x])\)</span>.</p></li>
 <li><p>Push the value <span class="math notranslate nohighlight">\(t_2.\href{../syntax/instructions.html#syntax-instr-numeric}{\mathsf{const}}~c_2\)</span> to the stack.</p></li>
 </ol>
 <div class="math notranslate nohighlight">
@@ -385,7 +385,7 @@ respectively.</p>
 \\ \qquad
   \begin{array}[t]{&#64;{}r&#64;{~}l&#64;{}}
    (\mathrel{\mbox{if}} &amp; t_2 = \href{../valid/instructions.html#aux-unpacked}{\mathrm{unpacked}}(t_1\mathsf{x}N) \\
-    \wedge &amp; c_2 = \href{../exec/numerics.html#op-extend-u}{\mathrm{extend}}^{sx^?}_{|t_1|,|t_2|}(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{t_1\mathsf{x}N}(c_1)[x])
+    \wedge &amp; c_2 = \href{../exec/numerics.html#op-extend-u}{\mathrm{extend}}^{sx^?}_{t_1,t_2}(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{t_1\mathsf{x}N}(c_1)[x])
   \end{array}
 \end{array}\end{split}\]</div>
 </div>
@@ -398,8 +398,8 @@ respectively.</p>
 <li><p>Pop the value <span class="math notranslate nohighlight">\(t_1.\href{../syntax/instructions.html#syntax-instr-numeric}{\mathsf{const}}~c_1\)</span> from the stack.</p></li>
 <li><p>Assert: due to <a class="reference internal" href="../valid/instructions.html#valid-simd-replace-lane"><span class="std std-ref">validation</span></a>, a value of <a class="reference internal" href="../syntax/types.html#syntax-valtype"><span class="std std-ref">value type</span></a> <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\)</span> is on the top of the stack.</p></li>
 <li><p>Pop the value <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c_2\)</span> from the stack.</p></li>
-<li><p>Let <span class="math notranslate nohighlight">\(i_2^\ast\)</span> be the sequence <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{\href{../syntax/instructions.html#syntax-shape}{\mathit{shape}}}(c_2)\)</span>.</p></li>
-<li><p>Let <span class="math notranslate nohighlight">\(c\)</span> be the result of computing <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}^{-1}_{\href{../syntax/instructions.html#syntax-shape}{\mathit{shape}}}(i_2^\ast \href{../syntax/conventions.html#notation-replace}{\mathrel{\mbox{with}}} [x] = c_1)\)</span></p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(i^\ast\)</span> be the sequence <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{\href{../syntax/instructions.html#syntax-shape}{\mathit{shape}}}(c_2)\)</span>.</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(c\)</span> be the result of computing <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}^{-1}_{\href{../syntax/instructions.html#syntax-shape}{\mathit{shape}}}(i^\ast \href{../syntax/conventions.html#notation-replace}{\mathrel{\mbox{with}}} [x] = c_1)\)</span></p></li>
 <li><p>Push <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c\)</span> on the stack.</p></li>
 </ol>
 <div class="math notranslate nohighlight">
@@ -409,8 +409,8 @@ respectively.</p>
 \end{array}
 \\ \qquad
   \begin{array}[t]{&#64;{}r&#64;{~}l&#64;{}}
-   (\mathrel{\mbox{if}} &amp; i_2^\ast = \href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{\href{../syntax/instructions.html#syntax-shape}{\mathit{shape}}}(c_2)) \\
-    \wedge &amp; c = \href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}^{-1}_{\href{../syntax/instructions.html#syntax-shape}{\mathit{shape}}}(i_2^\ast \href{../syntax/conventions.html#notation-replace}{\mathrel{\mbox{with}}} [x] = c_1)
+   (\mathrel{\mbox{if}} &amp; i^\ast = \href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{\href{../syntax/instructions.html#syntax-shape}{\mathit{shape}}}(c_2)) \\
+    \wedge &amp; c = \href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}^{-1}_{\href{../syntax/instructions.html#syntax-shape}{\mathit{shape}}}(i^\ast \href{../syntax/conventions.html#notation-replace}{\mathrel{\mbox{with}}} [x] = c_1)
   \end{array}
 \end{array}\end{split}\]</div>
 </div>
@@ -581,8 +581,8 @@ respectively.</p>
 <ol class="arabic simple">
 <li><p>Assert: due to <a class="reference internal" href="../valid/instructions.html#valid-vitestop"><span class="std std-ref">validation</span></a>, a value of <a class="reference internal" href="../syntax/types.html#syntax-valtype"><span class="std std-ref">value type</span></a> <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\)</span> is on the top of the stack.</p></li>
 <li><p>Pop the value <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c_1\)</span> from the stack.</p></li>
-<li><p>Let <span class="math notranslate nohighlight">\(i_1^N\)</span> be the sequence <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{t_1\mathsf{x}M}(c_1)[0 \href{../syntax/conventions.html#notation-slice}{\mathrel{\mathbf{:}}} N]\)</span>.</p></li>
-<li><p>Let <span class="math notranslate nohighlight">\(c\)</span> be the result of computing <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}^{-1}_{t_2\mathsf{x}N}((\href{../exec/numerics.html#op-extend-u}{\mathrm{extend}}^{\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}}_{t_1,t_2}(i_1))^N)\)</span></p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(i^\ast\)</span> be the sequence <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{t_1\mathsf{x}M}(c_1)[0 \href{../syntax/conventions.html#notation-slice}{\mathrel{\mathbf{:}}} N]\)</span>.</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(c\)</span> be the result of computing <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}^{-1}_{t_2\mathsf{x}N}(\href{../exec/numerics.html#op-extend-u}{\mathrm{extend}}^{\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}}_{t_1,t_2}(i^\ast))\)</span></p></li>
 <li><p>Push the value <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c\)</span> onto the stack.</p></li>
 </ol>
 <div class="math notranslate nohighlight">
@@ -592,8 +592,8 @@ respectively.</p>
 \end{array}
 \\ \qquad
   \begin{array}[t]{&#64;{}r&#64;{~}l&#64;{}}
-  (\mathrel{\mbox{if}} &amp; i_1^N = \href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{t_1\mathsf{x}M}(c_1)[0 \href{../syntax/conventions.html#notation-slice}{\mathrel{\mathbf{:}}} N] \\
-  \wedge &amp; c = \href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}^{-1}_{t_2\mathsf{x}N}((\href{../exec/numerics.html#op-extend-u}{\mathrm{extend}}^{\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}}_{M,N}(i_1))^N)
+  (\mathrel{\mbox{if}} &amp; i^\ast = \href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{t_1\mathsf{x}M}(c_1)[0 \href{../syntax/conventions.html#notation-slice}{\mathrel{\mathbf{:}}} N] \\
+  \wedge &amp; c = \href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}^{-1}_{t_2\mathsf{x}N}(\href{../exec/numerics.html#op-extend-u}{\mathrm{extend}}^{\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}}_{M,N}(i^\ast))
   \end{array}
 \end{array}\end{split}\]</div>
 </div>
@@ -602,8 +602,8 @@ respectively.</p>
 <ol class="arabic simple">
 <li><p>Assert: due to <a class="reference internal" href="../valid/instructions.html#valid-vitestop"><span class="std std-ref">validation</span></a>, a value of <a class="reference internal" href="../syntax/types.html#syntax-valtype"><span class="std std-ref">value type</span></a> <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\)</span> is on the top of the stack.</p></li>
 <li><p>Pop the value <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c_1\)</span> from the stack.</p></li>
-<li><p>Let <span class="math notranslate nohighlight">\(i_1^N\)</span> be the sequence <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{t_1\mathsf{x}M}(c_1)[N \href{../syntax/conventions.html#notation-slice}{\mathrel{\mathbf{:}}} N]\)</span>.</p></li>
-<li><p>Let <span class="math notranslate nohighlight">\(c\)</span> be the result of computing <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}^{-1}_{t_2\mathsf{x}N}((\href{../exec/numerics.html#op-extend-u}{\mathrm{extend}}^{\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}}_{t_1,t_2}(i_1))^N)\)</span></p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(i^\ast\)</span> be the sequence <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{t_1\mathsf{x}M}(c_1)[N \href{../syntax/conventions.html#notation-slice}{\mathrel{\mathbf{:}}} N]\)</span>.</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(c\)</span> be the result of computing <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}^{-1}_{t_2\mathsf{x}N}(\href{../exec/numerics.html#op-extend-u}{\mathrm{extend}}^{\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}}_{t_1,t_2}(i^\ast))\)</span></p></li>
 <li><p>Push the value <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c\)</span> onto the stack.</p></li>
 </ol>
 <div class="math notranslate nohighlight">
@@ -613,8 +613,8 @@ respectively.</p>
 \end{array}
 \\ \qquad
   \begin{array}[t]{&#64;{}r&#64;{~}l&#64;{}}
-  (\mathrel{\mbox{if}} &amp; i_1^N = \href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{t_1\mathsf{x}M}(c_1)[N \href{../syntax/conventions.html#notation-slice}{\mathrel{\mathbf{:}}} N] \\
-  \wedge &amp; c = \href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}^{-1}_{t_2\mathsf{x}N}((\href{../exec/numerics.html#op-extend-u}{\mathrm{extend}}^{\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}}_{M,N}(i_1))^N)
+  (\mathrel{\mbox{if}} &amp; i^\ast = \href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{t_1\mathsf{x}M}(c_1)[N \href{../syntax/conventions.html#notation-slice}{\mathrel{\mathbf{:}}} N] \\
+  \wedge &amp; c = \href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}^{-1}_{t_2\mathsf{x}N}(\href{../exec/numerics.html#op-extend-u}{\mathrm{extend}}^{\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}}_{M,N}(i^\ast))
   \end{array}
 \end{array}\end{split}\]</div>
 </div>
