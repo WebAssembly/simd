@@ -425,10 +425,10 @@ SIMD loads and stores are followed by the encoding of their |memarg| immediate.
      \hex{FD}~~4{:}\Bu32~~m{:}\Bmemarg &\Rightarrow& \V128.\LOAD\K{16x4\_u}~m \\ &&|&
      \hex{FD}~~5{:}\Bu32~~m{:}\Bmemarg &\Rightarrow& \V128.\LOAD\K{32x2\_s}~m \\ &&|&
      \hex{FD}~~6{:}\Bu32~~m{:}\Bmemarg &\Rightarrow& \V128.\LOAD\K{32x2\_u}~m \\ &&|&
-     \hex{FD}~~7{:}\Bu32~~m{:}\Bmemarg &\Rightarrow& \V128.\LOAD\K{\_splat}~m \\ &&|&
-     \hex{FD}~~8{:}\Bu32~~m{:}\Bmemarg &\Rightarrow& \V128.\LOAD\K{\_splat}~m \\ &&|&
-     \hex{FD}~~9{:}\Bu32~~m{:}\Bmemarg &\Rightarrow& \V128.\LOAD\K{\_splat}~m \\ &&|&
-     \hex{FD}~~10{:}\Bu32~~m{:}\Bmemarg &\Rightarrow& \V128.\LOAD\K{\_splat}~m \\ &&|&
+     \hex{FD}~~7{:}\Bu32~~m{:}\Bmemarg &\Rightarrow& \V128.\LOAD\K{8\_splat}~m \\ &&|&
+     \hex{FD}~~8{:}\Bu32~~m{:}\Bmemarg &\Rightarrow& \V128.\LOAD\K{16\_splat}~m \\ &&|&
+     \hex{FD}~~9{:}\Bu32~~m{:}\Bmemarg &\Rightarrow& \V128.\LOAD\K{32\_splat}~m \\ &&|&
+     \hex{FD}~~10{:}\Bu32~~m{:}\Bmemarg &\Rightarrow& \V128.\LOAD\K{64\_splat}~m \\ &&|&
      \hex{FD}~~11{:}\Bu32~~m{:}\Bmemarg &\Rightarrow& \V128.\STORE~m \\
    \end{array}
 
