@@ -227,7 +227,7 @@ For example, `ImmLaneIdx16` is a byte with values in the range 0-15 (inclusive).
 | `v128.load64_zero`          |    `0xfd`| -                  |
 | `i16x8.extmul_low_i8x16_s`  |    `0x9a`| -                  |
 | `i16x8.extmul_high_i8x16_s` |    `0x9d`| -                  |
-| `i16x8.extmul_low_i8x16_u`  |    `0x9d`| -                  |
+| `i16x8.extmul_low_i8x16_u`  |    `0x9e`| -                  |
 | `i16x8.extmul_high_i8x16_u` |    `0x9f`| -                  |
 | `i32x4.extmul_low_i16x8_s`  |    `0xbb`| -                  |
 | `i32x4.extmul_high_i16x8_s` |    `0xbd`| -                  |
