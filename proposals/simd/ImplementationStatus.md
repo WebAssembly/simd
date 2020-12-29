@@ -160,6 +160,8 @@
 | `i64x2.widen_high_i32x4_s`  |                           |                    |                    |                    |                    |
 | `i64x2.widen_low_i32x4_u`   |                           |                    |                    |                    |                    |
 | `i64x2.widen_high_i32x4_u`  |                           |                    |                    |                    |                    |
+| `i64x2.min_s`               |                           |                    |                    |                    |                    |
+| `i64x2.max_s`               |                           |                    |                    |                    |                    |
 | `f32x4.abs`                 |               `-msimd128` | :heavy_check_mark: |                    | :heavy_check_mark: | :heavy_check_mark: |
 | `f32x4.neg`                 |               `-msimd128` | :heavy_check_mark: |                    | :heavy_check_mark: | :heavy_check_mark: |
 | `f32x4.sqrt`                |               `-msimd128` | :heavy_check_mark: |                    | :heavy_check_mark: | :heavy_check_mark: |

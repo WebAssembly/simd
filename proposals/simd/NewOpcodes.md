@@ -102,9 +102,9 @@
 | i8x16.sub_sat_u      | 0x73   | i16x8.sub_sat_u          | 0x93   | ---- sub_sat ----        | 0xb3   | -------------            | 0xd3   |
 | -------------        | 0x74   | -------------            | 0x94   | -------------            | 0xb4   | -------------            | 0xd4   |
 | ---- mul ----        | 0x75   | i16x8.mul                | 0x95   | i32x4.mul                | 0xb5   | i64x2.mul                | 0xd5   |
-| i8x16.min_s          | 0x76   | i16x8.min_s              | 0x96   | i32x4.min_s              | 0xb6   | -------------            | 0xd6   |
+| i8x16.min_s          | 0x76   | i16x8.min_s              | 0x96   | i32x4.min_s              | 0xb6   | i64x2.min_s              | 0xd6   |
 | i8x16.min_u          | 0x77   | i16x8.min_u              | 0x97   | i32x4.min_u              | 0xb7   | -------------            | 0xd7   |
-| i8x16.max_s          | 0x78   | i16x8.max_s              | 0x98   | i32x4.max_s              | 0xb8   | -------------            | 0xd8   |
+| i8x16.max_s          | 0x78   | i16x8.max_s              | 0x98   | i32x4.max_s              | 0xb8   | i64x2.max_s              | 0xd8   |
 | i8x16.max_u          | 0x79   | i16x8.max_u              | 0x99   | i32x4.max_u              | 0xb9   | -------------            | 0xd9   |
 | ----------------     | 0x7a   | ----------------         | 0x9a   | i32x4.dot_i16x8_s        | 0xba   | -------------            | 0xda   |
 | i8x16.avgr_u         | 0x7b   | i16x8.avgr_u             | 0x9b   | ---- avgr_u ----         | 0xbb   | -------------            | 0xdb   |
