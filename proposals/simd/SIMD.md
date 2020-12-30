@@ -529,6 +529,7 @@ def S.q15mulr_sat_s(a, b):
 * `i16x8.min_u(a: v128, b: v128) -> v128`
 * `i32x4.min_s(a: v128, b: v128) -> v128`
 * `i32x4.min_u(a: v128, b: v128) -> v128`
+* `i64x2.min_u(a: v128, b: v128) -> v128`
 
 Compares lane-wise signed/unsigned integers, and returns the minimum of
 each pair.
@@ -545,6 +546,7 @@ def S.min(a, b):
 * `i16x8.max_u(a: v128, b: v128) -> v128`
 * `i32x4.max_s(a: v128, b: v128) -> v128`
 * `i32x4.max_u(a: v128, b: v128) -> v128`
+* `i64x2.max_u(a: v128, b: v128) -> v128`
 
 Compares lane-wise signed/unsigned integers, and returns the maximum of
 each pair.
