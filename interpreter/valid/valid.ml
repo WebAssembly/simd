@@ -195,6 +195,14 @@ let check_simd_lane_index get_lane op at =
     | V128Op.V128 op' -> assert false
   in require (get_lane op' < max) at "invalid lane index"
 
+let check_simd_load_lane pack_size lane at =
+  let max = match pack_size with
+  | Pack8 -> 16
+  | Pack16 -> 8
+  | Pack32 -> 4
+  | Pack64 -> 2
+  in require (lane < max) at "invalid lane index"
+
 let check_simd_extract_lane_index op at =
   check_simd_lane_index snd op at
 
@@ -306,6 +314,15 @@ let rec check_instr (c : context) (e : instr) (s : infer_stack_type) : op_type =
   | SimdLoad memop ->
     check_memop c memop (Lib.Option.map fst) e.at;
     [I32Type] --> [memop.ty]
+
+  | SimdLoadLane memop ->
+    check_memop c memop (Lib.Option.map fst) e.at;
+    (match memop.sz with
+    | Some (pack_size, laneidx) ->
+        check_simd_load_lane pack_size laneidx e.at;
+      [I32Type; V128Type] -->  [memop.ty]
+    | _ -> assert false)
+
 
   | Store memop ->
     check_memop c memop (fun sz -> sz) e.at;

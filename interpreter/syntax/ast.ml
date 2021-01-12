@@ -112,6 +112,7 @@ type loadop = (pack_size * extension) memop
 type storeop = pack_size memop
 
 type simd_loadop = (pack_size * pack_simd) memop
+type simd_loadlaneop = (pack_size * int (* lane index*) ) memop
 type empty
 type simd_storeop = empty memop
 
@@ -146,6 +147,7 @@ and instr' =
   | Load of loadop                    (* read memory at address *)
   | Store of storeop                  (* write memory at address *)
   | SimdLoad of simd_loadop           (* read memory at address *)
+  | SimdLoadLane of simd_loadlaneop   (* read memory at address *)
   | SimdStore of simd_storeop         (* write memory at address *)
   | MemorySize                        (* size of linear memory *)
   | MemoryGrow                        (* grow linear memory *)
