@@ -323,6 +323,14 @@ let rec check_instr (c : context) (e : instr) (s : infer_stack_type) : op_type =
     check_memop c memop (fun _ -> None) e.at;
     [I32Type; memop.ty] --> []
 
+  | SimdStoreLane (memop, i) ->
+    check_memop c memop (fun o -> o) e.at;
+    (match memop.sz with
+    | Some pack_size ->
+      require (i < 16 / packed_size pack_size) e.at "invalid lane index";
+      [I32Type; V128Type] -->  []
+    | _ -> assert false)
+
   | MemorySize ->
     ignore (memory c (0l @@ e.at));
     [] --> [I32Type]

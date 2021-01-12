@@ -314,6 +314,14 @@ rule token = parse
   { SIMD_LOAD_LANE (fun a o i -> (v128_load32_lane (opt a 2)) o i) }
   | "v128.load64_lane"
   { SIMD_LOAD_LANE (fun a o i -> (v128_load64_lane (opt a 3)) o i) }
+  | "v128.store8_lane"
+  { SIMD_STORE_LANE (fun a o i -> (v128_store8_lane (opt a 0)) o i) }
+  | "v128.store16_lane"
+  { SIMD_STORE_LANE (fun a o i -> (v128_store16_lane (opt a 1)) o i) }
+  | "v128.store32_lane"
+  { SIMD_STORE_LANE (fun a o i -> (v128_store32_lane (opt a 2)) o i) }
+  | "v128.store64_lane"
+  { SIMD_STORE_LANE (fun a o i -> (v128_store64_lane (opt a 3)) o i) }
   | (ixx as t)".store"(mem_size as sz)
     { if t = "i32" && sz = "32" then error lexbuf "unknown operator";
       STORE (fun a o ->
