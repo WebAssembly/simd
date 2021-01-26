@@ -199,11 +199,6 @@ let memop s =
   let offset = vu32 s in
   Int32.to_int align, offset
 
-let simd_lane_memop s =
-  let a, o = memop s in
-  let laneidx = u8 s in
-  a, o, laneidx
-
 let block_type s =
   match peek s with
   | Some 0x40 -> skip 1 s; ValBlockType None
@@ -309,10 +304,10 @@ let simd_prefix s =
   | 0x50l -> v128_or
   | 0x51l -> v128_xor
   | 0x52l -> v128_bitselect
-  | 0x58l -> let a, o, i = simd_lane_memop s in v128_load8_lane a o i
-  | 0x59l -> let a, o, i = simd_lane_memop s in v128_load16_lane a o i
-  | 0x5al -> let a, o, i = simd_lane_memop s in v128_load32_lane a o i
-  | 0x5bl -> let a, o, i = simd_lane_memop s in v128_load64_lane a o i
+  | 0x58l -> let a, o = memop s in let lane = u8 s in v128_load8_lane a o lane
+  | 0x59l -> let a, o = memop s in let lane = u8 s in v128_load16_lane a o lane
+  | 0x5al -> let a, o = memop s in let lane = u8 s in v128_load32_lane a o lane
+  | 0x5bl -> let a, o = memop s in let lane = u8 s in v128_load64_lane a o lane
   | 0x60l -> i8x16_abs
   | 0x61l -> i8x16_neg
   | 0x62l -> i8x16_any_true
