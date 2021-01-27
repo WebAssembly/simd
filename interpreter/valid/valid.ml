@@ -307,11 +307,11 @@ let rec check_instr (c : context) (e : instr) (s : infer_stack_type) : op_type =
     check_memop c memop (Lib.Option.map fst) e.at;
     [I32Type] --> [memop.ty]
 
-  | SimdLoadLane (memop, laneidx) ->
+  | SimdLoadLane (memop, i) ->
     check_memop c memop (fun o -> o) e.at;
     (match memop.sz with
     | Some pack_size ->
-      require (laneidx < (16 / packed_size pack_size)) e.at "invalid lane index";
+      require (i < 16 / packed_size pack_size) e.at "invalid lane index";
       [I32Type; V128Type] -->  [memop.ty]
     | _ -> assert false)
 

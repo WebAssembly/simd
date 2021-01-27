@@ -231,7 +231,7 @@ let rec step (c : config) : config =
           in v :: vs', []
         with exn -> vs', [Trapping (memory_error e.at exn) @@ e.at])
 
-      | SimdLoadLane ({offset; ty; sz; _}, laneidx), V128 v128 :: I32 i :: vs' ->
+      | SimdLoadLane ({offset; ty; sz; _}, j), V128 v128 :: I32 i :: vs' ->
         let mem = memory frame.inst (0l @@ e.at) in
         let addr = I64_convert.extend_i32_u i in
         (try
@@ -239,7 +239,7 @@ let rec step (c : config) : config =
             match sz with
             | None -> assert false
             | Some pack_size ->
-              Memory.load_simd_lane v128 pack_size mem addr offset ty laneidx
+              Memory.load_simd_lane v128 pack_size mem addr offset ty j
           in v :: vs', []
         with exn -> vs', [Trapping (memory_error e.at exn) @@ e.at])
 
