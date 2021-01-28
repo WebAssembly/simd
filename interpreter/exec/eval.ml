@@ -227,7 +227,8 @@ let rec step (c : config) : config =
           let v =
             match sz with
             | None -> Memory.load_value mem addr offset ty
-            | Some (pack_size, simd_load) -> V128 (Memory.load_simd_packed pack_size simd_load mem addr offset ty)
+            | Some (pack_size, simd_load) ->
+              V128 (Memory.load_simd_packed pack_size simd_load mem addr offset ty)
           in v :: vs', []
         with exn -> vs', [Trapping (memory_error e.at exn) @@ e.at])
 
@@ -239,7 +240,7 @@ let rec step (c : config) : config =
             match sz with
             | None -> assert false
             | Some pack_size ->
-              Memory.load_simd_lane v128 pack_size mem addr offset ty j
+              V128 (Memory.load_simd_lane v128 pack_size mem addr offset ty j)
           in v :: vs', []
         with exn -> vs', [Trapping (memory_error e.at exn) @@ e.at])
 

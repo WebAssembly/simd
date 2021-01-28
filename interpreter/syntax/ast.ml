@@ -112,9 +112,9 @@ type loadop = (pack_size * extension) memop
 type storeop = pack_size memop
 
 type simd_loadop = (pack_size * pack_simd) memop
-type simd_laneop = pack_size memop * int
 type empty
 type simd_storeop = empty memop
+type simd_laneop = pack_size memop * int
 
 (* Expressions *)
 

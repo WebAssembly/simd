@@ -452,7 +452,7 @@ let simd_loadop (op : simd_loadop) =
       ) in
     memop ("load" ^ suffix) op (packed_size sz)
 
-let simd_loadlaneop op i =
+let simd_laneop (op, i) =
   match op.sz with
   | None -> assert false
   | Some sz ->
@@ -515,7 +515,7 @@ let rec instr e =
     | GlobalSet x -> "global.set " ^ var x, []
     | Load op -> loadop op, []
     | SimdLoad op -> simd_loadop op, []
-    | SimdLoadLane (op, i) -> simd_loadlaneop op i, []
+    | SimdLoadLane op -> simd_laneop op, []
     | SimdStore op -> simd_storeop op, []
     | Store op -> storeop op, []
     | MemorySize -> "memory.size", []
