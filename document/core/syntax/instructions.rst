@@ -211,6 +211,7 @@ SIMD instructions provide basic operations over :ref:`values <syntax-value>` of 
      \K{v128.}\vsunop \\&&|&
      \K{v128.}\vsbinop \\&&|&
      \K{v128.}\vsternop \\&&|&
+     \K{v128.}\ANYTRUE \\&&|&
      \K{i8x16.}\SHUFFLE~\laneidx^{16} \\&&|&
      \K{i8x16.}\SWIZZLE \\&&|&
      \shape\K{.}\SPLAT \\&&|&
@@ -232,7 +233,8 @@ SIMD instructions provide basic operations over :ref:`values <syntax-value>` of 
      \K{i32x4.}\vitestop \\&&|&
      \K{i8x16.}\BITMASK ~|~
      \K{i16x8.}\BITMASK ~|~
-     \K{i32x4.}\BITMASK \\&&|&
+     \K{i32x4.}\BITMASK ~|~
+     \K{i64x2.}\BITMASK \\&&|&
      \K{i8x16.}\NARROW\K{\_i16x8\_}\sx ~|~
      \K{i16x8.}\NARROW\K{\_i32x4\_}\sx \\&&|&
      \K{i16x8.}\WIDEN\K{\_low}\K{\_i8x16\_}\sx ~|~
@@ -265,7 +267,6 @@ SIMD instructions provide basic operations over :ref:`values <syntax-value>` of 
    \production{SIMD ternary operator} & \vsternop &::=&
      \K{bitselect} \\
    \production{SIMD test operator} & \vitestop &::=&
-     \K{any\_true} ~|~
      \K{all\_true} \\
    \production{SIMD integer relational operator} & \virelop &::=&
      \K{eq} ~|~

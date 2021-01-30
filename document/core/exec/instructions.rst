@@ -207,7 +207,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
    respectively.
 
 
-.. _exec-simd-const:
+.. _exec-vconst:
 
 :math:`\V128\K{.}\VCONST~c`
 ...........................
@@ -281,6 +281,26 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
    \begin{array}{lcl@{\qquad}l}
    (\V128\K{.}\VCONST~c_1)~(\V128\K{.}\VCONST~c_2)~(\V128\K{.}\VCONST~c_3)~\V128\K{.}\vsternop &\stepto& (\V128\K{.}\VCONST~c)
      & (\iff c = \vsternop_{\I128}(c_1, c_2, c_3)) \\
+   \end{array}
+
+
+.. _exec-simd-any_true:
+
+:math:`\V128\K{.}\ANYTRUE`
+...........................
+
+1. Assert: due to :ref:`validation <valid-vitestop>`, a value of :ref:`value type <syntax-valtype>` |V128| is on the top of the stack.
+
+2. Pop the value :math:`\V128.\VCONST~c_1` from the stack.
+
+3. Let :math:`i` be the result of computing :math:`\ine_{128}(c_1, 0)`.
+
+4. Push the value :math:`\I32.\CONST~i` onto the stack.
+
+.. math::
+   \begin{array}{lcl@{\qquad}l}
+   (\V128\K{.}\VCONST~c_1)~\V128\K{.}\ANYTRUE &\stepto& (\I32\K{.}\CONST~i)
+     & (\iff i = \ine_{128}(c_1, 0)) \\
    \end{array}
 
 
@@ -558,26 +578,6 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
      (\iff & i_1^\ast = \lanes_{\shape}(c) \\
      \wedge & i = \bool(\bigwedge(i_1 \neq 0)^\ast)
      \end{array}
-   \end{array}
-
-
-.. _exec-simd-any_true:
-
-:math:`\shape\K{.}\ANYTRUE`
-...........................
-
-1. Assert: due to :ref:`validation <valid-vitestop>`, a value of :ref:`value type <syntax-valtype>` |V128| is on the top of the stack.
-
-2. Pop the value :math:`\V128.\VCONST~c_1` from the stack.
-
-3. Let :math:`i` be the result of computing :math:`\ine_{128}(c_1, 0)`.
-
-4. Push the value :math:`\I32.\CONST~i` onto the stack.
-
-.. math::
-   \begin{array}{lcl@{\qquad}l}
-   (\V128\K{.}\VCONST~c_1)~\shape\K{.}\ANYTRUE &\stepto& (\I32\K{.}\CONST~i)
-     & (\iff i = \ine_{128}(c_1, 0)) \\
    \end{array}
 
 

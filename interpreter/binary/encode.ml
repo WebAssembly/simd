@@ -225,6 +225,15 @@ let encode m =
       | SimdLoad ({ty= V128Type; sz = Some (Pack64, PackZero); _} as mo) ->
         simd_op 0xfdl; memop mo
 
+      | SimdLoadLane ({ty = V128Type; sz = Some Pack8; _} as mo, i) ->
+        simd_op 0x58l; memop mo; u8 i;
+      | SimdLoadLane ({ty = V128Type; sz = Some Pack16; _} as mo, i) ->
+        simd_op 0x59l; memop mo; u8 i;
+      | SimdLoadLane ({ty = V128Type; sz = Some Pack32; _} as mo, i) ->
+        simd_op 0x5al; memop mo; u8 i;
+      | SimdLoadLane ({ty = V128Type; sz = Some Pack64; _} as mo, i) ->
+        simd_op 0x5bl; memop mo; u8 i;
+
       | Store ({ty = I32Type; sz = None; _} as mo) -> op 0x36; memop mo
       | Store ({ty = I64Type; sz = None; _} as mo) -> op 0x37; memop mo
       | Store ({ty = F32Type; sz = None; _} as mo) -> op 0x38; memop mo
@@ -252,11 +261,9 @@ let encode m =
       | Test (I64 I64Op.Eqz) -> op 0x50
       | Test (F32 _) -> assert false
       | Test (F64 _) -> assert false
-      | Test (V128 V128Op.(I8x16 AnyTrue)) -> simd_op 0x62l
+      | Test (V128 V128Op.(V128  AnyTrue)) -> simd_op 0x62l
       | Test (V128 V128Op.(I8x16 AllTrue)) -> simd_op 0x63l
-      | Test (V128 V128Op.(I16x8 AnyTrue)) -> simd_op 0x82l
       | Test (V128 V128Op.(I16x8 AllTrue)) -> simd_op 0x83l
-      | Test (V128 V128Op.(I32x4 AnyTrue)) -> simd_op 0xa2l
       | Test (V128 V128Op.(I32x4 AllTrue)) -> simd_op 0xa3l
       | Test (V128 _) -> assert false
 
