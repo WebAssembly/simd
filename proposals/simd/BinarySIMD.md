@@ -180,7 +180,6 @@ For example, `ImmLaneIdx16` is a byte with values in the range 0-15 (inclusive).
 | `i32x4.max_u`               |    `0xb9`| -                        |
 | `i32x4.dot_i16x8_s`         |    `0xba`| -                        |
 | `i64x2.neg`                 |    `0xc1`| -                        |
-| `i64x2.all_true`            |    `0xc3`| -                        |
 | `i64x2.bitmask`             |    `0xc4`| -                        |
 | `i64x2.widen_low_i32x4_s`   |    `0xc7`| -                        |
 | `i64x2.widen_high_i32x4_s`  |    `0xc8`| -                        |
@@ -250,3 +249,4 @@ For example, `ImmLaneIdx16` is a byte with values in the range 0-15 (inclusive).
 | `v128.store16_lane`         |     `TBD`| m:memarg, i:ImmLaneIdx8  |
 | `v128.store32_lane`         |     `TBD`| m:memarg, i:ImmLaneIdx4  |
 | `v128.store64_lane`         |     `TBD`| m:memarg, i:ImmLaneIdx2  |
+| `i64x2.all_true`            |     `TBD`| -                        |
