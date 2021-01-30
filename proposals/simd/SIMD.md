@@ -718,6 +718,7 @@ in each lane are `0` for `false` and all ones for `true`.
 * `i8x16.eq(a: v128, b: v128) -> v128`
 * `i16x8.eq(a: v128, b: v128) -> v128`
 * `i32x4.eq(a: v128, b: v128) -> v128`
+* `i64x2.eq(a: v128, b: v128) -> v128`
 * `f32x4.eq(a: v128, b: v128) -> v128`
 * `f64x2.eq(a: v128, b: v128) -> v128`
 
@@ -736,6 +737,7 @@ def S.eq(a, b):
 * `i8x16.ne(a: v128, b: v128) -> v128`
 * `i16x8.ne(a: v128, b: v128) -> v128`
 * `i32x4.ne(a: v128, b: v128) -> v128`
+* `i64x2.ne(a: v128, b: v128) -> v128`
 * `f32x4.ne(a: v128, b: v128) -> v128`
 * `f64x2.ne(a: v128, b: v128) -> v128`
 

@@ -306,6 +306,14 @@ rule token = parse
   { LOAD (fun a o -> (v128_load32_zero (opt a 2)) o) }
   | "v128.load64_zero"
   { LOAD (fun a o -> (v128_load64_zero (opt a 3)) o) }
+  | "v128.load8_lane"
+  { SIMD_LOAD_LANE (fun a o i -> (v128_load8_lane (opt a 0)) o i) }
+  | "v128.load16_lane"
+  { SIMD_LOAD_LANE (fun a o i -> (v128_load16_lane (opt a 1)) o i) }
+  | "v128.load32_lane"
+  { SIMD_LOAD_LANE (fun a o i -> (v128_load32_lane (opt a 2)) o i) }
+  | "v128.load64_lane"
+  { SIMD_LOAD_LANE (fun a o i -> (v128_load64_lane (opt a 3)) o i) }
   | (ixx as t)".store"(mem_size as sz)
     { if t = "i32" && sz = "32" then error lexbuf "unknown operator";
       STORE (fun a o ->
@@ -491,6 +499,7 @@ rule token = parse
   | vxxx".or" { UNARY v128_or }
   | vxxx".xor" { UNARY v128_xor }
   | vxxx".bitselect" { TERNARY v128_bitselect }
+  | vxxx".any_true" { UNARY (v128_any_true) }
   | (simd_shape as s)".neg"
     { UNARY (simdop s i8x16_neg i16x8_neg i32x4_neg i64x2_neg f32x4_neg f64x2_neg) }
   | (simd_float_shape as s)".sqrt" { UNARY (simd_float_op s f32x4_sqrt f64x2_sqrt) }
@@ -525,9 +534,6 @@ rule token = parse
   | (simd_shape as s)".abs"
     { only ["i8x16"; "i16x8"; "i32x4"; "f32x4"; "f64x2"] s lexbuf;
       UNARY (simdop s i8x16_abs i16x8_abs i32x4_abs unreachable f32x4_abs f64x2_abs) }
-  | (simd_int_shape as s)".any_true"
-    { only ["i8x16"; "i16x8"; "i32x4"] s lexbuf;
-      UNARY (simd_int_op s i8x16_any_true i16x8_any_true i32x4_any_true unreachable) }
   | (simd_int_shape as s)".all_true"
     { only ["i8x16"; "i16x8"; "i32x4"] s lexbuf;
       UNARY (simd_int_op s i8x16_all_true i16x8_all_true i32x4_all_true unreachable) }

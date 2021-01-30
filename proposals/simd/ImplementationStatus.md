@@ -148,6 +148,7 @@
 | `i32x4.max_s`               |               `-msimd128` | :heavy_check_mark: |                    |                    | :heavy_check_mark: |
 | `i32x4.max_u`               |               `-msimd128` | :heavy_check_mark: |                    |                    | :heavy_check_mark: |
 | `i32x4.dot_i16x8_s`         |                           | :heavy_check_mark: |                    |                    | :heavy_check_mark: |
+| `i64x2.eq`                  |                           |                    |                    |                    |                    |
 | `i64x2.neg`                 |               `-msimd128` | :heavy_check_mark: |                    | :heavy_check_mark: | :heavy_check_mark: |
 | `i64x2.all_true`            |                           |                    |                    |                    |                    |
 | `i64x2.bitmask`             |                           | :heavy_check_mark: |                    |                    |                    |
@@ -218,6 +219,7 @@
 | `v128.store16_lane`         |                           |                    |                    |                    |                    |
 | `v128.store32_lane`         |                           |                    |                    |                    |                    |
 | `v128.store64_lane`         |                           |                    |                    |                    |                    |
+| `i64x2.ne`                  |                           |                    |                    |                    |                    |
 
 [1] Tip of tree LLVM as of May 20, 2020
 
