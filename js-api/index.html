@@ -7,7 +7,7 @@
   <meta content="This document provides an explicit JavaScript API for interacting with WebAssembly." name="abstract">
   <meta content="Bikeshed version 06b89c98, updated Fri Jan 29 17:36:38 2021 -0800" name="generator">
   <link href="https://www.w3.org/TR/wasm-js-api-1/" rel="canonical">
-  <meta content="f5c5dcc0318e94f79ed574adca01a98f5a5d7832" name="document-revision">
+  <meta content="92ee1942f9c1f7b44527b187ac9684c273526aea" name="document-revision">
 <style>
 emu-const {
     font-family: serif;
@@ -1259,6 +1259,8 @@ Each <code class="idl"><a data-link-type="idl" href="#table" id="ref-for-table�
      <li data-md>
       <p>If <var>result</var> is <a data-link-type="dfn" href="https://webassembly.github.io/spec/core/appendix/embedding.html#embed-error" id="ref-for-embed-error①①">error</a>, throw a <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-native-error-types-used-in-this-standard-rangeerror" id="ref-for-sec-native-error-types-used-in-this-standard-rangeerror⑤">RangeError</a></code> exception.</p>
      <li data-md>
+      <p>If <var>result</var> is ε, return null.</p>
+     <li data-md>
       <p>Let <var>function</var> be the result of creating <a data-link-type="dfn" href="#a-new-exported-function" id="ref-for-a-new-exported-function①">a new Exported Function</a> from <var>result</var>.</p>
      <li data-md>
       <p>Return <var>function</var>.</p>
@@ -1270,7 +1272,7 @@ Each <code class="idl"><a data-link-type="idl" href="#table" id="ref-for-table�
      <li data-md>
       <p>Let <var>tableaddr</var> be <strong>this</strong>.[[Table]].</p>
      <li data-md>
-      <p>If <var>value</var> is null, let <var>funcaddr</var> be an empty <a data-link-type="dfn" href="https://webassembly.github.io/spec/core/exec/runtime.html#syntax-funcelem" id="ref-for-syntax-funcelem">function element</a>.</p>
+      <p>If <var>value</var> is null, let <var>funcaddr</var> be ε.</p>
      <li data-md>
       <p>Otherwise,</p>
       <ol>
@@ -2457,12 +2459,6 @@ In practice, an implementation may run out of resources for valid modules below 
     <li><a href="#ref-for-syntax-funcaddr①">4.6. Exported Functions</a> <a href="#ref-for-syntax-funcaddr②">(2)</a> <a href="#ref-for-syntax-funcaddr③">(3)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-syntax-funcelem">
-   <a href="https://webassembly.github.io/spec/core/exec/runtime.html#syntax-funcelem">https://webassembly.github.io/spec/core/exec/runtime.html#syntax-funcelem</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-syntax-funcelem">4.4. Tables</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="term-for-external-types">
    <a href="https://webassembly.github.io/spec/core/syntax/types.html#external-types">https://webassembly.github.io/spec/core/syntax/types.html#external-types</a><b>Referenced in:</b>
    <ul>
@@ -3054,7 +3050,6 @@ In practice, an implementation may run out of resources for valid modules below 
      <li><span class="dfn-paneled" id="term-for-embed-func-invoke">func_invoke</span>
      <li><span class="dfn-paneled" id="term-for-embed-func-type">func_type</span>
      <li><span class="dfn-paneled" id="term-for-syntax-funcaddr">function address</span>
-     <li><span class="dfn-paneled" id="term-for-syntax-funcelem">function element</span>
      <li><span class="dfn-paneled" id="term-for-external-types①">global</span>
      <li><span class="dfn-paneled" id="term-for-syntax-globaladdr">global address</span>
      <li><span class="dfn-paneled" id="term-for-global-instances">global instance</span>
