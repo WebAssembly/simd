@@ -467,6 +467,14 @@ Instructions in this group are concerned with linear :ref:`memory <syntax-mem>`.
      \K{v128.}\LOAD\K{64\_splat}~\memarg \\&&|&
      \K{v128.}\LOAD\K{32\_zero}~\memarg ~|~
      \K{v128.}\LOAD\K{64\_zero}~\memarg \\&&|&
+     \K{v128.}\LOAD\K{8\_lane}~\memarg ~|~
+     \K{v128.}\LOAD\K{16\_lane}~\memarg \\&&|&
+     \K{v128.}\LOAD\K{32\_lane}~\memarg ~|~
+     \K{v128.}\LOAD\K{64\_lane}~\memarg \\&&|&
+     \K{v128.}\STORE\K{8\_lane}~\memarg ~|~
+     \K{v128.}\STORE\K{16\_lane}~\memarg \\&&|&
+     \K{v128.}\STORE\K{32\_lane}~\memarg ~|~
+     \K{v128.}\STORE\K{64\_lane}~\memarg \\&&|&
      \MEMORYSIZE \\&&|&
      \MEMORYGROW \\
    \end{array}
