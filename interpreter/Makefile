@@ -113,7 +113,7 @@ $(WINMAKE):	clean
 # Executing test suite
 
 TESTDIR =	../test/core
-TESTFILES =	$(shell cd $(TESTDIR); ls *.wast; ls simd/*.wast)
+TESTFILES =	$(shell cd $(TESTDIR); ls *.wast; ls */*.wast)
 TESTS =		$(TESTFILES:%.wast=%)
 
 .PHONY:		test debugtest partest
