@@ -228,9 +228,7 @@ SIMD instructions provide basic operations over :ref:`values <syntax-value>` of 
      \K{i32x4.}\viunop \\&&|&
      \K{i64x2.}\NEG \\&&|&
      \fshape\K{.}\vfunop \\&&|&
-     \K{i8x16.}\vitestop ~|~
-     \K{i16x8.}\vitestop ~|~
-     \K{i32x4.}\vitestop \\&&|&
+     \ishape\K{.}\vitestop \\ &&|&
      \K{i8x16.}\BITMASK ~|~
      \K{i16x8.}\BITMASK ~|~
      \K{i32x4.}\BITMASK ~|~
