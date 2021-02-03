@@ -577,17 +577,17 @@ rule token = parse
   { BINARY i32x4_dot_i16x8_s }
 
   | "i16x8.extmul_low_i8x16_"(sign as s)
-  { BINARY (ext s i16x8_extmul_low_i8x16_s i16x8_extmul_low_i8x16_u) }
+    { BINARY (ext s i16x8_extmul_low_i8x16_s i16x8_extmul_low_i8x16_u) }
   | "i16x8.extmul_high_i8x16_"(sign as s)
-  { BINARY (ext s i16x8_extmul_high_i8x16_s i16x8_extmul_high_i8x16_u) }
+    { BINARY (ext s i16x8_extmul_high_i8x16_s i16x8_extmul_high_i8x16_u) }
   | "i32x4.extmul_low_i16x8_"(sign as s)
-  { BINARY (ext s i32x4_extmul_low_i16x8_s i32x4_extmul_low_i16x8_u) }
+    { BINARY (ext s i32x4_extmul_low_i16x8_s i32x4_extmul_low_i16x8_u) }
   | "i32x4.extmul_high_i16x8_"(sign as s)
-  { BINARY (ext s i32x4_extmul_high_i16x8_s i32x4_extmul_high_i16x8_u) }
+    { BINARY (ext s i32x4_extmul_high_i16x8_s i32x4_extmul_high_i16x8_u) }
   | "i64x2.extmul_low_i32x4_"(sign as s)
-  { BINARY (ext s i64x2_extmul_low_i32x4_s i64x2_extmul_low_i32x4_u) }
+    { BINARY (ext s i64x2_extmul_low_i32x4_s i64x2_extmul_low_i32x4_u) }
   | "i64x2.extmul_high_i32x4_"(sign as s)
-  { BINARY (ext s i64x2_extmul_high_i32x4_s i64x2_extmul_high_i32x4_u) }
+    { BINARY (ext s i64x2_extmul_high_i32x4_s i64x2_extmul_high_i32x4_u) }
 
   | (simd_shape as s) { SIMD_SHAPE (simd_shape s) }
 
