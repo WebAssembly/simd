@@ -258,6 +258,7 @@ For example, `ImmLaneIdx16` is a byte with values in the range 0-15 (inclusive).
 | `i32x4.trunc_sat_f64x2_u_zero`  |     `TBD`| -                        |
 | `f32x4.demote_f64x2_zero`       |     `TBD`| -                        |
 | `f64x2.promote_low_f32x4`       |     `TBD`| -                        |
+| `i8x16.popcnt`                  |     `TBD`| -                        |
 | `i16x8.extadd_pairwise_i8x16_s` |     `TBD`| -                        |
 | `i16x8.extadd_pairwise_i8x16_u` |     `TBD`| -                        |
 | `i32x4.extadd_pairwise_i16x8_s` |     `TBD`| -                        |

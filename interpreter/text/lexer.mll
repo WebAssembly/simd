@@ -458,11 +458,9 @@ rule token = parse
   | "output" { OUTPUT }
 
   | (simd_shape as s)".eq"
-    { except ["i64x2"] s lexbuf;
-      BINARY (simdop s i8x16_eq i16x8_eq i32x4_eq unreachable f32x4_eq f64x2_eq) }
+    { BINARY (simdop s i8x16_eq i16x8_eq i32x4_eq i64x2_eq f32x4_eq f64x2_eq) }
   | (simd_shape as s)".ne"
-    { except ["i64x2"] s lexbuf;
-      BINARY (simdop s i8x16_ne i16x8_ne i32x4_ne unreachable f32x4_ne f64x2_ne) }
+    { BINARY (simdop s i8x16_ne i16x8_ne i32x4_ne i64x2_ne f32x4_ne f64x2_ne) }
   | (simd_int_shape as s)".lt_s"
     { except ["i64x2"] s lexbuf;
       BINARY (simd_int_op s i8x16_lt_s i16x8_lt_s i32x4_lt_s unreachable) }
@@ -538,8 +536,7 @@ rule token = parse
     { only ["i8x16"; "i16x8"; "i32x4"] s lexbuf;
       UNARY (simd_int_op s i8x16_all_true i16x8_all_true i32x4_all_true unreachable) }
   | (simd_int_shape as s)".bitmask"
-    { only ["i8x16"; "i16x8"; "i32x4"] s lexbuf;
-      UNARY (simd_int_op s i8x16_bitmask i16x8_bitmask i32x4_bitmask unreachable) }
+    { UNARY (simd_int_op s i8x16_bitmask i16x8_bitmask i32x4_bitmask i64x2_bitmask) }
   | (simd_int_shape as s)".shl"
     { SHIFT (simd_int_op s i8x16_shl i16x8_shl i32x4_shl i64x2_shl) }
   | (simd_int_shape as s)".shr_s"
@@ -577,6 +574,19 @@ rule token = parse
 
   | "i32x4.dot_i16x8_s"
   { BINARY i32x4_dot_i16x8_s }
+
+  | "i16x8.extmul_low_i8x16_"(sign as s)
+    { BINARY (ext s i16x8_extmul_low_i8x16_s i16x8_extmul_low_i8x16_u) }
+  | "i16x8.extmul_high_i8x16_"(sign as s)
+    { BINARY (ext s i16x8_extmul_high_i8x16_s i16x8_extmul_high_i8x16_u) }
+  | "i32x4.extmul_low_i16x8_"(sign as s)
+    { BINARY (ext s i32x4_extmul_low_i16x8_s i32x4_extmul_low_i16x8_u) }
+  | "i32x4.extmul_high_i16x8_"(sign as s)
+    { BINARY (ext s i32x4_extmul_high_i16x8_s i32x4_extmul_high_i16x8_u) }
+  | "i64x2.extmul_low_i32x4_"(sign as s)
+    { BINARY (ext s i64x2_extmul_low_i32x4_s i64x2_extmul_low_i32x4_u) }
+  | "i64x2.extmul_high_i32x4_"(sign as s)
+    { BINARY (ext s i64x2_extmul_high_i32x4_s i64x2_extmul_high_i32x4_u) }
 
   | (simd_shape as s) { SIMD_SHAPE (simd_shape s) }
 

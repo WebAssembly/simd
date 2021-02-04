@@ -13,6 +13,7 @@ SUBMODULES = (
     'simd_i8x16_cmp',
     'simd_i16x8_cmp',
     'simd_i32x4_cmp',
+    'simd_i64x2_cmp',
     'simd_f32x4_cmp',
     'simd_f64x2_cmp',
     'simd_i8x16_arith',
@@ -32,6 +33,7 @@ SUBMODULES = (
     'simd_f64x2_pmin_pmax',
     'simd_i32x4_dot_i16x8',
     'simd_load_lane',
+    'simd_ext_mul',
 )
 
 

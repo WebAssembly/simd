@@ -228,13 +228,8 @@ SIMD instructions provide basic operations over :ref:`values <syntax-value>` of 
      \K{i32x4.}\viunop \\&&|&
      \K{i64x2.}\NEG \\&&|&
      \fshape\K{.}\vfunop \\&&|&
-     \K{i8x16.}\vitestop ~|~
-     \K{i16x8.}\vitestop ~|~
-     \K{i32x4.}\vitestop \\&&|&
-     \K{i8x16.}\BITMASK ~|~
-     \K{i16x8.}\BITMASK ~|~
-     \K{i32x4.}\BITMASK ~|~
-     \K{i64x2.}\BITMASK \\&&|&
+     \ishape\K{.}\vitestop \\ &&|&
+     \ishape\K{.}\BITMASK \\ &&|&
      \K{i8x16.}\NARROW\K{\_i16x8\_}\sx ~|~
      \K{i16x8.}\NARROW\K{\_i32x4\_}\sx \\&&|&
      \K{i16x8.}\WIDEN\K{\_low}\K{\_i8x16\_}\sx ~|~
@@ -470,6 +465,8 @@ Instructions in this group are concerned with linear :ref:`memory <syntax-mem>`.
      \K{v128.}\LOAD\K{16\_splat}~\memarg \\&&|&
      \K{v128.}\LOAD\K{32\_splat}~\memarg ~|~
      \K{v128.}\LOAD\K{64\_splat}~\memarg \\&&|&
+     \K{v128.}\LOAD\K{32\_zero}~\memarg ~|~
+     \K{v128.}\LOAD\K{64\_zero}~\memarg \\&&|&
      \MEMORYSIZE \\&&|&
      \MEMORYGROW \\
    \end{array}

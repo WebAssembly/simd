@@ -470,6 +470,8 @@ SIMD memory instructions have optional offset and alignment immediates, like the
      \text{v128.load16\_splat}~~m{:}\Tmemarg_2 &\Rightarrow& \V128.\LOAD\K{16\_splat}~m \\ &&|&
      \text{v128.load32\_splat}~~m{:}\Tmemarg_4 &\Rightarrow& \V128.\LOAD\K{32\_splat}~m \\ &&|&
      \text{v128.load64\_splat}~~m{:}\Tmemarg_8 &\Rightarrow& \V128.\LOAD\K{64\_splat}~m \\ &&|&
+     \text{v128.load32\_zero}~~m{:}\Tmemarg_4 &\Rightarrow& \V128.\LOAD\K{32\_zero}~m \\ &&|&
+     \text{v128.load64\_zero}~~m{:}\Tmemarg_8 &\Rightarrow& \V128.\LOAD\K{64\_zero}~m \\ &&|&
      \text{v128.store}~~m{:}\Tmemarg_{16} &\Rightarrow& \V128.\STORE~m \\
    \end{array}
 
@@ -699,6 +701,7 @@ SIMD const instructions have a mandatory :ref:`shape <syntax-simd-shape>` descri
    \begin{array}{llclll}
    \phantom{\production{instruction}} & \phantom{\Tplaininstr_I} &\phantom{::=}& \phantom{averylonginstructionnameforsimdtext} && \phantom{simdhasreallylonginstructionnames} \\[-2ex] &&|&
      \text{i64x2.neg} &\Rightarrow& \I64X2.\VNEG\\ &&|&
+     \text{i64x2.all\_true} &\Rightarrow& \I64X2.\ALLTRUE\\ &&|&
      \text{i64x2.bitmask} &\Rightarrow& \I64X2.\BITMASK\\ &&|&
      \text{i64x2.shl} &\Rightarrow& \I64X2.\VSHL\\ &&|&
      \text{i64x2.shr\_s} &\Rightarrow& \I64X2.\VSHR\K{\_s}\\ &&|&
