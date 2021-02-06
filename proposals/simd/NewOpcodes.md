@@ -77,13 +77,25 @@
 | v128.or        | 0x50   |
 | v128.xor       | 0x51   |
 | v128.bitselect | 0x52   |
+| v128.any_true  | 0x53   |
+
+| Load Lane Op      | opcode |
+| ----------------- | ------ |
+| v128.load8_lane   | 0x54   |
+| v128.load16_lane  | 0x55   |
+| v128.load32_lane  | 0x56   |
+| v128.load64_lane  | 0x57   |
+| v128.store8_lane  | 0x58   |
+| v128.store16_lane | 0x59   |
+| v128.store32_lane | 0x5a   |
+| v128.store64_lane | 0x5b   |
 
 | i8x16 Op             | opcode | i16x8 Op                 | opcode | i32x4 Op                 | opcode | i64x2 Op                 | opcode |
 | -------------------- | ------ | ------------------------ | ------ | ------------------------ | ------ | ------------------------ | ------ |
 | i8x16.abs            | 0x60   | i16x8.abs                | 0x80   | i32x4.abs                | 0xa0   | i64x2.abs                | 0xc0   |
 | i8x16.neg            | 0x61   | i16x8.neg                | 0x81   | i32x4.neg                | 0xa1   | i64x2.neg                | 0xc1   |
-| -------------        | 0x62   | -------------            | 0x82   | -------------            | 0xa2   | -------------            | 0xc2   |
-| i8x16.all_true       | 0x63   | i16x8.all_true           | 0x83   | i32x4.all_true           | 0xa3   | (i64x2.all_true) [TBD]   | 0xc3   |
+| i8x16.popcnt         | 0x62   | -------------            | 0x82   | -------------            | 0xa2   | -------------            | 0xc2   |
+| i8x16.all_true       | 0x63   | i16x8.all_true           | 0x83   | i32x4.all_true           | 0xa3   | i64x2.all_true           | 0xc3   |
 | i8x16.bitmask        | 0x64   | i16x8.bitmask            | 0x84   | i32x4.bitmask            | 0xa4   | i64x2.bitmask            | 0xc4   |
 | i8x16.narrow_i16x8_s | 0x65   | i16x8.narrow_i32x4_s     | 0x85   | ---- narrow ----         | 0xa5   | -------------            | 0xc5   |
 | i8x16.narrow_i16x8_u | 0x66   | i16x8.narrow_i32x4_u     | 0x86   | ---- narrow ----         | 0xa6   | -------------            | 0xc6   |
@@ -100,7 +112,7 @@
 | i8x16.sub            | 0x71   | i16x8.sub                | 0x91   | i32x4.sub                | 0xb1   | i64x2.sub                | 0xd1   |
 | i8x16.sub_sat_s      | 0x72   | i16x8.sub_sat_s          | 0x92   | ---- sub_sat ----        | 0xb2   | -------------            | 0xd2   |
 | i8x16.sub_sat_u      | 0x73   | i16x8.sub_sat_u          | 0x93   | ---- sub_sat ----        | 0xb3   | -------------            | 0xd3   |
-| -------------        | 0x74   | -------------            | 0x94   | -------------            | 0xb4   | -------------            | 0xd4   |
+|                      | 0x74   | -------------            | 0x94   | -------------            | 0xb4   | -------------            | 0xd4   |
 | ---- mul ----        | 0x75   | i16x8.mul                | 0x95   | i32x4.mul                | 0xb5   | i64x2.mul                | 0xd5   |
 | i8x16.min_s          | 0x76   | i16x8.min_s              | 0x96   | i32x4.min_s              | 0xb6   | -------------            | 0xd6   |
 | i8x16.min_u          | 0x77   | i16x8.min_u              | 0x97   | i32x4.min_u              | 0xb7   | -------------            | 0xd7   |
@@ -108,6 +120,7 @@
 | i8x16.max_u          | 0x79   | i16x8.max_u              | 0x99   | i32x4.max_u              | 0xb9   | -------------            | 0xd9   |
 | ----------------     | 0x7a   | ----------------         | 0x9a   | i32x4.dot_i16x8_s        | 0xba   | -------------            | 0xda   |
 | i8x16.avgr_u         | 0x7b   | i16x8.avgr_u             | 0x9b   | ---- avgr_u ----         | 0xbb   | -------------            | 0xdb   |
+| ----------------     | 0x7c   | i16x8.q15mulr_sat_s      | 0x9c   | ----------------         | 0xbc   | -------------            | 0xdc   |
 
 | f32x4 Op        | opcode | f64x2 Op        | opcode |
 | --------------- | ------ | --------------- | ------ |
@@ -124,9 +137,43 @@
 | f32x4.pmin      | 0xea   | f64x2.pmin      | 0xf6   |
 | f32x4.pmax      | 0xeb   | f64x2.pmax      | 0xf7   |
 
-| Conversion Op           | opcode |
-| ----------------------- | ------ |
-| i32x4.trunc_sat_f32x4_s | 0xf8   |
-| i32x4.trunc_sat_f32x4_u | 0xf9   |
-| f32x4.convert_i32x4_s   | 0xfa   |
-| f32x4.convert_i32x4_u   | 0xfb   |
+| Conversion Op                | opcode |
+| ---------------------------- | ------ |
+| i32x4.trunc_sat_f32x4_s      | 0xf8   |
+| i32x4.trunc_sat_f32x4_u      | 0xf9   |
+| f32x4.convert_i32x4_s        | 0xfa   |
+| f32x4.convert_i32x4_u        | 0xfb   |
+| f64x2.convert_low_i32x4_s    | 0xfc   |
+| f64x2.convert_low_i32x4_u    | 0xfd   |
+| i32x4.trunc_sat_f64x2_s_zero | 0xfe   |
+| i32x4.trunc_sat_f64x2_u_zero | 0xff   |
+| f32x4.demote_f64x2_zero      | 0x100  |
+| f64x2.promote_low_f32x4      | 0x101  |
+
+| I64x2 Cmp  | opcode |
+| ---------- | ------ |
+| i64x2.eq   | 0x102  |
+| i64x2.ne   | 0x103  |
+| i64x2.lt_s | 0x104  |
+| i64x2.gt_s | 0x105  |
+| i64x2.le_s | 0x106  |
+| i64x2.ge_s | 0x107  |
+
+| Extending Arithmetic Op       | opcode |
+| ----------------------------- | ------ |
+| i16x8.extadd_pairwise_i8x16_s | 0x108  |
+| i16x8.extadd_pairwise_i8x16_u | 0x109  |
+| i32x4.extadd_pairwise_i16x8_s | 0x10a  |
+| i32x4.extadd_pairwise_i16x8_u | 0x10b  |
+| i16x8.extmul_low_i8x16_s      | 0x10c  |
+| i16x8.extmul_high_i8x16_s     | 0x10d  |
+| i16x8.extmul_low_i8x16_u      | 0x10e  |
+| i16x8.extmul_high_i8x16_u     | 0x10f  |
+| i32x4.extmul_low_i16x8_s      | 0x110  |
+| i32x4.extmul_high_i16x8_s     | 0x111  |
+| i32x4.extmul_low_i16x8_u      | 0x112  |
+| i32x4.extmul_high_i16x8_u     | 0x113  |
+| i64x2.extmul_low_i32x4_s      | 0x114  |
+| i64x2.extmul_high_i32x4_s     | 0x115  |
+| i64x2.extmul_low_i32x4_u      | 0x116  |
+| i64x2.extmul_high_i32x4_u     | 0x117  |
