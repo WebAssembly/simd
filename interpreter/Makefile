@@ -114,7 +114,7 @@ $(WINMAKE):	clean
 
 TESTDIR =	../test/core
 # Skip _output directory, since that's a tmp directory, and list all other wast files.
-TESTFILES =	$(shell cd $(TESTDIR); find . -name _output -prune -o -name '*.wast' -print)
+TESTFILES =	$(shell cd $(TESTDIR); ls *.wast; ls [a-z]*/*.wast)
 TESTS =		$(TESTFILES:%.wast=%)
 
 .PHONY:		test debugtest partest
