@@ -240,7 +240,7 @@ For example, `ImmLaneIdx16` is a byte with values in the range 0-15 (inclusive).
 | `i64x2.extmul_high_i32x4_s`     |    `0xdd`| -                        |
 | `i64x2.extmul_low_i32x4_u`      |    `0xde`| -                        |
 | `i64x2.extmul_high_i32x4_u`     |    `0xdf`| -                        |
-| `i16x8.q15mulr_sat_s`           |    `0x9c`| -                        |
+| `i16x8.q15mulr_sat_s`           |    `0x82`| -                        |
 | `v128.any_true`                 |    `0x53`| -                        |
 | `v128.load8_lane`               |    `0x54`| m:memarg, i:ImmLaneIdx16 |
 | `v128.load16_lane`              |    `0x55`| m:memarg, i:ImmLaneIdx8  |
