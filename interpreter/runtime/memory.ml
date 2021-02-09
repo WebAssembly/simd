@@ -172,14 +172,3 @@ let store_packed sz mem a o v =
     | I64 x -> x
     | _ -> raise Type
   in storen mem a o n x
-
-let store_simd_lane v pack_size mem a o t laneidx =
-  let n = packed_size pack_size in
-  assert (n < Types.size t);
-  let s = match pack_size with
-  (* Fine to use signed extract lane, since we only store the low bytes. *)
-  | Pack8 -> Int64.of_int32 (V128.I8x16.extract_lane_s laneidx v)
-  | Pack16 -> Int64.of_int32 (V128.I16x8.extract_lane_s laneidx v)
-  | Pack32 -> Int64.of_int32 (V128.I32x4.extract_lane_s laneidx v)
-  | Pack64 -> V128.I64x2.extract_lane_s laneidx v
-  in storen mem a o n s

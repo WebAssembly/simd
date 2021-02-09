@@ -263,13 +263,16 @@ let rec step (c : config) : config =
           vs', []
         with exn -> vs', [Trapping (memory_error e.at exn) @@ e.at]);
 
-      | SimdStoreLane ({offset; ty; sz; _}, j), V128 v128 :: I32 i :: vs' ->
+      | SimdStoreLane ({offset; ty; sz; _}, j), V128 v :: I32 i :: vs' ->
         let mem = memory frame.inst (0l @@ e.at) in
         let addr = I64_convert.extend_i32_u i in
         (try
           (match sz with
           | None -> assert false
-          | Some pack_size -> Memory.store_simd_lane v128 pack_size mem addr offset ty j
+          | Some Pack8 -> Memory.store_packed Pack8 mem addr offset (I32 (V128.I8x16.extract_lane_s j v))
+          | Some Pack16 -> Memory.store_packed Pack16 mem addr offset (I32 (V128.I16x8.extract_lane_s j v))
+          | Some Pack32 -> Memory.store_value mem addr offset (I32 (V128.I32x4.extract_lane_s j v))
+          | Some Pack64 -> Memory.store_value mem addr offset (I64 (V128.I64x2.extract_lane_s j v))
           );
           vs', []
         with exn -> vs', [Trapping (memory_error e.at exn) @@ e.at])
