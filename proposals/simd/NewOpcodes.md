@@ -151,7 +151,7 @@
 | i32x4.trunc_sat_f32x4_u      | 0xf9   |
 | f32x4.convert_i32x4_s        | 0xfa   |
 | f32x4.convert_i32x4_u        | 0xfb   |
-| f64x2.convert_low_i32x4_s    | 0xfc   |
-| f64x2.convert_low_i32x4_u    | 0xfd   |
-| i32x4.trunc_sat_f64x2_s_zero | 0xfe   |
-| i32x4.trunc_sat_f64x2_u_zero | 0xff   |
+| i32x4.trunc_sat_f64x2_s_zero | 0xfc   |
+| i32x4.trunc_sat_f64x2_u_zero | 0xfd   |
+| f64x2.convert_low_i32x4_s    | 0xfe   |
+| f64x2.convert_low_i32x4_u    | 0xff   |
