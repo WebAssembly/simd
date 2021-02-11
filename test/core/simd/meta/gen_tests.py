@@ -35,6 +35,7 @@ SUBMODULES = (
     'simd_load_lane',
     'simd_ext_mul',
     'simd_int_to_int_widen',
+    'simd_i16x8_q15mulr_sat_s',
 )
 
 
