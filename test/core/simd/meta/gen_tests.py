@@ -36,6 +36,7 @@ SUBMODULES = (
     'simd_store_lane',
     'simd_ext_mul',
     'simd_int_to_int_widen',
+    'simd_int_trunc_sat_float',
 )
 
 

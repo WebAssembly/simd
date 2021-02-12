@@ -186,6 +186,8 @@ sig
   module I32x4_convert : sig
     val trunc_sat_f32x4_s : t -> t
     val trunc_sat_f32x4_u : t -> t
+    val trunc_sat_f64x2_s_zero : t -> t
+    val trunc_sat_f64x2_u_zero : t -> t
     val widen_low_s : t -> t
     val widen_high_s : t -> t
     val widen_low_u : t -> t
@@ -443,6 +445,10 @@ struct
     let convert f v = Rep.of_i32x4 (List.map f (Rep.to_f32x4 v))
     let trunc_sat_f32x4_s = convert I32_convert.trunc_sat_f32_s
     let trunc_sat_f32x4_u = convert I32_convert.trunc_sat_f32_u
+
+    let convert_zero f v = Rep.of_i32x4 (I32.zero :: I32.zero :: (List.map f (Rep.to_f64x2 v)))
+    let trunc_sat_f64x2_s_zero = convert_zero I32_convert.trunc_sat_f64_s
+    let trunc_sat_f64x2_u_zero = convert_zero I32_convert.trunc_sat_f64_u
 
     let widen take_or_drop mask x =
       Rep.of_i32x4 (List.map (Int32.logand mask) (take_or_drop 4 (Rep.to_i16x8 x)))
