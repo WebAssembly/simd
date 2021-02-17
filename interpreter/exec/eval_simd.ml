@@ -13,60 +13,59 @@ module SimdOp (SXX : Simd.S) (Value : ValueType with type t = SXX.t) = struct
   let of_value = of_arg Value.of_value
 
   let unop (op : unop) =
-    fun v -> match op with
-      | I8x16 Neg -> to_value (SXX.I8x16.neg (of_value 1 v))
-      | I8x16 Abs -> to_value (SXX.I8x16.abs (of_value 1 v))
-      | I8x16 Popcnt -> to_value (SXX.I8x16.popcnt (of_value 1 v))
-      | I16x8 Neg -> to_value (SXX.I16x8.neg (of_value 1 v))
-      | I16x8 Abs -> to_value (SXX.I16x8.abs (of_value 1 v))
-      | I16x8 ExtendLowS -> to_value (SXX.I16x8_convert.extend_low_s (of_value 1 v))
-      | I16x8 ExtendHighS -> to_value (SXX.I16x8_convert.extend_high_s (of_value 1 v))
-      | I16x8 ExtendLowU -> to_value (SXX.I16x8_convert.extend_low_u (of_value 1 v))
-      | I16x8 ExtendHighU -> to_value (SXX.I16x8_convert.extend_high_u (of_value 1 v))
-      | I16x8 ExtAddPairwiseS -> to_value (SXX.I16x8_convert.extadd_pairwise_s (of_value 1 v))
-      | I16x8 ExtAddPairwiseU -> to_value (SXX.I16x8_convert.extadd_pairwise_u (of_value 1 v))
-      | I32x4 Abs -> to_value (SXX.I32x4.abs (of_value 1 v))
-      | I32x4 Neg -> to_value (SXX.I32x4.neg (of_value 1 v))
-      | I32x4 ExtendLowS -> to_value (SXX.I32x4_convert.extend_low_s (of_value 1 v))
-      | I32x4 ExtendHighS -> to_value (SXX.I32x4_convert.extend_high_s (of_value 1 v))
-      | I32x4 ExtendLowU -> to_value (SXX.I32x4_convert.extend_low_u (of_value 1 v))
-      | I32x4 ExtendHighU -> to_value (SXX.I32x4_convert.extend_high_u (of_value 1 v))
-      | I32x4 TruncSatF32x4S -> to_value (SXX.I32x4_convert.trunc_sat_f32x4_s (of_value 1 v))
-      | I32x4 TruncSatF32x4U -> to_value (SXX.I32x4_convert.trunc_sat_f32x4_u (of_value 1 v))
-      | I32x4 TruncSatF64x2SZero ->
-        to_value (SXX.I32x4_convert.trunc_sat_f64x2_s_zero (of_value 1 v))
-      | I32x4 TruncSatF64x2UZero ->
-        to_value (SXX.I32x4_convert.trunc_sat_f64x2_u_zero (of_value 1 v))
-      | I32x4 ExtAddPairwiseS -> to_value (SXX.I32x4_convert.extadd_pairwise_s (of_value 1 v))
-      | I32x4 ExtAddPairwiseU -> to_value (SXX.I32x4_convert.extadd_pairwise_u (of_value 1 v))
-      | I64x2 Abs -> to_value (SXX.I64x2.abs (of_value 1 v))
-      | I64x2 Neg -> to_value (SXX.I64x2.neg (of_value 1 v))
-      | I64x2 ExtendLowS -> to_value (SXX.I64x2_convert.extend_low_s (of_value 1 v))
-      | I64x2 ExtendHighS -> to_value (SXX.I64x2_convert.extend_high_s (of_value 1 v))
-      | I64x2 ExtendLowU -> to_value (SXX.I64x2_convert.extend_low_u (of_value 1 v))
-      | I64x2 ExtendHighU -> to_value (SXX.I64x2_convert.extend_high_u (of_value 1 v))
-      | F32x4 Abs -> to_value (SXX.F32x4.abs (of_value 1 v))
-      | F32x4 Neg -> to_value (SXX.F32x4.neg (of_value 1 v))
-      | F32x4 Sqrt -> to_value (SXX.F32x4.sqrt (of_value 1 v))
-      | F32x4 Ceil -> to_value (SXX.F32x4.ceil (of_value 1 v))
-      | F32x4 Floor -> to_value (SXX.F32x4.floor (of_value 1 v))
-      | F32x4 Trunc -> to_value (SXX.F32x4.trunc (of_value 1 v))
-      | F32x4 Nearest -> to_value (SXX.F32x4.nearest (of_value 1 v))
-      | F32x4 ConvertI32x4S -> to_value (SXX.F32x4_convert.convert_i32x4_s (of_value 1 v))
-      | F32x4 ConvertI32x4U -> to_value (SXX.F32x4_convert.convert_i32x4_u (of_value 1 v))
-      | F32x4 DemoteF64x2Zero -> to_value (SXX.F32x4_convert.demote_f64x2_zero (of_value 1 v))
-      | F64x2 Abs -> to_value (SXX.F64x2.abs (of_value 1 v))
-      | F64x2 Neg -> to_value (SXX.F64x2.neg (of_value 1 v))
-      | F64x2 Sqrt -> to_value (SXX.F64x2.sqrt (of_value 1 v))
-      | F64x2 Ceil -> to_value (SXX.F64x2.ceil (of_value 1 v))
-      | F64x2 Floor -> to_value (SXX.F64x2.floor (of_value 1 v))
-      | F64x2 Trunc -> to_value (SXX.F64x2.trunc (of_value 1 v))
-      | F64x2 Nearest -> to_value (SXX.F64x2.nearest (of_value 1 v))
-      | F64x2 PromoteLowF32x4 -> to_value (SXX.F64x2_convert.promote_low_f32x4 (of_value 1 v))
-      | F64x2 ConvertI32x4S -> to_value (SXX.F64x2_convert.convert_i32x4_s (of_value 1 v))
-      | F64x2 ConvertI32x4U -> to_value (SXX.F64x2_convert.convert_i32x4_u (of_value 1 v))
-      | V128 Not -> to_value (SXX.V128.lognot (of_value 1 v))
+    let f = match op with
+      | I8x16 Neg -> SXX.I8x16.neg
+      | I8x16 Abs -> SXX.I8x16.abs
+      | I8x16 Popcnt -> SXX.I8x16.popcnt
+      | I16x8 Neg -> SXX.I16x8.neg
+      | I16x8 Abs -> SXX.I16x8.abs
+      | I16x8 ExtendLowS -> SXX.I16x8_convert.extend_low_s
+      | I16x8 ExtendHighS -> SXX.I16x8_convert.extend_high_s
+      | I16x8 ExtendLowU -> SXX.I16x8_convert.extend_low_u
+      | I16x8 ExtendHighU -> SXX.I16x8_convert.extend_high_u
+      | I16x8 ExtAddPairwiseS -> SXX.I16x8_convert.extadd_pairwise_s
+      | I16x8 ExtAddPairwiseU -> SXX.I16x8_convert.extadd_pairwise_u
+      | I32x4 Abs -> SXX.I32x4.abs
+      | I32x4 Neg -> SXX.I32x4.neg
+      | I32x4 ExtendLowS -> SXX.I32x4_convert.extend_low_s
+      | I32x4 ExtendHighS -> SXX.I32x4_convert.extend_high_s
+      | I32x4 ExtendLowU -> SXX.I32x4_convert.extend_low_u
+      | I32x4 ExtendHighU -> SXX.I32x4_convert.extend_high_u
+      | I32x4 TruncSatF32x4S -> SXX.I32x4_convert.trunc_sat_f32x4_s
+      | I32x4 TruncSatF32x4U -> SXX.I32x4_convert.trunc_sat_f32x4_u
+      | I32x4 TruncSatF64x2SZero -> SXX.I32x4_convert.trunc_sat_f64x2_s_zero
+      | I32x4 TruncSatF64x2UZero -> SXX.I32x4_convert.trunc_sat_f64x2_u_zero
+      | I32x4 ExtAddPairwiseS -> SXX.I32x4_convert.extadd_pairwise_s
+      | I32x4 ExtAddPairwiseU -> SXX.I32x4_convert.extadd_pairwise_u
+      | I64x2 Abs -> SXX.I64x2.abs
+      | I64x2 Neg -> SXX.I64x2.neg
+      | I64x2 ExtendLowS -> SXX.I64x2_convert.extend_low_s
+      | I64x2 ExtendHighS -> SXX.I64x2_convert.extend_high_s
+      | I64x2 ExtendLowU -> SXX.I64x2_convert.extend_low_u
+      | I64x2 ExtendHighU -> SXX.I64x2_convert.extend_high_u
+      | F32x4 Abs -> SXX.F32x4.abs
+      | F32x4 Neg -> SXX.F32x4.neg
+      | F32x4 Sqrt -> SXX.F32x4.sqrt
+      | F32x4 Ceil -> SXX.F32x4.ceil
+      | F32x4 Floor -> SXX.F32x4.floor
+      | F32x4 Trunc -> SXX.F32x4.trunc
+      | F32x4 Nearest -> SXX.F32x4.nearest
+      | F32x4 ConvertI32x4S -> SXX.F32x4_convert.convert_i32x4_s
+      | F32x4 ConvertI32x4U -> SXX.F32x4_convert.convert_i32x4_u
+      | F32x4 DemoteF64x2Zero -> SXX.F32x4_convert.demote_f64x2_zero
+      | F64x2 Abs -> SXX.F64x2.abs
+      | F64x2 Neg -> SXX.F64x2.neg
+      | F64x2 Sqrt -> SXX.F64x2.sqrt
+      | F64x2 Ceil -> SXX.F64x2.ceil
+      | F64x2 Floor -> SXX.F64x2.floor
+      | F64x2 Trunc -> SXX.F64x2.trunc
+      | F64x2 Nearest -> SXX.F64x2.nearest
+      | F64x2 PromoteLowF32x4 -> SXX.F64x2_convert.promote_low_f32x4
+      | F64x2 ConvertI32x4S -> SXX.F64x2_convert.convert_i32x4_s
+      | F64x2 ConvertI32x4U -> SXX.F64x2_convert.convert_i32x4_u
+      | V128 Not -> SXX.V128.lognot
       | _ -> assert false
+    in fun v1 -> to_value (f (of_value 1 v1))
 
   let binop (op : binop) =
     let f = match op with
