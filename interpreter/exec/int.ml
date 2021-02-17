@@ -294,10 +294,9 @@ struct
     (* mul x64 y64 can overflow int64 when both are int32 min, but this is only
      * used by i16x8, so we are fine for now. *)
     assert (Rep.bitwidth < 32);
-    let open Int64 in
     let x64 = Rep.to_int64 x in
     let y64 = Rep.to_int64 y in
-    Rep.of_int64 ((shift_right (add (mul x64 y64) 0x4000L) 15))
+    Rep.of_int64 Int64.((shift_right (add (mul x64 y64) 0x4000L) 15))
 
   let to_int_s = Rep.to_int
   let to_int_u i = Rep.to_int i land (Rep.to_int Rep.max_int lsl 1) lor 1
