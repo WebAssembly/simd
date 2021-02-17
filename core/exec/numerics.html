@@ -761,6 +761,16 @@ it holds that <span class="math notranslate nohighlight">\(i_1 = i_2\cdot\href{.
 \href{../exec/numerics.html#op-iavgr-u}{\mathrm{iavgr\_u}}_N(i_1, i_2) &amp;=&amp; \href{../exec/numerics.html#aux-trunc}{\mathrm{trunc}}((i_1 + i_2 + 1) / 2)
 \end{array}\]</div>
 </div>
+<div class="section" id="xref-exec-numerics-op-iq15mulrsat-s-mathrm-iq15mulrsat-s-n-i-1-i-2">
+<span id="op-iq15mulrsat-s"></span><h3><span class="math notranslate nohighlight">\(\href{../exec/numerics.html#op-iq15mulrsat-s}{\mathrm{iq15mulrsat\_s}}_N(i_1, i_2)\)</span><a class="headerlink" href="#xref-exec-numerics-op-iq15mulrsat-s-mathrm-iq15mulrsat-s-n-i-1-i-2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Return the result of <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#aux-sat-s}{\mathrm{sat}^{\mathsf{s}}}_N(\href{../exec/numerics.html#op-ishr-s}{\mathrm{ishr\_s}}_N(i_1 \cdot i_2 + 2^{14}, 15))\)</span>.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{array}{lll&#64;{\qquad}l}
+\href{../exec/numerics.html#op-iq15mulrsat-s}{\mathrm{iq15mulrsat\_s}}_N(i_1, i_2) &amp;=&amp; \href{../exec/numerics.html#aux-sat-s}{\mathrm{sat}^{\mathsf{s}}}_N(\href{../exec/numerics.html#op-ishr-s}{\mathrm{ishr\_s}}_N(i_1 \cdot i_2 + 2^{14}, 15))
+\end{array}\]</div>
+</div>
 </div>
 <div class="section" id="floating-point-operations">
 <span id="float-ops"></span><span id="index-9"></span><h2>Floating-Point Operations<a class="headerlink" href="#floating-point-operations" title="Permalink to this headline">¶</a></h2>
@@ -1308,6 +1318,30 @@ then its sign is non-deterministic and the <a class="reference internal" href=".
 \href{../exec/numerics.html#op-fge}{\mathrm{fge}}_N(z_1, - \infty) &amp;=&amp; 1 \\
 \href{../exec/numerics.html#op-fge}{\mathrm{fge}}_N(\pm 0, \mp 0) &amp;=&amp; 1 \\
 \href{../exec/numerics.html#op-fge}{\mathrm{fge}}_N(z_1, z_2) &amp;=&amp; \href{../exec/numerics.html#aux-bool}{\mathrm{bool}}(z_1 \geq z_2) \\
+\end{array}\end{split}\]</div>
+</div>
+<div class="section" id="xref-exec-numerics-op-fpmin-mathrm-fpmin-n-z-1-z-2">
+<span id="op-fpmin"></span><h3><span class="math notranslate nohighlight">\(\href{../exec/numerics.html#op-fpmin}{\mathrm{fpmin}}_N(z_1, z_2)\)</span><a class="headerlink" href="#xref-exec-numerics-op-fpmin-mathrm-fpmin-n-z-1-z-2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(z_2\)</span> is less than <span class="math notranslate nohighlight">\(z_1\)</span> then return <span class="math notranslate nohighlight">\(z_2\)</span>.</p></li>
+<li><p>Else return <span class="math notranslate nohighlight">\(z_1\)</span>.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{&#64;{}lcll}
+\href{../exec/numerics.html#op-fpmin}{\mathrm{fpmin}}_N(z_1, z_2) &amp;=&amp; z_2 &amp; (\mathrel{\mbox{if}} \href{../exec/numerics.html#op-flt}{\mathrm{flt}}_N(z_2, z_1) = 1) \\
+\href{../exec/numerics.html#op-fpmin}{\mathrm{fpmin}}_N(z_1, z_2) &amp;=&amp; z_1 &amp; (\mathrel{\mbox{otherwise}})
+\end{array}\end{split}\]</div>
+</div>
+<div class="section" id="xref-exec-numerics-op-fpmax-mathrm-fpmax-n-z-1-z-2">
+<span id="op-fpmax"></span><h3><span class="math notranslate nohighlight">\(\href{../exec/numerics.html#op-fpmax}{\mathrm{fpmax}}_N(z_1, z_2)\)</span><a class="headerlink" href="#xref-exec-numerics-op-fpmax-mathrm-fpmax-n-z-1-z-2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(z_1\)</span> is less than <span class="math notranslate nohighlight">\(z_2\)</span> then return <span class="math notranslate nohighlight">\(z_2\)</span>.</p></li>
+<li><p>Else return <span class="math notranslate nohighlight">\(z_1\)</span>.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{&#64;{}lcll}
+\href{../exec/numerics.html#op-fpmax}{\mathrm{fpmax}}_N(z_1, z_2) &amp;=&amp; z_2 &amp; (\mathrel{\mbox{if}} \href{../exec/numerics.html#op-flt}{\mathrm{flt}}_N(z_1, z_2) = 1) \\
+\href{../exec/numerics.html#op-fpmax}{\mathrm{fpmax}}_N(z_1, z_2) &amp;=&amp; z_1 &amp; (\mathrel{\mbox{otherwise}})
 \end{array}\end{split}\]</div>
 </div>
 </div>
