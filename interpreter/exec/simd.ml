@@ -446,7 +446,8 @@ struct
     let trunc_sat_f32x4_s = convert I32_convert.trunc_sat_f32_s
     let trunc_sat_f32x4_u = convert I32_convert.trunc_sat_f32_u
 
-    let convert_zero f v = Rep.of_i32x4 (I32.zero :: I32.zero :: (List.map f (Rep.to_f64x2 v)))
+    let convert_zero f v =
+      Rep.(of_i32x4 I32.(zero :: zero :: (List.map f (to_f64x2 v)))
     let trunc_sat_f64x2_s_zero = convert_zero I32_convert.trunc_sat_f64_s
     let trunc_sat_f64x2_u_zero = convert_zero I32_convert.trunc_sat_f64_u
 
