@@ -376,6 +376,7 @@ For the other SIMD instructions, the use of two's complement for the signed inte
 .. _syntax-vbinop:
 .. _syntax-vextend:
 .. _syntax-vextmul:
+.. _syntax-vcvtop:
 
 Conventions
 ...........
