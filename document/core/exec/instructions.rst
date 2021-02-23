@@ -736,11 +736,11 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 3. Pop the value :math:`\V128.\VCONST~c_1` from the stack.
 
-4. Let :math:`s^\ast` be the result of computing :math:`\imul_{32}(\extend^s_{16,32}(\lanes_{\I16X8}(c_1)), \extend^s_{16,32}(\lanes_{\I16X8}(c_2)))`
+4. Let :math:`(i_1~i_2)^\ast` be the result of computing :math:`\imul_{32}(\extend^s_{16,32}(\lanes_{\I16X8}(c_1)), \extend^s_{16,32}(\lanes_{\I16X8}(c_2)))`
 
-5. Let :math:`x_i` be the result of computing :math:`\iadd_{32}(s^\ast[2i], s^\ast[2i+1])`.
+5. Let :math:`j^\ast` be the result of computing :math:`\iadd_{32}(i_1, i_2)^\ast`.
 
-6. Let :math:`c` be the result of computing :math:`\lanes^{-1}_{\I32X4}(x_0 \dots x_3)`.
+6. Let :math:`c` be the result of computing :math:`\lanes^{-1}_{\I32X4}(j^\ast)`.
 
 8. Push the value :math:`\V128.\VCONST~c` onto the stack.
 
@@ -752,7 +752,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
    \\ \qquad
      \begin{array}[t]{@{}r@{~}l@{}}
      (\iff & (i_1~i_2)^\ast = \imul_{32}(\extend^s_{16,32}(\lanes_{\I16X8}(c_1)), \extend^s_{16,32}(\lanes_{\I16X8}(c_2))) \\
-     \wedge & (j = \iadd_{32}(i_1, i_2))^\ast \\
+     \wedge & j^\ast = \iadd_{32}(i_1, i_2)^\ast \\
      \wedge & c = \lanes^{-1}_{\I32X4}(j^\ast)
      \end{array}
    \end{array}
