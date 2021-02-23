@@ -262,12 +262,12 @@ For the other integer instructions, the use of two’s complement for the signed
   \href{../syntax/instructions.html#syntax-shape}{\mathit{ishape}}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{bitmask}} \\ &amp;&amp;|&amp;
   \mathsf{i8x16.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{narrow}}\mathsf{\_i16x8\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
   \mathsf{i16x8.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{narrow}}\mathsf{\_i32x4\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\&amp;&amp;|&amp;
-  \mathsf{i16x8.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{widen}}\mathsf{\_low}\mathsf{\_i8x16\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
-  \mathsf{i32x4.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{widen}}\mathsf{\_low}\mathsf{\_i16x8\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\&amp;&amp;|&amp;
-  \mathsf{i64x2.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{widen}}\mathsf{\_low}\mathsf{\_i32x4\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\&amp;&amp;|&amp;
-  \mathsf{i16x8.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{widen}}\mathsf{\_high}\mathsf{\_i8x16\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
-  \mathsf{i32x4.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{widen}}\mathsf{\_high}\mathsf{\_i16x8\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\&amp;&amp;|&amp;
-  \mathsf{i64x2.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{widen}}\mathsf{\_high}\mathsf{\_i32x4\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\&amp;&amp;|&amp;
+  \mathsf{i16x8.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extend}}\mathsf{\_low}\mathsf{\_i8x16\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
+  \mathsf{i32x4.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extend}}\mathsf{\_low}\mathsf{\_i16x8\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\&amp;&amp;|&amp;
+  \mathsf{i64x2.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extend}}\mathsf{\_low}\mathsf{\_i32x4\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\&amp;&amp;|&amp;
+  \mathsf{i16x8.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extend}}\mathsf{\_high}\mathsf{\_i8x16\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
+  \mathsf{i32x4.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extend}}\mathsf{\_high}\mathsf{\_i16x8\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\&amp;&amp;|&amp;
+  \mathsf{i64x2.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extend}}\mathsf{\_high}\mathsf{\_i32x4\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\&amp;&amp;|&amp;
   \href{../syntax/instructions.html#syntax-shape}{\mathit{ishape}}\mathsf{.}\href{../syntax/instructions.html#syntax-vshiftop}{\mathit{vshiftop}} \\&amp;&amp;|&amp;
   \href{../syntax/instructions.html#syntax-shape}{\mathit{ishape}}\mathsf{.}\href{../syntax/instructions.html#syntax-vibinop}{\mathit{vibinop}} \\&amp;&amp;|&amp;
   \mathsf{i8x16.}\href{../syntax/instructions.html#syntax-viminmaxop}{\mathit{viminmaxop}} ~|~
@@ -376,7 +376,7 @@ The bitwidth of the numeric type <span class="math notranslate nohighlight">\(t\
 <p>Some SIMD instructions have a signedness annotation <span class="math notranslate nohighlight">\(\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}\)</span> which distinguishes whether the elements in the operands are to be <a class="reference internal" href="../exec/numerics.html#aux-signed"><span class="std std-ref">interpreted</span></a> as <a class="reference internal" href="values.html#syntax-uint"><span class="std std-ref">unsigned</span></a> or <a class="reference internal" href="values.html#syntax-sint"><span class="std std-ref">signed</span></a> integers.
 For the other SIMD instructions, the use of two’s complement for the signed interpretation means that they behave the same regardless of signedness.</p>
 <div class="section" id="syntax-vextmul">
-<span id="syntax-vwiden"></span><span id="syntax-vbinop"></span><span id="syntax-vunop"></span><span id="id1"></span><h3>Conventions<a class="headerlink" href="#syntax-vextmul" title="Permalink to this headline">¶</a></h3>
+<span id="syntax-vextend"></span><span id="syntax-vbinop"></span><span id="syntax-vunop"></span><span id="id1"></span><h3>Conventions<a class="headerlink" href="#syntax-vextmul" title="Permalink to this headline">¶</a></h3>
 <p>Occasionally, it is convenient to group operators together according to the following grammar shorthands:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{llll}
@@ -395,9 +395,9 @@ For the other SIMD instructions, the use of two’s complement for the signed in
 \def\mathdef2047#1{{}}\mathdef2047{conversion operator} &amp; \href{../syntax/instructions.html#syntax-vcvtop}{\mathit{vcvtop}} &amp;::=&amp;
   \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{trunc}}\mathsf{\_sat} ~|~
   \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{convert}} \\
-\def\mathdef2047#1{{}}\mathdef2047{widen operator} &amp; \href{../syntax/instructions.html#syntax-vwiden}{\mathit{vwiden}} &amp;::=&amp;
-  \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{widen}}\mathsf{\_low\_}\href{../syntax/instructions.html#syntax-shape}{\mathit{shape}}\mathsf{\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
-  \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{widen}}\mathsf{\_high\_}\href{../syntax/instructions.html#syntax-shape}{\mathit{shape}}\mathsf{\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\
+\def\mathdef2047#1{{}}\mathdef2047{extend operator} &amp; \href{../syntax/instructions.html#syntax-vextend}{\mathit{vextend}} &amp;::=&amp;
+  \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extend}}\mathsf{\_low\_}\href{../syntax/instructions.html#syntax-shape}{\mathit{shape}}\mathsf{\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
+  \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extend}}\mathsf{\_high\_}\href{../syntax/instructions.html#syntax-shape}{\mathit{shape}}\mathsf{\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\
 \def\mathdef2047#1{{}}\mathdef2047{extmul operator} &amp; \href{../syntax/instructions.html#syntax-vextmul}{\mathit{vextmul}} &amp;::=&amp;
   \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extmul}}\mathsf{\_low\_}\href{../syntax/instructions.html#syntax-shape}{\mathit{ishape}}\mathsf{\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
   \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extmul}}\mathsf{\_high\_}\href{../syntax/instructions.html#syntax-shape}{\mathit{ishape}}\mathsf{\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\
