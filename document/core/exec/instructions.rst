@@ -751,9 +751,9 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
    \end{array}
    \\ \qquad
      \begin{array}[t]{@{}r@{~}l@{}}
-     (\iff & s^\ast = \imul_{32}(\extend^s_{16,32}(\lanes_{\I16X8}(c_1)), \extend^s_{16,32}(\lanes_{\I16X8}(c_2))) \\
-     \wedge & x_i = \iadd_{32}(s^\ast[2i], s^\ast[2i+1]) \\
-     \wedge & c = \lanes^{-1}_{\I32X4}(x_0 \dots x_3)
+     (\iff & (i_1~i_2)^\ast = \imul_{32}(\extend^s_{16,32}(\lanes_{\I16X8}(c_1)), \extend^s_{16,32}(\lanes_{\I16X8}(c_2))) \\
+     \wedge & (j = \iadd_{32}(i_1, i_2))^\ast \\
+     \wedge & c = \lanes^{-1}_{\I32X4}(j^\ast)
      \end{array}
    \end{array}
 
