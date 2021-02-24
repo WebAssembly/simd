@@ -530,27 +530,6 @@ respectively.</p>
   \\
 \end{array}\end{split}\]</div>
 </div>
-<div class="section" id="t-2-mathsf-x-n-mathsf-xref-syntax-instructions-syntax-vcvtop-mathit-vcvtop-mathsf-t-1-mathsf-x-m-mathsf-xref-syntax-instructions-syntax-sx-mathit-sx">
-<span id="exec-vcvtop"></span><h3><span class="math notranslate nohighlight">\(t_2\mathsf{x}N\mathsf{.}\href{../syntax/instructions.html#syntax-vcvtop}{\mathit{vcvtop}}\mathsf{\_}t_1\mathsf{x}M\mathsf{\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}\)</span><a class="headerlink" href="#t-2-mathsf-x-n-mathsf-xref-syntax-instructions-syntax-vcvtop-mathit-vcvtop-mathsf-t-1-mathsf-x-m-mathsf-xref-syntax-instructions-syntax-sx-mathit-sx" title="Permalink to this headline">¶</a></h3>
-<ol class="arabic simple">
-<li><p>Assert: due to <a class="reference internal" href="../valid/instructions.html#valid-vcvtop"><span class="std std-ref">validation</span></a>, a value of <a class="reference internal" href="../syntax/types.html#syntax-valtype"><span class="std std-ref">value type</span></a> <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\)</span> is on the top of the stack.</p></li>
-<li><p>Pop the value <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c_1\)</span> from the stack.</p></li>
-<li><p>Let <span class="math notranslate nohighlight">\(i^\ast\)</span> be the sequence <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{t_1\mathsf{x}M}(c_1)\)</span>.</p></li>
-<li><p>Let <span class="math notranslate nohighlight">\(c\)</span> be the result of computing <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}^{-1}_{t_2\mathsf{x}N}(\href{../syntax/instructions.html#syntax-vcvtop}{\mathit{vcvtop}}^{\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}}_{M,N}(i^\ast))\)</span></p></li>
-<li><p>Push the value <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c\)</span> onto the stack.</p></li>
-</ol>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{l}
-\begin{array}{lcl&#64;{\qquad}l}
-(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c_1)~t_2\mathsf{x}N\mathsf{.}\href{../syntax/instructions.html#syntax-vcvtop}{\mathit{vcvtop}}\mathsf{\_}t_1\mathsf{x}M\mathsf{\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} &amp;\href{../exec/conventions.html#formal-notation}{\hookrightarrow}&amp; (\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c) \\
-\end{array}
-\\ \qquad
-  \begin{array}[t]{&#64;{}r&#64;{~}l&#64;{}}
-  (\mathrel{\mbox{if}} &amp; i^\ast = \href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{t_1\mathsf{x}M}(c_1) \\
-  \wedge &amp; c = \href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}^{-1}_{t_2\mathsf{x}N}(\href{../syntax/instructions.html#syntax-vcvtop}{\mathit{vcvtop}}^{\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}}_{M,N}(i^\ast))
-  \end{array}
-\end{array}\end{split}\]</div>
-</div>
 <div class="section" id="t-2-mathsf-x-n-mathsf-xref-syntax-instructions-syntax-instr-simd-mathsf-narrow-mathsf-t-1-mathsf-x-m-mathsf-xref-syntax-instructions-syntax-sx-mathit-sx">
 <span id="exec-simd-narrow"></span><h3><span class="math notranslate nohighlight">\(t_2\mathsf{x}N\mathsf{.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{narrow}}\mathsf{\_}t_1\mathsf{x}M\mathsf{\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}\)</span><a class="headerlink" href="#t-2-mathsf-x-n-mathsf-xref-syntax-instructions-syntax-instr-simd-mathsf-narrow-mathsf-t-1-mathsf-x-m-mathsf-xref-syntax-instructions-syntax-sx-mathit-sx" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
@@ -576,45 +555,80 @@ respectively.</p>
   \end{array}
 \end{array}\end{split}\]</div>
 </div>
-<div class="section" id="t-2-mathsf-x-n-mathsf-xref-syntax-instructions-syntax-instr-simd-mathsf-extend-mathsf-low-t-1-mathsf-x-m-xref-syntax-instructions-syntax-sx-mathit-sx">
-<span id="exec-simd-extend"></span><h3><span class="math notranslate nohighlight">\(t_2\mathsf{x}N\mathsf{.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extend}}\_\mathsf{low}\_t_1\mathsf{x}M\_\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}\)</span><a class="headerlink" href="#t-2-mathsf-x-n-mathsf-xref-syntax-instructions-syntax-instr-simd-mathsf-extend-mathsf-low-t-1-mathsf-x-m-xref-syntax-instructions-syntax-sx-mathit-sx" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="t-2-mathsf-x-n-mathsf-xref-syntax-instructions-syntax-vcvtop-mathit-vcvtop-mathsf-t-1-mathsf-x-m-mathsf-xref-syntax-instructions-syntax-sx-mathit-sx">
+<span id="exec-vcvtop"></span><h3><span class="math notranslate nohighlight">\(t_2\mathsf{x}N\mathsf{.}\href{../syntax/instructions.html#syntax-vcvtop}{\mathit{vcvtop}}\mathsf{\_}t_1\mathsf{x}M\mathsf{\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}\)</span><a class="headerlink" href="#t-2-mathsf-x-n-mathsf-xref-syntax-instructions-syntax-vcvtop-mathit-vcvtop-mathsf-t-1-mathsf-x-m-mathsf-xref-syntax-instructions-syntax-sx-mathit-sx" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
-<li><p>Assert: due to <a class="reference internal" href="../valid/instructions.html#valid-vitestop"><span class="std std-ref">validation</span></a>, a value of <a class="reference internal" href="../syntax/types.html#syntax-valtype"><span class="std std-ref">value type</span></a> <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\)</span> is on the top of the stack.</p></li>
+<li><p>Assert: due to <a class="reference internal" href="../valid/instructions.html#valid-vcvtop"><span class="std std-ref">validation</span></a>, a value of <a class="reference internal" href="../syntax/types.html#syntax-valtype"><span class="std std-ref">value type</span></a> <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\)</span> is on the top of the stack.</p></li>
 <li><p>Pop the value <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c_1\)</span> from the stack.</p></li>
-<li><p>Let <span class="math notranslate nohighlight">\(i^\ast\)</span> be the sequence <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{t_1\mathsf{x}M}(c_1)[0 \href{../syntax/conventions.html#notation-slice}{\mathrel{\mathbf{:}}} N]\)</span>.</p></li>
-<li><p>Let <span class="math notranslate nohighlight">\(c\)</span> be the result of computing <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}^{-1}_{t_2\mathsf{x}N}(\href{../exec/numerics.html#op-extend-u}{\mathrm{extend}}^{\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}}_{t_1,t_2}(i^\ast))\)</span></p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(i^\ast\)</span> be the sequence <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{t_1\mathsf{x}M}(c_1)\)</span>.</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(c\)</span> be the result of computing <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}^{-1}_{t_2\mathsf{x}N}(\href{../syntax/instructions.html#syntax-vcvtop}{\mathit{vcvtop}}^{\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}}_{M,N}(i^\ast))\)</span></p></li>
 <li><p>Push the value <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c\)</span> onto the stack.</p></li>
 </ol>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{l}
 \begin{array}{lcl&#64;{\qquad}l}
-(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c_1)~t_2\mathsf{x}N\mathsf{.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extend}}\_\mathsf{low}\_t_1\mathsf{x}M\_\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} &amp;\href{../exec/conventions.html#formal-notation}{\hookrightarrow}&amp; (\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c) \\
+(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c_1)~t_2\mathsf{x}N\mathsf{.}\href{../syntax/instructions.html#syntax-vcvtop}{\mathit{vcvtop}}\mathsf{\_}t_1\mathsf{x}M\mathsf{\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} &amp;\href{../exec/conventions.html#formal-notation}{\hookrightarrow}&amp; (\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c) \\
 \end{array}
 \\ \qquad
   \begin{array}[t]{&#64;{}r&#64;{~}l&#64;{}}
-  (\mathrel{\mbox{if}} &amp; i^\ast = \href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{t_1\mathsf{x}M}(c_1)[0 \href{../syntax/conventions.html#notation-slice}{\mathrel{\mathbf{:}}} N] \\
-  \wedge &amp; c = \href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}^{-1}_{t_2\mathsf{x}N}(\href{../exec/numerics.html#op-extend-u}{\mathrm{extend}}^{\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}}_{M,N}(i^\ast))
+  (\mathrel{\mbox{if}} &amp; c = \href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}^{-1}_{t_2\mathsf{x}N}(\href{../syntax/instructions.html#syntax-vcvtop}{\mathit{vcvtop}}^{\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}}_{M,N}(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{t_1\mathsf{x}M}(c_1)))
   \end{array}
 \end{array}\end{split}\]</div>
 </div>
-<div class="section" id="t-2-mathsf-x-n-mathsf-xref-syntax-instructions-syntax-instr-simd-mathsf-extend-mathsf-high-t-1-mathsf-x-m-xref-syntax-instructions-syntax-sx-mathit-sx">
-<h3><span class="math notranslate nohighlight">\(t_2\mathsf{x}N\mathsf{.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extend}}\_\mathsf{high}\_t_1\mathsf{x}M\_\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}\)</span><a class="headerlink" href="#t-2-mathsf-x-n-mathsf-xref-syntax-instructions-syntax-instr-simd-mathsf-extend-mathsf-high-t-1-mathsf-x-m-xref-syntax-instructions-syntax-sx-mathit-sx" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="t-2-mathsf-x-n-mathsf-xref-syntax-instructions-syntax-vcvtop-mathit-vcvtop-mathsf-low-t-1-mathsf-x-m-mathsf-xref-syntax-instructions-syntax-sx-mathit-sx-and-t-2-mathsf-x-n-mathsf-xref-syntax-instructions-syntax-vcvtop-mathit-vcvtop-mathsf-high-t-1-mathsf-x-m-mathsf-xref-syntax-instructions-syntax-sx-mathit-sx">
+<h3><span class="math notranslate nohighlight">\(t_2\mathsf{x}N\mathsf{.}\href{../syntax/instructions.html#syntax-vcvtop}{\mathit{vcvtop}}\mathsf{\_low\_}t_1\mathsf{x}M\mathsf{\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}^?\)</span> and <span class="math notranslate nohighlight">\(t_2\mathsf{x}N\mathsf{.}\href{../syntax/instructions.html#syntax-vcvtop}{\mathit{vcvtop}}\mathsf{\_high\_}t_1\mathsf{x}M\mathsf{\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}^?\)</span><a class="headerlink" href="#t-2-mathsf-x-n-mathsf-xref-syntax-instructions-syntax-vcvtop-mathit-vcvtop-mathsf-low-t-1-mathsf-x-m-mathsf-xref-syntax-instructions-syntax-sx-mathit-sx-and-t-2-mathsf-x-n-mathsf-xref-syntax-instructions-syntax-vcvtop-mathit-vcvtop-mathsf-high-t-1-mathsf-x-m-mathsf-xref-syntax-instructions-syntax-sx-mathit-sx" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
-<li><p>Assert: due to <a class="reference internal" href="../valid/instructions.html#valid-vitestop"><span class="std std-ref">validation</span></a>, a value of <a class="reference internal" href="../syntax/types.html#syntax-valtype"><span class="std std-ref">value type</span></a> <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\)</span> is on the top of the stack.</p></li>
+<li><p>Assert: due to <a class="reference internal" href="../valid/instructions.html#valid-vcvtop"><span class="std std-ref">validation</span></a>, a value of <a class="reference internal" href="../syntax/types.html#syntax-valtype"><span class="std std-ref">value type</span></a> <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\)</span> is on the top of the stack.</p></li>
 <li><p>Pop the value <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c_1\)</span> from the stack.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(\mathsf{low}\)</span> is part of the instruction, then:</p>
+<ol class="loweralpha simple">
+<li><p>Let <span class="math notranslate nohighlight">\(i^\ast\)</span> be the sequence <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{t_1\mathsf{x}M}(c_1)[0 \href{../syntax/conventions.html#notation-slice}{\mathrel{\mathbf{:}}} N]\)</span>.</p></li>
+</ol>
+</li>
+<li><p>Else:</p>
+<ol class="loweralpha simple">
 <li><p>Let <span class="math notranslate nohighlight">\(i^\ast\)</span> be the sequence <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{t_1\mathsf{x}M}(c_1)[N \href{../syntax/conventions.html#notation-slice}{\mathrel{\mathbf{:}}} N]\)</span>.</p></li>
-<li><p>Let <span class="math notranslate nohighlight">\(c\)</span> be the result of computing <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}^{-1}_{t_2\mathsf{x}N}(\href{../exec/numerics.html#op-extend-u}{\mathrm{extend}}^{\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}}_{t_1,t_2}(i^\ast))\)</span></p></li>
+</ol>
+</li>
+<li><p>Let <span class="math notranslate nohighlight">\(c\)</span> be the result of computing <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}^{-1}_{t_2\mathsf{x}N}(\href{../syntax/instructions.html#syntax-vcvtop}{\mathit{vcvtop}}^{\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}^?}_{M,N}(i^\ast))\)</span></p></li>
 <li><p>Push the value <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c\)</span> onto the stack.</p></li>
 </ol>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{l}
 \begin{array}{lcl&#64;{\qquad}l}
-(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c_1)~t_2\mathsf{x}N\mathsf{.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extend}}\_\mathsf{high}\_t_1\mathsf{x}M\_\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} &amp;\href{../exec/conventions.html#formal-notation}{\hookrightarrow}&amp; (\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c) \\
+(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c_1)~t_2\mathsf{x}N\mathsf{.}\href{../syntax/instructions.html#syntax-vcvtop}{\mathit{vcvtop}}\mathsf{\_low\_}t_1\mathsf{x}M\mathsf{\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}^? &amp;\href{../exec/conventions.html#formal-notation}{\hookrightarrow}&amp; (\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c) \\
 \end{array}
 \\ \qquad
   \begin{array}[t]{&#64;{}r&#64;{~}l&#64;{}}
-  (\mathrel{\mbox{if}} &amp; i^\ast = \href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{t_1\mathsf{x}M}(c_1)[N \href{../syntax/conventions.html#notation-slice}{\mathrel{\mathbf{:}}} N] \\
-  \wedge &amp; c = \href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}^{-1}_{t_2\mathsf{x}N}(\href{../exec/numerics.html#op-extend-u}{\mathrm{extend}}^{\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}}_{M,N}(i^\ast))
+  (\mathrel{\mbox{if}} &amp; c = \href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}^{-1}_{t_2\mathsf{x}N}(\href{../syntax/instructions.html#syntax-vcvtop}{\mathit{vcvtop}}^{\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}^?}_{M,N}(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{t_1\mathsf{x}M}(c_1)[0 \href{../syntax/conventions.html#notation-slice}{\mathrel{\mathbf{:}}} N]))
+  \end{array}
+\\[1ex]
+\begin{array}{lcl&#64;{\qquad}l}
+(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c_1)~t_2\mathsf{x}N\mathsf{.}\href{../syntax/instructions.html#syntax-vcvtop}{\mathit{vcvtop}}\mathsf{\_high\_}t_1\mathsf{x}M\mathsf{\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}^? &amp;\href{../exec/conventions.html#formal-notation}{\hookrightarrow}&amp; (\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c) \\
+\end{array}
+\\ \qquad
+  \begin{array}[t]{&#64;{}r&#64;{~}l&#64;{}}
+  (\mathrel{\mbox{if}} &amp; c = \href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}^{-1}_{t_2\mathsf{x}N}(\href{../syntax/instructions.html#syntax-vcvtop}{\mathit{vcvtop}}^{\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}^?}_{M,N}(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{t_1\mathsf{x}M}(c_1)[N \href{../syntax/conventions.html#notation-slice}{\mathrel{\mathbf{:}}} N]))
+  \end{array}
+\end{array}\end{split}\]</div>
+</div>
+<div class="section" id="t-2-mathsf-x-n-mathsf-xref-syntax-instructions-syntax-vcvtop-mathit-vcvtop-mathsf-t-1-mathsf-x-m-mathsf-xref-syntax-instructions-syntax-sx-mathit-sx-mathsf-zero">
+<h3><span class="math notranslate nohighlight">\(t_2\mathsf{x}N\mathsf{.}\href{../syntax/instructions.html#syntax-vcvtop}{\mathit{vcvtop}}\mathsf{\_}t_1\mathsf{x}M\mathsf{\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}^?\mathsf{\_zero}\)</span><a class="headerlink" href="#t-2-mathsf-x-n-mathsf-xref-syntax-instructions-syntax-vcvtop-mathit-vcvtop-mathsf-t-1-mathsf-x-m-mathsf-xref-syntax-instructions-syntax-sx-mathit-sx-mathsf-zero" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Assert: due to <a class="reference internal" href="../valid/instructions.html#valid-vcvtop"><span class="std std-ref">validation</span></a>, a value of <a class="reference internal" href="../syntax/types.html#syntax-valtype"><span class="std std-ref">value type</span></a> <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\)</span> is on the top of the stack.</p></li>
+<li><p>Pop the value <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c_1\)</span> from the stack.</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(i^\ast\)</span> be the sequence <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{t_1\mathsf{x}M}(c_1)\)</span>.</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(c\)</span> be the result of computing <span class="math notranslate nohighlight">\(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}^{-1}_{t_2\mathsf{x}N}(\href{../syntax/instructions.html#syntax-vcvtop}{\mathit{vcvtop}}^{\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}^?}_{M,N}(i^\ast)~0^M)\)</span></p></li>
+<li><p>Push the value <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}.\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c\)</span> onto the stack.</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}
+\begin{array}{lcl&#64;{\qquad}l}
+(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c_1)~t_2\mathsf{x}N\mathsf{.}\href{../syntax/instructions.html#syntax-vcvtop}{\mathit{vcvtop}}\mathsf{\_}t_1\mathsf{x}M\mathsf{\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}^?\mathsf{\_zero} &amp;\href{../exec/conventions.html#formal-notation}{\hookrightarrow}&amp; (\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~c) \\
+\end{array}
+\\ \qquad
+  \begin{array}[t]{&#64;{}r&#64;{~}l&#64;{}}
+  (\mathrel{\mbox{if}} &amp; c = \href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}^{-1}_{t_2\mathsf{x}N}(\href{../syntax/instructions.html#syntax-vcvtop}{\mathit{vcvtop}}^{\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}}_{M,N}(\href{../exec/numerics.html#aux-lanes}{\mathrm{lanes}}_{t_1\mathsf{x}M}(c_1))~0^N)
   \end{array}
 \end{array}\end{split}\]</div>
 </div>
