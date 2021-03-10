@@ -147,6 +147,7 @@
 
 .. |iM| mathdef:: \xref{syntax/values}{syntax-int}{\X{i}M}
 .. |iN| mathdef:: \xref{syntax/values}{syntax-int}{\X{i}N}
+.. |i1| mathdef:: \xref{syntax/values}{syntax-int}{\X{i1}}
 .. |i8| mathdef:: \xref{syntax/values}{syntax-int}{\X{i8}}
 .. |i16| mathdef:: \xref{syntax/values}{syntax-int}{\X{i16}}
 .. |i32| mathdef:: \xref{syntax/values}{syntax-int}{\X{i32}}
@@ -462,6 +463,7 @@
 
 .. |vunop| mathdef:: \xref{syntax/instructions}{syntax-vunop}{\X{vunop}}
 .. |vbinop| mathdef:: \xref{syntax/instructions}{syntax-vbinop}{\X{vbinop}}
+.. |vrelop| mathdef:: \xref{syntax/instructions}{syntax-vrelop}{\X{vrelop}}
 .. |vternop| mathdef:: \xref{syntax/instructions}{syntax-vternop}{\X{vternop}}
 .. |vcvtop| mathdef:: \xref{syntax/instructions}{syntax-vcvtop}{\X{vcvtop}}
 .. |vextmul| mathdef:: \xref{syntax/instructions}{syntax-vextmul}{\X{vextmul}}
