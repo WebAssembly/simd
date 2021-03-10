@@ -398,7 +398,7 @@ Occasionally, it is convenient to group operators together according to the foll
      \AVGR\K{\_u} ~|~
      \Q15MULRSAT\K{\_s} \\
    \production{simd relational operator} & \vrelop &::=&
-     \virelop ~|~ \vfrelop \\&&|&
+     \virelop ~|~ \vfrelop \\
    \production{conversion operator} & \vcvtop &::=&
      \VTRUNC\K{\_sat} ~|~
      \VEXTEND ~|~
