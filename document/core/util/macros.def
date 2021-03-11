@@ -147,7 +147,6 @@
 
 .. |iM| mathdef:: \xref{syntax/values}{syntax-int}{\X{i}M}
 .. |iN| mathdef:: \xref{syntax/values}{syntax-int}{\X{i}N}
-.. |i1| mathdef:: \xref{syntax/values}{syntax-int}{\X{i1}}
 .. |i8| mathdef:: \xref{syntax/values}{syntax-int}{\X{i8}}
 .. |i16| mathdef:: \xref{syntax/values}{syntax-int}{\X{i16}}
 .. |i32| mathdef:: \xref{syntax/values}{syntax-int}{\X{i32}}
