@@ -494,7 +494,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 :math:`\shape\K{.}\vbinop`
 ..........................
 
-1. Assert: due to :ref:`validation <valid-vbinop>`, two values of :ref:`value type <syntax-valtype>` |V128| is on the top of the stack.
+1. Assert: due to :ref:`validation <valid-vbinop>`, two values of :ref:`value type <syntax-valtype>` |V128| are on the top of the stack.
 
 2. Pop the value :math:`\V128.\VCONST~c_2` from the stack.
 
@@ -524,7 +524,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 :math:`t\K{x}N\K{.}\vrelop`
 ...........................
 
-1. Assert: due to :ref:`validation <valid-vrelop>`, a value of :ref:`value type <syntax-valtype>` |V128| is on the top of the stack.
+1. Assert: due to :ref:`validation <valid-vrelop>`, two values of :ref:`value type <syntax-valtype>` |V128| are on the top of the stack.
 
 2. Pop the value :math:`\V128.\VCONST~c_2` from the stack.
 
@@ -534,7 +534,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
 
 5. Let :math:`j^\ast` be the sequence :math:`\lanes_{t\K{x}N}(c_2)`.
 
-6. Let :math:`c` be the result of computing :math:`\lanes^{-1}_{t\K{x}N}(\extend^s_{i1,t}(\vrelop_t(i^\ast, j^\ast)))`.
+6. Let :math:`c` be the result of computing :math:`\lanes^{-1}_{t\K{x}N}(\extend^s_{\i1,t}(\vrelop_t(i^\ast, j^\ast)))`.
 
 7. Push the value :math:`\V128.\VCONST~c` to the stack.
 
@@ -545,7 +545,7 @@ SIMD instructions are defined in terms of generic numeric operators applied lane
    \end{array}
    \\ \qquad
      \begin{array}[t]{@{}r@{~}l@{}}
-     (\iff c = \lanes^{-1}_{t\K{x}N}(\extend^x_{i1,t}(\vrelop_t(\lanes_{t\K{x}N}(c_1), \lanes_{t\K{x}N}(c_2)))))
+     (\iff c = \lanes^{-1}_{t\K{x}N}(\extend^s_{\i1,t}(\vrelop_t(\lanes_{t\K{x}N}(c_1), \lanes_{t\K{x}N}(c_2)))))
      \end{array}
    \end{array}
 
