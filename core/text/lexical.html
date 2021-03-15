@@ -88,18 +88,18 @@
 <div class="section" id="characters">
 <span id="text-char"></span><span id="text-source"></span><span id="source"></span><span id="index-1"></span><h2>Characters<a class="headerlink" href="#characters" title="Permalink to this headline">¶</a></h2>
 <p>The text format assigns meaning to <em>source text</em>, which consists of a sequence of <em>characters</em>.
-Characters are assumed to be represented as valid <a class="reference external" href="http://www.unicode.org/versions/latest/">Unicode</a> (Section 2.4) <em>scalar values</em>.</p>
+Characters are assumed to be represented as valid <a class="reference external" href="https://www.unicode.org/versions/latest/">Unicode</a> (Section 2.4) <em>scalar values</em>.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{llll}
-\def\mathdef2838#1{{}}\mathdef2838{source} &amp; \href{../text/lexical.html#text-source}{\mathtt{source}} &amp;::=&amp;
+\def\mathdef2947#1{{}}\mathdef2947{source} &amp; \href{../text/lexical.html#text-source}{\mathtt{source}} &amp;::=&amp;
   \href{../text/lexical.html#text-char}{\mathtt{char}}^\ast \\
-\def\mathdef2838#1{{}}\mathdef2838{character} &amp; \href{../text/lexical.html#text-char}{\mathtt{char}} &amp;::=&amp;
-  \def\mathdef2877#1{\mathrm{U{+}#1}}\mathdef2877{00} ~|~ \dots ~|~ \def\mathdef2878#1{\mathrm{U{+}#1}}\mathdef2878{D7FF} ~|~ \def\mathdef2879#1{\mathrm{U{+}#1}}\mathdef2879{E000} ~|~ \dots ~|~ \def\mathdef2880#1{\mathrm{U{+}#1}}\mathdef2880{10FFFF} \\
+\def\mathdef2947#1{{}}\mathdef2947{character} &amp; \href{../text/lexical.html#text-char}{\mathtt{char}} &amp;::=&amp;
+  \def\mathdef2986#1{\mathrm{U{+}#1}}\mathdef2986{00} ~|~ \dots ~|~ \def\mathdef2987#1{\mathrm{U{+}#1}}\mathdef2987{D7FF} ~|~ \def\mathdef2988#1{\mathrm{U{+}#1}}\mathdef2988{E000} ~|~ \dots ~|~ \def\mathdef2989#1{\mathrm{U{+}#1}}\mathdef2989{10FFFF} \\
 \end{array}\end{split}\]</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>While source text may contain any Unicode character in <a class="reference internal" href="#text-comment"><span class="std std-ref">comments</span></a> or <a class="reference internal" href="values.html#text-string"><span class="std std-ref">string</span></a> literals,
-the rest of the grammar is formed exclusively from the characters supported by the 7-bit <a class="reference external" href="http://webstore.ansi.org/RecordDetail.aspx?sku=INCITS+4-1986%5bR2012%5d">ASCII</a> subset of Unicode.</p>
+the rest of the grammar is formed exclusively from the characters supported by the 7-bit <a class="reference external" href="https://webstore.ansi.org/RecordDetail.aspx?sku=INCITS+4-1986%5bR2012%5d">ASCII</a> subset of Unicode.</p>
 </div>
 </div>
 <div class="section" id="tokens">
@@ -107,61 +107,61 @@ the rest of the grammar is formed exclusively from the characters supported by t
 <p>The character stream in the source text is divided, from left to right, into a sequence of <em>tokens</em>, as defined by the following grammar.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{llll}
-\def\mathdef2838#1{{}}\mathdef2838{token} &amp; \href{../text/lexical.html#text-token}{\mathtt{token}} &amp;::=&amp;
-  \href{../text/lexical.html#text-keyword}{\mathtt{keyword}} ~|~ \href{../text/values.html#text-int}{\def\mathdef2859#1{{\mathtt{u}#1}}\mathdef2859{N}} ~|~ \href{../text/values.html#text-int}{\def\mathdef2865#1{{\mathtt{s}#1}}\mathdef2865{N}} ~|~ \href{../text/values.html#text-float}{\def\mathdef2873#1{{\mathtt{f}#1}}\mathdef2873{N}} ~|~ \href{../text/values.html#text-string}{\mathtt{string}} ~|~ \href{../text/values.html#text-id}{\mathtt{id}} ~|~
-  \def\mathdef2881#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2881{(} ~|~ \def\mathdef2882#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2882{)} ~|~ \href{../text/lexical.html#text-reserved}{\mathtt{reserved}} \\
-\def\mathdef2838#1{{}}\mathdef2838{keyword} &amp; \href{../text/lexical.html#text-keyword}{\mathtt{keyword}} &amp;::=&amp;
-  (\def\mathdef2883#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2883{a} ~|~ \dots ~|~ \def\mathdef2884#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2884{z})~\href{../text/values.html#text-idchar}{\mathtt{idchar}}^\ast
+\def\mathdef2947#1{{}}\mathdef2947{token} &amp; \href{../text/lexical.html#text-token}{\mathtt{token}} &amp;::=&amp;
+  \href{../text/lexical.html#text-keyword}{\mathtt{keyword}} ~|~ \href{../text/values.html#text-int}{\def\mathdef2968#1{{\mathtt{u}#1}}\mathdef2968{N}} ~|~ \href{../text/values.html#text-int}{\def\mathdef2974#1{{\mathtt{s}#1}}\mathdef2974{N}} ~|~ \href{../text/values.html#text-float}{\def\mathdef2982#1{{\mathtt{f}#1}}\mathdef2982{N}} ~|~ \href{../text/values.html#text-string}{\mathtt{string}} ~|~ \href{../text/values.html#text-id}{\mathtt{id}} ~|~
+  \def\mathdef2990#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2990{(} ~|~ \def\mathdef2991#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2991{)} ~|~ \href{../text/lexical.html#text-reserved}{\mathtt{reserved}} \\
+\def\mathdef2947#1{{}}\mathdef2947{keyword} &amp; \href{../text/lexical.html#text-keyword}{\mathtt{keyword}} &amp;::=&amp;
+  (\def\mathdef2992#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2992{a} ~|~ \dots ~|~ \def\mathdef2993#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2993{z})~\href{../text/values.html#text-idchar}{\mathtt{idchar}}^\ast
   \qquad (\mbox{if occurring as a literal terminal in the grammar}) \\
-\def\mathdef2838#1{{}}\mathdef2838{reserved} &amp; \href{../text/lexical.html#text-reserved}{\mathtt{reserved}} &amp;::=&amp;
+\def\mathdef2947#1{{}}\mathdef2947{reserved} &amp; \href{../text/lexical.html#text-reserved}{\mathtt{reserved}} &amp;::=&amp;
   \href{../text/values.html#text-idchar}{\mathtt{idchar}}^+ \\
 \end{array}\end{split}\]</div>
 <p>Tokens are formed from the input character stream according to the <em>longest match</em> rule.
 That is, the next token always consists of the longest possible sequence of characters that is recognized by the above lexical grammar.
 Tokens can be separated by <a class="reference internal" href="#text-space"><span class="std std-ref">white space</span></a>,
 but except for strings, they cannot themselves contain whitespace.</p>
-<p>The set of <em>keyword</em> tokens is defined implicitly, by all occurrences of a <a class="reference internal" href="conventions.html#text-grammar"><span class="std std-ref">terminal symbol</span></a> in literal form, such as <span class="math notranslate nohighlight">\(\def\mathdef2885#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2885{keyword}\)</span>, in a <a class="reference internal" href="conventions.html#text-syntactic"><span class="std std-ref">syntactic</span></a> production of this chapter.</p>
+<p>The set of <em>keyword</em> tokens is defined implicitly, by all occurrences of a <a class="reference internal" href="conventions.html#text-grammar"><span class="std std-ref">terminal symbol</span></a> in literal form, such as <span class="math notranslate nohighlight">\(\def\mathdef2994#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2994{keyword}\)</span>, in a <a class="reference internal" href="conventions.html#text-syntactic"><span class="std std-ref">syntactic</span></a> production of this chapter.</p>
 <p>Any token that does not fall into any of the other categories is considered <em>reserved</em>, and cannot occur in source text.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The effect of defining the set of reserved tokens is that all tokens must be separated by either parentheses or <a class="reference internal" href="#text-space"><span class="std std-ref">white space</span></a>.
-For example, <span class="math notranslate nohighlight">\(\def\mathdef2886#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2886{0\$x}\)</span> is a single reserved token.
-Consequently, it is not recognized as two separate tokens <span class="math notranslate nohighlight">\(\def\mathdef2887#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2887{0}\)</span> and <span class="math notranslate nohighlight">\(\def\mathdef2888#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2888{\$x}\)</span>, but instead disallowed.
+For example, <span class="math notranslate nohighlight">\(\def\mathdef2995#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2995{0\$x}\)</span> is a single reserved token.
+Consequently, it is not recognized as two separate tokens <span class="math notranslate nohighlight">\(\def\mathdef2996#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2996{0}\)</span> and <span class="math notranslate nohighlight">\(\def\mathdef2997#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2997{\$x}\)</span>, but instead disallowed.
 This property of tokenization is not affected by the fact that the definition of reserved tokens overlaps with other token classes.</p>
 </div>
 </div>
 <div class="section" id="white-space">
 <span id="text-space"></span><span id="text-format"></span><span id="index-3"></span><h2>White Space<a class="headerlink" href="#white-space" title="Permalink to this headline">¶</a></h2>
 <p><em>White space</em> is any sequence of literal space characters, formatting characters, or <a class="reference internal" href="#text-comment"><span class="std std-ref">comments</span></a>.
-The allowed formatting characters correspond to a subset of the <a class="reference external" href="http://webstore.ansi.org/RecordDetail.aspx?sku=INCITS+4-1986%5bR2012%5d">ASCII</a> <em>format effectors</em>, namely, <em>horizontal tabulation</em> (<span class="math notranslate nohighlight">\(\def\mathdef2889#1{\mathrm{U{+}#1}}\mathdef2889{09}\)</span>), <em>line feed</em> (<span class="math notranslate nohighlight">\(\def\mathdef2890#1{\mathrm{U{+}#1}}\mathdef2890{0A}\)</span>), and <em>carriage return</em> (<span class="math notranslate nohighlight">\(\def\mathdef2891#1{\mathrm{U{+}#1}}\mathdef2891{0D}\)</span>).</p>
+The allowed formatting characters correspond to a subset of the <a class="reference external" href="https://webstore.ansi.org/RecordDetail.aspx?sku=INCITS+4-1986%5bR2012%5d">ASCII</a> <em>format effectors</em>, namely, <em>horizontal tabulation</em> (<span class="math notranslate nohighlight">\(\def\mathdef2998#1{\mathrm{U{+}#1}}\mathdef2998{09}\)</span>), <em>line feed</em> (<span class="math notranslate nohighlight">\(\def\mathdef2999#1{\mathrm{U{+}#1}}\mathdef2999{0A}\)</span>), and <em>carriage return</em> (<span class="math notranslate nohighlight">\(\def\mathdef3000#1{\mathrm{U{+}#1}}\mathdef3000{0D}\)</span>).</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{llclll&#64;{\qquad\qquad}l}
-\def\mathdef2838#1{{}}\mathdef2838{white space} &amp; \href{../text/lexical.html#text-space}{\mathtt{space}} &amp;::=&amp;
-  (\def\mathdef2892#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2892{~~} ~|~ \href{../text/lexical.html#text-format}{\mathtt{format}} ~|~ \href{../text/lexical.html#text-comment}{\mathtt{comment}})^\ast \\
-\def\mathdef2838#1{{}}\mathdef2838{format} &amp; \href{../text/lexical.html#text-format}{\mathtt{format}} &amp;::=&amp;
-  \def\mathdef2893#1{\mathrm{U{+}#1}}\mathdef2893{09} ~|~ \def\mathdef2894#1{\mathrm{U{+}#1}}\mathdef2894{0A} ~|~ \def\mathdef2895#1{\mathrm{U{+}#1}}\mathdef2895{0D} \\
+\def\mathdef2947#1{{}}\mathdef2947{white space} &amp; \href{../text/lexical.html#text-space}{\mathtt{space}} &amp;::=&amp;
+  (\def\mathdef3001#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef3001{~~} ~|~ \href{../text/lexical.html#text-format}{\mathtt{format}} ~|~ \href{../text/lexical.html#text-comment}{\mathtt{comment}})^\ast \\
+\def\mathdef2947#1{{}}\mathdef2947{format} &amp; \href{../text/lexical.html#text-format}{\mathtt{format}} &amp;::=&amp;
+  \def\mathdef3002#1{\mathrm{U{+}#1}}\mathdef3002{09} ~|~ \def\mathdef3003#1{\mathrm{U{+}#1}}\mathdef3003{0A} ~|~ \def\mathdef3004#1{\mathrm{U{+}#1}}\mathdef3004{0D} \\
 \end{array}\end{split}\]</div>
 <p>The only relevance of white space is to separate <a class="reference internal" href="#text-token"><span class="std std-ref">tokens</span></a>. It is otherwise ignored.</p>
 </div>
 <div class="section" id="comments">
 <span id="text-comment"></span><span id="index-4"></span><h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
-<p>A <em>comment</em> can either be a <em>line comment</em>, started with a double semicolon <span class="math notranslate nohighlight">\(\def\mathdef2858#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2858{{;}{;}}\)</span> and extending to the end of the line,
-or a <em>block comment</em>, enclosed in delimiters <span class="math notranslate nohighlight">\(\def\mathdef2856#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2856{{(}{;}} \dots \def\mathdef2857#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2857{{;}{)}}\)</span>.
+<p>A <em>comment</em> can either be a <em>line comment</em>, started with a double semicolon <span class="math notranslate nohighlight">\(\def\mathdef2967#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2967{{;}{;}}\)</span> and extending to the end of the line,
+or a <em>block comment</em>, enclosed in delimiters <span class="math notranslate nohighlight">\(\def\mathdef2965#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2965{{(}{;}} \dots \def\mathdef2966#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2966{{;}{)}}\)</span>.
 Block comments can be nested.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{llclll&#64;{\qquad\qquad}l}
-\def\mathdef2838#1{{}}\mathdef2838{comment} &amp; \href{../text/lexical.html#text-comment}{\mathtt{comment}} &amp;::=&amp;
+\def\mathdef2947#1{{}}\mathdef2947{comment} &amp; \href{../text/lexical.html#text-comment}{\mathtt{comment}} &amp;::=&amp;
   \href{../text/lexical.html#text-comment}{\mathtt{linecomment}} ~|~ \href{../text/lexical.html#text-comment}{\mathtt{blockcomment}} \\
-\def\mathdef2838#1{{}}\mathdef2838{line comment} &amp; \href{../text/lexical.html#text-comment}{\mathtt{linecomment}} &amp;::=&amp;
-  \def\mathdef2858#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2858{{;}{;}}~~\href{../text/lexical.html#text-comment}{\mathtt{linechar}}^\ast~~(\def\mathdef2896#1{\mathrm{U{+}#1}}\mathdef2896{0A} ~|~ \mathtt{eof}) \\
-\def\mathdef2838#1{{}}\mathdef2838{line character} &amp; \href{../text/lexical.html#text-comment}{\mathtt{linechar}} &amp;::=&amp;
-  c{:}\href{../text/lexical.html#text-char}{\mathtt{char}} &amp; (\mathrel{\mbox{if}} c \neq \def\mathdef2897#1{\mathrm{U{+}#1}}\mathdef2897{0A}) \\
-\def\mathdef2838#1{{}}\mathdef2838{block comment} &amp; \href{../text/lexical.html#text-comment}{\mathtt{blockcomment}} &amp;::=&amp;
-  \def\mathdef2856#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2856{{(}{;}}~~\href{../text/lexical.html#text-comment}{\mathtt{blockchar}}^\ast~~\def\mathdef2857#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2857{{;}{)}} \\
-\def\mathdef2838#1{{}}\mathdef2838{block character} &amp; \href{../text/lexical.html#text-comment}{\mathtt{blockchar}} &amp;::=&amp;
-  c{:}\href{../text/lexical.html#text-char}{\mathtt{char}} &amp; (\mathrel{\mbox{if}} c \neq \def\mathdef2898#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2898{;} \wedge c \neq \def\mathdef2899#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2899{(}) \\ &amp;&amp;|&amp;
-  \def\mathdef2900#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2900{;} &amp; (\mathrel{\mbox{if}}~\mbox{the next character is not}~\def\mathdef2901#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2901{)}) \\ &amp;&amp;|&amp;
-  \def\mathdef2902#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2902{(} &amp; (\mathrel{\mbox{if}}~\mbox{the next character is not}~\def\mathdef2903#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2903{;}) \\ &amp;&amp;|&amp;
+\def\mathdef2947#1{{}}\mathdef2947{line comment} &amp; \href{../text/lexical.html#text-comment}{\mathtt{linecomment}} &amp;::=&amp;
+  \def\mathdef2967#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2967{{;}{;}}~~\href{../text/lexical.html#text-comment}{\mathtt{linechar}}^\ast~~(\def\mathdef3005#1{\mathrm{U{+}#1}}\mathdef3005{0A} ~|~ \mathtt{eof}) \\
+\def\mathdef2947#1{{}}\mathdef2947{line character} &amp; \href{../text/lexical.html#text-comment}{\mathtt{linechar}} &amp;::=&amp;
+  c{:}\href{../text/lexical.html#text-char}{\mathtt{char}} &amp; (\mathrel{\mbox{if}} c \neq \def\mathdef3006#1{\mathrm{U{+}#1}}\mathdef3006{0A}) \\
+\def\mathdef2947#1{{}}\mathdef2947{block comment} &amp; \href{../text/lexical.html#text-comment}{\mathtt{blockcomment}} &amp;::=&amp;
+  \def\mathdef2965#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2965{{(}{;}}~~\href{../text/lexical.html#text-comment}{\mathtt{blockchar}}^\ast~~\def\mathdef2966#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef2966{{;}{)}} \\
+\def\mathdef2947#1{{}}\mathdef2947{block character} &amp; \href{../text/lexical.html#text-comment}{\mathtt{blockchar}} &amp;::=&amp;
+  c{:}\href{../text/lexical.html#text-char}{\mathtt{char}} &amp; (\mathrel{\mbox{if}} c \neq \def\mathdef3007#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef3007{;} \wedge c \neq \def\mathdef3008#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef3008{(}) \\ &amp;&amp;|&amp;
+  \def\mathdef3009#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef3009{;} &amp; (\mathrel{\mbox{if}}~\mbox{the next character is not}~\def\mathdef3010#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef3010{)}) \\ &amp;&amp;|&amp;
+  \def\mathdef3011#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef3011{(} &amp; (\mathrel{\mbox{if}}~\mbox{the next character is not}~\def\mathdef3012#1{\mbox{‘}\mathtt{#1}\mbox{’}}\mathdef3012{;}) \\ &amp;&amp;|&amp;
   \href{../text/lexical.html#text-comment}{\mathtt{blockcomment}} \\
 \end{array}\end{split}\]</div>
 <p>Here, the pseudo token <span class="math notranslate nohighlight">\(\mathtt{eof}\)</span> indicates the end of the input.
