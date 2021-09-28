@@ -109,11 +109,11 @@ Added instructions that modify ranges of memory or table entries [#proposal-reft
 Vector instructions
 ...................
 
-Added vector type and instructions that manipulate multiple numeric values in parallel (also known as _SIMD_, single instruction multiple data) [#proposal-vectype]_
+Added vector type and instructions that manipulate multiple numeric values in parallel (also known as *SIMD*, single instruction multiple data) [#proposal-vectype]_
 
 * New :ref:`value type <syntax-valtype>`: |V128|
 
-* New :ref:`memory instructions <syntax-instr-memory>`: :math:`\K{v128.}\LOAD{}\!N\!\K{x}\!M\!\K{\_}\sx`, :math:`\K{v128.}\LOAD{}N\K{\_zero}`, :math:`\K{v128.}\LOAD{}N\K{\_splat}`, :math:`\K{v128.}\LOAD{}N\K{\_lane}`, :math:`\K{v128.}\STORE{}N\K{\_lane}`
+* New :ref:`memory instructions <syntax-instr-memory>`: :math:`\K{v128.}\LOAD`, :math:`\K{v128.}\LOAD{}\!N\!\K{x}\!M\!\K{\_}\sx`, :math:`\K{v128.}\LOAD{}N\K{\_zero}`, :math:`\K{v128.}\LOAD{}N\K{\_splat}`, :math:`\K{v128.}\LOAD{}N\K{\_lane}`, :math:`\K{v128.}\STORE`, :math:`\K{v128.}\STORE{}N\K{\_lane}`
 
 * New constant :ref:`vector instruction <syntax-instr-vec>`: :math:`\K{v128.}\VCONST`
 
