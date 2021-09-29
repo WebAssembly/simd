@@ -127,13 +127,13 @@ Added vector type and instructions that manipulate multiple numeric values in pa
 
 * New relational :ref:`vector instructions <syntax-instr-vec>`: :math:`\K{i}\!N\!\K{x}\!M\!\K{.eq}`, :math:`\K{i}\!N\!\K{x}\!M\!\K{.ne}`, :math:`\K{i}\!N\!\K{x}\!M\!\K{.lt\_}\sx`, :math:`\K{i}\!N\!\K{x}\!M\!\K{.gt\_}\sx`, :math:`\K{i}\!N\!\K{x}\!M\!\K{.le\_}\sx`, :math:`\K{i}\!N\!\K{x}\!M\!\K{.ge\_}\sx`, :math:`\K{f}\!N\!\K{x}\!M\!\K{.eq}`, :math:`\K{f}\!N\!\K{x}\!M\!\K{.ne}`, :math:`\K{f}\!N\!\K{x}\!M\!\K{.lt}`, :math:`\K{f}\!N\!\K{x}\!M\!\K{.gt}`, :math:`\K{f}\!N\!\K{x}\!M\!\K{.le}`, :math:`\K{f}\!N\!\K{x}\!M\!\K{.ge}`
 
-* New lane :ref:`vector instructions <syntax-instr-vec>`: :math:`\K{i}\!N\!\K{x}\!M\!\K{.extract\_lane\_}\sx^?`, :math:`\K{i}\!N\!\K{x}\!M\!\K{.replace\_lane}`, :math:`\K{f}\!N\!\K{x}\!M\!\K{.extract\_lane}`, :math:`\K{f}\!N\!\K{x}\!M\!\K{.replace\_lane}`
+* New conversion :ref:`vector instructions <syntax-instr-vec>`::math:`\K{i32x4.trunc\_sat\_f32x4\_}\sx`, :math:`\K{i32x4.trunc\_sat\_f64x2\_}\sx\K{\_zero}`, :math:`\K{f32x4.convert\_i32x4\_}\sx`, :math:`\K{f32x4.demote\_f64x2\_zero}`, :math:`\K{f64x2.convert\_low\_i32x4\_}\sx`, :math:`\K{f64x2.promote\_low\_f32x4}`
 
-* New conversion :ref:`vector instructions <syntax-instr-vec>`: :math:`\K{i}\!N\!\K{x}\!M\!\K{.extend\_}\half\K{\_i}\!N'\!\K{x}\!M'\!\K{\_}\sx`, :math:`\K{i32x4.trunc\_sat\_f32x4\_}\sx`, :math:`\K{i32x4.trunc\_sat\_f64x2\_}\sx\K{\_zero}`, :math:`\K{f32x4.convert\_i32x4\_}\sx`, :math:`\K{f32x4.demote\_f64x2\_zero}`, :math:`\K{f64x2.convert\_low\_i32x4\_}\sx`, :math:`\K{f64x2.promote\_low\_f32x4}`
+* New lane access :ref:`vector instructions <syntax-instr-vec>`: :math:`\K{i}\!N\!\K{x}\!M\!\K{.extract\_lane\_}\sx^?`, :math:`\K{i}\!N\!\K{x}\!M\!\K{.replace\_lane}`, :math:`\K{f}\!N\!\K{x}\!M\!\K{.extract\_lane}`, :math:`\K{f}\!N\!\K{x}\!M\!\K{.replace\_lane}`
 
-* New binary conversion :ref:`vector instructions <syntax-instr-vec>`: :math:`\K{i8x16.narrow\_i16x8\_}\sx`, :math:`\K{i16x8.narrow\_i32x4\_}\sx`
+* New lane splitting/combining :ref:`vector instructions <syntax-instr-vec>`: :math:`\K{i}\!N\!\K{x}\!M\!\K{.extend\_}\half\K{\_i}\!N'\!\K{x}\!M'\!\K{\_}\sx`, :math:`\K{i8x16.narrow\_i16x8\_}\sx`, :math:`\K{i16x8.narrow\_i32x4\_}\sx`
 
-* New reordering :ref:`vector instructions <syntax-instr-vec>`: :math:`\K{i8x16.shuffle}`, :math:`\K{i8x16.swizzle}`
+* New byte reordering :ref:`vector instructions <syntax-instr-vec>`: :math:`\K{i8x16.shuffle}`, :math:`\K{i8x16.swizzle}`
 
 * New injection/projection :ref:`vector instructions <syntax-instr-vec>`: :math:`\K{i}\!N\!\K{x}\!M\!\K{.splat}`, :math:`\K{f}\!N\!\K{x}\!M\!\K{.splat}`, :math:`\K{i}\!N\!\K{x}\!M\!\K{.bitmask}`
 
