@@ -131,7 +131,9 @@ Added vector type and instructions that manipulate multiple numeric values in pa
 
 * New conversion :ref:`vector instructions <syntax-instr-vec>`: :math:`\K{i}\!N\!\K{x}\!M\!\K{.extend\_}\half\K{\_i}\!N'\!\K{x}\!M'\!\K{\_}\sx`, :math:`\K{i32x4.trunc\_sat\_f32x4\_}\sx`, :math:`\K{i32x4.trunc\_sat\_f64x2\_}\sx\K{\_zero}`, :math:`\K{f32x4.convert\_i32x4\_}\sx`, :math:`\K{f32x4.demote\_f64x2\_zero}`, :math:`\K{f64x2.convert\_low\_i32x4\_}\sx`, :math:`\K{f64x2.promote\_low\_f32x4}`
 
-* New reordering :ref:`vector instructions <syntax-instr-vec>`: :math:`\K{i8x16.shuffle}`, :math:`\K{i8x16.swizzle}`, :math:`\K{i8x16.narrow\_i16x8\_}\sx`, :math:`\K{i16x8.narrow\_i32x4\_}\sx`
+* New binary conversion :ref:`vector instructions <syntax-instr-vec>`: :math:`\K{i8x16.narrow\_i16x8\_}\sx`, :math:`\K{i16x8.narrow\_i32x4\_}\sx`
+
+* New reordering :ref:`vector instructions <syntax-instr-vec>`: :math:`\K{i8x16.shuffle}`, :math:`\K{i8x16.swizzle}`
 
 * New injection/projection :ref:`vector instructions <syntax-instr-vec>`: :math:`\K{i}\!N\!\K{x}\!M\!\K{.splat}`, :math:`\K{f}\!N\!\K{x}\!M\!\K{.splat}`, :math:`\K{i}\!N\!\K{x}\!M\!\K{.bitmask}`
 
