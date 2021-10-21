@@ -1,23 +1,23 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Soundness &#8212; WebAssembly 1.1</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <title>Soundness &#8212; WebAssembly 1.1 (Draft 2021-10-21)</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"MAXBUFFER": 30720}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Index of Types" href="index-types.html" />
+    <link rel="next" title="Change History" href="changes.html" />
     <link rel="prev" title="Custom Sections" href="custom.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -46,6 +46,7 @@
 <li class="toctree-l2"><a class="reference internal" href="algorithm.html">Validation Algorithm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="custom.html">Custom Sections</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Soundness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html">Change History</a></li>
 </ul>
 </li>
 </ul>
@@ -342,7 +343,7 @@ That way, the function itself is able to make sufficient assumptions about futur
 </section>
 <section id="module-instances-xref-exec-runtime-syntax-moduleinst-mathit-moduleinst">
 <span id="valid-moduleinst"></span><span id="index-11"></span><h3><a class="reference internal" href="../exec/runtime.html#syntax-moduleinst"><span class="std std-ref">Module Instances</span></a> <span class="math notranslate nohighlight">\(\href{../exec/runtime.html#syntax-moduleinst}{\mathit{moduleinst}}\)</span><a class="headerlink" href="#module-instances-xref-exec-runtime-syntax-moduleinst-mathit-moduleinst" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
+<ul>
 <li><p>Each <a class="reference internal" href="../syntax/types.html#syntax-functype"><span class="std std-ref">function type</span></a> <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-functype}{\mathit{functype}}_i\)</span> in <span class="math notranslate nohighlight">\(\href{../exec/runtime.html#syntax-moduleinst}{\mathit{moduleinst}}.\href{../exec/runtime.html#syntax-moduleinst}{\mathsf{types}}\)</span> must be <a class="reference internal" href="../valid/types.html#valid-functype"><span class="std std-ref">valid</span></a>.</p></li>
 <li><p>For each <a class="reference internal" href="../exec/runtime.html#syntax-funcaddr"><span class="std std-ref">function address</span></a> <span class="math notranslate nohighlight">\(\href{../exec/runtime.html#syntax-funcaddr}{\mathit{funcaddr}}_i\)</span> in <span class="math notranslate nohighlight">\(\href{../exec/runtime.html#syntax-moduleinst}{\mathit{moduleinst}}.\href{../exec/runtime.html#syntax-moduleinst}{\mathsf{funcaddrs}}\)</span>, the <a class="reference internal" href="../exec/runtime.html#syntax-externval"><span class="std std-ref">external value</span></a> <span class="math notranslate nohighlight">\(\href{../exec/runtime.html#syntax-externval}{\mathsf{func}}~\href{../exec/runtime.html#syntax-funcaddr}{\mathit{funcaddr}}_i\)</span> must be <a class="reference internal" href="../exec/modules.html#valid-externval-func"><span class="std std-ref">valid</span></a> with some <a class="reference internal" href="../syntax/types.html#syntax-externtype"><span class="std std-ref">external type</span></a> <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-externtype}{\mathsf{func}}~\href{../syntax/types.html#syntax-functype}{\mathit{functype}}'_i\)</span>.</p></li>
 <li><p>For each <a class="reference internal" href="../exec/runtime.html#syntax-tableaddr"><span class="std std-ref">table address</span></a> <span class="math notranslate nohighlight">\(\href{../exec/runtime.html#syntax-tableaddr}{\mathit{tableaddr}}_i\)</span> in <span class="math notranslate nohighlight">\(\href{../exec/runtime.html#syntax-moduleinst}{\mathit{moduleinst}}.\href{../exec/runtime.html#syntax-moduleinst}{\mathsf{tableaddrs}}\)</span>, the <a class="reference internal" href="../exec/runtime.html#syntax-externval"><span class="std std-ref">external value</span></a> <span class="math notranslate nohighlight">\(\href{../exec/runtime.html#syntax-externval}{\mathsf{table}}~\href{../exec/runtime.html#syntax-tableaddr}{\mathit{tableaddr}}_i\)</span> must be <a class="reference internal" href="../exec/modules.html#valid-externval-table"><span class="std std-ref">valid</span></a> with some <a class="reference internal" href="../syntax/types.html#syntax-externtype"><span class="std std-ref">external type</span></a> <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-externtype}{\mathsf{table}}~\href{../syntax/types.html#syntax-tabletype}{\mathit{tabletype}}_i\)</span>.</p></li>
@@ -356,7 +357,11 @@ That way, the function itself is able to make sufficient assumptions about futur
 <li><p>Let <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-tabletype}{\mathit{tabletype}}^\ast\)</span> be the concatenation of all <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-tabletype}{\mathit{tabletype}}_i\)</span> in order.</p></li>
 <li><p>Let <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-memtype}{\mathit{memtype}}^\ast\)</span> be the concatenation of all <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-memtype}{\mathit{memtype}}_i\)</span> in order.</p></li>
 <li><p>Let <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-globaltype}{\mathit{globaltype}}^\ast\)</span> be the concatenation of all <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-globaltype}{\mathit{globaltype}}_i\)</span> in order.</p></li>
-<li><p>Then the module instance is valid with <a class="reference internal" href="../valid/conventions.html#context"><span class="std std-ref">context</span></a> <span class="math notranslate nohighlight">\(\{\href{../valid/conventions.html#context}{\mathsf{types}}~\href{../syntax/types.html#syntax-functype}{\mathit{functype}}^\ast, \href{../valid/conventions.html#context}{\mathsf{funcs}}~{\href{../syntax/types.html#syntax-functype}{\mathit{functype}}'}^\ast, \href{../valid/conventions.html#context}{\mathsf{tables}}~\href{../syntax/types.html#syntax-tabletype}{\mathit{tabletype}}^\ast, \href{../valid/conventions.html#context}{\mathsf{mems}}~\href{../syntax/types.html#syntax-memtype}{\mathit{memtype}}^\ast, \href{../valid/conventions.html#context}{\mathsf{globals}}~\href{../syntax/types.html#syntax-globaltype}{\mathit{globaltype}}^\ast\}\)</span>.</p></li>
+<li><div class="line-block">
+<div class="line">Then the module instance is valid with <a class="reference internal" href="../valid/conventions.html#context"><span class="std std-ref">context</span></a></div>
+<div class="line"><span class="math notranslate nohighlight">\(\{\href{../valid/conventions.html#context}{\mathsf{types}}~\href{../syntax/types.html#syntax-functype}{\mathit{functype}}^\ast, \href{../valid/conventions.html#context}{\mathsf{funcs}}~{\href{../syntax/types.html#syntax-functype}{\mathit{functype}}'}^\ast, \href{../valid/conventions.html#context}{\mathsf{tables}}~\href{../syntax/types.html#syntax-tabletype}{\mathit{tabletype}}^\ast, \href{../valid/conventions.html#context}{\mathsf{mems}}~\href{../syntax/types.html#syntax-memtype}{\mathit{memtype}}^\ast, \href{../valid/conventions.html#context}{\mathsf{globals}}~\href{../syntax/types.html#syntax-globaltype}{\mathit{globaltype}}^\ast\}\)</span>.</div>
+</div>
+</li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}~\\[-1ex]

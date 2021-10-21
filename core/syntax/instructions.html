@@ -1,19 +1,19 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Instructions &#8212; WebAssembly 1.1</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <title>Instructions &#8212; WebAssembly 1.1 (Draft 2021-10-21)</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"MAXBUFFER": 30720}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -95,17 +95,17 @@ which are part of the instruction itself.</p>
 <p>The following sections group instructions into a number of different categories.</p>
 <section id="numeric-instructions">
 <span id="syntax-instr-numeric"></span><span id="syntax-frelop"></span><span id="syntax-ftestop"></span><span id="syntax-fbinop"></span><span id="syntax-funop"></span><span id="syntax-irelop"></span><span id="syntax-itestop"></span><span id="syntax-ibinop"></span><span id="syntax-iunop"></span><span id="syntax-const"></span><span id="syntax-sx"></span><span id="index-1"></span><h2>Numeric Instructions<a class="headerlink" href="#numeric-instructions" title="Permalink to this headline">¶</a></h2>
-<p>Numeric instructions provide basic operations over numeric <a class="reference internal" href="values.html#syntax-value"><span class="std std-ref">values</span></a> of specific <a class="reference internal" href="types.html#syntax-valtype"><span class="std std-ref">type</span></a>.
+<p>Numeric instructions provide basic operations over numeric <a class="reference internal" href="values.html#syntax-value"><span class="std std-ref">values</span></a> of specific <a class="reference internal" href="types.html#syntax-numtype"><span class="std std-ref">type</span></a>.
 These operations closely match respective operations available in hardware.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{llcl}
-\def\mathdef2392#1{{}}\mathdef2392{width} &amp; \mathit{nn}, \mathit{mm} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{width} &amp; \mathit{nn}, \mathit{mm} &amp;::=&amp;
   \mathsf{32} ~|~ \mathsf{64} \\
-\def\mathdef2392#1{{}}\mathdef2392{signedness} &amp; \href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{signedness} &amp; \href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} &amp;::=&amp;
   \mathsf{u} ~|~ \mathsf{s} \\
-\def\mathdef2392#1{{}}\mathdef2392{instruction} &amp; \href{../syntax/instructions.html#syntax-instr}{\mathit{instr}} &amp;::=&amp;
-  \mathsf{i}\mathit{nn}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-numeric}{\mathsf{const}}~\href{../syntax/values.html#syntax-int}{\def\mathdef2431#1{{\mathit{i#1}}}\mathdef2431{\mathit{nn}}} ~|~
-  \mathsf{f}\mathit{nn}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-numeric}{\mathsf{const}}~\href{../syntax/values.html#syntax-float}{\def\mathdef2432#1{{\mathit{f#1}}}\mathdef2432{\mathit{nn}}} \\&amp;&amp;|&amp;
+\def\mathdef2431#1{{}}\mathdef2431{instruction} &amp; \href{../syntax/instructions.html#syntax-instr}{\mathit{instr}} &amp;::=&amp;
+  \mathsf{i}\mathit{nn}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-numeric}{\mathsf{const}}~\href{../syntax/values.html#syntax-int}{\def\mathdef2470#1{{\mathit{i#1}}}\mathdef2470{\mathit{nn}}} ~|~
+  \mathsf{f}\mathit{nn}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-numeric}{\mathsf{const}}~\href{../syntax/values.html#syntax-float}{\def\mathdef2471#1{{\mathit{f#1}}}\mathdef2471{\mathit{nn}}} \\&amp;&amp;|&amp;
   \mathsf{i}\mathit{nn}\mathsf{.}\href{../syntax/instructions.html#syntax-iunop}{\mathit{iunop}} ~|~
   \mathsf{f}\mathit{nn}\mathsf{.}\href{../syntax/instructions.html#syntax-funop}{\mathit{funop}} \\&amp;&amp;|&amp;
   \mathsf{i}\mathit{nn}\mathsf{.}\href{../syntax/instructions.html#syntax-ibinop}{\mathit{ibinop}} ~|~
@@ -126,11 +126,11 @@ These operations closely match respective operations available in hardware.</p>
   \mathsf{i}\mathit{nn}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-numeric}{\mathsf{reinterpret}}\mathsf{\_f}\mathit{nn} ~|~
   \mathsf{f}\mathit{nn}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-numeric}{\mathsf{reinterpret}}\mathsf{\_i}\mathit{nn} \\&amp;&amp;|&amp;
   \dots \\
-\def\mathdef2392#1{{}}\mathdef2392{integer unary operator} &amp; \href{../syntax/instructions.html#syntax-iunop}{\mathit{iunop}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{integer unary operator} &amp; \href{../syntax/instructions.html#syntax-iunop}{\mathit{iunop}} &amp;::=&amp;
   \mathsf{clz} ~|~
   \mathsf{ctz} ~|~
   \mathsf{popcnt} \\
-\def\mathdef2392#1{{}}\mathdef2392{integer binary operator} &amp; \href{../syntax/instructions.html#syntax-ibinop}{\mathit{ibinop}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{integer binary operator} &amp; \href{../syntax/instructions.html#syntax-ibinop}{\mathit{ibinop}} &amp;::=&amp;
   \mathsf{add} ~|~
   \mathsf{sub} ~|~
   \mathsf{mul} ~|~
@@ -143,7 +143,7 @@ These operations closely match respective operations available in hardware.</p>
   \mathsf{shr\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
   \mathsf{rotl} ~|~
   \mathsf{rotr} \\
-\def\mathdef2392#1{{}}\mathdef2392{floating-point unary operator} &amp; \href{../syntax/instructions.html#syntax-funop}{\mathit{funop}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{floating-point unary operator} &amp; \href{../syntax/instructions.html#syntax-funop}{\mathit{funop}} &amp;::=&amp;
   \mathsf{abs} ~|~
   \mathsf{neg} ~|~
   \mathsf{sqrt} ~|~
@@ -151,7 +151,7 @@ These operations closely match respective operations available in hardware.</p>
   \mathsf{floor} ~|~
   \mathsf{trunc} ~|~
   \mathsf{nearest} \\
-\def\mathdef2392#1{{}}\mathdef2392{floating-point binary operator} &amp; \href{../syntax/instructions.html#syntax-fbinop}{\mathit{fbinop}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{floating-point binary operator} &amp; \href{../syntax/instructions.html#syntax-fbinop}{\mathit{fbinop}} &amp;::=&amp;
   \mathsf{add} ~|~
   \mathsf{sub} ~|~
   \mathsf{mul} ~|~
@@ -159,16 +159,16 @@ These operations closely match respective operations available in hardware.</p>
   \mathsf{min} ~|~
   \mathsf{max} ~|~
   \mathsf{copysign} \\
-\def\mathdef2392#1{{}}\mathdef2392{integer test operator} &amp; \href{../syntax/instructions.html#syntax-itestop}{\mathit{itestop}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{integer test operator} &amp; \href{../syntax/instructions.html#syntax-itestop}{\mathit{itestop}} &amp;::=&amp;
   \mathsf{eqz} \\
-\def\mathdef2392#1{{}}\mathdef2392{integer relational operator} &amp; \href{../syntax/instructions.html#syntax-irelop}{\mathit{irelop}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{integer relational operator} &amp; \href{../syntax/instructions.html#syntax-irelop}{\mathit{irelop}} &amp;::=&amp;
   \mathsf{eq} ~|~
   \mathsf{ne} ~|~
   \mathsf{lt\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
   \mathsf{gt\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
   \mathsf{le\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
   \mathsf{ge\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\
-\def\mathdef2392#1{{}}\mathdef2392{floating-point relational operator} &amp; \href{../syntax/instructions.html#syntax-frelop}{\mathit{frelop}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{floating-point relational operator} &amp; \href{../syntax/instructions.html#syntax-frelop}{\mathit{frelop}} &amp;::=&amp;
   \mathsf{eq} ~|~
   \mathsf{ne} ~|~
   \mathsf{lt} ~|~
@@ -176,7 +176,7 @@ These operations closely match respective operations available in hardware.</p>
   \mathsf{le} ~|~
   \mathsf{ge} \\
 \end{array}\end{split}\]</div>
-<p>Numeric instructions are divided by <a class="reference internal" href="types.html#syntax-valtype"><span class="std std-ref">value type</span></a>.
+<p>Numeric instructions are divided by <a class="reference internal" href="types.html#syntax-numtype"><span class="std std-ref">number type</span></a>.
 For each type, several subcategories can be distinguished:</p>
 <ul class="simple">
 <li><p><em>Constants</em>: return a static constant.</p></li>
@@ -195,14 +195,14 @@ For the other integer instructions, the use of two’s complement for the signed
 <p>Occasionally, it is convenient to group operators together according to the following grammar shorthands:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{llll}
-\def\mathdef2392#1{{}}\mathdef2392{unary operator} &amp; \href{../syntax/instructions.html#syntax-unop}{\mathit{unop}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{unary operator} &amp; \href{../syntax/instructions.html#syntax-unop}{\mathit{unop}} &amp;::=&amp;
   \href{../syntax/instructions.html#syntax-iunop}{\mathit{iunop}} ~|~
   \href{../syntax/instructions.html#syntax-funop}{\mathit{funop}} ~|~
   \href{../syntax/instructions.html#syntax-instr-numeric}{\mathsf{extend}}{N}\mathsf{\_s} \\
-\def\mathdef2392#1{{}}\mathdef2392{binary operator} &amp; \href{../syntax/instructions.html#syntax-binop}{\mathit{binop}} &amp;::=&amp; \href{../syntax/instructions.html#syntax-ibinop}{\mathit{ibinop}} ~|~ \href{../syntax/instructions.html#syntax-fbinop}{\mathit{fbinop}} \\
-\def\mathdef2392#1{{}}\mathdef2392{test operator} &amp; \href{../syntax/instructions.html#syntax-testop}{\mathit{testop}} &amp;::=&amp; \href{../syntax/instructions.html#syntax-itestop}{\mathit{itestop}} \\
-\def\mathdef2392#1{{}}\mathdef2392{relational operator} &amp; \href{../syntax/instructions.html#syntax-relop}{\mathit{relop}} &amp;::=&amp; \href{../syntax/instructions.html#syntax-irelop}{\mathit{irelop}} ~|~ \href{../syntax/instructions.html#syntax-frelop}{\mathit{frelop}} \\
-\def\mathdef2392#1{{}}\mathdef2392{conversion operator} &amp; \href{../syntax/instructions.html#syntax-cvtop}{\mathit{cvtop}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{binary operator} &amp; \href{../syntax/instructions.html#syntax-binop}{\mathit{binop}} &amp;::=&amp; \href{../syntax/instructions.html#syntax-ibinop}{\mathit{ibinop}} ~|~ \href{../syntax/instructions.html#syntax-fbinop}{\mathit{fbinop}} \\
+\def\mathdef2431#1{{}}\mathdef2431{test operator} &amp; \href{../syntax/instructions.html#syntax-testop}{\mathit{testop}} &amp;::=&amp; \href{../syntax/instructions.html#syntax-itestop}{\mathit{itestop}} \\
+\def\mathdef2431#1{{}}\mathdef2431{relational operator} &amp; \href{../syntax/instructions.html#syntax-relop}{\mathit{relop}} &amp;::=&amp; \href{../syntax/instructions.html#syntax-irelop}{\mathit{irelop}} ~|~ \href{../syntax/instructions.html#syntax-frelop}{\mathit{frelop}} \\
+\def\mathdef2431#1{{}}\mathdef2431{conversion operator} &amp; \href{../syntax/instructions.html#syntax-cvtop}{\mathit{cvtop}} &amp;::=&amp;
   \href{../syntax/instructions.html#syntax-instr-numeric}{\mathsf{wrap}} ~|~
   \href{../syntax/instructions.html#syntax-instr-numeric}{\mathsf{extend}} ~|~
   \href{../syntax/instructions.html#syntax-instr-numeric}{\mathsf{trunc}} ~|~
@@ -214,76 +214,59 @@ For the other integer instructions, the use of two’s complement for the signed
 \end{array}\end{split}\]</div>
 </section>
 </section>
-<section id="reference-instructions">
-<span id="syntax-instr-ref"></span><span id="syntax-ref-func"></span><span id="syntax-ref-is-null"></span><span id="syntax-ref-null"></span><span id="index-2"></span><h2>Reference Instructions<a class="headerlink" href="#reference-instructions" title="Permalink to this headline">¶</a></h2>
-<p>Instructions in this group are concerned with accessing <a class="reference internal" href="types.html#syntax-reftype"><span class="std std-ref">references</span></a>.</p>
+<section id="vector-instructions">
+<span id="syntax-instr-vec"></span><span id="syntax-vfbinop"></span><span id="syntax-vfunop"></span><span id="syntax-visatbinop"></span><span id="syntax-viminmaxop"></span><span id="syntax-vibinop"></span><span id="syntax-viunop"></span><span id="syntax-vishiftop"></span><span id="syntax-vfrelop"></span><span id="syntax-virelop"></span><span id="syntax-vitestop"></span><span id="syntax-vvtestop"></span><span id="syntax-vvternop"></span><span id="syntax-vvbinop"></span><span id="syntax-vvunop"></span><span id="syntax-half"></span><span id="syntax-shape"></span><span id="syntax-laneidx"></span><span id="index-2"></span><h2>Vector Instructions<a class="headerlink" href="#vector-instructions" title="Permalink to this headline">¶</a></h2>
+<p>Vector instructions (also known as <em>SIMD</em> instructions, single data multiple value) provide basic operations over <a class="reference internal" href="values.html#syntax-value"><span class="std std-ref">values</span></a> of <a class="reference internal" href="types.html#syntax-vectype"><span class="std std-ref">vector type</span></a>.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{llcl}
-\def\mathdef2392#1{{}}\mathdef2392{instruction} &amp; \href{../syntax/instructions.html#syntax-instr}{\mathit{instr}} &amp;::=&amp;
-  \dots \\&amp;&amp;|&amp;
-  \href{../syntax/instructions.html#syntax-instr-ref}{\mathsf{ref{.}null}}~\href{../syntax/types.html#syntax-reftype}{\mathit{reftype}} \\&amp;&amp;|&amp;
-  \href{../syntax/instructions.html#syntax-instr-ref}{\mathsf{ref{.}is\_null}} \\&amp;&amp;|&amp;
-  \href{../syntax/instructions.html#syntax-instr-ref}{\mathsf{ref{.}func}}~\href{../syntax/modules.html#syntax-funcidx}{\mathit{funcidx}} \\
-\end{array}\end{split}\]</div>
-<p>These instruction produce a null value, check for a null value, or produce a reference to a given function, respectively.</p>
-</section>
-<section id="simd-instructions">
-<span id="syntax-instr-simd"></span><span id="syntax-vfbinop"></span><span id="syntax-vfunop"></span><span id="syntax-visatbinop"></span><span id="syntax-viminmaxop"></span><span id="syntax-vibinop"></span><span id="syntax-viunop"></span><span id="syntax-vshiftop"></span><span id="syntax-vfrelop"></span><span id="syntax-virelop"></span><span id="syntax-vitestop"></span><span id="syntax-vsternop"></span><span id="syntax-vsbinop"></span><span id="syntax-vsunop"></span><span id="syntax-vternop"></span><span id="syntax-shape"></span><span id="syntax-laneidx"></span><span id="index-3"></span><h2>SIMD Instructions<a class="headerlink" href="#simd-instructions" title="Permalink to this headline">¶</a></h2>
-<p>SIMD instructions provide basic operations over <a class="reference internal" href="values.html#syntax-value"><span class="std std-ref">values</span></a> of type <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\)</span>.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{llcl}
-\def\mathdef2392#1{{}}\mathdef2392{ishape} &amp; \href{../syntax/instructions.html#syntax-shape}{\mathit{ishape}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{ishape} &amp; \href{../syntax/instructions.html#syntax-shape}{\mathit{ishape}} &amp;::=&amp;
   \mathsf{i8x16} ~|~ \mathsf{i16x8} ~|~ \mathsf{i32x4} ~|~ \mathsf{i64x2} \\
-\def\mathdef2392#1{{}}\mathdef2392{fshape} &amp; \href{../syntax/instructions.html#syntax-shape}{\mathit{fshape}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{fshape} &amp; \href{../syntax/instructions.html#syntax-shape}{\mathit{fshape}} &amp;::=&amp;
   \mathsf{f32x4} ~|~ \mathsf{f64x2} \\
-\def\mathdef2392#1{{}}\mathdef2392{shape} &amp; \href{../syntax/instructions.html#syntax-shape}{\mathit{shape}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{shape} &amp; \href{../syntax/instructions.html#syntax-shape}{\mathit{shape}} &amp;::=&amp;
   \href{../syntax/instructions.html#syntax-shape}{\mathit{ishape}} ~|~ \href{../syntax/instructions.html#syntax-shape}{\mathit{fshape}} \\
-\def\mathdef2392#1{{}}\mathdef2392{lane index} &amp; \href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}} &amp;::=&amp; \href{../syntax/values.html#syntax-int}{\mathit{u8}} \\
-\def\mathdef2392#1{{}}\mathdef2392{instruction} &amp; \href{../syntax/instructions.html#syntax-instr}{\mathit{instr}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{half} &amp; \href{../syntax/instructions.html#syntax-half}{\mathit{half}} &amp;::=&amp;
+  \mathsf{low} ~|~ \mathsf{high} \\
+\def\mathdef2431#1{{}}\mathdef2431{lane index} &amp; \href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}} &amp;::=&amp; \href{../syntax/values.html#syntax-int}{\mathit{u8}} \\
+\def\mathdef2431#1{{}}\mathdef2431{instruction} &amp; \href{../syntax/instructions.html#syntax-instr}{\mathit{instr}} &amp;::=&amp;
   \dots \\&amp;&amp;|&amp;
-  \mathsf{v128.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{const}}~\href{../syntax/values.html#syntax-int}{\mathit{i128}} \\&amp;&amp;|&amp;
-  \mathsf{v128.}\href{../syntax/instructions.html#syntax-vsunop}{\mathit{vsunop}} \\&amp;&amp;|&amp;
-  \mathsf{v128.}\href{../syntax/instructions.html#syntax-vsbinop}{\mathit{vsbinop}} \\&amp;&amp;|&amp;
-  \mathsf{v128.}\href{../syntax/instructions.html#syntax-vsternop}{\mathit{vsternop}} \\&amp;&amp;|&amp;
-  \mathsf{v128.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{any\_true}} \\&amp;&amp;|&amp;
-  \mathsf{i8x16.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{shuffle}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}}^{16} \\&amp;&amp;|&amp;
-  \mathsf{i8x16.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{swizzle}} \\&amp;&amp;|&amp;
-  \href{../syntax/instructions.html#syntax-shape}{\mathit{shape}}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{splat}} \\&amp;&amp;|&amp;
-  \mathsf{i8x16.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extract\_lane}}\mathsf{\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}} ~|~
-  \mathsf{i16x8.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extract\_lane}}\mathsf{\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}} \\&amp;&amp;|&amp;
-  \mathsf{i32x4.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extract\_lane}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}} ~|~
-  \mathsf{i64x2.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extract\_lane}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}} \\&amp;&amp;|&amp;
-  \href{../syntax/instructions.html#syntax-shape}{\mathit{fshape}}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extract\_lane}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}} \\&amp;&amp;|&amp;
-  \href{../syntax/instructions.html#syntax-shape}{\mathit{shape}}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{replace\_lane}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}} \\&amp;&amp;|&amp;
+  \mathsf{v128.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{const}}~\href{../syntax/values.html#syntax-int}{\mathit{i128}} \\&amp;&amp;|&amp;
+  \mathsf{v128.}\href{../syntax/instructions.html#syntax-vvunop}{\mathit{vvunop}} \\&amp;&amp;|&amp;
+  \mathsf{v128.}\href{../syntax/instructions.html#syntax-vvbinop}{\mathit{vvbinop}} \\&amp;&amp;|&amp;
+  \mathsf{v128.}\href{../syntax/instructions.html#syntax-vvternop}{\mathit{vvternop}} \\&amp;&amp;|&amp;
+  \mathsf{v128.}\href{../syntax/instructions.html#syntax-vvtestop}{\mathit{vvtestop}} \\&amp;&amp;|&amp;
+  \mathsf{i8x16.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{shuffle}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}}^{16} \\&amp;&amp;|&amp;
+  \mathsf{i8x16.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{swizzle}} \\&amp;&amp;|&amp;
+  \href{../syntax/instructions.html#syntax-shape}{\mathit{shape}}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{splat}} \\&amp;&amp;|&amp;
+  \mathsf{i8x16.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{extract\_lane}}\mathsf{\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}} ~|~
+  \mathsf{i16x8.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{extract\_lane}}\mathsf{\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}} \\&amp;&amp;|&amp;
+  \mathsf{i32x4.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{extract\_lane}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}} ~|~
+  \mathsf{i64x2.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{extract\_lane}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}} \\&amp;&amp;|&amp;
+  \href{../syntax/instructions.html#syntax-shape}{\mathit{fshape}}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{extract\_lane}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}} \\&amp;&amp;|&amp;
+  \href{../syntax/instructions.html#syntax-shape}{\mathit{shape}}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{replace\_lane}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}} \\&amp;&amp;|&amp;
   \mathsf{i8x16}\mathsf{.}\href{../syntax/instructions.html#syntax-virelop}{\mathit{virelop}} ~|~
   \mathsf{i16x8}\mathsf{.}\href{../syntax/instructions.html#syntax-virelop}{\mathit{virelop}} ~|~
   \mathsf{i32x4}\mathsf{.}\href{../syntax/instructions.html#syntax-virelop}{\mathit{virelop}} \\&amp;&amp;|&amp;
   \mathsf{i64x2.}\mathsf{eq} ~|~
-  \mathsf{i64x2.}\mathsf{ne} \\&amp;&amp;|&amp;
+  \mathsf{i64x2.}\mathsf{ne} ~|~
   \mathsf{i64x2.}\mathsf{lt\_s} ~|~
   \mathsf{i64x2.}\mathsf{gt\_s} ~|~
   \mathsf{i64x2.}\mathsf{le\_s} ~|~
   \mathsf{i64x2.}\mathsf{ge\_s} \\&amp;&amp;|&amp;
   \href{../syntax/instructions.html#syntax-shape}{\mathit{fshape}}\mathsf{.}\href{../syntax/instructions.html#syntax-vfrelop}{\mathit{vfrelop}} \\&amp;&amp;|&amp;
-  \mathsf{i8x16.}\href{../syntax/instructions.html#syntax-viunop}{\mathit{viunop}} ~|~
-  \mathsf{i16x8.}\href{../syntax/instructions.html#syntax-viunop}{\mathit{viunop}} ~|~
-  \mathsf{i32x4.}\href{../syntax/instructions.html#syntax-viunop}{\mathit{viunop}} ~|~
-  \mathsf{i64x2.}\href{../syntax/instructions.html#syntax-viunop}{\mathit{viunop}} \\&amp;&amp;|&amp;
-  \mathsf{i8x16.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{popcnt}} \\&amp;&amp;|&amp;
-  \mathsf{i16x8.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{q15mulr\_sat}}\mathsf{\_s} \\ &amp;&amp;|&amp;
-  \mathsf{i32x4.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{dot}}\mathsf{\_i16x8\_s} \\ &amp;&amp;|&amp;
+  \href{../syntax/instructions.html#syntax-shape}{\mathit{ishape}}\mathsf{.}\href{../syntax/instructions.html#syntax-viunop}{\mathit{viunop}} ~|~
+  \mathsf{i8x16.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{popcnt}} \\&amp;&amp;|&amp;
+  \mathsf{i16x8.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{q15mulr\_sat}}\mathsf{\_s} \\ &amp;&amp;|&amp;
+  \mathsf{i32x4.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{dot}}\mathsf{\_i16x8\_s} \\ &amp;&amp;|&amp;
   \href{../syntax/instructions.html#syntax-shape}{\mathit{fshape}}\mathsf{.}\href{../syntax/instructions.html#syntax-vfunop}{\mathit{vfunop}} \\&amp;&amp;|&amp;
   \href{../syntax/instructions.html#syntax-shape}{\mathit{ishape}}\mathsf{.}\href{../syntax/instructions.html#syntax-vitestop}{\mathit{vitestop}} \\ &amp;&amp;|&amp;
-  \href{../syntax/instructions.html#syntax-shape}{\mathit{ishape}}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{bitmask}} \\ &amp;&amp;|&amp;
-  \mathsf{i8x16.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{narrow}}\mathsf{\_i16x8\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
-  \mathsf{i16x8.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{narrow}}\mathsf{\_i32x4\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\&amp;&amp;|&amp;
-  \mathsf{i16x8.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extend}}\mathsf{\_low}\mathsf{\_i8x16\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
-  \mathsf{i32x4.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extend}}\mathsf{\_low}\mathsf{\_i16x8\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\&amp;&amp;|&amp;
-  \mathsf{i64x2.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extend}}\mathsf{\_low}\mathsf{\_i32x4\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\&amp;&amp;|&amp;
-  \mathsf{i16x8.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extend}}\mathsf{\_high}\mathsf{\_i8x16\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
-  \mathsf{i32x4.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extend}}\mathsf{\_high}\mathsf{\_i16x8\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\&amp;&amp;|&amp;
-  \mathsf{i64x2.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extend}}\mathsf{\_high}\mathsf{\_i32x4\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\&amp;&amp;|&amp;
-  \href{../syntax/instructions.html#syntax-shape}{\mathit{ishape}}\mathsf{.}\href{../syntax/instructions.html#syntax-vshiftop}{\mathit{vshiftop}} \\&amp;&amp;|&amp;
+  \href{../syntax/instructions.html#syntax-shape}{\mathit{ishape}}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{bitmask}} \\ &amp;&amp;|&amp;
+  \mathsf{i8x16.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{narrow}}\mathsf{\_i16x8\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
+  \mathsf{i16x8.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{narrow}}\mathsf{\_i32x4\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\&amp;&amp;|&amp;
+  \mathsf{i16x8.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{extend}}\mathsf{\_}\href{../syntax/instructions.html#syntax-half}{\mathit{half}}\mathsf{\_i8x16\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
+  \mathsf{i32x4.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{extend}}\mathsf{\_}\href{../syntax/instructions.html#syntax-half}{\mathit{half}}\mathsf{\_i16x8\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\&amp;&amp;|&amp;
+  \mathsf{i64x2.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{extend}}\mathsf{\_}\href{../syntax/instructions.html#syntax-half}{\mathit{half}}\mathsf{\_i32x4\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\&amp;&amp;|&amp;
+  \href{../syntax/instructions.html#syntax-shape}{\mathit{ishape}}\mathsf{.}\href{../syntax/instructions.html#syntax-vishiftop}{\mathit{vishiftop}} \\&amp;&amp;|&amp;
   \href{../syntax/instructions.html#syntax-shape}{\mathit{ishape}}\mathsf{.}\href{../syntax/instructions.html#syntax-vibinop}{\mathit{vibinop}} \\&amp;&amp;|&amp;
   \mathsf{i8x16.}\href{../syntax/instructions.html#syntax-viminmaxop}{\mathit{viminmaxop}} ~|~
   \mathsf{i16x8.}\href{../syntax/instructions.html#syntax-viminmaxop}{\mathit{viminmaxop}} ~|~
@@ -293,63 +276,64 @@ For the other integer instructions, the use of two’s complement for the signed
   \mathsf{i16x8.}\mathsf{mul} ~|~
   \mathsf{i32x4.}\mathsf{mul} ~|~
   \mathsf{i64x2.}\mathsf{mul} \\&amp;&amp;|&amp;
-  \mathsf{i8x16.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{avgr}}\mathsf{\_u} ~|~
-  \mathsf{i16x8.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{avgr}}\mathsf{\_u} \\&amp;&amp;|&amp;
-  \mathsf{i16x8.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extmul}}\mathsf{\_low}\mathsf{\_i8x16\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
-  \mathsf{i16x8.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extmul}}\mathsf{\_high}\mathsf{\_i8x16\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\&amp;&amp;|&amp;
-  \mathsf{i32x4.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extmul}}\mathsf{\_low}\mathsf{\_i16x8\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
-  \mathsf{i32x4.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extmul}}\mathsf{\_high}\mathsf{\_i16x8\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\&amp;&amp;|&amp;
-  \mathsf{i64x2.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extmul}}\mathsf{\_low}\mathsf{\_i32x4\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
-  \mathsf{i64x2.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extmul}}\mathsf{\_high}\mathsf{\_i32x4\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\&amp;&amp;|&amp;
-  \mathsf{i16x8.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extadd\_pairwise}}\mathsf{\_i8x16\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
-  \mathsf{i32x4.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extadd\_pairwise}}\mathsf{\_i16x8\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\ &amp;&amp;|&amp;
+  \mathsf{i8x16.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{avgr}}\mathsf{\_u} ~|~
+  \mathsf{i16x8.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{avgr}}\mathsf{\_u} \\&amp;&amp;|&amp;
+  \mathsf{i16x8.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{extmul}}\mathsf{\_}\href{../syntax/instructions.html#syntax-half}{\mathit{half}}\mathsf{\_i8x16\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
+  \mathsf{i32x4.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{extmul}}\mathsf{\_}\href{../syntax/instructions.html#syntax-half}{\mathit{half}}\mathsf{\_i16x8\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
+  \mathsf{i64x2.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{extmul}}\mathsf{\_}\href{../syntax/instructions.html#syntax-half}{\mathit{half}}\mathsf{\_i32x4\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\ &amp;&amp;|&amp;
+  \mathsf{i16x8.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{extadd\_pairwise}}\mathsf{\_i8x16\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
+  \mathsf{i32x4.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{extadd\_pairwise}}\mathsf{\_i16x8\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\ &amp;&amp;|&amp;
   \href{../syntax/instructions.html#syntax-shape}{\mathit{fshape}}\mathsf{.}\href{../syntax/instructions.html#syntax-vfbinop}{\mathit{vfbinop}} \\&amp;&amp;|&amp;
-  \mathsf{i32x4.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{trunc}}\mathsf{\_sat\_f32x4\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~ \mathsf{i32x4.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{trunc}}\mathsf{\_sat\_f64x2\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}\mathsf{\_zero} \\&amp;&amp;|&amp;
-  \mathsf{f32x4.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{convert}}\mathsf{\_i32x4\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~ \mathsf{f32x4.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{demote}}\mathsf{\_f64x2\_zero} \\&amp;&amp;|&amp;
-  \mathsf{f64x2.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{convert}}\mathsf{\_low\_i32x4\_}sx ~|~ \mathsf{f64x2.}\href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{promote}}\mathsf{\_low\_f32x4} \\&amp;&amp;|&amp;
+  \mathsf{i32x4.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{trunc}}\mathsf{\_sat\_f32x4\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
+  \mathsf{i32x4.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{trunc}}\mathsf{\_sat\_f64x2\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}\mathsf{\_zero} \\&amp;&amp;|&amp;
+  \mathsf{f32x4.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{convert}}\mathsf{\_i32x4\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
+  \mathsf{f32x4.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{demote}}\mathsf{\_f64x2\_zero} \\&amp;&amp;|&amp;
+  \mathsf{f64x2.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{convert}}\mathsf{\_low\_i32x4\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
+  \mathsf{f64x2.}\href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{promote}}\mathsf{\_low\_f32x4} \\&amp;&amp;|&amp;
   \dots \\
-\def\mathdef2392#1{{}}\mathdef2392{SIMD unary operator} &amp; \href{../syntax/instructions.html#syntax-vsunop}{\mathit{vsunop}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{vector bitwise unary operator} &amp; \href{../syntax/instructions.html#syntax-vvunop}{\mathit{vvunop}} &amp;::=&amp;
   \mathsf{not} \\
-\def\mathdef2392#1{{}}\mathdef2392{SIMD binary operator} &amp; \href{../syntax/instructions.html#syntax-vsbinop}{\mathit{vsbinop}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{vector bitwise binary operator} &amp; \href{../syntax/instructions.html#syntax-vvbinop}{\mathit{vvbinop}} &amp;::=&amp;
   \mathsf{and} ~|~
   \mathsf{andnot} ~|~
   \mathsf{or} ~|~
   \mathsf{xor} \\
-\def\mathdef2392#1{{}}\mathdef2392{SIMD ternary operator} &amp; \href{../syntax/instructions.html#syntax-vsternop}{\mathit{vsternop}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{vector bitwise ternary operator} &amp; \href{../syntax/instructions.html#syntax-vvternop}{\mathit{vvternop}} &amp;::=&amp;
   \mathsf{bitselect} \\
-\def\mathdef2392#1{{}}\mathdef2392{SIMD test operator} &amp; \href{../syntax/instructions.html#syntax-vitestop}{\mathit{vitestop}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{vector bitwise test operator} &amp; \href{../syntax/instructions.html#syntax-vvtestop}{\mathit{vvtestop}} &amp;::=&amp;
+  \mathsf{any\_true} \\
+\def\mathdef2431#1{{}}\mathdef2431{vector integer test operator} &amp; \href{../syntax/instructions.html#syntax-vitestop}{\mathit{vitestop}} &amp;::=&amp;
   \mathsf{all\_true} \\
-\def\mathdef2392#1{{}}\mathdef2392{SIMD integer relational operator} &amp; \href{../syntax/instructions.html#syntax-virelop}{\mathit{virelop}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{vector integer relational operator} &amp; \href{../syntax/instructions.html#syntax-virelop}{\mathit{virelop}} &amp;::=&amp;
   \mathsf{eq} ~|~
   \mathsf{ne} ~|~
   \mathsf{lt\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
   \mathsf{gt\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
   \mathsf{le\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
   \mathsf{ge\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\
-\def\mathdef2392#1{{}}\mathdef2392{SIMD floating-point relational operator} &amp; \href{../syntax/instructions.html#syntax-vfrelop}{\mathit{vfrelop}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{vector floating-point relational operator} &amp; \href{../syntax/instructions.html#syntax-vfrelop}{\mathit{vfrelop}} &amp;::=&amp;
   \mathsf{eq} ~|~
   \mathsf{ne} ~|~
   \mathsf{lt} ~|~
   \mathsf{gt} ~|~
   \mathsf{le} ~|~
   \mathsf{ge} \\
-\def\mathdef2392#1{{}}\mathdef2392{SIMD integer shift operator} &amp; \href{../syntax/instructions.html#syntax-vshiftop}{\mathit{vshiftop}} &amp;::=&amp;
-  \mathsf{shl} ~|~
-  \mathsf{shr\_s} ~|~
-  \mathsf{shr\_u} \\
-\def\mathdef2392#1{{}}\mathdef2392{SIMD integer unary operator} &amp; \href{../syntax/instructions.html#syntax-viunop}{\mathit{viunop}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{vector integer unary operator} &amp; \href{../syntax/instructions.html#syntax-viunop}{\mathit{viunop}} &amp;::=&amp;
   \mathsf{abs} ~|~
   \mathsf{neg} \\
-\def\mathdef2392#1{{}}\mathdef2392{SIMD integer binary operator} &amp; \href{../syntax/instructions.html#syntax-vibinop}{\mathit{vibinop}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{vector integer binary operator} &amp; \href{../syntax/instructions.html#syntax-vibinop}{\mathit{vibinop}} &amp;::=&amp;
   \mathsf{add} ~|~
   \mathsf{sub} \\
-\def\mathdef2392#1{{}}\mathdef2392{SIMD integer binary min/max operator} &amp; \href{../syntax/instructions.html#syntax-viminmaxop}{\mathit{viminmaxop}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{vector integer binary min/max operator} &amp; \href{../syntax/instructions.html#syntax-viminmaxop}{\mathit{viminmaxop}} &amp;::=&amp;
   \mathsf{min\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
   \mathsf{max\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\
-\def\mathdef2392#1{{}}\mathdef2392{SIMD integer saturating binary operator} &amp; \href{../syntax/instructions.html#syntax-visatbinop}{\mathit{visatbinop}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{vector integer saturating binary operator} &amp; \href{../syntax/instructions.html#syntax-visatbinop}{\mathit{visatbinop}} &amp;::=&amp;
   \mathsf{add\_sat\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} ~|~
   \mathsf{sub\_sat\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\
-\def\mathdef2392#1{{}}\mathdef2392{SIMD floating-point unary operator} &amp; \href{../syntax/instructions.html#syntax-vfunop}{\mathit{vfunop}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{vector integer shift operator} &amp; \href{../syntax/instructions.html#syntax-vishiftop}{\mathit{vishiftop}} &amp;::=&amp;
+  \mathsf{shl} ~|~
+  \mathsf{shr\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}} \\
+\def\mathdef2431#1{{}}\mathdef2431{vector floating-point unary operator} &amp; \href{../syntax/instructions.html#syntax-vfunop}{\mathit{vfunop}} &amp;::=&amp;
   \mathsf{abs} ~|~
   \mathsf{neg} ~|~
   \mathsf{sqrt} ~|~
@@ -357,7 +341,7 @@ For the other integer instructions, the use of two’s complement for the signed
   \mathsf{floor} ~|~
   \mathsf{trunc} ~|~
   \mathsf{nearest} \\
-\def\mathdef2392#1{{}}\mathdef2392{SIMD floating-point binary operator} &amp; \href{../syntax/instructions.html#syntax-vfbinop}{\mathit{vfbinop}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{vector floating-point binary operator} &amp; \href{../syntax/instructions.html#syntax-vfbinop}{\mathit{vfbinop}} &amp;::=&amp;
   \mathsf{add} ~|~
   \mathsf{sub} ~|~
   \mathsf{mul} ~|~
@@ -367,10 +351,10 @@ For the other integer instructions, the use of two’s complement for the signed
   \mathsf{pmin} ~|~
   \mathsf{pmax} \\
 \end{array}\end{split}\]</div>
-<p id="syntax-simd-shape">SIMD instructions have a naming convention involving a prefix that
+<p id="syntax-vec-shape">Vector instructions have a naming convention involving a prefix that
 determines how their operands will be interpreted.
 This prefix describes the <em>shape</em> of the operand,
-written <span class="math notranslate nohighlight">\(t\mathsf{x}N\)</span>, and consisting of a packed numeric type <span class="math notranslate nohighlight">\(t\)</span> and the number of <em>lanes</em> <span class="math notranslate nohighlight">\(N\)</span> of that type.
+written <span class="math notranslate nohighlight">\(t\mathsf{x}N\)</span>, and consisting of a packed <a class="reference internal" href="types.html#syntax-numtype"><span class="std std-ref">numeric type</span></a> <span class="math notranslate nohighlight">\(t\)</span> and the number of <em>lanes</em> <span class="math notranslate nohighlight">\(N\)</span> of that type.
 Operations are performed point-wise on the values of each lane.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -379,7 +363,7 @@ as four <span class="math notranslate nohighlight">\(\href{../syntax/values.html
 The bitwidth of the numeric type <span class="math notranslate nohighlight">\(t\)</span> times <span class="math notranslate nohighlight">\(N\)</span> always is 128.</p>
 </div>
 <p>Instructions prefixed with <span class="math notranslate nohighlight">\(\mathsf{v128}\)</span> do not involve a specific interpretation, and treat the <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\)</span> as an <span class="math notranslate nohighlight">\(\href{../syntax/values.html#syntax-int}{\mathit{i128}}\)</span> value or a vector of 128 individual bits.</p>
-<p>SIMD instructions can be grouped into several subcategories:</p>
+<p>Vector instructions can be grouped into several subcategories:</p>
 <ul class="simple">
 <li><p><em>Constants</em>: return a static constant.</p></li>
 <li><p><em>Unary Operations</em>: consume one <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\)</span> operand and produce one <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\)</span> result.</p></li>
@@ -391,44 +375,55 @@ The bitwidth of the numeric type <span class="math notranslate nohighlight">\(t\
 <li><p><em>Extract lanes</em>: consume a <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\)</span> operand and return the numeric value in a given lane.</p></li>
 <li><p><em>Replace lanes</em>: consume a <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\)</span> operand and a numeric value for a given lane, and produce a <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\)</span> result.</p></li>
 </ul>
-<p>Some SIMD instructions have a signedness annotation <span class="math notranslate nohighlight">\(\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}\)</span> which distinguishes whether the elements in the operands are to be <a class="reference internal" href="../exec/numerics.html#aux-signed"><span class="std std-ref">interpreted</span></a> as <a class="reference internal" href="values.html#syntax-uint"><span class="std std-ref">unsigned</span></a> or <a class="reference internal" href="values.html#syntax-sint"><span class="std std-ref">signed</span></a> integers.
-For the other SIMD instructions, the use of two’s complement for the signed interpretation means that they behave the same regardless of signedness.</p>
-<section id="syntax-vextmul">
-<span id="syntax-vcvtop"></span><span id="syntax-vrelop"></span><span id="syntax-vbinop"></span><span id="syntax-vunop"></span><span id="id1"></span><h3>Conventions<a class="headerlink" href="#syntax-vextmul" title="Permalink to this headline">¶</a></h3>
+<p>Some vector instructions have a signedness annotation <span class="math notranslate nohighlight">\(\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}\)</span> which distinguishes whether the elements in the operands are to be <a class="reference internal" href="../exec/numerics.html#aux-signed"><span class="std std-ref">interpreted</span></a> as <a class="reference internal" href="values.html#syntax-uint"><span class="std std-ref">unsigned</span></a> or <a class="reference internal" href="values.html#syntax-sint"><span class="std std-ref">signed</span></a> integers.
+For the other vector instructions, the use of two’s complement for the signed interpretation means that they behave the same regardless of signedness.</p>
+<section id="syntax-vcvtop">
+<span id="syntax-vtestop"></span><span id="syntax-vrelop"></span><span id="syntax-vbinop"></span><span id="syntax-vunop"></span><span id="id1"></span><h3>Conventions<a class="headerlink" href="#syntax-vcvtop" title="Permalink to this headline">¶</a></h3>
 <p>Occasionally, it is convenient to group operators together according to the following grammar shorthands:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{llll}
-\def\mathdef2392#1{{}}\mathdef2392{unary operator} &amp; \href{../syntax/instructions.html#syntax-vunop}{\mathit{vunop}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{unary operator} &amp; \href{../syntax/instructions.html#syntax-vunop}{\mathit{vunop}} &amp;::=&amp;
   \href{../syntax/instructions.html#syntax-viunop}{\mathit{viunop}} ~|~
   \href{../syntax/instructions.html#syntax-vfunop}{\mathit{vfunop}} ~|~
-  \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{popcnt}} \\
-\def\mathdef2392#1{{}}\mathdef2392{binary operator} &amp; \href{../syntax/instructions.html#syntax-vbinop}{\mathit{vbinop}} &amp;::=&amp;
+  \href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{popcnt}} \\
+\def\mathdef2431#1{{}}\mathdef2431{binary operator} &amp; \href{../syntax/instructions.html#syntax-vbinop}{\mathit{vbinop}} &amp;::=&amp;
   \href{../syntax/instructions.html#syntax-vibinop}{\mathit{vibinop}} ~|~ \href{../syntax/instructions.html#syntax-vfbinop}{\mathit{vfbinop}} \\&amp;&amp;|&amp;
   \href{../syntax/instructions.html#syntax-viminmaxop}{\mathit{viminmaxop}} ~|~ \href{../syntax/instructions.html#syntax-visatbinop}{\mathit{visatbinop}} \\&amp;&amp;|&amp;
-  \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{swizzle}} ~|~
-  \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{mul}} ~|~
-  \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{avgr}}\mathsf{\_u} ~|~
-  \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{q15mulr\_sat}}\mathsf{\_s} \\
-\def\mathdef2392#1{{}}\mathdef2392{simd relational operator} &amp; \href{../syntax/instructions.html#syntax-vrelop}{\mathit{vrelop}} &amp;::=&amp;
+  \href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{mul}} ~|~
+  \href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{avgr}}\mathsf{\_u} ~|~
+  \href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{q15mulr\_sat}}\mathsf{\_s} \\
+\def\mathdef2431#1{{}}\mathdef2431{test operator} &amp; \href{../syntax/instructions.html#syntax-vtestop}{\mathit{vtestop}} &amp;::=&amp;
+  \href{../syntax/instructions.html#syntax-vitestop}{\mathit{vitestop}} \\
+\def\mathdef2431#1{{}}\mathdef2431{relational operator} &amp; \href{../syntax/instructions.html#syntax-vrelop}{\mathit{vrelop}} &amp;::=&amp;
   \href{../syntax/instructions.html#syntax-virelop}{\mathit{virelop}} ~|~ \href{../syntax/instructions.html#syntax-vfrelop}{\mathit{vfrelop}} \\
-\def\mathdef2392#1{{}}\mathdef2392{conversion operator} &amp; \href{../syntax/instructions.html#syntax-vcvtop}{\mathit{vcvtop}} &amp;::=&amp;
-  \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{trunc}}\mathsf{\_sat} ~|~
-  \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extend}} ~|~
-  \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{convert}} ~|~
-  \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{demote}} ~|~
-  \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{promote}} \\
-\def\mathdef2392#1{{}}\mathdef2392{extmul operator} &amp; \href{../syntax/instructions.html#syntax-vextmul}{\mathit{vextmul}} &amp;::=&amp;
-  \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extmul}}\mathsf{\_low} ~|~
-  \href{../syntax/instructions.html#syntax-instr-simd}{\mathsf{extmul}}\mathsf{\_high} \\
+\def\mathdef2431#1{{}}\mathdef2431{conversion operator} &amp; \href{../syntax/instructions.html#syntax-vcvtop}{\mathit{vcvtop}} &amp;::=&amp;
+  \href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{extend}} ~|~
+  \href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{trunc}}\mathsf{\_sat} ~|~
+  \href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{convert}} ~|~
+  \href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{demote}} ~|~
+  \href{../syntax/instructions.html#syntax-instr-vec}{\mathsf{promote}} \\
 \end{array}\end{split}\]</div>
 </section>
+</section>
+<section id="reference-instructions">
+<span id="syntax-instr-ref"></span><span id="syntax-ref-func"></span><span id="syntax-ref-is-null"></span><span id="syntax-ref-null"></span><span id="index-3"></span><h2>Reference Instructions<a class="headerlink" href="#reference-instructions" title="Permalink to this headline">¶</a></h2>
+<p>Instructions in this group are concerned with accessing <a class="reference internal" href="types.html#syntax-reftype"><span class="std std-ref">references</span></a>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{llcl}
+\def\mathdef2431#1{{}}\mathdef2431{instruction} &amp; \href{../syntax/instructions.html#syntax-instr}{\mathit{instr}} &amp;::=&amp;
+  \dots \\&amp;&amp;|&amp;
+  \href{../syntax/instructions.html#syntax-instr-ref}{\mathsf{ref{.}null}}~\href{../syntax/types.html#syntax-reftype}{\mathit{reftype}} \\&amp;&amp;|&amp;
+  \href{../syntax/instructions.html#syntax-instr-ref}{\mathsf{ref{.}is\_null}} \\&amp;&amp;|&amp;
+  \href{../syntax/instructions.html#syntax-instr-ref}{\mathsf{ref{.}func}}~\href{../syntax/modules.html#syntax-funcidx}{\mathit{funcidx}} \\
+\end{array}\end{split}\]</div>
+<p>These instruction produce a null value, check for a null value, or produce a reference to a given function, respectively.</p>
 </section>
 <section id="parametric-instructions">
 <span id="syntax-instr-parametric"></span><span id="index-4"></span><h2>Parametric Instructions<a class="headerlink" href="#parametric-instructions" title="Permalink to this headline">¶</a></h2>
 <p>Instructions in this group can operate on operands of any <a class="reference internal" href="types.html#syntax-valtype"><span class="std std-ref">value type</span></a>.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{llcl}
-\def\mathdef2392#1{{}}\mathdef2392{instruction} &amp; \href{../syntax/instructions.html#syntax-instr}{\mathit{instr}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{instruction} &amp; \href{../syntax/instructions.html#syntax-instr}{\mathit{instr}} &amp;::=&amp;
   \dots \\&amp;&amp;|&amp;
   \href{../syntax/instructions.html#syntax-instr-parametric}{\mathsf{drop}} \\&amp;&amp;|&amp;
   \href{../syntax/instructions.html#syntax-instr-parametric}{\mathsf{select}}~(\href{../syntax/types.html#syntax-valtype}{\mathit{valtype}}^\ast)^? \\
@@ -446,7 +441,7 @@ It may include a <a class="reference internal" href="types.html#syntax-valtype">
 <p>Variable instructions are concerned with access to <a class="reference internal" href="modules.html#syntax-local"><span class="std std-ref">local</span></a> or <a class="reference internal" href="modules.html#syntax-global"><span class="std std-ref">global</span></a> variables.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{llcl}
-\def\mathdef2392#1{{}}\mathdef2392{instruction} &amp; \href{../syntax/instructions.html#syntax-instr}{\mathit{instr}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{instruction} &amp; \href{../syntax/instructions.html#syntax-instr}{\mathit{instr}} &amp;::=&amp;
   \dots \\&amp;&amp;|&amp;
   \href{../syntax/instructions.html#syntax-instr-variable}{\mathsf{local.get}}~\href{../syntax/modules.html#syntax-localidx}{\mathit{localidx}} \\&amp;&amp;|&amp;
   \href{../syntax/instructions.html#syntax-instr-variable}{\mathsf{local.set}}~\href{../syntax/modules.html#syntax-localidx}{\mathit{localidx}} \\&amp;&amp;|&amp;
@@ -462,7 +457,7 @@ The <span class="math notranslate nohighlight">\(\href{../syntax/instructions.ht
 <p>Instructions in this group are concerned with tables <a class="reference internal" href="modules.html#syntax-table"><span class="std std-ref">table</span></a>.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{llcl}
-\def\mathdef2392#1{{}}\mathdef2392{instruction} &amp; \href{../syntax/instructions.html#syntax-instr}{\mathit{instr}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{instruction} &amp; \href{../syntax/instructions.html#syntax-instr}{\mathit{instr}} &amp;::=&amp;
   \dots \\&amp;&amp;|&amp;
   \href{../syntax/instructions.html#syntax-instr-table}{\mathsf{table.get}}~\href{../syntax/modules.html#syntax-tableidx}{\mathit{tableidx}} \\&amp;&amp;|&amp;
   \href{../syntax/instructions.html#syntax-instr-table}{\mathsf{table.set}}~\href{../syntax/modules.html#syntax-tableidx}{\mathit{tableidx}} \\&amp;&amp;|&amp;
@@ -488,11 +483,11 @@ The <span class="math notranslate nohighlight">\(\href{../syntax/instructions.ht
 <p>Instructions in this group are concerned with linear <a class="reference internal" href="modules.html#syntax-mem"><span class="std std-ref">memory</span></a>.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{llcl}
-\def\mathdef2392#1{{}}\mathdef2392{memory immediate} &amp; \href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{memory immediate} &amp; \href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}} &amp;::=&amp;
   \{ \href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{offset}}~\href{../syntax/values.html#syntax-int}{\mathit{u32}}, \href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{align}}~\href{../syntax/values.html#syntax-int}{\mathit{u32}} \} \\
-\def\mathdef2392#1{{}}\mathdef2392{lane width} &amp; \href{../syntax/instructions.html#syntax-lanewidth}{\mathit{lanewidth}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{lane width} &amp; \mathit{ww} &amp;::=&amp;
   8 ~|~ 16 ~|~ 32 ~|~ 64 \\
-\def\mathdef2392#1{{}}\mathdef2392{instruction} &amp; \href{../syntax/instructions.html#syntax-instr}{\mathit{instr}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{instruction} &amp; \href{../syntax/instructions.html#syntax-instr}{\mathit{instr}} &amp;::=&amp;
   \dots \\&amp;&amp;|&amp;
   \mathsf{i}\mathit{nn}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{load}}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}} ~|~
   \mathsf{f}\mathit{nn}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{load}}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}} ~|~
@@ -506,14 +501,14 @@ The <span class="math notranslate nohighlight">\(\href{../syntax/instructions.ht
   \mathsf{i}\mathit{nn}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{store}}\mathsf{8}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}} ~|~
   \mathsf{i}\mathit{nn}\mathsf{.}\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{store}}\mathsf{16}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}} ~|~
   \mathsf{i64.}\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{store}}\mathsf{32}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}} \\&amp;&amp;|&amp;
-  \mathsf{v128.}\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{load}}\mathsf{8x8}\_\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}} ~|~
-  \mathsf{v128.}\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{load}}\mathsf{16x4}\_\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}} ~|~
-  \mathsf{v128.}\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{load}}\mathsf{32x2}\_\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}} \\&amp;&amp;|&amp;
-  \mathsf{v128.}\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{load}}\href{../syntax/instructions.html#syntax-lanewidth}{\mathit{lanewidth}}\mathsf{\_splat}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}} \\&amp;&amp;|&amp;
+  \mathsf{v128.}\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{load}}\mathsf{8x8\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}} ~|~
+  \mathsf{v128.}\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{load}}\mathsf{16x4\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}} ~|~
+  \mathsf{v128.}\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{load}}\mathsf{32x2\_}\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}} \\&amp;&amp;|&amp;
   \mathsf{v128.}\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{load}}\mathsf{32\_zero}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}} ~|~
   \mathsf{v128.}\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{load}}\mathsf{64\_zero}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}} \\&amp;&amp;|&amp;
-  \mathsf{v128.}\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{load}}\href{../syntax/instructions.html#syntax-lanewidth}{\mathit{lanewidth}}\mathsf{\_lane}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}} ~|~
-  \mathsf{v128.}\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{store}}\href{../syntax/instructions.html#syntax-lanewidth}{\mathit{lanewidth}}\mathsf{\_lane}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}} \\&amp;&amp;|&amp;
+  \mathsf{v128.}\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{load}}\mathit{ww}\mathsf{\_splat}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}} \\&amp;&amp;|&amp;
+  \mathsf{v128.}\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{load}}\mathit{ww}\mathsf{\_lane}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}} ~|~
+  \mathsf{v128.}\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{store}}\mathit{ww}\mathsf{\_lane}~\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}}~\href{../syntax/instructions.html#syntax-laneidx}{\mathit{laneidx}} \\&amp;&amp;|&amp;
   \href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{memory.size}} \\&amp;&amp;|&amp;
   \href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{memory.grow}} \\&amp;&amp;|&amp;
   \href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{memory.fill}} \\&amp;&amp;|&amp;
@@ -521,11 +516,12 @@ The <span class="math notranslate nohighlight">\(\href{../syntax/instructions.ht
   \href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{memory.init}}~\href{../syntax/modules.html#syntax-dataidx}{\mathit{dataidx}} \\&amp;&amp;|&amp;
   \href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{data.drop}}~\href{../syntax/modules.html#syntax-dataidx}{\mathit{dataidx}} \\
 \end{array}\end{split}\]</div>
-<p>Memory is accessed with <span class="math notranslate nohighlight">\(\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{load}}\)</span> and <span class="math notranslate nohighlight">\(\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{store}}\)</span> instructions for the different <a class="reference internal" href="types.html#syntax-valtype"><span class="std std-ref">value types</span></a>.
+<p>Memory is accessed with <span class="math notranslate nohighlight">\(\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{load}}\)</span> and <span class="math notranslate nohighlight">\(\href{../syntax/instructions.html#syntax-instr-memory}{\mathsf{store}}\)</span> instructions for the different <a class="reference internal" href="types.html#syntax-numtype"><span class="std std-ref">number types</span></a>.
 They all take a <em>memory immediate</em> <span class="math notranslate nohighlight">\(\href{../syntax/instructions.html#syntax-memarg}{\mathit{memarg}}\)</span> that contains an address <em>offset</em> and the expected <em>alignment</em> (expressed as the exponent of a power of 2).
-Integer loads and stores can optionally specify a <em>storage size</em> that is smaller than the <a class="reference internal" href="types.html#syntax-valtype"><span class="std std-ref">bit width</span></a> of the respective value type.
+Integer loads and stores can optionally specify a <em>storage size</em> that is smaller than the <a class="reference internal" href="types.html#syntax-numtype"><span class="std std-ref">bit width</span></a> of the respective value type.
 In the case of loads, a sign extension mode <span class="math notranslate nohighlight">\(\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}\)</span> is then required to select appropriate behavior.</p>
-<p>SIMD loads can specify a shape that is half the <a class="reference internal" href="types.html#syntax-valtype"><span class="std std-ref">bit width</span></a> of <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\)</span>. Each lane is half its usual size, and the sign extension mode <span class="math notranslate nohighlight">\(\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}\)</span> then specifies how the smaller lane is extended to the larger lane. Alternatively, SIMD loads can perform a <em>splat</em>, such that only a single lane of the specified storage size is loaded, and the result is duplicated to all lanes.</p>
+<p>Vector loads can specify a shape that is half the <a class="reference internal" href="types.html#syntax-valtype"><span class="std std-ref">bit width</span></a> of <span class="math notranslate nohighlight">\(\href{../syntax/types.html#syntax-valtype}{\mathsf{v128}}\)</span>. Each lane is half its usual size, and the sign extension mode <span class="math notranslate nohighlight">\(\href{../syntax/instructions.html#syntax-sx}{\mathit{sx}}\)</span> then specifies how the smaller lane is extended to the larger lane.
+Alternatively, vector loads can perform a <em>splat</em>, such that only a single lane of the specified storage size is loaded, and the result is duplicated to all lanes.</p>
 <p>The static address offset is added to the dynamic address operand, yielding a 33 bit <em>effective address</em> that is the zero-based index at which the memory is accessed.
 All values are read and written in <a class="reference external" href="https://en.wikipedia.org/wiki/Endianness#Little-endian">little endian</a> byte order.
 A <a class="reference internal" href="../intro/overview.html#trap"><span class="std std-ref">trap</span></a> results if any of the accessed memory bytes lies outside the address range implied by the memory’s current size.</p>
@@ -552,9 +548,9 @@ This restriction may be lifted in future versions.</p>
 <p>Instructions in this group affect the flow of control.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{llcl}
-\def\mathdef2392#1{{}}\mathdef2392{block type} &amp; \href{../syntax/instructions.html#syntax-blocktype}{\mathit{blocktype}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{block type} &amp; \href{../syntax/instructions.html#syntax-blocktype}{\mathit{blocktype}} &amp;::=&amp;
   \href{../syntax/modules.html#syntax-typeidx}{\mathit{typeidx}} ~|~ \href{../syntax/types.html#syntax-valtype}{\mathit{valtype}}^? \\
-\def\mathdef2392#1{{}}\mathdef2392{instruction} &amp; \href{../syntax/instructions.html#syntax-instr}{\mathit{instr}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{instruction} &amp; \href{../syntax/instructions.html#syntax-instr}{\mathit{instr}} &amp;::=&amp;
   \dots \\&amp;&amp;|&amp;
   \href{../syntax/instructions.html#syntax-instr-control}{\mathsf{nop}} \\&amp;&amp;|&amp;
   \href{../syntax/instructions.html#syntax-instr-control}{\mathsf{unreachable}} \\&amp;&amp;|&amp;
@@ -612,7 +608,7 @@ the callee is dynamically checked against the <a class="reference internal" href
 <p><a class="reference internal" href="modules.html#syntax-func"><span class="std std-ref">Function</span></a> bodies, initialization values for <a class="reference internal" href="modules.html#syntax-global"><span class="std std-ref">globals</span></a>, and offsets of <a class="reference internal" href="modules.html#syntax-elem"><span class="std std-ref">element</span></a> or <a class="reference internal" href="modules.html#syntax-data"><span class="std std-ref">data</span></a> segments are given as expressions, which are sequences of <a class="reference internal" href="#syntax-instr"><span class="std std-ref">instructions</span></a> terminated by an <span class="math notranslate nohighlight">\(\href{../syntax/instructions.html#syntax-instr-control}{\mathsf{end}}\)</span> marker.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{llll}
-\def\mathdef2392#1{{}}\mathdef2392{expression} &amp; \href{../syntax/instructions.html#syntax-expr}{\mathit{expr}} &amp;::=&amp;
+\def\mathdef2431#1{{}}\mathdef2431{expression} &amp; \href{../syntax/instructions.html#syntax-expr}{\mathit{expr}} &amp;::=&amp;
   \href{../syntax/instructions.html#syntax-instr}{\mathit{instr}}^\ast~\href{../syntax/instructions.html#syntax-instr-control}{\mathsf{end}} \\
 \end{array}\end{split}\]</div>
 <p>In some places, validation <a class="reference internal" href="../valid/instructions.html#valid-constant"><span class="std std-ref">restricts</span></a> expressions to be <em>constant</em>, which limits the set of allowable instructions.</p>

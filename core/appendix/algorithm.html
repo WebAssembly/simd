@@ -1,19 +1,19 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Validation Algorithm &#8212; WebAssembly 1.1</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <title>Validation Algorithm &#8212; WebAssembly 1.1 (Draft 2021-10-21)</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"MAXBUFFER": 30720}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -46,6 +46,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Validation Algorithm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="custom.html">Custom Sections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="properties.html">Soundness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html">Change History</a></li>
 </ul>
 </li>
 </ul>
@@ -137,15 +138,13 @@ the latter surrounding <a class="reference internal" href="../syntax/instruction
 
 <span class="k">func</span> <span class="nf">pop_val</span>(<span class="nf">expect</span> : val_type | Unknown) : val_type | Unknown =
   <span class="k">let</span> <span class="nf">actual</span> = pop_val()
-  <span class="k">if</span> (actual = Unknown) <span class="k">return</span> expect
-  <span class="k">if</span> (expect = Unknown) <span class="k">return</span> actual
-  error_if(actual =/= expect)
+  error_if(actual =/= expect &amp;&amp; actual =/= Unknown &amp;&amp; expect =/= Unknown)
   <span class="k">return</span> actual
 
 <span class="k">func</span> <span class="nf">push_vals</span>(<span class="nf">types</span> : list(val_type)) = <span class="k">foreach</span> (t <span class="k">in</span> types) push_val(t)
 <span class="k">func</span> <span class="nf">pop_vals</span>(<span class="nf">types</span> : list(val_type)) : list(val_type) =
   <span class="k">var</span> <span class="nf">popped</span> := []
-  <span class="k">foreach</span> (t <span class="k">in</span> reverse(types)) popped.append(pop_val(t))
+  <span class="k">foreach</span> (t <span class="k">in</span> reverse(types)) popped.prepend(pop_val(t))
   <span class="k">return</span> popped
 </pre></div>
 </div>
@@ -165,13 +164,13 @@ so that, e.g., <code class="code docutils literal notranslate"><span class="pre"
 </div>
 <p>The control stack is likewise manipulated through auxiliary functions:</p>
 <div class="highlight-pseudo notranslate"><div class="highlight"><pre><span></span><span class="k">func</span> <span class="nf">push_ctrl</span>(<span class="nf">opcode</span> : opcode, <span class="k">in</span> : list(val_type), <span class="nf">out</span> : list(val_type)) =
-  <span class="k">let</span> <span class="nf">frame</span> = ctrl_frame(opcode, <span class="k">in</span>, out, vals.size(), false)
+  <span class="k">let</span> <span class="nf">frame</span> = ctrl_frame(opcode, <span class="k">in</span>, out, vals.size(), false)
   ctrls.push(frame)
   push_vals(<span class="k">in</span>)
 
 <span class="k">func</span> <span class="nf">pop_ctrl</span>() : ctrl_frame =
-  error_if(ctrls.is_empty())
-  <span class="k">let</span> <span class="nf">frame</span> = ctrls[0]
+  error_if(ctrls.is_empty())
+  <span class="k">let</span> <span class="nf">frame</span> = ctrls[0]
   pop_vals(frame.end_types)
   error_if(vals.size() =/= frame.height)
   ctrls.pop()
@@ -233,8 +232,8 @@ That is an easy addition and therefore omitted from this presentation.</p>
       pop_val(t)
       push_val(t)
 
-    <span class="k">case</span> (unreachable)
-      unreachable()
+    <span class="k">case</span> (unreachable)
+      unreachable()
 
     <span class="k">case</span> (block t1*-&gt;t2*)
       pop_vals([t1*])
@@ -259,26 +258,26 @@ That is an easy addition and therefore omitted from this presentation.</p>
       push_ctrl(else, frame.start_types, frame.end_types)
 
     <span class="k">case</span> (br n)
-      error_if(ctrls.size() &lt; n)
-      pop_vals(label_types(ctrls[n]))
-      unreachable()
+      error_if(ctrls.size() &lt; n)
+      pop_vals(label_types(ctrls[n]))
+      unreachable()
 
     <span class="k">case</span> (br_if n)
-      error_if(ctrls.size() &lt; n)
+      error_if(ctrls.size() &lt; n)
       pop_val(I32)
-      pop_vals(label_types(ctrls[n]))
-      push_vals(label_types(ctrls[n]))
+      pop_vals(label_types(ctrls[n]))
+      push_vals(label_types(ctrls[n]))
 
-    <span class="k">case</span> (br_table n* m)
+    <span class="k">case</span> (br_table n* m)
       pop_val(I32)
-      error_if(ctrls.size() &lt; m)
+      error_if(ctrls.size() &lt; m)
       <span class="k">let</span> <span class="nf">arity</span> = label_types(ctrls[m]).size()
-      <span class="k">foreach</span> (n <span class="k">in</span> n*)
-        error_if(ctrls.size() &lt; n)
-        error_if(label_types(ctrls[n]).size() =/= arity)
+      <span class="k">foreach</span> (n <span class="k">in</span> n*)
+        error_if(ctrls.size() &lt; n)
+        error_if(label_types(ctrls[n]).size() =/= arity)
         push_vals(pop_vals(label_types(ctrls[n])))
       pop_vals(label_types(ctrls[m]))
-      unreachable()
+      unreachable()
 </pre></div>
 </div>
 <div class="admonition note">
