@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Numerics &#8212; WebAssembly 1.1 (Draft 2021-11-04)</title>
+    <title>Numerics &#8212; WebAssembly 1.1 (Draft 2021-11-11)</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -202,9 +202,9 @@ op(c_1^n, \dots, c_k^n) &amp;=&amp; op(c_1^n[0], \dots, c_k^n[0])~\dots~op(c_1^n
 <p>When a number is stored into <a class="reference internal" href="../syntax/modules.html#syntax-mem"><span class="std std-ref">memory</span></a>, it is converted into a sequence of <a class="reference internal" href="../syntax/values.html#syntax-byte"><span class="std std-ref">bytes</span></a> in <a class="reference external" href="https://en.wikipedia.org/wiki/Endianness#Little-endian">little endian</a> byte order:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{lll&#64;{\qquad}l}
-\href{../exec/numerics.html#aux-bytes}{\mathrm{bytes}}_t(i) &amp;=&amp; \href{../exec/numerics.html#aux-littleendian}{\mathrm{little~endian}}(\href{../exec/numerics.html#aux-bits}{\mathrm{bits}}_t(i)) \\[1ex]
-\href{../exec/numerics.html#aux-littleendian}{\mathrm{little~endian}}(\epsilon) &amp;=&amp; \epsilon \\
-\href{../exec/numerics.html#aux-littleendian}{\mathrm{little~endian}}(d^8~{d'}^\ast~) &amp;=&amp; \href{../exec/numerics.html#aux-littleendian}{\mathrm{little~endian}}({d'}^\ast)~\href{../exec/numerics.html#aux-ibits}{\mathrm{ibits}}_8^{-1}(d^8) \\
+\href{../exec/numerics.html#aux-bytes}{\mathrm{bytes}}_t(i) &amp;=&amp; \href{../exec/numerics.html#aux-littleendian}{\mathrm{littleendian}}(\href{../exec/numerics.html#aux-bits}{\mathrm{bits}}_t(i)) \\[1ex]
+\href{../exec/numerics.html#aux-littleendian}{\mathrm{littleendian}}(\epsilon) &amp;=&amp; \epsilon \\
+\href{../exec/numerics.html#aux-littleendian}{\mathrm{littleendian}}(d^8~{d'}^\ast~) &amp;=&amp; \href{../exec/numerics.html#aux-littleendian}{\mathrm{littleendian}}({d'}^\ast)~\href{../exec/numerics.html#aux-ibits}{\mathrm{ibits}}_8^{-1}(d^8) \\
 \end{array}\end{split}\]</div>
 <p>Again these functions are invertable bijections.</p>
 </section>
