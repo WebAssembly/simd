@@ -39,9 +39,6 @@ sig
   val to_int64: t -> int64
   val to_string : t -> string
   val to_hex_string : t -> string
-  (* If bit (bitwidth - 1) is set, sx will sign-extend t to maintain the
-   * invariant that small ints are stored sign-extended inside a wider int. *)
-  val sx : t -> t
 
   val bitwidth : int
 end
@@ -152,11 +149,17 @@ struct
   let abs = Rep.abs
   let neg = Rep.neg
 
-  (* add, sub, and mul are sign-agnostic and do not trap on overflow. *)
-  let add x y = Rep.sx (Rep.add x y)
-  let sub x y = Rep.sx (Rep.sub x y)
+  (* If bit (bitwidth - 1) is set, sx will sign-extend t to maintain the
+   * invariant that small ints are stored sign-extended inside a wider int. *)
+  let sx x =
+    let i = 64 - Rep.bitwidth in
+    Rep.of_int64 Int64.(shift_right( shift_left (Rep.to_int64 x) i) i)
 
-  let mul x y = Rep.sx (Rep.mul x y)
+  (* add, sub, and mul are sign-agnostic and do not trap on overflow. *)
+  let add x y = sx (Rep.add x y)
+  let sub x y = sx (Rep.sub x y)
+
+  let mul x y = sx (Rep.mul x y)
 
   (* We don't override min_int and max_int since those are used
    * by other functions (like parsing), and rely on it being
@@ -206,7 +209,7 @@ struct
     f x Rep.(to_int (logand y (of_int (bitwidth - 1))))
 
   let shl x y =
-    Rep.sx (shift Rep.shift_left x y)
+    sx (shift Rep.shift_left x y)
 
   let shr_s x y =
     shift Rep.shift_right x y
@@ -226,7 +229,7 @@ struct
     Rep.logand x mask
 
   let shr_u x y =
-    Rep.sx (shift Rep.shift_right_logical (as_unsigned x) y)
+    sx (shift Rep.shift_right_logical (as_unsigned x) y)
 
   (* We must mask the count to implement rotates via shifts. *)
   let clamp_rotate_count n =
@@ -288,8 +291,8 @@ struct
   let ge_s x y = x >= y
   let ge_u x y = cmp_u x (>=) y
 
-  let saturate_s x = Rep.sx (min (max x low_int) high_int)
-  let saturate_u x = Rep.sx (min (max x Rep.zero) (as_unsigned Rep.minus_one))
+  let saturate_s x = sx (min (max x low_int) high_int)
+  let saturate_u x = sx (min (max x Rep.zero) (as_unsigned Rep.minus_one))
 
   (* add/sub for int, used for higher-precision arithmetic for I8 and I16 *)
   let add_int x y =

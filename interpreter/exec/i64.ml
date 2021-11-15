@@ -5,7 +5,6 @@ include Ixx.Make
     include Int64
     let bitwidth = 64
     let to_hex_string = Printf.sprintf "%Lx"
-    let sx = Fun.id
 
     let of_int64 i = i
     let to_int64 i = i

@@ -7,10 +7,6 @@ include Ixx.Make (struct
   let bitwidth = 16
   let to_hex_string i = Printf.sprintf "%lx" (Int32.logand i 0xffffl)
 
-  let sx x =
-    let v = 32 - 16 in
-    shift_right (shift_left x v) v
-
   let of_int64 = Int64.to_int32
   let to_int64 = Int64.of_int32
 end)
