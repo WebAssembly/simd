@@ -153,7 +153,7 @@ struct
    * invariant that small ints are stored sign-extended inside a wider int. *)
   let sx x =
     let i = 64 - Rep.bitwidth in
-    Rep.of_int64 Int64.(shift_right( shift_left (Rep.to_int64 x) i) i)
+    Rep.of_int64 Int64.(shift_right (shift_left (Rep.to_int64 x) i) i)
 
   (* add, sub, and mul are sign-agnostic and do not trap on overflow. *)
   let add x y = sx (Rep.add x y)
